@@ -5,13 +5,13 @@ public class Specialisation {
     public static void displaySpecialisations() {
 
         System.out.println("========== SPECIALISATIONS ==========\n" +
-                "Each specialisation offers a focused curriculum designed to equip students with in-depth knowledge\n" +
-                "and skills in their chosen field. Students must complete the required core and elective courses to\n" +
-                "fulfil the specialisation requirements.\n" +
+                "Each specialisation offers a focused curriculum designed to equip students with\n" +
+                "in-depth knowledge and skills in their chosen field. Students must complete the\n" +
+                "required core and elective courses to fulfil the specialisation requirements.\n" +
                 "\n" +
                 "========== ADVANCED ELECTRONICS ==========\n" +
-                "Students in the AE Specialisation are required to complete a minimum of 20 Units consisting of AE\n" +
-                "core (2 mandatory courses) and AE electives.\n" +
+                "Students in the AE Specialisation are required to complete a minimum of 20\n" +
+                "Units consisting of AE core (2 mandatory courses) and AE electives.\n" +
                 "\n" +
                 "* AE Core Courses *\n" +
                 "EE3408C Integrated Analog Design (4 Units)\n" +
@@ -30,8 +30,10 @@ public class Specialisation {
                 "EE4438 Solar Cells and Modules (4 Units)\n" +
                 "\n" +
                 "========== INDUSTRY 4.0 ==========\n" +
-                "Students will need to complete 20 Units according to the following requirements:\n" +
-                "1. Complete two compulsory courses (a) EE3331C or ME2142 (4 Units) AND (b) EE3306/ME3163 (4 Units).\n" +
+                "Students will need to complete 20 Units according to the following\n" +
+                "requirements:\n" +
+                "1. Complete two compulsory courses (a) EE3331C or ME2142 (4 Units) AND (b)\n" +
+                "EE3306/ME3163 (4 Units).\n" +
                 "2. Complete three electives.\n" +
                 "\n" +
                 "* Industry 4.0 Electives *\n" +
@@ -52,8 +54,8 @@ public class Specialisation {
                 "RB4301 Robot Learning\n" +
                 "\n" +
                 "========== INTERNET OF THINGS (IoT) ==========\n" +
-                "Students in the IoT Specialisation are required to complete a minimum of 20 Units consisting of IoT\n" +
-                "core (3 mandatory courses) and IoT electives.\n" +
+                "Students in the IoT Specialisation are required to complete a minimum of 20\n" +
+                "Units consisting of IoT core (3 mandatory courses) and IoT electives.\n" +
                 "\n" +
                 "* IoT Core Courses *\n" +
                 "CS3237 Introduction to Internet of Things (4 Units)\n" +
@@ -71,14 +73,16 @@ public class Specialisation {
                 "or CP4106 Computing Project – linked to IoT (8 Units)\n" +
                 "\n" +
                 "========== ROBOTICS ==========\n" +
-                "Students taking the Robotics specialisation must complete 20 Units, comprising the following:\n" +
-                "12 Units from basket of Robotics electives AND complete a final-year Capstone project (8 Units) in\n" +
-                "the area of Robotics, OR 20 Units from basket of Robotics electives.\n" +
+                "Students taking the Robotics specialisation must complete 20 Units, comprising\n" +
+                "the following:\n" +
+                "12 Units from basket of Robotics electives AND complete a final-year Capstone\n" +
+                "project (8 Units) in the area of Robotics, OR 20 Units from basket of Robotics\n" +
+                "electives.\n" +
                 "\n" +
                 "* Robotics Electives *\n" +
                 "BN4203 Robotics in Rehabilitation (4 Units)\n" +
                 "BN4601 Intelligent Medical Robotics\n" +
-                "EE3305/ME3243\tRobotic System Design (4 Units)\n" +
+                "EE3305/ME3243 Robotic System Design (4 Units)\n" +
                 "EE4305 Fuzzy/Neural Systems for intelligent robotics\n" +
                 "EE4308 Autonomous Robot Systems (4 Units)\n" +
                 "EE4309 Robot Perception (4 Units)\n" +
@@ -93,8 +97,8 @@ public class Specialisation {
                 "RB4301 Robot Learning\n" +
                 "\n" +
                 "========== SPACE TECHNOLOGY ==========\n" +
-                "Students are required to complete a minimum of 20 Units, including two core courses and two elective\n" +
-                "courses.\n" +
+                "Students are required to complete a minimum of 20 Units, including two core\n" +
+                "courses and two elective courses.\n" +
                 "\n" +
                 "* ST Core Courses *\n" +
                 "EE3105 Beyond Sky – New Space Technology and Application (4 Units)\n" +
