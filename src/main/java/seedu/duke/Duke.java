@@ -17,5 +17,14 @@ public class Duke {
 
         Scanner in = new Scanner(System.in);
         System.out.println("Hello " + in.nextLine());
+
+        CommandParser commandParser = new CommandParser();
+
+        // Start listening for user commands
+        while (true) {
+            System.out.println("Enter a command:");
+            String input = in.nextLine().trim();
+            commandParser.parseCommand(input); // Pass the input to CommandParser
+        }
     }
 }
