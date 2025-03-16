@@ -19,7 +19,7 @@ public class CommandParser {
         } else if (command.equals("/schedule -poly")) {
             System.out.println("SCHEDULE POLY"); // Handle schedule -poly command
         } else if (command.equals("/specialisation")) {
-            Specialisation.displaySpecialisations(); // Handle specialisation command
+            System.out.println("SPECIALISATION"); // Handle specialisation command
         } else if (command.equals("/exit")) {
             System.out.println("EXIT"); // Handle exit command
         } else {
