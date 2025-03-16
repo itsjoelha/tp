@@ -1,2 +1,110 @@
-Hello I'm GrandRhombus!
-How are you today?
+========== SPECIALISATIONS ==========
+Each specialisation offers a focused curriculum designed to equip students with
+in-depth knowledge and skills in their chosen field. Students must complete the
+required core and elective courses to fulfil the specialisation requirements.
+
+========== ADVANCED ELECTRONICS ==========
+Students in the AE Specialisation are required to complete a minimum of 20
+Units consisting of AE core (2 mandatory courses) and AE electives.
+
+* AE Core Courses *
+EE3408C Integrated Analog Design (4 Units)
+EE3431C Microelectronic Materials and Devices (4 Units)
+
+* AE Elective Courses *
+EE4218 Embedded Hardware System Design (4 Units)
+EE4407 Analog Electronics (4 Units)
+EE4415 Integrated Digital Design (4 Units)
+EE5507 Analog IC Design (4 Units)
+CG3207 Computer Architecture (4 Units)
+EE4409 Modern Microelectronic Devices & Sensors (4 Units)
+EE4435 Modern Transistors and Memory Devices (4 Units)
+EE4436 Fabrication Process Technology (4 Units)
+EE4437 Photonics – Principles and Applications (4 Units)
+EE4438 Solar Cells and Modules (4 Units)
+
+========== INDUSTRY 4.0 ==========
+Students will need to complete 20 Units according to the following
+requirements:
+1. Complete two compulsory courses (a) EE3331C or ME2142 (4 Units) AND (b)
+EE3306/ME3163 (4 Units).
+2. Complete three electives.
+
+* Industry 4.0 Electives *
+EE4211 Data Science for IoT (4 Units)
+EE4212 Computer Vision (4 Units)
+EE4302 Advanced Control System (4 Units)
+EE4311 Fuzzy Logic and Neuro Fuzzy Systems (4 Units)
+EE4312 Artificial Neural Networks (4 Units)
+EE4314 Eyes from above: Guidance, Navigation and Control
+EE4315 Intelligent Industrial Control Systems
+ME3242 Automation (4 Units)
+ME4262 Automation in Manufacturing (4 Units)
+ME4248 Manufacturing Simulation and Data Communication (4 Units)
+ME4246 Modern Control System
+ME5405 Machine Vision (4 Units)
+CN4227R Advanced Process Control
+CN4221R Control of Industrial Processes (4 Units)
+RB4301 Robot Learning
+
+========== INTERNET OF THINGS (IoT) ==========
+Students in the IoT Specialisation are required to complete a minimum of 20
+Units consisting of IoT core (3 mandatory courses) and IoT electives.
+
+* IoT Core Courses *
+CS3237 Introduction to Internet of Things (4 Units)
+EE4211 Data Science for IoT (4 Units)
+EE4409 Modern Microelectronic Devices & Sensors (4 Units)
+
+* IoT Elective Courses *
+CG4002 Computer Engineering Capstone Project (8 Units)
+CS4222 Wireless Networking (4 Units)
+EE4204 Computer Networks (4 Units, For EE students only)
+EE4216 Hardware for Internet of Things (4 Units)
+EE4218 Embedded Hardware System Design (4 Units)
+CS3244 Machine Learning (4 Units)
+EE4002D/EE4002R Design Capstone/Research Capstone (8 Units)
+or CP4106 Computing Project – linked to IoT (8 Units)
+
+========== ROBOTICS ==========
+Students taking the Robotics specialisation must complete 20 Units, comprising
+the following:
+12 Units from basket of Robotics electives AND complete a final-year Capstone
+project (8 Units) in the area of Robotics, OR 20 Units from basket of Robotics
+electives.
+
+* Robotics Electives *
+BN4203 Robotics in Rehabilitation (4 Units)
+BN4601 Intelligent Medical Robotics
+EE3305/ME3243 Robotic System Design (4 Units)
+EE4305 Fuzzy/Neural Systems for intelligent robotics
+EE4308 Autonomous Robot Systems (4 Units)
+EE4309 Robot Perception (4 Units)
+EE4705 Human-Robot Interaction (4 Units)
+EE4311 Fuzzy Logic and Neuro Fuzzy Systems (4 Units)
+EE4312 Artificial Neural Networks (4 Units)
+EE4314 Eyes from above: Guidance, Navigation and Control
+ME4242 Soft Robotics (4 Units)
+ME4245 Robot Mechanics and Control (4 Units)
+ME5406 Deep Learning for Robotics (4 Units)
+MLE4228 Materials for Robotic Sensing and Actuation (4 Units)
+RB4301 Robot Learning
+
+========== SPACE TECHNOLOGY ==========
+Students are required to complete a minimum of 20 Units, including two core
+courses and two elective courses.
+
+* ST Core Courses *
+EE3105 Beyond Sky – New Space Technology and Application (4 Units)
+EE4002D/EE4002R Capstone on satellite related projects (8 Units)
+
+* ST Technical Electives *
+EE3131C Communication Systems (4 Units)
+EE3104C Introduction to RF and Microwave Systems & Circuits (4 Units)
+EE3331C Feedback Control Systems (4 Units)
+EE4115 Remote Sensing and Analysis with Deep Learning Technique (4 Units)
+EE4218 Embedded Hardware System Design (4 Units)
+EE4314 Eyes from above: Guidance, Navigation and Control
+EE4503 Power Electronics for Sustainable Energy Technologies (4 Units)
+EE4101 RF Communications (4 Units)
+========================================
