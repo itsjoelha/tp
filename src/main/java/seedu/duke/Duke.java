@@ -16,13 +16,22 @@ public class Duke {
     public static void main(String[] args) {
         System.out.println("Welcome to Grand Rhombus");
         Scanner in = new Scanner(System.in);
-        String modCode = in.nextLine();
-        while (!modCode.equals("die")) {
-            Command cmd = new AddModule(modCode);
+        String userInput = in.nextLine();
+        while (!userInput.equals("die")) {
+            String usercmd = userInput.split(" ")[0];
+            String modCode = userInput.split(" ")[1];
+
+            if (usercmd.equals("d")) {
+                Command cmd = new DeleteModule(modCode);
+                cmd.execute();
+            } else if (usercmd.equals("a")) {
+                Command cmd = new AddModule(modCode);
+                cmd.execute();
+            }
+            
+            Command cmd = new ListModules();
             cmd.execute();
-            cmd = new ListModules();
-            cmd.execute();
-            modCode = in.nextLine();
+            userInput = in.nextLine();
         }
 
     }
