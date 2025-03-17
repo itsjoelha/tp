@@ -30,8 +30,7 @@ public class Specialisation {
                 "EE4438 Solar Cells and Modules (4 Units)\n" +
                 "\n" +
                 "========== INDUSTRY 4.0 ==========\n" +
-                "Students will need to complete 20 Units according to the following\n" +
-                "requirements:\n" +
+                "Students will need to complete 20 Units according to the following requirements:\n" +
                 "1. Complete two compulsory courses (a) EE3331C or ME2142 (4 Units) AND (b)\n" +
                 "EE3306/ME3163 (4 Units).\n" +
                 "2. Complete three electives.\n" +
@@ -75,9 +74,8 @@ public class Specialisation {
                 "========== ROBOTICS ==========\n" +
                 "Students taking the Robotics specialisation must complete 20 Units, comprising\n" +
                 "the following:\n" +
-                "12 Units from basket of Robotics electives AND complete a final-year Capstone\n" +
-                "project (8 Units) in the area of Robotics, OR 20 Units from basket of Robotics\n" +
-                "electives.\n" +
+                "12 Units from basket of Robotics electives AND complete a final-year Capstone project\n" +
+                "(8 Units) in the area of Robotics, OR 20 Units from basket of Robotics electives.\n" +
                 "\n" +
                 "* Robotics Electives *\n" +
                 "BN4203 Robotics in Rehabilitation (4 Units)\n" +
