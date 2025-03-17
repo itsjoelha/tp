@@ -1,21 +1,29 @@
 package seedu.duke;
 
+import java.util.ArrayList;
 import java.util.Scanner;
+
+import seedu.duke.data.Mod;
+import seedu.duke.command.*;
 
 public class Duke {
     /**
      * Main entry-point for the java.duke.Duke application.
      */
-    public static void main(String[] args) {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
-        System.out.println("What is your name?");
+    public static ArrayList<Mod> moduleList = new ArrayList<>();
+    public static int totalMCs = 0;
 
+    public static void main(String[] args) {
+        System.out.println("Welcome to Grand Rhombus");
         Scanner in = new Scanner(System.in);
-        System.out.println("Hello " + in.nextLine());
+        String modCode = in.nextLine();
+        while (!modCode.equals("die")) {
+            Command cmd = new AddModule(modCode);
+            cmd.execute();
+            cmd = new ListModules();
+            cmd.execute();
+            modCode = in.nextLine();
+        }
+
     }
 }
