@@ -1,37 +1,31 @@
 package seedu.duke;
 
+import java.util.ArrayList;
 import java.util.Scanner;
+
+import seedu.duke.data.Mod;
+import seedu.duke.command.AddModule;
+import seedu.duke.command.DeleteModule;
+import seedu.duke.command.Command;
+import seedu.duke.command.ListModules;
 
 public class Duke {
     /**
      * Main entry-point for the java.duke.Duke application.
      */
+    public static ArrayList<Mod> moduleList = new ArrayList<>();
+    public static int totalMCs = 0;
+    public static CommandParser commandParser = new CommandParser();
+
     public static void main(String[] args) {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
-        System.out.println("What is your name?");
-
+        System.out.println("Welcome to Grand Rhombus");
         Scanner in = new Scanner(System.in);
-        System.out.println("Hello " + in.nextLine());
 
-        CommandParser commandParser = new CommandParser();
-
-        // Start listening for user commands
-        while (true) {
-            try {
-                System.out.println("Enter a command:");
-                String input = in.nextLine().trim();
-                commandParser.parseCommand(input); // Pass input to CommandParser
-            } catch (Exception e) {
-                System.out.println("An error occurred: " + e.getMessage());
-                break;  // Break out of the loop if an exception occurs
-            }
+        String userInput = in.nextLine();
+        while (!userInput.equals("/exit")) {
+            commandParser.parseCommand(userInput);
+            userInput = in.nextLine();
         }
 
-        in.close();
     }
 }
