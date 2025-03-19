@@ -17,7 +17,7 @@ public class Mod {
 
     public Mod(String code) {
         // Use Paths.get() for platform-independent file paths
-        String filePath = "./data/mod_data.txt";
+        String filePath = "data/mod_data.txt";
         Data datafile = new Data(filePath);
         String[] parts = datafile.searchMod(code);
         this.name = parts[1];
