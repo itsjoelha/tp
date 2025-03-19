@@ -1,5 +1,7 @@
 package seedu.duke.data;
 
+import java.io.File;
+
 public class Mod {
     private final String name;
     private final String description;
@@ -14,7 +16,8 @@ public class Mod {
     }
 
     public Mod(String code) {
-        Data datafile = new Data("./data/mod_data.txt");
+        String filePath = "." + File.separator + "data" + File.separator + "mod_data.txt";
+        Data datafile = new Data(filePath);
         String[] parts = datafile.searchMod(code);
         this.name = parts[1];
         this.description = parts[3];

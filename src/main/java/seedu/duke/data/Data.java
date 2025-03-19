@@ -19,7 +19,7 @@ public class Data {
                 if (words[0].equals(modCode)) {
                     return words;
                 }
-                line = scanner.nextLine();
+                scanner.nextLine();
             }
         } catch (FileNotFoundException e) {
             System.out.println("File not found");
