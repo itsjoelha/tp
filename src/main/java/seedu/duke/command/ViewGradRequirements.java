@@ -6,7 +6,18 @@ import java.util.ArrayList;
 
 import static seedu.duke.Duke.moduleList;
 import static seedu.duke.Duke.totalMCs;
-import static seedu.duke.data.GradModuleList.*;
+import static seedu.duke.data.GradModuleList.Year1Sem1Modules;
+import static seedu.duke.data.GradModuleList.Year1Sem2Modules;
+import static seedu.duke.data.GradModuleList.Year2Sem1Modules;
+import static seedu.duke.data.GradModuleList.Year2Sem2Modules;
+import static seedu.duke.data.GradModuleList.Year3Sem1Modules;
+import static seedu.duke.data.GradModuleList.Year3Sem2Modules;
+import static seedu.duke.data.GradModuleList.Year4Sem1Modules;
+import static seedu.duke.data.GradModuleList.Year4Sem2Modules;
+
+
+
+
 
 public class ViewGradRequirements implements Command {
     public void execute() {

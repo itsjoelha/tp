@@ -1,6 +1,7 @@
 package seedu.duke;
 import seedu.duke.command.*;
 
+
 public class CommandParser {
 
     // This method will parse and handle commands
@@ -23,9 +24,11 @@ public class CommandParser {
         } else if (command.equals("/help")) {
             Help.displayHelpFile(); // Handle help command
         } else if (command.equals("/grad")) {
-            System.out.println("GRAD"); // Handle grad command
+            Command cmd = new ViewGradRequirements();
+            cmd.execute(); // Handle grad command
         } else if (command.equals("/schedule")) {
-            System.out.println("SCHEDULE");// Handle schedule command
+            Command cmd = new RecommendedSchedule();
+            cmd.execute();// Handle schedule command
 //        } else if (command.equals("/schedule -poly")) {
 //            System.out.println("SCHEDULE POLY"); // Handle schedule -poly command
         } else if (command.equals("/specialisation")) {
