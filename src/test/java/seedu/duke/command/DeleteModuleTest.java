@@ -10,7 +10,7 @@ import static seedu.duke.Duke.totalMCs;
 
 class DeleteModuleTest {
     private final String modCode1 = "CS1010";
-    private final String modCode2 = "CS2030";
+    private final String modCode2 = "CS2040C";
 
     @BeforeEach
     void setUp() {
@@ -18,8 +18,10 @@ class DeleteModuleTest {
         System.out.println("Reset moduleList");
         moduleList.clear();
         totalMCs = 0;
-        new AddModule(modCode1).execute();
-        new AddModule(modCode2).execute();
+        Command add1 = new AddModule(modCode1);
+        add1.execute();
+        Command add2 = new AddModule(modCode2);
+        add2.execute();
     }
 
     @Test
