@@ -14,7 +14,9 @@ public class Mod {
     }
 
     public Mod(String code) {
-        Data datafile = new Data("./data/mod_data.txt");
+        // Use Paths.get() for platform-independent file paths
+        String filePath = "data/mod_data.txt";
+        Data datafile = new Data(filePath);
         String[] parts = datafile.searchMod(code);
         this.name = parts[1];
         this.description = parts[3];
@@ -39,6 +41,6 @@ public class Mod {
     }
 
     public String toString() {
-        return code + " | " + name + ": " + " (" + numMC + " MCs)" ;
+        return code + " | " + name + ": " + " (" + numMC + " MCs)";
     }
 }
