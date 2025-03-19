@@ -1,7 +1,5 @@
 package seedu.duke.data;
 
-import java.nio.file.Paths;
-
 public class Mod {
     private final String name;
     private final String description;
