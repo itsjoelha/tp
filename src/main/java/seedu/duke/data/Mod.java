@@ -1,6 +1,6 @@
 package seedu.duke.data;
 
-//import java.io.File;
+import java.nio.file.Paths;
 
 public class Mod {
     private final String name;
@@ -16,7 +16,8 @@ public class Mod {
     }
 
     public Mod(String code) {
-        String filePath = "./data/mod_data.txt";
+        // Use Paths.get() for platform-independent file paths
+        String filePath = Paths.get("data", "mod_data.txt").toString();
         Data datafile = new Data(filePath);
         String[] parts = datafile.searchMod(code);
         this.name = parts[1];
@@ -42,6 +43,6 @@ public class Mod {
     }
 
     public String toString() {
-        return code + " | " + name + ": " + " (" + numMC + " MCs)" ;
+        return code + " | " + name + ": " + " (" + numMC + " MCs)";
     }
 }
