@@ -25,7 +25,7 @@ public class Data {
                 String[] words = line.split("\\|");
 
                 // Check if the current line contains the desired modCode
-                if (words.length >= 4 && words[0].equals(modCode)) {
+                if (words.length >= 3 && words[0].equals(modCode)) {
                     return words; // Return the parts if modCode matches
                 }
             }
