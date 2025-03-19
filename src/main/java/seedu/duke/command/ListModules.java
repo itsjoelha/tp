@@ -8,10 +8,11 @@ public class ListModules implements Command {
     public void execute() {
         if (moduleList.isEmpty()) {
             System.out.println("No modules in List");
-        }
-        System.out.println("Modules in List: ");
-        for (Mod m: moduleList) {
-            System.out.println(m.toString());
+        } else {
+            System.out.println("Modules in List: ");
+            for (Mod m : moduleList) {
+                System.out.println(m.toString());
+            }
         }
     }
 }
