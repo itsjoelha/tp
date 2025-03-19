@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import seedu.duke.data.Mod;
-import seedu.duke.command.*;
+import seedu.duke.command.AddModule;
+import seedu.duke.command.DeleteModule;
+import seedu.duke.command.Command;
+import seedu.duke.command.ListModules;
 
 public class Duke {
     /**
