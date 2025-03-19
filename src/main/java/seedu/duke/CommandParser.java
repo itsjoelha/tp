@@ -1,11 +1,17 @@
 package seedu.duke;
 
+import javax.sound.midi.SysexMessage;
+
 public class CommandParser {
 
     // This method will parse and handle commands
     public void parseCommand(String command) {
-        if (command.equals("/view")) {
-            System.out.println("VIEW"); // Handle view command
+        if (command.startsWith("/view")) {
+            String[] commandParts = command.split(" ");
+            String code = commandParts[1];
+            Mod module = new Mod(code); // Handle view command
+            System.out.println(module);
+            module.textWrapDescription();
         } else if (command.startsWith("/add")) {
             System.out.println("ADD"); // Handle add command
         } else if (command.startsWith("/delete")) {
