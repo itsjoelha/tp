@@ -12,13 +12,13 @@ public class AddModuleTest {
         String modCode1 = "CS2113";
         Command cmd = new AddModule(modCode1);
         cmd.execute();
+        assertEquals(4, totalMCs);
 
         String modCode2 = "CS2040C";
         cmd = new AddModule(modCode2);
         cmd.execute();
 
         assertEquals(modCode1, moduleList.get(0).getCode());
-        assertEquals(4, totalMCs);
 
         assertEquals(modCode2, moduleList.get(1).getCode());
         assertEquals(8, totalMCs);
