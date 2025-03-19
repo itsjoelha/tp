@@ -36,8 +36,6 @@ public class CommandParser {
         } else if (command.equals("/schedule")) {
             Command cmd = new RecommendedSchedule();
             cmd.execute();// Handle schedule command
-//        } else if (command.equals("/schedule -poly")) {
-//            System.out.println("SCHEDULE POLY"); // Handle schedule -poly command
         } else if (command.equals("/specialisation")) {
             Specialisation.displaySpecialisations(); // Handle specialisation command
         } else if (command.equals("/exit")) {

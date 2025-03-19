@@ -11,11 +11,11 @@ public class GradModuleList {
                     " two Engineering Principles and Practice (EPP) courses taken by " +
                     "computer engineering students, which aim to inculcate in them the computer engineer's way of " +
                     "thinking. They are first taught the fundamental principles of electronic circuits through" +
-                    " experiential learning, along which they also build up their hands-on circuit designing, building," +
-                    " and debugging skills. They are then guided to apply these principles and skills to build" +
-                    " a sensor-assisted autonomous robotic vehicle as a grand finale challenge. Upon completing the" +
-                    " course, they can appreciate the importance of circuits, signals, and sensors in system" +
-                    " implementation.", 4, "CG1111A"),
+                    " experiential learning, along which they also build up their hands-on circuit designing," +
+                    " building, and debugging skills. They are then guided to apply these principles and skills " +
+                    "to build a sensor-assisted autonomous robotic vehicle as a grand finale challenge. Upon " +
+                    "completing the course, they can appreciate the importance of circuits, signals, and sensors " +
+                    "in system implementation.", 4, "CG1111A"),
 
             new Mod("Programming Methodology", "This course introduces the fundamental concepts of " +
                     "problem solving by computing and programming using an imperative programming language. It is the" +
