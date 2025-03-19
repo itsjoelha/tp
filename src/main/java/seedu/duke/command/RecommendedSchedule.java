@@ -5,28 +5,30 @@ import seedu.duke.data.Mod;
 import java.util.List;
 
 //import static seedu.duke.Duke.moduleList; // to implement strikethrough if already in list
-import static seedu.duke.data.GradModuleList.Year1Sem1Modules;
-import static seedu.duke.data.GradModuleList.Year1Sem2Modules;
-import static seedu.duke.data.GradModuleList.Year2Sem1Modules;
-import static seedu.duke.data.GradModuleList.Year2Sem2Modules;
-import static seedu.duke.data.GradModuleList.Year3Sem1Modules;
-import static seedu.duke.data.GradModuleList.Year3Sem2Modules;
-import static seedu.duke.data.GradModuleList.Year4Sem1Modules;
-import static seedu.duke.data.GradModuleList.Year4Sem2Modules;
+import static seedu.duke.data.GradModuleList.YEAR1SEM1MODULES;
+import static seedu.duke.data.GradModuleList.YEAR1SEM2MODULES;
+import static seedu.duke.data.GradModuleList.YEAR2SEM1MODULES;
+import static seedu.duke.data.GradModuleList.YEAR2SEM2MODULES;
+import static seedu.duke.data.GradModuleList.YEAR3SEM1MODULES;
+import static seedu.duke.data.GradModuleList.YEAR3SEM2MODULES;
+import static seedu.duke.data.GradModuleList.YEAR4SEM1MODULES;
+import static seedu.duke.data.GradModuleList.YEAR4SEM2MODULES;
+
+
 
 
 
 public class RecommendedSchedule implements Command {
 
     public void execute() {
-        printSemester("Year 1 Semester 1", Year1Sem1Modules);
-        printSemester("Year 1 Semester 2", Year1Sem2Modules);
-        printSemester("Year 2 Semester 1", Year2Sem1Modules);
-        printSemester("Year 2 Semester 2", Year2Sem2Modules);
-        printSemester("Year 3 Semester 1", Year3Sem1Modules);
-        printSemester("Year 3 Semester 2", Year3Sem2Modules);
-        printSemester("Year 4 Semester 1", Year4Sem1Modules);
-        printSemester("Year 4 Semester 2", Year4Sem2Modules);
+        printSemester("Year 1 Semester 1", YEAR1SEM1MODULES);
+        printSemester("Year 1 Semester 2", YEAR1SEM2MODULES);
+        printSemester("Year 2 Semester 1", YEAR2SEM1MODULES);
+        printSemester("Year 2 Semester 2", YEAR2SEM2MODULES);
+        printSemester("Year 3 Semester 1", YEAR3SEM1MODULES);
+        printSemester("Year 3 Semester 2", YEAR3SEM2MODULES);
+        printSemester("Year 4 Semester 1", YEAR4SEM1MODULES);
+        printSemester("Year 4 Semester 2", YEAR4SEM2MODULES);
     }
 
     private void printSemester(String title, List<Mod> semesterModules) {
