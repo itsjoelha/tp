@@ -22,9 +22,16 @@ public class Duke {
 
         // Start listening for user commands
         while (true) {
-            System.out.println("Enter a command:");
-            String input = in.nextLine().trim();
-            commandParser.parseCommand(input); // Pass the input to CommandParser
+            try {
+                System.out.println("Enter a command:");
+                String input = in.nextLine().trim();
+                commandParser.parseCommand(input); // Pass input to CommandParser
+            } catch (Exception e) {
+                System.out.println("An error occurred: " + e.getMessage());
+                break;  // Break out of the loop if an exception occurs
+            }
         }
+
+        in.close();
     }
 }
