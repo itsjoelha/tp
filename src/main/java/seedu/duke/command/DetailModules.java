@@ -23,10 +23,9 @@ public class DetailModules implements Command {
                 currentLine.append(" ");
             }
         }
-        if (!currentLine.isEmpty()) {
+        if (!currentLine.toString().isEmpty()) {
             System.out.println(currentLine);
         }
-
     }
 
     public void execute() {

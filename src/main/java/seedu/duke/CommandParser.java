@@ -1,8 +1,6 @@
 package seedu.duke;
 import seedu.duke.command.*;
 
-import javax.sound.midi.SysexMessage;
-
 public class CommandParser {
 
     // This method will parse and handle commands
@@ -23,7 +21,7 @@ public class CommandParser {
             Command cmd = new DeleteModule(words[1]);
             cmd.execute(); // Handle delete command
         } else if (command.equals("/help")) {
-            System.out.println("HELP"); // Handle help command
+            Help.displayHelpFile(); // Handle help command
         } else if (command.equals("/grad")) {
             System.out.println("GRAD"); // Handle grad command
         } else if (command.equals("/schedule -jc")) {
