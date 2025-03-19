@@ -17,11 +17,52 @@ public class Duke {
         System.out.println("Welcome to Grand Rhombus, your personal CEG Assistant");
         Scanner in = new Scanner(System.in);
 
-        String userInput = in.nextLine();
-        while (!userInput.equals("/exit")) {
-            commandParser.parseCommand(userInput);
-            userInput = in.nextLine();
+        while (true) {
+            System.out.print("Enter command: ");
+            String userInput = in.nextLine().trim();
+
+            if (userInput.equalsIgnoreCase("die")) {
+                System.out.println("Exiting program...");
+                break;
+            }
+
+            String[] parts = userInput.split(" ", 2); // Split into two parts (cmd + argument)
+            String usercmd = parts[0];
+            String modCode = (parts.length > 1) ? parts[1] : ""; // Prevents IndexOutOfBoundsException
+
+            Command cmd = null;
+
+            switch (usercmd) {
+                case "d":
+                    if (modCode.isEmpty()) {
+                        System.out.println("Error: Please specify a module code to delete.");
+                        continue;
+                    }
+                    cmd = new DeleteModule(modCode);
+                    break;
+
+                case "a":
+                    if (modCode.isEmpty()) {
+                        System.out.println("Error: Please specify a module code to add.");
+                        continue;
+                    }
+                    cmd = new AddModule(modCode);
+                    break;
+
+                case "/schedule":
+                    cmd = new RecommendedSchedule();
+                    break;
+
+                default:
+                    System.out.println("Invalid command. Try again.");
+                    continue;
+            }
+
+            cmd.execute(); // Execute the selected command
         }
+
+        in.close(); // Close scanner when the program exits
         System.out.println("Goodbye, thank you for using Grand Rhombus"); // Handle exit command
+
     }
 }

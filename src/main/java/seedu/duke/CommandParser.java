@@ -24,10 +24,10 @@ public class CommandParser {
             Help.displayHelpFile(); // Handle help command
         } else if (command.equals("/grad")) {
             System.out.println("GRAD"); // Handle grad command
-        } else if (command.equals("/schedule -jc")) {
-            System.out.println("SCHEDULE JC");// Handle schedule -jc command
-        } else if (command.equals("/schedule -poly")) {
-            System.out.println("SCHEDULE POLY"); // Handle schedule -poly command
+        } else if (command.equals("/schedule")) {
+            System.out.println("SCHEDULE");// Handle schedule command
+//        } else if (command.equals("/schedule -poly")) {
+//            System.out.println("SCHEDULE POLY"); // Handle schedule -poly command
         } else if (command.equals("/specialisation")) {
             Specialisation.displaySpecialisations(); // Handle specialisation command
         } else if (command.equals("/exit")) {
