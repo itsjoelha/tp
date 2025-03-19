@@ -34,7 +34,7 @@ public class ViewGradRequirements implements Command {
         List<Mod> missingModules = getMissingModules();
 
         if (missingModules.isEmpty()) {
-            System.out.println("🎉 You have completed all required modules!");
+            System.out.println("You have completed all required modules!");
         } else {
             for (Mod m : missingModules) {
                 System.out.println("X" + m.getCode() + " - " + m.getName());
