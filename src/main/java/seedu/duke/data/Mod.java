@@ -14,9 +14,11 @@ public class Mod {
     }
 
     public Mod(String code) {
-        this.name = "test name";
-        this.description = "description 1";
-        this.numMC = 4;
+        Data datafile = new Data("./data/mod_data.txt");
+        String[] parts = datafile.searchMod(code);
+        this.name = parts[1];
+        this.description = parts[3];
+        this.numMC = Integer.parseInt(parts[2]);
         this.code = code;
     }
 
@@ -37,6 +39,6 @@ public class Mod {
     }
 
     public String toString() {
-        return code + ": " + description + " (" + numMC + " MCs)" ;
+        return code + " | " + name + ": " + " (" + numMC + " MCs)" ;
     }
 }
