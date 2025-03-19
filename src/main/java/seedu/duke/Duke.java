@@ -3,6 +3,7 @@ package seedu.duke;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import seedu.duke.command.*;
 import seedu.duke.data.Mod;
 
 public class Duke {
@@ -51,6 +52,10 @@ public class Duke {
 
                 case "/schedule":
                     cmd = new RecommendedSchedule();
+                    break;
+
+                case "/grad":
+                    cmd = new ViewGradRequirements();
                     break;
 
                 default:
