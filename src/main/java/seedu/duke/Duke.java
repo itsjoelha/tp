@@ -3,7 +3,6 @@ package seedu.duke;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import seedu.duke.command.*;
 import seedu.duke.data.Mod;
 
 public class Duke {
@@ -27,43 +26,9 @@ public class Duke {
                 break;
             }
 
-            String[] parts = userInput.split(" ", 2); // Split into two parts (cmd + argument)
-            String usercmd = parts[0];
-            String modCode = (parts.length > 1) ? parts[1] : ""; // Prevents IndexOutOfBoundsException
+            // Use the CommandParser to handle user input
+            commandParser.parseCommand(userInput);  // delegate command handling to CommandParser
 
-            Command cmd = null;
-
-            switch (usercmd) {
-                case "d":
-                    if (modCode.isEmpty()) {
-                        System.out.println("Error: Please specify a module code to delete.");
-                        continue;
-                    }
-                    cmd = new DeleteModule(modCode);
-                    break;
-
-                case "a":
-                    if (modCode.isEmpty()) {
-                        System.out.println("Error: Please specify a module code to add.");
-                        continue;
-                    }
-                    cmd = new AddModule(modCode);
-                    break;
-
-                case "/schedule":
-                    cmd = new RecommendedSchedule();
-                    break;
-
-                case "/grad":
-                    cmd = new ViewGradRequirements();
-                    break;
-
-                default:
-                    System.out.println("Invalid command. Try again.");
-                    continue;
-            }
-
-            cmd.execute(); // Execute the selected command
         }
 
         in.close(); // Close scanner when the program exits

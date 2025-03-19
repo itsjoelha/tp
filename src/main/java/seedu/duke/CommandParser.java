@@ -1,5 +1,12 @@
 package seedu.duke;
-import seedu.duke.command.*;
+import seedu.duke.command.Command;
+import seedu.duke.command.DetailModules;
+import seedu.duke.command.ListModules;
+import seedu.duke.command.DeleteModule;
+import seedu.duke.command.AddModule;
+import seedu.duke.command.ViewGradRequirements;
+import seedu.duke.command.RecommendedSchedule;
+
 
 
 public class CommandParser {
