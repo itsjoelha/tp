@@ -102,7 +102,7 @@ public class GradModuleList {
                     " data? What about uncertainty and complex relationships? These and many other questions will" +
                     " be addressed using data software and computational tools, with real-world data sets. " +
                     "Short Syllabus: The PPDAC cycle (Spiegelhalter, D., 2019, The Art of Statistics; MacKay," +
-                    " R.J., R.W. Oldford, 2000, “Scientific Method, Statistical Method and the Speed of Light,”" +
+                    " R.J., R.W. Oldford, 2000, Scientific Method, Statistical Method and the Speed of Light," +
                     " Statistical Science) will be used as a framework to highlight and demonstrate the process" +
                     " of dealing with and making sense of data. The course will consist of four chapters" +
                     ", broadly described below. Getting data: collection/sampling, experiments/observational studies" +

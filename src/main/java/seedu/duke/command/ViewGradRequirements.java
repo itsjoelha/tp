@@ -25,9 +25,9 @@ public class ViewGradRequirements implements Command {
         System.out.println("Current MCs: " + totalMCs);
 
         if (totalMCs >= 160) {
-            System.out.println("✅ You have sufficient MCs to graduate!");
+            System.out.println("You have sufficient MCs to graduate!");
         } else {
-            System.out.println("⚠️ Missing MCs: " + (160 - totalMCs));
+            System.out.println("Missing MCs: " + (160 - totalMCs));
         }
 
         System.out.println("\n=== Modules Missing ===");
@@ -37,7 +37,7 @@ public class ViewGradRequirements implements Command {
             System.out.println("🎉 You have completed all required modules!");
         } else {
             for (Mod m : missingModules) {
-                System.out.println("❌ " + m.getCode() + " - " + m.getName());
+                System.out.println("X" + m.getCode() + " - " + m.getName());
             }
         }
     }
