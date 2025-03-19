@@ -4,10 +4,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import seedu.duke.data.Mod;
-import seedu.duke.command.AddModule;
-import seedu.duke.command.DeleteModule;
-import seedu.duke.command.Command;
-import seedu.duke.command.ListModules;
 
 public class Duke {
     /**
@@ -18,7 +14,7 @@ public class Duke {
     public static CommandParser commandParser = new CommandParser();
 
     public static void main(String[] args) {
-        System.out.println("Welcome to Grand Rhombus");
+        System.out.println("Welcome to Grand Rhombus, your personal CEG Assistant");
         Scanner in = new Scanner(System.in);
 
         String userInput = in.nextLine();
@@ -26,6 +22,6 @@ public class Duke {
             commandParser.parseCommand(userInput);
             userInput = in.nextLine();
         }
-
+        System.out.println("Goodbye, thank you for using Grand Rhombus"); // Handle exit command
     }
 }
