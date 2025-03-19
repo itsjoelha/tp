@@ -16,6 +16,7 @@ public class Duke {
     public static void main(String[] args) {
         System.out.println("Welcome to Grand Rhombus");
         Scanner in = new Scanner(System.in);
+
         String userInput = in.nextLine();
         while (!userInput.equals("die")) {
             String usercmd = userInput.split(" ")[0];
