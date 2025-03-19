@@ -73,9 +73,9 @@ public class Specialisation {
                 "\n" +
                 "========== ROBOTICS ==========\n" +
                 "Students taking the Robotics specialisation must complete 20 Units, comprising\n" +
-                "the following:\n" +
-                "12 Units from basket of Robotics electives AND complete a final-year Capstone project\n" +
-                "(8 Units) in the area of Robotics, OR 20 Units from basket of Robotics electives.\n" +
+                "the following: 12 Units from basket of Robotics electives AND complete a final-year\n" +
+                "Capstone project (8 Units) in the area of Robotics, OR 20 Units from basket of\n" +
+                "Robotics electives.\n" +
                 "\n" +
                 "* Robotics Electives *\n" +
                 "BN4203 Robotics in Rehabilitation (4 Units)\n" +
