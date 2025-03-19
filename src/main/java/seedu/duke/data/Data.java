@@ -9,6 +9,9 @@ public class Data {
 
     public Data(String filepath) {
         this.file = new File(filepath);
+        if (!file.exists()) {
+            System.out.println("File not found: " + filepath);
+        }
     }
 
     public String[] searchMod(String modCode) {
