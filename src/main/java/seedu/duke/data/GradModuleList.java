@@ -6,7 +6,7 @@ import java.util.List;
 
 public class GradModuleList {
 
-    public static final List<Mod> Year1Sem1Modules = new ArrayList<>(Arrays.asList(
+    public static final List<Mod> YEAR1SEM1MODULES = new ArrayList<>(Arrays.asList(
             new Mod("Engineering Principles and Practice I", "This course is the first of the" +
                     " two Engineering Principles and Practice (EPP) courses taken by " +
                     "computer engineering students, which aim to inculcate in them the computer engineer's way of " +
@@ -56,7 +56,7 @@ public class GradModuleList {
                     4, "ES1103")
     ));
 
-    public static final List<Mod> Year1Sem2Modules = new ArrayList<>(Arrays.asList(
+    public static final List<Mod> YEAR1SEM2MODULES = new ArrayList<>(Arrays.asList(
             new Mod("Engineering Principles and Practice II", "This course will be for the students" +
                     " who have completed EPP I and the project scope extends to handle challenges in large-scale" +
                     " systems. Similar to EPP I, students will first learn the fundamental principles on certain" +
@@ -121,7 +121,7 @@ public class GradModuleList {
                     4 ,"GEA1000")
     ));
 
-    public static final List<Mod> Year2Sem1Modules = new ArrayList<>(Arrays.asList(
+    public static final List<Mod> YEAR2SEM1MODULES = new ArrayList<>(Arrays.asList(
             new Mod("Discrete Structures", "This course introduces mathematical tools " +
                     "required in the study of computer science. Topics include: (1) Logic and proof techniques:" +
                     " propositions, conditionals, quantifications. (2) Relations and Functions: Equivalence" +
@@ -160,7 +160,7 @@ public class GradModuleList {
             new Mod("Cultures and Connections", "", 4, "GEC1XXX" )
     ));
 
-    public static final List<Mod> Year2Sem2Modules = new ArrayList<>(Arrays.asList(
+    public static final List<Mod> YEAR2SEM2MODULES = new ArrayList<>(Arrays.asList(
             new Mod("Signals and Systems", "This is a fundamental course in signals and systems, " +
                     "specially developed for computer engineering students. Signals play an important role in " +
                     "carrying information. In particular the idea of frequency domain analysis of signals and " +
@@ -204,7 +204,7 @@ public class GradModuleList {
                     "different disciplines.", 4, "CDE2501")
     ));
 
-    public static final List<Mod> Year3Sem1Modules = new ArrayList<>(Arrays.asList(
+    public static final List<Mod> YEAR3SEM1MODULES = new ArrayList<>(Arrays.asList(
             new Mod("Engineering Professionalism", "This course aims to alert and sensitise " +
                     "students on the kinds of situations that may arise in his professional career and teaches " +
                     "students to improve his/her skills in appreciating and dealing with the moral challenges " +
@@ -232,7 +232,7 @@ public class GradModuleList {
             new Mod("Unrestricted Elective", "", 4, "UE")
     ));
 
-    public static final List<Mod> Year3Sem2Modules = new ArrayList<>(Arrays.asList(
+    public static final List<Mod> YEAR3SEM2MODULES = new ArrayList<>(Arrays.asList(
             new Mod("Transistor-level Digital Circuits", "Building on the basic circuit " +
                     "concepts introduced through CG1111A and CG2111A, this course introduces the fundamental" +
                     " concept of carriers, operating principles of PN diodes and MOSFETs. Their IV" +
@@ -276,7 +276,7 @@ public class GradModuleList {
 
             ));
 
-    public static final List<Mod> Year4Sem1Modules = new ArrayList<>(Arrays.asList(
+    public static final List<Mod> YEAR4SEM1MODULES = new ArrayList<>(Arrays.asList(
             new Mod("Computer Engineering Capstone Project", "This course introduces students to the" +
                     " development of a large system from conceptualisation to its final implementation. It is struc" +
                     "tured to contain substantial design and development of hardware and software components. This" +
@@ -299,7 +299,7 @@ public class GradModuleList {
 
             ));
 
-    public static final List<Mod> Year4Sem2Modules = new ArrayList<>(Arrays.asList(
+    public static final List<Mod> YEAR4SEM2MODULES = new ArrayList<>(Arrays.asList(
             new Mod("Unrestricted Elective", "", 4, "UE"),
             new Mod("Unrestricted Elective", "", 4, "UE"),
             new Mod("Unrestricted Elective", "", 4, "UE"),

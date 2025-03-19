@@ -6,14 +6,14 @@ import java.util.ArrayList;
 
 import static seedu.duke.Duke.moduleList;
 import static seedu.duke.Duke.totalMCs;
-import static seedu.duke.data.GradModuleList.Year1Sem1Modules;
-import static seedu.duke.data.GradModuleList.Year1Sem2Modules;
-import static seedu.duke.data.GradModuleList.Year2Sem1Modules;
-import static seedu.duke.data.GradModuleList.Year2Sem2Modules;
-import static seedu.duke.data.GradModuleList.Year3Sem1Modules;
-import static seedu.duke.data.GradModuleList.Year3Sem2Modules;
-import static seedu.duke.data.GradModuleList.Year4Sem1Modules;
-import static seedu.duke.data.GradModuleList.Year4Sem2Modules;
+import static seedu.duke.data.GradModuleList.YEAR1SEM1MODULES;
+import static seedu.duke.data.GradModuleList.YEAR1SEM2MODULES;
+import static seedu.duke.data.GradModuleList.YEAR2SEM1MODULES;
+import static seedu.duke.data.GradModuleList.YEAR2SEM2MODULES;
+import static seedu.duke.data.GradModuleList.YEAR3SEM1MODULES;
+import static seedu.duke.data.GradModuleList.YEAR3SEM2MODULES;
+import static seedu.duke.data.GradModuleList.YEAR4SEM1MODULES;
+import static seedu.duke.data.GradModuleList.YEAR4SEM2MODULES;
 
 
 
@@ -44,14 +44,14 @@ public class ViewGradRequirements implements Command {
 
     private List<Mod> getMissingModules() {
         List<Mod> allGradModules = new ArrayList<>();
-        allGradModules.addAll(Year1Sem1Modules);
-        allGradModules.addAll(Year1Sem2Modules);
-        allGradModules.addAll(Year2Sem1Modules);
-        allGradModules.addAll(Year2Sem2Modules);
-        allGradModules.addAll(Year3Sem1Modules);
-        allGradModules.addAll(Year3Sem2Modules);
-        allGradModules.addAll(Year4Sem1Modules);
-        allGradModules.addAll(Year4Sem2Modules);
+        allGradModules.addAll(YEAR1SEM1MODULES);
+        allGradModules.addAll(YEAR1SEM2MODULES);
+        allGradModules.addAll(YEAR2SEM1MODULES);
+        allGradModules.addAll(YEAR2SEM2MODULES);
+        allGradModules.addAll(YEAR3SEM1MODULES);
+        allGradModules.addAll(YEAR3SEM2MODULES);
+        allGradModules.addAll(YEAR4SEM1MODULES);
+        allGradModules.addAll(YEAR4SEM2MODULES);
 
         List<Mod> missingModules = new ArrayList<>();
         for (Mod m : allGradModules) {

@@ -10,7 +10,7 @@ import static seedu.duke.Duke.totalMCs;
 
 class DeleteModuleTest {
     private final String modCode1 = "CS1010";
-    private final String modCode2 = "MA1521";
+    private final String modCode2 = "CS2030";
 
     @BeforeEach
     void setUp() {
