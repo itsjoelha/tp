@@ -29,7 +29,7 @@ public class DetailModules implements Command {
     }
 
     public void execute() {
-        Mod module = new Mod(modCode);
+        Mod module = new Mod(this.modCode);
         System.out.println(module);
         textWrapDescription(module.getDescription());
     }
