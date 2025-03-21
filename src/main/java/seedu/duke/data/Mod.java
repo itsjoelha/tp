@@ -1,5 +1,7 @@
 package seedu.duke.data;
 
+import seedu.duke.errors.ErrorHandler;
+
 public class Mod {
     private final String name;
     private final String description;
@@ -13,13 +15,22 @@ public class Mod {
         this.code = code;
     }
 
+
     public Mod(String code) {
-        Data datafile = new Data("./data/mod_data.txt");
-        String[] parts = datafile.searchMod(code);
-        this.name = parts[1];
-        this.description = parts[3];
-        this.numMC = Integer.parseInt(parts[2]);
-        this.code = code;
+        Mod foundMod = MasterModuleList.findModuleByCode(code.toUpperCase());
+        if (foundMod != null) {
+            this.code = foundMod.getCode();
+            this.description = foundMod.getDescription();
+            this.name = foundMod.getName();
+            this.numMC = foundMod.getNumMC();
+        } else {
+            ErrorHandler.handleModuleDoesNotExist();
+            // Set fields to null
+            this.code = null;
+            this.description = null;
+            this.name = null;
+            this.numMC = 0;
+        }
     }
 
     public String getName() {
@@ -39,6 +50,6 @@ public class Mod {
     }
 
     public String toString() {
-        return code + " | " + name + ": " + " (" + numMC + " MCs)" ;
+        return code + " | " + name + " | " + "(" + numMC + " MCs)";
     }
 }
