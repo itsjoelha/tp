@@ -1,6 +1,10 @@
 package seedu.duke.command;
+<<<<<<< HEAD
 import static seedu.duke.GrandRhombus.moduleList;
 
+=======
+import static seedu.duke.Duke.moduleList;
+>>>>>>> ViewGradRequirements
 import seedu.duke.data.Mod;
 
 public class ListModules implements Command {
@@ -8,10 +12,11 @@ public class ListModules implements Command {
     public void execute() {
         if (moduleList.isEmpty()) {
             System.out.println("No modules in List");
-        }
-        System.out.println("Modules in List: ");
-        for (Mod m: moduleList) {
-            System.out.println(m.toString());
+        } else {
+            System.out.println("Modules in List: ");
+            for (Mod m : moduleList) {
+                System.out.println(m.toString());
+            }
         }
     }
 }
