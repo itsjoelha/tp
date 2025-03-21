@@ -6,7 +6,7 @@ import java.util.Scanner;
 import seedu.duke.data.Mod;
 import seedu.duke.command.*;
 
-public class Duke {
+public class GrandRhombus {
     /**
      * Main entry-point for the java.duke.Duke application.
      */

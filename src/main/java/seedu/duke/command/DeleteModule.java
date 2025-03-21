@@ -1,7 +1,7 @@
 package seedu.duke.command;
 
-import static seedu.duke.Duke.moduleList;
-import static seedu.duke.Duke.totalMCs;
+import static seedu.duke.GrandRhombus.moduleList;
+import static seedu.duke.GrandRhombus.totalMCs;
 
 import seedu.duke.data.Mod;
 
