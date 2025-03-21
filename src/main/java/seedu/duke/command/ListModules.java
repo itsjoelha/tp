@@ -1,10 +1,7 @@
 package seedu.duke.command;
-<<<<<<< HEAD
 import static seedu.duke.GrandRhombus.moduleList;
 
-=======
-import static seedu.duke.Duke.moduleList;
->>>>>>> ViewGradRequirements
+
 import seedu.duke.data.Mod;
 
 public class ListModules implements Command {
