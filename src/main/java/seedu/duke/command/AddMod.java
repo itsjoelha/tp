@@ -9,12 +9,13 @@ import java.util.logging.Logger;
 import seedu.duke.data.Mod;
 
 public class AddMod implements Command {
-    private final String modCode;
     private static final Logger logger = Logger.getLogger(AddMod.class.getName());
 
     static {
         logger.setLevel(Level.OFF);
     }
+
+    private final String modCode;
 
     public AddMod(String modCode) {
         this.modCode = modCode;
