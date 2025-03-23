@@ -11,6 +11,7 @@ import seedu.duke.data.Mod;
 public class DeleteMod implements Command {
     private final String modCode;
     private static final Logger logger = Logger.getLogger(DeleteMod.class.getName());
+
     static {
         logger.setLevel(Level.OFF);
     }

@@ -1,15 +1,15 @@
 package seedu.duke;
 
-import seedu.duke.command.Command;
-import seedu.duke.command.DetailModules;
-import seedu.duke.command.ListModules;
-import seedu.duke.command.DeleteMod;
-import seedu.duke.command.AddMod;
-import seedu.duke.command.ViewGradRequirements;
-import seedu.duke.command.RecommendedSchedule;
-
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import seedu.duke.command.AddMod;
+import seedu.duke.command.Command;
+import seedu.duke.command.DeleteMod;
+import seedu.duke.command.DetailModules;
+import seedu.duke.command.ListModules;
+import seedu.duke.command.RecommendedSchedule;
+import seedu.duke.command.ViewGradRequirements;
 
 public class CommandParser {
 

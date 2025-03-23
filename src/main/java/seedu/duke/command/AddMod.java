@@ -1,15 +1,17 @@
 package seedu.duke.command;
+
 import static seedu.duke.Duke.moduleList;
 import static seedu.duke.Duke.totalMCs;
-
-import seedu.duke.data.Mod;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import seedu.duke.data.Mod;
+
 public class AddMod implements Command {
     private final String modCode;
     private static final Logger logger = Logger.getLogger(AddMod.class.getName());
+
     static {
         logger.setLevel(Level.OFF);
     }
@@ -30,7 +32,7 @@ public class AddMod implements Command {
             assert module.getNumMC() > 0;
             moduleList.add(module);
 
-            logger.info("Original NumMCs: "+ totalMCs);
+            logger.info("Original NumMCs: " + totalMCs);
             logger.info("NumMCs in mod: " + module.getNumMC());
             totalMCs += module.getNumMC();
 

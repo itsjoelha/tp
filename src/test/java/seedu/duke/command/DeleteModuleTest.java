@@ -1,12 +1,12 @@
 package seedu.duke.command;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.duke.Duke.moduleList;
 import static seedu.duke.Duke.totalMCs;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 class DeleteModuleTest {
     private final String modCode1 = "CS1010";
