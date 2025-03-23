@@ -26,14 +26,14 @@ class DeleteModuleTest {
 
     @Test
     void execute_validModule_moduleDeleted() {
-        Command deleteModule = new DeleteModule(modCode1);
+        Command deleteModule = new DeleteMod(modCode1);
         deleteModule.execute();
 
         assertEquals(1, moduleList.size());
         assertEquals(4, totalMCs);
         assertFalse(moduleList.stream().anyMatch(m -> m.getCode().equals(modCode1)));
 
-        deleteModule = new DeleteModule(modCode2);
+        deleteModule = new DeleteMod(modCode2);
         deleteModule.execute();
         assertEquals(0, moduleList.size());
         assertEquals(0, totalMCs);
@@ -41,7 +41,7 @@ class DeleteModuleTest {
 
     @Test
     void execute_invalidModule_noDeletion() {
-        DeleteModule deleteModule = new DeleteModule("CS2030");
+        DeleteMod deleteModule = new DeleteMod("CS2030");
         deleteModule.execute();
 
         assertEquals(2, moduleList.size());

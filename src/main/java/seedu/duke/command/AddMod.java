@@ -9,9 +9,9 @@ import java.util.logging.Logger;
 
 public class AddMod implements Command {
     private final String modCode;
-    private static Logger logger = Logger.getLogger(AddMod.class.getName());
+    private static final Logger logger = Logger.getLogger(AddMod.class.getName());
     static {
-        logger.setLevel(Level.ALL);
+        logger.setLevel(Level.OFF);
     }
 
     public AddMod(String modCode) {

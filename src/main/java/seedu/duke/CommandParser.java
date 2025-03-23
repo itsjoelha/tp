@@ -3,7 +3,7 @@ package seedu.duke;
 import seedu.duke.command.Command;
 import seedu.duke.command.DetailModules;
 import seedu.duke.command.ListModules;
-import seedu.duke.command.DeleteModule;
+import seedu.duke.command.DeleteMod;
 import seedu.duke.command.AddMod;
 import seedu.duke.command.ViewGradRequirements;
 import seedu.duke.command.RecommendedSchedule;
@@ -68,7 +68,7 @@ public class CommandParser {
                 return;
             }
             logger.info("Executing DeleteModule command with module code: " + words[1]);
-            Command cmd = new DeleteModule(words[1]);
+            Command cmd = new DeleteMod(words[1]);
             cmd.execute();
         } else if (command.equals("/help")) {
             logger.info("Displaying help file.");
