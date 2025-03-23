@@ -18,9 +18,9 @@ class DeleteModuleTest {
         System.out.println("Reset moduleList");
         moduleList.clear();
         totalMCs = 0;
-        Command add1 = new AddModule(modCode1);
+        Command add1 = new AddMod(modCode1);
         add1.execute();
-        Command add2 = new AddModule(modCode2);
+        Command add2 = new AddMod(modCode2);
         add2.execute();
     }
 

@@ -4,7 +4,7 @@ import seedu.duke.command.Command;
 import seedu.duke.command.DetailModules;
 import seedu.duke.command.ListModules;
 import seedu.duke.command.DeleteModule;
-import seedu.duke.command.AddModule;
+import seedu.duke.command.AddMod;
 import seedu.duke.command.ViewGradRequirements;
 import seedu.duke.command.RecommendedSchedule;
 
@@ -59,7 +59,7 @@ public class CommandParser {
                 return;
             }
             logger.info("Executing AddModule command with module code: " + words[1]);
-            Command cmd = new AddModule(words[1]);
+            Command cmd = new AddMod(words[1]);
             cmd.execute();
         } else if (command.startsWith("/delete")) {
             if (words.length < 2) {
