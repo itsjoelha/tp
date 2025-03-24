@@ -7,8 +7,10 @@ import seedu.duke.command.AddMod;
 import seedu.duke.command.Command;
 import seedu.duke.command.DeleteMod;
 import seedu.duke.command.DetailModules;
+import seedu.duke.command.Help;
 import seedu.duke.command.ListModules;
 import seedu.duke.command.RecommendedSchedule;
+import seedu.duke.command.Specialisation;
 import seedu.duke.command.ViewGradRequirements;
 
 public class CommandParser {

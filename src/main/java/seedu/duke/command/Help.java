@@ -1,4 +1,4 @@
-package seedu.duke;
+package seedu.duke.command;
 
 public class Help {
     public static void displayHelpFile() {
