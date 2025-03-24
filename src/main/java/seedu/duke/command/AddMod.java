@@ -38,7 +38,7 @@ public class AddMod implements Command {
             totalMCs += module.getNumMC();
 
             System.out.println("Mod " + module.getCode() + " added");
-            System.out.println("Total MCs:" + totalMCs);
+            System.out.println("Total MCs: " + totalMCs);
         } else {
             logger.warning("Mod " + module.getCode() + "not found in database");
             logger.info("Mod " + module.getCode() + " not added to Modlist");
