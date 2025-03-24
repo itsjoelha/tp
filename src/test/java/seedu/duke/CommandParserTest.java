@@ -17,6 +17,7 @@ public class CommandParserTest {
         assertDoesNotThrow(() -> parser.parseCommand("/detail CS2113"));
         assertDoesNotThrow(() -> parser.parseCommand("/grad"));
         assertDoesNotThrow(() -> parser.parseCommand("/add CS2113"));
+        assertDoesNotThrow(() -> parser.parseCommand("/workload"));
         assertDoesNotThrow(() -> parser.parseCommand("/help"));
         assertDoesNotThrow(() -> parser.parseCommand("/schedule"));
         assertDoesNotThrow(() -> parser.parseCommand("/specialisation"));
@@ -43,7 +44,7 @@ public class CommandParserTest {
 
         parser.parseCommand("/add");
         parser.parseCommand("/delete");
-        System.setOut(System.out);
+        System.setOut(System.out); // Reset System.out
 
         String expectedOutput = "Error: Please specify a module code to add."
                 + System.lineSeparator() + "Error: Please specify a module code to delete.";
@@ -84,4 +85,15 @@ public class CommandParserTest {
         }
     }
 
+    @Test
+    public void parseCommand_workloadEmptyList() {
+        CommandParser parser = new CommandParser();
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+
+        parser.parseCommand("/workload");
+        System.setOut(System.out); // Reset System.out
+
+        assertEquals("No modules in List", out.toString().trim());
+    }
 }

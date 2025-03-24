@@ -10,6 +10,7 @@ public class Help {
         System.out.println("/grad - Check if you can graduate");
         System.out.println("/schedule - Generate a schedule students");
         System.out.println("/specialisation - View specialisations");
+        System.out.println("/workload - Display workload");
         System.out.println("/exit - Exit the program");
         System.out.println("/help - Show this help message");
         System.out.println("For further assistance, refer to the user guide at our GitHub repository.");
