@@ -12,6 +12,7 @@ import seedu.duke.command.ListModules;
 import seedu.duke.command.RecommendedSchedule;
 import seedu.duke.command.Specialisation;
 import seedu.duke.command.ViewGradRequirements;
+import seedu.duke.command.Workload;
 
 public class CommandParser {
 
@@ -86,6 +87,10 @@ public class CommandParser {
         } else if (command.equals("/specialisation")) {
             logger.info("Displaying Specialisations.");
             Specialisation.displaySpecialisations(); // Handle specialisation command
+        } else if (command.equals("/workload")) {
+            logger.info("Executing Workload command.");
+            Command cmd = new Workload();
+            cmd.execute();
         } else if (command.equals("/exit")) {
             logger.info("User exited program.");
             System.out.println("EXIT"); // Handle exit command

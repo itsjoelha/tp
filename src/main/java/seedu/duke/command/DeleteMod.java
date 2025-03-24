@@ -33,7 +33,7 @@ public class DeleteMod implements Command {
                 totalMCs -= m.getNumMC();
                 moduleList.remove(m);
                 System.out.println("Deleted " + m.getCode() + " from list");
-                System.out.println("Total MCs:" + totalMCs);
+                System.out.println("Total MCs: " + totalMCs);
                 return;
             }
         }
