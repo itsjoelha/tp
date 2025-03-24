@@ -56,14 +56,14 @@ public class CommandParserTest {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
 
-        parser.parseCommand("/add CS1010");  // Add module
-        parser.parseCommand("/delete CS1010");  // Delete module
+        parser.parseCommand("/add EG1311");  // Add module
+        parser.parseCommand("/delete EG1311");  // Delete module
         System.setOut(System.out); // Reset System.out
         String output = out.toString().trim();
 
-        assertTrue(output.contains("Mod CS1010 added"));
+        assertTrue(output.contains("Mod EG1311 added"));
         assertTrue(output.contains("Total MCs:")); // Ensures total MCs are displayed
-        assertTrue(output.contains("Deleted CS1010 from list"));
+        assertTrue(output.contains("Deleted EG1311 from list"));
     }
 
     @Test
