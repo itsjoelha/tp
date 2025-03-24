@@ -45,8 +45,8 @@ public class CommandParserTest {
         parser.parseCommand("/delete");
         System.setOut(System.out);
 
-        String expectedOutput = "Error: Please specify a module code to add.\n" +
-                "Error: Please specify a module code to delete.";
+        String expectedOutput = "Error: Please specify a module code to add."
+                + System.lineSeparator() + "Error: Please specify a module code to delete.";
         assertEquals(expectedOutput, out.toString().trim());
     }
 
