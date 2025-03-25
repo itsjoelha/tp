@@ -42,7 +42,8 @@ public class GradModuleList {
                     "MA1511", 3, 2, 0, 0, 5, "If undertaking an Undergraduate Degree THEN ( must not have completed 1" +
                     "of MA1312/MA1505/MA1521/MA2002/MA2311/PC2134/PC2174/PC2174A/YSC1216 at a grade of at least D)",
                     "If undertaking an Undergraduate Degree THEN (( must have completed 1 of 06" +
-                    "MATHEMATICS/07 FURTHER MATHEMATICS at a grade of at least E) OR ( must have completed 1 of MA1301/MA1301X at a grade of at least D))"),
+                    "MATHEMATICS/07 FURTHER MATHEMATICS at a grade of at least E) OR ( must have completed 1" +
+                    " of MA1301/MA1301X at a grade of at least D))"),
 
             new Mod("Differential Equations for Engineering", "This is a seven-week course" +
                     " specially designed for students majoring in Engineering. It introduces the basic concepts" +
@@ -50,7 +51,8 @@ public class GradModuleList {
                     " and other fields. Major topics include modelling with differential equations, first-order" +
                     " ordinary differential equations, higher-order linear differential equations, the Laplace" +
                     " transform, and partial differential equations.",
-                    2, "MA1512", 3, 2, 0, 0, 5, "If undertaking an Undergraduate Degree THEN ( must not have completed" +
+                    2, "MA1512", 3, 2, 0, 0, 5, "If undertaking an Undergraduate Degree" +
+                    "THEN ( must not have completed" +
                     "PC2134 at a grade of at least D)", "If undertaking an Undergraduate Degree THEN (( must have completed 1" +
                     "of 06 MATHEMATICS/07 FURTHER MATHEMATICS at a grade of at least E) OR ( must have completed 1" +
                     "of MA1301/MA1301X at a grade of at least D))"),
