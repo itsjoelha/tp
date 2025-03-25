@@ -52,9 +52,9 @@ public class GradModuleList {
                     " ordinary differential equations, higher-order linear differential equations, the Laplace" +
                     " transform, and partial differential equations.",
                     2, "MA1512", 3, 2, 0, 0, 5, "If undertaking an Undergraduate Degree" +
-                    "THEN ( must not have completed" +
-                    "PC2134 at a grade of at least D)", "If undertaking an Undergraduate Degree THEN (( must have completed 1" +
-                    "of 06 MATHEMATICS/07 FURTHER MATHEMATICS at a grade of at least E) OR ( must have completed 1" +
+                    "THEN ( must not have completed PC2134 at a grade of at least D)", "If undertaking" +
+                    " an Undergraduate Degree THEN (( must have completed 1 of 06 MATHEMATICS/07" +
+                    " FURTHER MATHEMATICS at a grade of at least E) OR ( must have completed 1" +
                     "of MA1301/MA1301X at a grade of at least D))"),
 
             new Mod("English for Academic Purposes", "ES1103 serves as a bridging course for" +
