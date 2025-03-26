@@ -78,15 +78,25 @@ public class Mod {
         return code;
     }
 
-    public double getLectureHours() { return lectureHours; }
+    public double getLectureHours() {
+        return lectureHours;
+    }
 
-    public double getTutHours() { return tutHours; }
+    public double getTutHours() {
+        return tutHours;
+    }
 
-    public double getLabHours() { return labHours; }
+    public double getLabHours() {
+        return labHours;
+    }
 
-    public double getProjHours() { return projHours; }
+    public double getProjHours() {
+        return projHours;
+    }
 
-    public double getPrepHours() { return prepHours; }
+    public double getPrepHours() {
+        return prepHours;
+    }
 
     public String getPreclusion() { return preclusion; }
 

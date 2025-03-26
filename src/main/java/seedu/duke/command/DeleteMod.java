@@ -26,7 +26,7 @@ public class DeleteMod implements Command {
         logger.info("Attempting to delete mod " + modCode);
         for (Mod m : moduleList) {
             assert !moduleList.isEmpty();
-            if (m.getCode().equals(modCode)) {
+            if (m.getCode().equalsIgnoreCase(modCode)) {
                 assert m.getNumMC() >= 0;
                 logger.info("Mod found in moduleList");
                 logger.info("NumMCs to be removed:" + m.getNumMC());
