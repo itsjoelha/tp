@@ -54,7 +54,8 @@ public class DetailModules implements Command {
             String spaceFormat = (mcValue < 10) ? "%-58s" : "%-57s";
 
             System.out.println("+--------------------------------------------------------------------------------+");
-            System.out.printf("| %-9s | " + spaceFormat + " | " + mcFormat + " |\n", module.getCode(), module.getName(), mcValue);
+            System.out.printf("| %-9s | " + spaceFormat + " | " + mcFormat + " |\n", module.getCode(),
+                    module.getName(), mcValue);
             System.out.println("+--------------------------------------------------------------------------------+");
 
             textWrapDescription(module.getDescription());
