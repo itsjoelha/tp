@@ -98,9 +98,13 @@ public class Mod {
         return prepHours;
     }
 
-    public String getPreclusion() { return preclusion; }
+    public String getPreclusion() {
+        return preclusion;
+    }
 
-    public String getPrerequisites() { return prerequisites; }
+    public String getPrerequisites() {
+        return prerequisites;
+    }
 
     public String toString() {
         return code + " | " + name + " | " + "(" + numMC + " MCs)";
