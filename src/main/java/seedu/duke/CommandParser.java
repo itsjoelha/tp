@@ -93,6 +93,7 @@ public class CommandParser {
             cmd.execute();
         } else if (command.equals("/exit")) {
             logger.info("User exited program.");
+            System.out.println("Exiting program...");
             return true;
         } else {
             logger.warning("Unknown command: " + command);
