@@ -17,17 +17,17 @@ public class GrandRhombus {
         System.out.println("Welcome to Grand Rhombus, your personal CEG Assistant");
         Scanner in = new Scanner(System.in);
 
-        while (true) {
-            System.out.print("Enter command: ");
-            String userInput = in.nextLine().trim();
+        boolean isRunning = true;
 
-            if (userInput.equalsIgnoreCase("die")) {
-                System.out.println("Exiting program...");
+        while (isRunning) {
+            System.out.print("Enter command: ");
+
+            if (!in.hasNextLine()) {  // Prevent NoSuchElementException
                 break;
             }
 
-            // Use the CommandParser to handle user input
-            commandParser.parseCommand(userInput);  // delegate command handling to CommandParser
+            String userInput = in.nextLine().trim();
+            isRunning = !commandParser.parseCommand(userInput); // If parseCommand returns true, exit loop
 
         }
 
@@ -36,4 +36,3 @@ public class GrandRhombus {
 
     }
 }
-
