@@ -21,8 +21,12 @@ public class Duke {
 
         while (isRunning) {
             System.out.print("Enter command: ");
-            String userInput = in.nextLine().trim();
 
+            if (!in.hasNextLine()) {  // Prevent NoSuchElementException
+                break;
+            }
+
+            String userInput = in.nextLine().trim();
             isRunning = !commandParser.parseCommand(userInput); // If parseCommand returns true, exit loop
 
         }
@@ -32,4 +36,3 @@ public class Duke {
 
     }
 }
-
