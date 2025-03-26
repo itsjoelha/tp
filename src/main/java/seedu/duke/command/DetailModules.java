@@ -31,8 +31,17 @@ public class DetailModules implements Command {
     public void execute() {
         Mod module = new Mod(this.modCode);
         if ( module.getCode() != null ) {
+            System.out.println("-------------------------------------------------------------------------------");
             System.out.println(module);
+            System.out.println("-------------------------------------------------------------------------------");
             textWrapDescription(module.getDescription());
+            System.out.println("------------------");
+            System.out.println("Preclusion:");
+            textWrapDescription(module.getPreclusion());
+            System.out.println("------------------");
+            System.out.println("Prerequisites:");
+            textWrapDescription(module.getPrerequisites());
+            System.out.println("-------------------------------------------------------------------------------");
         } else {
             System.out.println("Unable to retrieve module details.");
         }
