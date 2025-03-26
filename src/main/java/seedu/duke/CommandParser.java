@@ -23,7 +23,7 @@ public class CommandParser {
     }
 
     // This method will parse and handle commands
-    public void parseCommand(String userInput) {
+    public boolean parseCommand(String userInput) {
 
         logger.info("Received user input: " + userInput);
         assert userInput != null : "User input should not be null";
@@ -35,7 +35,7 @@ public class CommandParser {
         if (userInput.isEmpty()) {
             logger.warning("User entered an empty command.");
             System.out.println("No command entered. Try again.");
-            return;
+            return false;
         }
 
         String[] words = userInput.split(" ");
@@ -50,7 +50,7 @@ public class CommandParser {
             if (words.length < 2) {
                 logger.warning("Detail command missing module code.");
                 System.out.println("Error: Please specify a module code to view details.");
-                return;
+                return false;
             }
             logger.info("Executing DetailModules command with module code: " + words[1]);
             Command cmd = new DetailModules(words[1]);
@@ -59,7 +59,7 @@ public class CommandParser {
             if (words.length < 2) {
                 logger.warning("Add command missing module code.");
                 System.out.println("Error: Please specify a module code to add.");
-                return;
+                return false;
             }
             logger.info("Executing AddModule command with module code: " + words[1]);
             Command cmd = new AddMod(words[1]);
@@ -68,7 +68,7 @@ public class CommandParser {
             if (words.length < 2) {
                 logger.warning("Delete command missing module code.");
                 System.out.println("Error: Please specify a module code to delete.");
-                return;
+                return false;
             }
             logger.info("Executing DeleteModule command with module code: " + words[1]);
             Command cmd = new DeleteMod(words[1]);
@@ -94,10 +94,13 @@ public class CommandParser {
         } else if (command.equals("/exit")) {
             logger.info("User exited program.");
             System.out.println("EXIT"); // Handle exit command
+            return true;
         } else {
             logger.warning("Unknown command: " + command);
             System.out.println("Unknown command. Type '/help' for a list of commands."); // Unknown command
         }
+
+        return false;
     }
 }
 

@@ -17,17 +17,13 @@ public class Duke {
         System.out.println("Welcome to Grand Rhombus, your personal CEG Assistant");
         Scanner in = new Scanner(System.in);
 
-        while (true) {
+        boolean isRunning = true;
+
+        while (isRunning) {
             System.out.print("Enter command: ");
             String userInput = in.nextLine().trim();
 
-            if (userInput.equalsIgnoreCase("die")) {
-                System.out.println("Exiting program...");
-                break;
-            }
-
-            // Use the CommandParser to handle user input
-            commandParser.parseCommand(userInput);  // delegate command handling to CommandParser
+            isRunning = !commandParser.parseCommand(userInput); // If parseCommand returns true, exit loop
 
         }
 

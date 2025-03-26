@@ -69,11 +69,25 @@ public class Mod {
         return code;
     }
 
-    public double getLectureHours() { return lectureHours; }
-    public double getTutHours() { return tutHours; }
-    public double getLabHours() { return labHours; }
-    public double getProjHours() { return projHours; }
-    public double getPrepHours() { return prepHours; }
+    public double getLectureHours() {
+        return lectureHours;
+    }
+
+    public double getTutHours() {
+        return tutHours;
+    }
+
+    public double getLabHours() {
+        return labHours;
+    }
+
+    public double getProjHours() {
+        return projHours;
+    }
+
+    public double getPrepHours() {
+        return prepHours;
+    }
 
     public String toString() {
         return code + " | " + name + " | " + "(" + numMC + " MCs)";
