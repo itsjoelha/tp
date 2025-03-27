@@ -12,6 +12,7 @@ import seedu.duke.command.ViewGradRequirements;
 import seedu.duke.command.RecommendedSchedule;
 import seedu.duke.command.Specialisation;
 import seedu.duke.command.Workload;
+import seedu.duke.command.SuUserModule;
 
 
 import static seedu.duke.Duke.currentUser;
@@ -88,6 +89,17 @@ public class CommandParser {
             new DeleteUserModule(currentUser, words[1]).execute();
             System.out.println("Deleted " + words[1] + " from list.");
             break;
+
+            case "/su":
+                if (words.length < 3) {
+                    logger.warning("Su command missing module code.");
+                    System.out.println("Error: Please specify a module code to suspend.");
+                    return false;
+                }
+                logger.info("Executing su command with module code: " + words[1]);
+                new SuUserModule(currentUser, words[1]).execute();
+                System.out.println("Su-ed " + words[1]);
+                break;
 
         case "/help":
             logger.info("Displaying help file.");

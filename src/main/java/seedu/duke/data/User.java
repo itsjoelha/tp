@@ -97,6 +97,19 @@ public class User {
         return false; // Module not found in any semester
     }
 
+    public boolean suModule(String code) {
+        for (ArrayList<UserMod> mods : semesterModules.values()) {
+            for (UserMod mod : mods) {
+                if (mod.getCode().equalsIgnoreCase(code)) {
+                    mod.setSU(true);
+                    updateGPA(); // Recalculate GPA after SU
+                    return true;
+                }
+            }
+        }
+        return false; // Module not found
+    }
+
     public boolean hasModule(String code) {
         for (ArrayList<UserMod> mods : semesterModules.values()) {
             for (UserMod mod : mods) {
