@@ -11,10 +11,10 @@ public class UserMod extends Mod {
                 preclusion, prerequisites);
     }
 
-    public UserMod(String code, Grade grade, boolean SU) {
+    public UserMod(String code, Grade grade, boolean su) {
         super(code);
         this.grade = grade;
-        this.su = SU;
+        this.su = su;
     }
 
     public UserMod(String code){
@@ -36,8 +36,8 @@ public class UserMod extends Mod {
         return su;
     }
 
-    public void setSU(boolean SU) {
-        this.su = SU;
+    public void setSU(boolean su) {
+        this.su = su;
     }
 
 }
