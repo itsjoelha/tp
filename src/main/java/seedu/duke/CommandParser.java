@@ -90,16 +90,16 @@ public class CommandParser {
             System.out.println("Deleted " + words[1] + " from list.");
             break;
 
-            case "/su":
-                if (words.length < 3) {
-                    logger.warning("Su command missing module code.");
-                    System.out.println("Error: Please specify a module code to suspend.");
-                    return false;
-                }
-                logger.info("Executing su command with module code: " + words[1]);
-                new SuUserModule(currentUser, words[1]).execute();
-                System.out.println("Su-ed " + words[1]);
-                break;
+        case "/su":
+            if (words.length < 3) {
+                logger.warning("Su command missing module code.");
+                System.out.println("Error: Please specify a module code to suspend.");
+                return false;
+            }
+            logger.info("Executing su command with module code: " + words[1]);
+            new SuUserModule(currentUser, words[1]).execute();
+            System.out.println("Su-ed " + words[1]);
+            break;
 
         case "/help":
             logger.info("Displaying help file.");
