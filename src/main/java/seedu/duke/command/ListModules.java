@@ -1,5 +1,7 @@
 package seedu.duke.command;
 import static seedu.duke.Duke.moduleList;
+
+
 import seedu.duke.data.Mod;
 
 public class ListModules implements Command {

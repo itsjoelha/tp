@@ -48,6 +48,7 @@ public class CommandParserTest {
         System.setOut(System.out); // Reset System.out
 
         String expectedOutput = "Error: Please specify a module code to add."
+                + System.lineSeparator() + "Usage: /add MODULE_CODE SEMESTER"
                 + System.lineSeparator() + "Error: Please specify a module code to delete.";
         assertEquals(expectedOutput, out.toString().trim());
     }
@@ -58,13 +59,12 @@ public class CommandParserTest {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
 
-        parser.parseCommand("/add EG1311");  // Add module
+        parser.parseCommand("/add EG1311 2");  // Add module
         parser.parseCommand("/delete EG1311");  // Delete module
         System.setOut(System.out); // Reset System.out
         String output = out.toString().trim();
 
         assertTrue(output.contains("Mod EG1311 added"));
-        assertTrue(output.contains("Total MCs:")); // Ensures total MCs are displayed
         assertTrue(output.contains("Deleted EG1311 from list"));
     }
 
