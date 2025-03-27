@@ -1,7 +1,5 @@
 package seedu.duke.data;
 
-import seedu.duke.data.EducationLevel;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -11,14 +9,14 @@ import java.util.Map;
 public class User {
     private String name;
     private EducationLevel education;
-    private double GPA;
+    private double gpa;
     private int currentSemester;
     private Map<Integer, ArrayList<UserMod>> semesterModules;
 
     public User() {
         this.name = "";
         this.education = null;
-        this.GPA = 0.0;
+        this.gpa = 0.0;
         this.currentSemester = 1;
         this.semesterModules = new HashMap<>();
     }
@@ -26,7 +24,7 @@ public class User {
     public User(String name, EducationLevel education) {
         this.name = name;
         this.education = education;
-        this.GPA = 0.0;
+        this.gpa = 0.0;
         this.currentSemester = 1;
         this.semesterModules = new HashMap<>();
     }
@@ -37,7 +35,7 @@ public class User {
     }
 
     public double getGPA() {
-        return GPA;
+        return gpa;
     }
 
     private void updateGPA() {
@@ -56,18 +54,18 @@ public class User {
             }
         }
 
-        GPA = totalMCs > 0 ? totalGradePoints / totalMCs : 0.0;
+        gpa = totalMCs > 0 ? totalGradePoints / totalMCs : 0.0;
     }
 
     private double getGradePoint(Grade grade) {
         switch (grade) {
-            case A: return 5.0;
-            case B: return 4.0;
-            case C: return 3.0;
-            case D: return 2.0;
-            case E: return 1.0;
-            case F: return 0.0;
-            default: return 0.0;
+        case A: return 5.0;
+        case B: return 4.0;
+        case C: return 3.0;
+        case D: return 2.0;
+        case E: return 1.0;
+        case F: return 0.0;
+        default: return 0.0;
         }
     }
 
@@ -90,7 +88,8 @@ public class User {
 
     public boolean removeModule(String code) {
         for (int semester : semesterModules.keySet()) {
-            if (semesterModules.get(semester).removeIf(UserMod -> UserMod.getCode().equals(code.toUpperCase()))) {
+            if (semesterModules.get(semester).removeIf(UserMod ->
+                    UserMod.getCode().equals(code.toUpperCase()))) {
                 updateGPA(); // Recalculate GPA after removal
                 return true;
             }

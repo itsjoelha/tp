@@ -2,7 +2,7 @@ package seedu.duke.data;
 
 public class UserMod extends Mod {
     private Grade grade;
-    private boolean SU;
+    private boolean su;
 
 
     public UserMod(String name, String description, int numMC, String code, double lectureHours, double tutHours,
@@ -14,13 +14,13 @@ public class UserMod extends Mod {
     public UserMod(String code, Grade grade, boolean SU) {
         super(code);
         this.grade = grade;
-        this.SU = SU;
+        this.su = SU;
     }
 
     public UserMod(String code){
         super(code);
         this.grade = null;
-        this.SU = false;
+        this.su = false;
     }
 
 
@@ -33,11 +33,11 @@ public class UserMod extends Mod {
     }
 
     public boolean isSU() {
-        return SU;
+        return su;
     }
 
     public void setSU(boolean SU) {
-        this.SU = SU;
+        this.su = SU;
     }
 
 }
