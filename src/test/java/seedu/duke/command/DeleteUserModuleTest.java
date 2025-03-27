@@ -16,16 +16,16 @@ public class DeleteUserModuleTest {
     @BeforeEach
     void setUp() {
         currentUser.clearModules();
-        Command test_add_1 = new AddUserModule(currentUser, testModCode1, testSemester1);
-        test_add_1.execute();
-        Command test_add_2 = new AddUserModule(currentUser, testModCode2, testSemester2);
-        test_add_2.execute();
+        Command testAdd1 = new AddUserModule(currentUser, testModCode1, testSemester1);
+        testAdd1.execute();
+        Command testAdd2 = new AddUserModule(currentUser, testModCode2, testSemester2);
+        testAdd2.execute();
     }
 
     @Test
     void deleteUserModule() {
-        Command test_delete_1 = new DeleteUserModule(currentUser, testModCode1);
-        test_delete_1.execute();
+        Command testDelete1 = new DeleteUserModule(currentUser, testModCode1);
+        testDelete1.execute();
 
 
         assertFalse(currentUser.hasModule(testModCode1));
@@ -33,8 +33,8 @@ public class DeleteUserModuleTest {
     }
 
     @Test void deleteUserModuleDoesNotExist() {
-        Command test_delete_1 = new DeleteUserModule(currentUser, "CDE3301");
-        test_delete_1.execute();
+        Command testDelete1 = new DeleteUserModule(currentUser, "CDE3301");
+        testDelete1.execute();
 
         assertTrue(currentUser.hasModule(testModCode1));
         assertTrue(currentUser.hasModule(testModCode2));

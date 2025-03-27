@@ -67,7 +67,8 @@ public class CommandParser {
             }
             try {
                 int semester = Integer.parseInt(words[2]);
-                logger.info("Executing AddUserModule command with module code: " + words[1] + ", semester: " + semester);
+                logger.info("Executing AddUserModule command with module code: " + words[1] +
+                        ", semester: " + semester);
                 new AddUserModule(currentUser, words[1], semester).execute();
                 System.out.println("Mod " + words[1] + " added");
             } catch (NumberFormatException e) {
@@ -123,7 +124,7 @@ public class CommandParser {
             System.out.println("Unknown command. Type '/help' for a list of commands.");
         }
 
-    return false;
+        return false;
 
     }
 }
