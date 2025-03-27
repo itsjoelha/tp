@@ -52,13 +52,15 @@ public class CommandParser {
             case "/add":
                 if (words.length < 3) {
                     logger.warning("Add command missing module code or semester.");
-                    System.out.println("Error: Usage: /add MODULE_CODE SEMESTER");
+                    System.out.println("Error: Please specify a module code to add.");
+                    System.out.println("Usage: /add MODULE_CODE SEMESTER");
                     return false;
                 }
                 try {
                     int semester = Integer.parseInt(words[2]);
                     logger.info("Executing AddUserModule command with module code: " + words[1] + ", semester: " + semester);
                     new AddUserModule(current_user, words[1], semester).execute();
+                    System.out.println("Mod " + words[1] + " added");
                 } catch (NumberFormatException e) {
                     logger.warning("Invalid semester format.");
                     System.out.println("Error: Semester must be a number between 1 and 8.");
@@ -74,6 +76,7 @@ public class CommandParser {
                 }
                 logger.info("Executing RemoveUserModule command with module code: " + words[1]);
                 new DeleteUserModule(current_user, words[1]).execute();
+                System.out.println("Deleted " + words[1] + " from list.");
                 break;
 
             case "/help":

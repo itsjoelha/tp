@@ -98,6 +98,22 @@ public class User {
         return false; // Module not found in any semester
     }
 
+    public boolean hasModule(String code) {
+        for (ArrayList<UserMod> mods : semesterModules.values()) {
+            for (UserMod mod : mods) {
+                if ( mod.getCode() != null && mod.getCode().equalsIgnoreCase(code)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public void clearModules() {
+        semesterModules.clear();
+        updateGPA(); // Reset GPA after clearing modules
+    }
+
 
     public int getCurrentSemester() {
         return currentSemester;

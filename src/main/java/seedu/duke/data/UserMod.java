@@ -23,6 +23,7 @@ public class UserMod extends Mod {
         this.SU = false;
     }
 
+
     public Grade getGrade() {
         return grade;
     }
