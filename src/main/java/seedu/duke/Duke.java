@@ -4,12 +4,14 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import seedu.duke.data.Mod;
+import seedu.duke.data.UserMod;
 
 public class Duke {
     /**
      * Main entry-point for the java.duke.Duke application.
      */
     public static ArrayList<Mod> moduleList = new ArrayList<>();
+    public static ArrayList<UserMod> userModuleList = new ArrayList<>();
     public static int totalMCs = 0;
     public static CommandParser commandParser = new CommandParser();
 
