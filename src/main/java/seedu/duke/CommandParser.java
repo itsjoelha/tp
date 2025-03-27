@@ -3,16 +3,9 @@ package seedu.duke;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import seedu.duke.command.AddMod;
-import seedu.duke.command.Command;
-import seedu.duke.command.DeleteMod;
-import seedu.duke.command.DetailModules;
-import seedu.duke.command.Help;
-import seedu.duke.command.ListModules;
-import seedu.duke.command.RecommendedSchedule;
-import seedu.duke.command.Specialisation;
-import seedu.duke.command.ViewGradRequirements;
-import seedu.duke.command.Workload;
+import seedu.duke.command.*;
+
+import static seedu.duke.Duke.current_user;
 
 public class CommandParser {
 
@@ -28,10 +21,9 @@ public class CommandParser {
         logger.info("Received user input: " + userInput);
         assert userInput != null : "User input should not be null";
 
-        // Trim leading/trailing spaces to avoid parsing issues
+        // Trim leading/trailing spaces
         userInput = userInput.trim();
 
-        // If input is empty, return early
         if (userInput.isEmpty()) {
             logger.warning("User entered an empty command.");
             System.out.println("No command entered. Try again.");
@@ -41,66 +33,84 @@ public class CommandParser {
         String[] words = userInput.split(" ");
         String command = words[0];
 
-        // Handle commands with arguments
-        if (command.equals("/view")) {
-            logger.info("Executing ListModules command.");
-            Command cmd = new ListModules();
-            cmd.execute();
-        } else if (command.startsWith("/detail")) {
-            if (words.length < 2) {
-                logger.warning("Detail command missing module code.");
-                System.out.println("Error: Please specify a module code to view details.");
-                return false;
-            }
-            logger.info("Executing DetailModules command with module code: " + words[1]);
-            Command cmd = new DetailModules(words[1]);
-            cmd.execute();
-        } else if (command.startsWith("/add")) {
-            if (words.length < 2) {
-                logger.warning("Add command missing module code.");
-                System.out.println("Error: Please specify a module code to add.");
-                return false;
-            }
-            logger.info("Executing AddModule command with module code: " + words[1]);
-            Command cmd = new AddMod(words[1]);
-            cmd.execute();
-        } else if (command.startsWith("/delete")) {
-            if (words.length < 2) {
-                logger.warning("Delete command missing module code.");
-                System.out.println("Error: Please specify a module code to delete.");
-                return false;
-            }
-            logger.info("Executing DeleteModule command with module code: " + words[1]);
-            Command cmd = new DeleteMod(words[1]);
-            cmd.execute();
-        } else if (command.equals("/help")) {
-            logger.info("Displaying help file.");
-            Help.displayHelpFile(); // Handle help command
-        } else if (command.equals("/grad")) {
-            logger.info("Executing ViewGradRequirements command.");
-            Command cmd = new ViewGradRequirements();
-            cmd.execute(); // Handle grad command
-        } else if (command.equals("/schedule")) {
-            logger.info("Executing RecommendedSchedule command.");
-            Command cmd = new RecommendedSchedule();
-            cmd.execute(); // Handle schedule command
-        } else if (command.equals("/specialisation")) {
-            logger.info("Displaying Specialisations.");
-            Specialisation.displaySpecialisations(); // Handle specialisation command
-        } else if (command.equals("/workload")) {
-            logger.info("Executing Workload command.");
-            Command cmd = new Workload();
-            cmd.execute();
-        } else if (command.equals("/exit")) {
-            logger.info("User exited program.");
-            System.out.println("Exiting program...");
-            return true;
-        } else {
-            logger.warning("Unknown command: " + command);
-            System.out.println("Unknown command. Type '/help' for a list of commands."); // Unknown command
+        switch (command) {
+            case "/view":
+                logger.info("Executing ListModules command.");
+                new ListModules().execute();
+                break;
+
+            case "/detail":
+                if (words.length < 2) {
+                    logger.warning("Detail command missing module code.");
+                    System.out.println("Error: Please specify a module code to view details.");
+                    return false;
+                }
+                logger.info("Executing DetailModules command with module code: " + words[1]);
+                new DetailModules(words[1]).execute();
+                break;
+
+            case "/add":
+                if (words.length < 3) {
+                    logger.warning("Add command missing module code or semester.");
+                    System.out.println("Error: Usage: /add MODULE_CODE SEMESTER");
+                    return false;
+                }
+                try {
+                    int semester = Integer.parseInt(words[2]);
+                    logger.info("Executing AddUserModule command with module code: " + words[1] + ", semester: " + semester);
+                    new AddUserModule(current_user, words[1], semester).execute();
+                } catch (NumberFormatException e) {
+                    logger.warning("Invalid semester format.");
+                    System.out.println("Error: Semester must be a number between 1 and 8.");
+                    return false;
+                }
+                break;
+
+            case "/delete":
+                if (words.length < 2) {
+                    logger.warning("Delete command missing module code.");
+                    System.out.println("Error: Please specify a module code to delete.");
+                    return false;
+                }
+                logger.info("Executing RemoveUserModule command with module code: " + words[1]);
+                new DeleteUserModule(current_user, words[1]).execute();
+                break;
+
+            case "/help":
+                logger.info("Displaying help file.");
+                Help.displayHelpFile();
+                break;
+
+            case "/grad":
+                logger.info("Executing ViewGradRequirements command.");
+                new ViewGradRequirements().execute();
+                break;
+
+            case "/schedule":
+                logger.info("Executing RecommendedSchedule command.");
+                new RecommendedSchedule().execute();
+                break;
+
+            case "/specialisation":
+                logger.info("Displaying Specialisations.");
+                Specialisation.displaySpecialisations();
+                break;
+
+            case "/workload":
+                logger.info("Executing Workload command.");
+                new Workload().execute();
+                break;
+
+            case "/exit":
+                logger.info("User exited program.");
+                System.out.println("Exiting program...");
+                return true;
+
+            default:
+                logger.warning("Unknown command: " + command);
+                System.out.println("Unknown command. Type '/help' for a list of commands.");
         }
 
         return false;
     }
 }
-

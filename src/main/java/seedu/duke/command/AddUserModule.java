@@ -1,29 +1,30 @@
 package seedu.duke.command;
-import static seedu.duke.Duke.moduleList;
-import static seedu.duke.Duke.totalMCs;
-import seedu.duke.data.UserMod;
 
-import static seedu.duke.Duke.userModuleList;
+import seedu.duke.data.User;
 
 public class AddUserModule implements Command {
     private final String moduleCode;
+    private final int semester;
+    private final User user;
 
-    public AddUserModule(String moduleCode) {
+    public AddUserModule(User user, String moduleCode, int semester) {
+        this.user = user;
         this.moduleCode = moduleCode;
+        this.semester = semester;
     }
-
 
     @Override
     public void execute() {
-        UserMod module = new UserMod(moduleCode);
-        if (module.getName() != null) {
-            userModuleList.add(module);
-            totalMCs += module.getNumMC();
-            System.out.println("Module " + module.getCode() + " added");
-            System.out.println("Total MCs:" + totalMCs);
+        if (semester < 1 || semester > 8) {
+            System.out.println("Invalid semester. Please choose between 1 and 8.");
+            return;
+        }
+
+        boolean added = user.addModule(moduleCode, semester);
+        if (added) {
+            System.out.println("Module " + moduleCode + " successfully added to semester " + semester);
         } else {
-            System.out.println("Module " + moduleCode + " not added");
+            System.out.println("Failed to add module " + moduleCode + ". It may already exist.");
         }
     }
 }
-
