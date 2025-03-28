@@ -40,5 +40,9 @@ public class UserMod extends Mod {
         this.su = su;
     }
 
+    public void print() {
+        System.out.println(super.toString() + " | Grade: " + grade.getLabel() + " | SU: " + su + " |");
+    }
+
 }
 

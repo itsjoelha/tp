@@ -3,16 +3,7 @@ package seedu.duke;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import seedu.duke.command.ListModules;
-import seedu.duke.command.DetailModules;
-import seedu.duke.command.AddUserModule;
-import seedu.duke.command.DeleteUserModule;
-import seedu.duke.command.Help;
-import seedu.duke.command.ViewGradRequirements;
-import seedu.duke.command.RecommendedSchedule;
-import seedu.duke.command.Specialisation;
-import seedu.duke.command.Workload;
-import seedu.duke.command.SuUserModule;
+import seedu.duke.command.*;
 
 
 import static seedu.duke.Duke.currentUser;
@@ -100,6 +91,20 @@ public class CommandParser {
             new SuUserModule(currentUser, words[1]).execute();
             System.out.println("Su-ed " + words[1]);
             break;
+
+        case "/gpa":
+            logger.info("Executing getting GPA.");
+            new GetUserGPA(currentUser).execute();
+            break;
+
+        case "/grade":
+            if (words.length < 3) {
+                logger.warning("Grade command missing module code or grade");
+            }
+            logger.info("Executing grade module");
+            new GradeModule(currentUser, words[1], words[2]).execute();
+            break;
+
 
         case "/help":
             logger.info("Displaying help file.");
