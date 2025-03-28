@@ -4,10 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import seedu.duke.data.Grade;
-
-
-
 public class User {
     private String name;
     private EducationLevel education;

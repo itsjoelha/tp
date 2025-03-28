@@ -3,7 +3,18 @@ package seedu.duke;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import seedu.duke.command.*;
+import seedu.duke.command.ListModules;
+import seedu.duke.command.DetailModules;
+import seedu.duke.command.AddUserModule;
+import seedu.duke.command.DeleteUserModule;
+import seedu.duke.command.SuUserModule;
+import seedu.duke.command.GetUserGPA;
+import seedu.duke.command.GradeModule;
+import seedu.duke.command.Help;
+import seedu.duke.command.ViewGradRequirements;
+import seedu.duke.command.RecommendedSchedule;
+import seedu.duke.command.Specialisation;
+import seedu.duke.command.Workload;
 
 
 import static seedu.duke.Duke.currentUser;
