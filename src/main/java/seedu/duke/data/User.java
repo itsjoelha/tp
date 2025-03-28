@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-
-
 public class User {
     private String name;
     private EducationLevel education;
@@ -35,6 +33,7 @@ public class User {
     }
 
     public double getGPA() {
+        updateGPA();
         return gpa;
     }
 
@@ -44,29 +43,29 @@ public class User {
 
         for (ArrayList<UserMod> mods : semesterModules.values()) {
             for (UserMod mod : mods) {
-                Grade grade = mod.getGrade();
+                Grade moduleGrade = mod.getGrade();
                 int modMC = mod.getNumMC();
 
-                if (grade != null) {
-                    totalGradePoints += getGradePoint(grade) * modMC;
+                if (moduleGrade != null && !mod.isSU()) {
+                    totalGradePoints += moduleGrade.getGradePoint() * modMC;
                     totalMCs += modMC;
                 }
             }
         }
 
-        gpa = totalMCs > 0 ? totalGradePoints / totalMCs : 0.0;
+        this.gpa = totalMCs > 0 ? totalGradePoints / totalMCs : 0.0;
     }
 
-    private double getGradePoint(Grade grade) {
-        switch (grade) {
-        case A: return 5.0;
-        case B: return 4.0;
-        case C: return 3.0;
-        case D: return 2.0;
-        case E: return 1.0;
-        case F: return 0.0;
-        default: return 0.0;
+    public boolean updateModuleGPA(String code, Grade grade) {
+        for (ArrayList<UserMod> mods : semesterModules.values()) {
+            for (UserMod mod : mods) {
+                if ( mod.getCode() != null && mod.getCode().equalsIgnoreCase(code)) {
+                    mod.setGrade(grade);
+                    return true;
+                }
+            }
         }
+        return false;
     }
 
     public boolean addModule(String code, int semester) {
