@@ -80,7 +80,22 @@ public class CommandParserTest {
             ListModules listModules = new ListModules();
             listModules.execute();
 
-            assertEquals("No modules in List", out.toString().strip());
+            assertEquals("=============== SEMESTER 1 ===============\n" +
+                    "    -------------------NULL-----------------\n" +
+                    "    =============== SEMESTER 2 ===============\n" +
+                    "    -------------------NULL-----------------\n" +
+                    "    =============== SEMESTER 3 ===============\n" +
+                    "    -------------------NULL-----------------\n" +
+                    "    =============== SEMESTER 4 ===============\n" +
+                    "    -------------------NULL-----------------\n" +
+                    "    =============== SEMESTER 5 ===============\n" +
+                    "    -------------------NULL-----------------\n" +
+                    "    =============== SEMESTER 6 ===============\n" +
+                    "    -------------------NULL-----------------\n" +
+                    "    =============== SEMESTER 7 ===============\n" +
+                    "    -------------------NULL-----------------\n" +
+                    "    =============== SEMESTER 8 ===============\n" +
+                    "    -------------------NULL-----------------", out.toString().strip());
         } finally {
             System.setOut(originalOut); // Always reset System.out
         }
