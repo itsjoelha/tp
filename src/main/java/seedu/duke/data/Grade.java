@@ -1,18 +1,16 @@
 package seedu.duke.data;
 
 public enum Grade {
-    A_PLUS("A+", 4.3),
-    A("A", 4.0),
-    A_MINUS("A-", 3.7),
-    B_PLUS("B+", 3.3),
-    B("B", 3.0),
-    B_MINUS("B-", 2.7),
-    C_PLUS("C+", 2.3),
+    A_PLUS("A+", 5.0),
+    A("A", 5.0),
+    A_MINUS("A-", 4.5),
+    B_PLUS("B+", 4.0),
+    B("B", 3.5),
+    B_MINUS("B-", 3.0),
+    C_PLUS("C+", 2.5),
     C("C", 2.0),
-    C_MINUS("C-", 1.7),
-    D_PLUS("D+", 1.3),
+    D_PLUS("D+", 1.5),
     D("D", 1.0),
-    D_MINUS("D-", 0.7),
     F("F", 0.0);
 
     private final String label;
