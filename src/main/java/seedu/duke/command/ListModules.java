@@ -13,7 +13,7 @@ public class ListModules implements Command {
         int totalSemesters = 8;
         for (int semester = 1; semester <= totalSemesters; semester++) {
             // Print Semester header
-            System.out.println("=============== SEMESTER " + semester + " ===============");
+            System.out.print("=============== SEMESTER " + semester + " ===============\n");
 
             // Check if there are modules for the current semester
             if (currentUser.getSemesterModules().containsKey(semester)) {
@@ -24,10 +24,10 @@ public class ListModules implements Command {
                     hasModules = true;
                 }
                 if (!hasModules) {
-                    System.out.println("-------------------NULL-----------------");
+                    System.out.print("-------------------NULL-----------------\n");
                 }
             } else {
-                System.out.println("-------------------NULL-----------------");
+                System.out.print("-------------------NULL-----------------\n");
             }
         }
     }

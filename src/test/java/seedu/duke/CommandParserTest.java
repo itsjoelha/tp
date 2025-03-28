@@ -79,7 +79,6 @@ public class CommandParserTest {
             // Ensure the module list is empty before executing
             ListModules listModules = new ListModules();
             listModules.execute();
-
             assertEquals("=============== SEMESTER 1 ===============\n" +
                     "-------------------NULL-----------------\n" +
                     "=============== SEMESTER 2 ===============\n" +
@@ -95,7 +94,7 @@ public class CommandParserTest {
                     "=============== SEMESTER 7 ===============\n" +
                     "-------------------NULL-----------------\n" +
                     "=============== SEMESTER 8 ===============\n" +
-                    "-------------------NULL-----------------", out.toString().strip());
+                    "-------------------NULL-----------------", out.toString().trim());
         } finally {
             System.setOut(originalOut); // Always reset System.out
         }
