@@ -28,11 +28,12 @@ public class MasterModuleList {
                 while ((line = reader.readLine()) != null) {
                     String[] parts = line.split("\\|");
                     if (parts.length > 10) {
+
                         modules.add(new Mod(parts[1].trim(), parts[3].trim(),
                                 Integer.parseInt(parts[2].trim()), parts[0].trim(),
                                 Double.parseDouble(parts[4].trim()), Double.parseDouble(parts[5].trim()),
                                 Double.parseDouble(parts[6].trim()), Double.parseDouble(parts[7].trim()),
-                                Double.parseDouble(parts[8].trim()), parts[9].trim(), parts[10].trim()));
+                                Double.parseDouble(parts[8].trim()), parts[9].trim(), parts[10].trim(), null));
                     } else {
                         System.err.println("Invalid line format: " + line);
                     }
@@ -54,5 +55,50 @@ public class MasterModuleList {
 
     public static List<Mod> getModules() {
         return modules;
+    }
+
+    public static Prereq parsePrereqTree(String json) {
+        json = json.trim();
+
+        // Base case: Single mod code (string without braces)
+        if (json.startsWith("\"") && json.endsWith("\"")) {
+            return new ModPrereq(json.substring(1, json.length() - 1).split(":"));
+        }
+
+        // Remove outer braces
+        assert json.startsWith("{") && json.endsWith("}");
+        json = json.substring(1, json.length() - 1);
+
+        // Extract the key ("and" or "or")
+        assert json.contains(":");
+        String[] keyValuePair = json.split(":", 2);
+
+        assert keyValuePair.length == 2;
+        String key = keyValuePair[0].equals( "and" ) ? "and" : "or";
+        String values = keyValuePair[1];
+
+        // Remove outer brackets []
+        assert values.startsWith("[") && values.endsWith("]");
+        values = values.substring(1, values.length() - 1).trim();
+
+        // Split sub-prerequisites (assumes valid JSON formatting)
+        List<Prereq> subPrereqs = new ArrayList<>();
+        int start = 0, depth = 0;
+        for (int i = 0; i < values.length(); i++) {
+            char c = values.charAt(i);
+            if (c == '{') depth++;
+            else if (c == '}') depth--;
+
+            else if (c == ',' && depth == 0) {
+                subPrereqs.add(parsePrereqTree(values.substring(start, i).trim()));
+                start = i + 1;
+            }
+        }
+
+        if (start < values.length()) {
+            subPrereqs.add(parsePrereqTree(values.substring(start).trim()));
+        }
+
+        return "and".equals(key) ? new AndPrereq(subPrereqs) : "or".equals(key) ? new OrPrereq(subPrereqs) : null;
     }
 }

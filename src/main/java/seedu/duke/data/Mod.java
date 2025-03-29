@@ -14,10 +14,13 @@ public class Mod {
     private final double prepHours;
     private final String preclusion;
     private final String prerequisites;
+    private final Prereq prereqTree;
 
     public Mod(String name, String description, int numMC, String code,
                double lectureHours, double tutHours, double labHours, double projHours, double prepHours,
-               String preclusion, String prerequisites) {
+               String preclusion, String prerequisites
+            , Prereq prereqTree
+    ) {
         this.name = name;
         this.description = description;
         this.numMC = numMC;
@@ -29,6 +32,7 @@ public class Mod {
         this.prepHours = prepHours;
         this.preclusion = preclusion;
         this.prerequisites = prerequisites;
+        this.prereqTree = prereqTree;
     }
 
     public Mod(String code) {
@@ -45,6 +49,7 @@ public class Mod {
             this.prepHours = foundMod.getPrepHours();
             this.preclusion = foundMod.getPreclusion();
             this.prerequisites = foundMod.getPrerequisites();
+            this.prereqTree = foundMod.getPrereqTree();
         } else {
             ErrorHandler.handleModuleDoesNotExist();
             // Set fields to null
@@ -59,6 +64,7 @@ public class Mod {
             this.prepHours = 0;
             this.preclusion = null;
             this.prerequisites = null;
+            this.prereqTree = null;
         }
     }
 
@@ -104,6 +110,10 @@ public class Mod {
 
     public String getPrerequisites() {
         return prerequisites;
+    }
+
+    public Prereq getPrereqTree() {
+        return prereqTree;
     }
 
     public String toString() {
