@@ -44,7 +44,7 @@ public class MasterModuleList {
         }
     }
 
-    public static Mod findModuleByCode(String code){
+    public static Mod findModuleByCode(String code) {
         for (Mod mod : modules) {
             if (mod.getCode().equals(code)) {
                 return mod;
@@ -79,7 +79,7 @@ public class MasterModuleList {
         String[] keyValuePair = json.split(":", 2);
 
         assert keyValuePair.length == 2;
-        String key = keyValuePair[0].equals( "and" ) ? "and" : "or";
+        String key = keyValuePair[0].equals("and") ? "and" : "or";
         String values = keyValuePair[1];
 
         // Remove outer brackets []

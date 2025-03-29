@@ -18,9 +18,7 @@ public class Mod {
 
     public Mod(String name, String description, int numMC, String code,
                double lectureHours, double tutHours, double labHours, double projHours, double prepHours,
-               String preclusion, String prerequisites
-            , Prereq prereqTree
-    ) {
+               String preclusion, String prerequisites, Prereq prereqTree) {
         this.name = name;
         this.description = description;
         this.numMC = numMC;

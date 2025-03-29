@@ -3,15 +3,8 @@ package seedu.duke.data;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import seedu.duke.data.MasterModuleList;
 
 public class GradModuleList {
-
-    private static Mod generateUE () {
-        return new Mod("Unrestricted Elective", "", 4, "UE",
-                0, 0, 0, 0, 0,
-                "Unconfirmed preclusions", "Unconfirmed prerequisites", null);
-    }
 
     public static final List<Mod> YEAR1SEM1MODULES = new ArrayList<>(Arrays.asList(
             MasterModuleList.findModuleByCode("CG1111A"),
@@ -33,7 +26,6 @@ public class GradModuleList {
                     " an Undergraduate Degree THEN ( must have completed EP ENGLISH LANGUAGE PROFICIENCY TEST at a" +
                     " grade of at least Y OR must have completed ES1000 at a grade of at least D)", null)
     ));
-
     public static final List<Mod> YEAR1SEM2MODULES = new ArrayList<>(Arrays.asList(
             MasterModuleList.findModuleByCode("CG2111A"),
             MasterModuleList.findModuleByCode("DTK1234"),
@@ -41,7 +33,6 @@ public class GradModuleList {
             MasterModuleList.findModuleByCode("PF1101"),
             MasterModuleList.findModuleByCode("GEA1000")
     ));
-
     public static final List<Mod> YEAR2SEM1MODULES = new ArrayList<>(Arrays.asList(
             MasterModuleList.findModuleByCode("CS1231"),
             MasterModuleList.findModuleByCode("CS2040C"),
@@ -50,7 +41,6 @@ public class GradModuleList {
             new Mod("Cultures and Connections", "", 4, "GEC1XXX",
                     0, 0, 0, 0, 0, "Unconfirmed preclusions", "Unconfirmed prerequisites", null)
     ));
-
     public static final List<Mod> YEAR2SEM2MODULES = new ArrayList<>(Arrays.asList(
             MasterModuleList.findModuleByCode("CG2023"),
             MasterModuleList.findModuleByCode("CS2113"),
@@ -58,14 +48,12 @@ public class GradModuleList {
             MasterModuleList.findModuleByCode("EE2026"),
             MasterModuleList.findModuleByCode("CDE2501")
     ));
-
     public static final List<Mod> YEAR3SEM1MODULES = new ArrayList<>(Arrays.asList(
             MasterModuleList.findModuleByCode("EG2401A"),
             MasterModuleList.findModuleByCode("EG3611A"),
             MasterModuleList.findModuleByCode("CP3880"),
             generateUE()
     ));
-
     public static final List<Mod> YEAR3SEM2MODULES = new ArrayList<>(Arrays.asList(
             MasterModuleList.findModuleByCode("CG2027"),
             MasterModuleList.findModuleByCode("CG2028"),
@@ -73,7 +61,6 @@ public class GradModuleList {
             MasterModuleList.findModuleByCode("CDE2000"),
             MasterModuleList.findModuleByCode("ST2334")
     ));
-
     public static final List<Mod> YEAR4SEM1MODULES = new ArrayList<>(Arrays.asList(
             MasterModuleList.findModuleByCode("CG4002"),
             MasterModuleList.findModuleByCode("EE4204"),
@@ -82,9 +69,14 @@ public class GradModuleList {
                     "Unconfirmed preclusions", "Unconfirmed prerequisites", null),
             generateUE()
     ));
-
     public static final List<Mod> YEAR4SEM2MODULES = new ArrayList<>(Arrays.asList(
             generateUE(), generateUE(), generateUE(), generateUE(), generateUE()
     ));
+
+    private static Mod generateUE() {
+        return new Mod("Unrestricted Elective", "", 4, "UE",
+                0, 0, 0, 0, 0,
+                "Unconfirmed preclusions", "Unconfirmed prerequisites", null);
+    }
 
 }
