@@ -100,7 +100,6 @@ public class CommandParser {
             }
             logger.info("Executing su command with module code: " + words[1]);
             new SuUserModule(currentUser, words[1]).execute();
-            System.out.println("Su-ed " + words[1]);
             break;
 
         case "/gpa":

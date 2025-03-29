@@ -14,9 +14,9 @@ public class SuUserModule implements Command {
     public void execute() {
         boolean sUed = user.suModule(moduleCode);
         if (sUed) {
-            System.out.println("Module " + moduleCode + " successfully SU-ed");
+            System.out.println("Module " + moduleCode.toUpperCase() + " successfully SU-ed");
         } else {
-            System.out.println("Failed to SU " + moduleCode + ". It may not exist");
+            System.out.println("Failed to SU " + moduleCode.toUpperCase() + ". It may not exist");
         }
     }
 }
