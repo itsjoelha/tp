@@ -111,6 +111,8 @@ public class CommandParser {
         case "/grade":
             if (words.length < 3) {
                 logger.warning("Grade command missing module code or grade");
+                System.out.println("Error: Please specify a module code to grade.");
+                return false;
             }
             logger.info("Executing grade module");
             new GradeModule(currentUser, words[1], words[2]).execute();

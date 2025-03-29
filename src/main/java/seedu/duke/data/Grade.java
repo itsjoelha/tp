@@ -22,7 +22,7 @@ public enum Grade {
     }
 
     public String getLabel() {
-        return label;
+        return label == null ? "null" : label;
     }
 
     public double getGradePoint() {
