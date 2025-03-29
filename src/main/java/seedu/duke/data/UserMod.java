@@ -6,9 +6,10 @@ public class UserMod extends Mod {
 
 
     public UserMod(String name, String description, int numMC, String code, double lectureHours, double tutHours,
-                   double labHours, double projHours, double prepHours, String preclusion, String prerequisites) {
+                   double labHours, double projHours, double prepHours,
+                   String preclusion, String prerequisites, Prereq prereqTree) {
         super(name, description, numMC, code, lectureHours, tutHours, labHours, projHours, prepHours,
-                preclusion, prerequisites);
+                preclusion, prerequisites, prereqTree);
     }
 
     public UserMod(String code, Grade grade, boolean su) {
