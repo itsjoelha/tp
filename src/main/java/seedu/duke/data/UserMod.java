@@ -41,7 +41,12 @@ public class UserMod extends Mod {
     }
 
     public void print() {
-        System.out.println(super.toString() + " | Grade: " + grade.getLabel() + " | SU: " + su + " |");
+        if (grade != null) {
+            System.out.println(super.toString() + " | Grade: " + grade.getLabel() + " | SU: " + su + " |");
+
+        } else {
+            System.out.println(super.toString() + " | Grade: " + "null" + " | SU: " + su + " |");
+        }
     }
 
 }

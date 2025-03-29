@@ -17,7 +17,7 @@ public class ListModules implements Command {
 
             // Check if there are modules for the current semester
             if (currentUser.getSemesterModules().containsKey(semester)) {
-                // Print all modules in that semester
+                // Print all modules in that semester.
                 boolean hasModules = false;
                 for (UserMod mod : currentUser.getSemesterModules().get(semester)) {
                     mod.print();
