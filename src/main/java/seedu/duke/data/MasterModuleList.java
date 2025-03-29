@@ -88,13 +88,15 @@ public class MasterModuleList {
 
         // Split sub-prerequisites (assumes valid JSON formatting)
         List<Prereq> subPrereqs = new ArrayList<>();
-        int start = 0, depth = 0;
+        int start = 0;
+        int depth = 0;
         for (int i = 0; i < values.length(); i++) {
             char c = values.charAt(i);
-            if (c == '{') depth++;
-            else if (c == '}') depth--;
-
-            else if (c == ',' && depth == 0) {
+            if (c == '{') {
+                depth++;
+            } else if (c == '}') {
+                depth--;
+            } else if (c == ',' && depth == 0) {
                 subPrereqs.add(parsePrereqTree(values.substring(start, i).trim()));
                 start = i + 1;
             }
