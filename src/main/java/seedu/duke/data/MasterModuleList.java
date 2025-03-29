@@ -28,12 +28,12 @@ public class MasterModuleList {
                 while ((line = reader.readLine()) != null) {
                     String[] parts = line.split("\\|");
                     if (parts.length > 10) {
-
+                        Prereq prereqTree = parsePrereqTree(parts[11]);
                         modules.add(new Mod(parts[1].trim(), parts[3].trim(),
                                 Integer.parseInt(parts[2].trim()), parts[0].trim(),
                                 Double.parseDouble(parts[4].trim()), Double.parseDouble(parts[5].trim()),
                                 Double.parseDouble(parts[6].trim()), Double.parseDouble(parts[7].trim()),
-                                Double.parseDouble(parts[8].trim()), parts[9].trim(), parts[10].trim(), null));
+                                Double.parseDouble(parts[8].trim()), parts[9].trim(), parts[10].trim(), prereqTree));
                     } else {
                         System.err.println("Invalid line format: " + line);
                     }
@@ -59,6 +59,11 @@ public class MasterModuleList {
 
     public static Prereq parsePrereqTree(String json) {
         json = json.trim();
+
+        // No Prerequisites
+        if (json.equals("{}")) {
+            return null;
+        }
 
         // Base case: Single mod code (string without braces)
         if (json.startsWith("\"") && json.endsWith("\"")) {
@@ -99,6 +104,6 @@ public class MasterModuleList {
             subPrereqs.add(parsePrereqTree(values.substring(start).trim()));
         }
 
-        return "and".equals(key) ? new AndPrereq(subPrereqs) : "or".equals(key) ? new OrPrereq(subPrereqs) : null;
+        return "and".equals(key) ? new AndPrereq(subPrereqs) : new OrPrereq(subPrereqs);
     }
 }
