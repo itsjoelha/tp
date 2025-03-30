@@ -86,7 +86,9 @@ public class User {
 
             semesterModules.get(semester).add(newMod);
             updateGPA(); // Recalculate GPA
-            checkAllPrereqs();
+            if (!fulfillsModPrereq(newMod, semester)) {
+                System.out.println("WARNING: " + code + " missing prerequisites");
+            };
             return true;
 
         } catch (ModNotInDatabase e) {
@@ -139,18 +141,30 @@ public class User {
 
     public void checkAllPrereqs() {
         int semester = 0;
+        StringBuilder missingMods = new StringBuilder();
         for (ArrayList<UserMod> mods : semesterModules.values()) {
             for (UserMod mod : mods) {
-                Prereq prereqTree = mod.getPrereqTree();
-                if (prereqTree == null) {
-                    continue;
-                }
-                if (!prereqTree.fulfillsPrereq(getAllModulesTilSemester(semester))) {
-                    System.out.println(mod.getCode() + " missing prereqs");
+                if (!fulfillsModPrereq(mod, semester)) {
+                   missingMods.append(mod.getCode()).append(", ");
                 }
             }
             semester++;
         }
+        if (missingMods.length() == 0) {
+            return;
+        }
+        assert missingMods.charAt(missingMods.length() - 1) == ' ' && missingMods.charAt(missingMods.length() - 2) == ',';
+        missingMods.deleteCharAt(missingMods.length() - 2); //remove last comma
+        missingMods.append("missing prerequisites");
+        System.out.println(missingMods);
+    }
+
+    public boolean fulfillsModPrereq(UserMod mod, int semester) {
+        Prereq prereqTree = mod.getPrereqTree();
+        if (prereqTree == null) {
+            return true;
+        }
+        return prereqTree.fulfillsPrereq(getAllModulesTilSemester(semester));
     }
 
 
