@@ -64,8 +64,8 @@ public class CommandParserTest {
         System.setOut(System.out); // Reset System.out
         String output = out.toString().trim();
 
-        assertTrue(output.contains("Mod EG1311 added"));
-        assertTrue(output.contains("Deleted EG1311 from list"));
+        assertTrue(output.contains("Module EG1311 successfully added to Semester 2"));
+        assertTrue(output.contains("Module EG1311 successfully removed."));
     }
 
     @Test
