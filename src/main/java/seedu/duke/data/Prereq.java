@@ -28,12 +28,14 @@ class ModPrereq extends Prereq {
 
     @Override
     public String toString() {
-        return modCode  + ":" + minGrade;
+        return modCode + ":" + minGrade;
     }
 
     public boolean fulfillsPrereq(ArrayList<UserMod> modules) {
         for (UserMod module : modules) {
-            if (module.getCode().equals(modCode) &&  Grade.isHigherOrEqual(module.getGrade(), minGrade)) {
+            Grade modGrade = module.getGrade();
+            if (module.getCode().equals(modCode) &&
+                    (modGrade == null || Grade.isHigherOrEqual(modGrade, minGrade))) {
                 return true;  // Found a match with required modCode and grade
             }
         }
@@ -61,7 +63,7 @@ class AndPrereq extends Prereq {
 
     public boolean fulfillsPrereq(ArrayList<UserMod> modules) {
         return prereqs.stream()
-            .allMatch(prereq -> prereq.fulfillsPrereq(modules));
+                .allMatch(prereq -> prereq.fulfillsPrereq(modules));
     }
 }
 
@@ -84,6 +86,6 @@ class OrPrereq extends Prereq {
 
     public boolean fulfillsPrereq(ArrayList<UserMod> modules) {
         return prereqs.stream()
-            .anyMatch(prereq -> prereq.fulfillsPrereq(modules));
+                .anyMatch(prereq -> prereq.fulfillsPrereq(modules));
     }
 }
