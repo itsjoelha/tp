@@ -1,10 +1,13 @@
 package seedu.duke.command;
 
 import seedu.duke.data.UserMod;
-import static seedu.duke.Duke.currentUser;
+import seedu.duke.data.User;
 
 public class ListModules implements Command {
-    public ListModules() {};
+    private final User user;
+    public ListModules(User user) {
+        this.user = user;
+    };
 
 
     @Override
@@ -16,10 +19,15 @@ public class ListModules implements Command {
             System.out.print("=============== SEMESTER " + semester + " ===============\n");
 
             // Check if there are modules for the current semester
-            if (currentUser.getSemesterModules().containsKey(semester)) {
+            if (user.getSemesterModules().containsKey(semester)) {
                 // Print all modules in that semester.
                 boolean hasModules = false;
-                for (UserMod mod : currentUser.getSemesterModules().get(semester)) {
+                for (UserMod mod : user.getSemesterModules().get(semester)) {
+                    if (user.fulfillsModPrereq(mod, semester)) {
+                        System.out.print("[O] ");
+                    } else {
+                        System.out.print("[X] ");
+                    }
                     mod.print();
                     hasModules = true;
                 }
@@ -30,5 +38,6 @@ public class ListModules implements Command {
                 System.out.print("-------------------NULL-----------------\n");
             }
         }
+        user.checkAllPrereqs();
     }
 }

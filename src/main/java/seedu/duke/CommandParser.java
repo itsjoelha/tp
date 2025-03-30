@@ -48,7 +48,7 @@ public class CommandParser {
         switch (command) {
         case "/view":
             logger.info("Executing ListModules command.");
-            new ListModules().execute();
+            new ListModules(currentUser).execute();
             break;
 
         case "/detail":
