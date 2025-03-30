@@ -1,5 +1,7 @@
 package seedu.duke.data;
 
+import seedu.duke.errors.ModNotInDatabase;
+
 public class UserMod extends Mod {
     private Grade grade;
     private boolean su;
@@ -12,13 +14,13 @@ public class UserMod extends Mod {
                 preclusion, prerequisites, prereqTree);
     }
 
-    public UserMod(String code, Grade grade, boolean su) {
+    public UserMod(String code, Grade grade, boolean su) throws ModNotInDatabase {
         super(code);
         this.grade = grade;
         this.su = su;
     }
 
-    public UserMod(String code){
+    public UserMod(String code) throws ModNotInDatabase{
         super(code);
         this.grade = null;
         this.su = false;

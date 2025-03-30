@@ -1,5 +1,6 @@
 package seedu.duke.command;
 import seedu.duke.data.Mod;
+import seedu.duke.errors.ModNotInDatabase;
 
 public class DetailModules implements Command {
     private final String modCode;
@@ -47,8 +48,8 @@ public class DetailModules implements Command {
     }
 
     public void execute() {
-        Mod module = new Mod(this.modCode);
-        if (module.getCode() != null) {
+        try {
+            Mod module = new Mod(this.modCode);
             int mcValue = module.getNumMC();
             String mcFormat = (mcValue < 10) ? "%1d MCs" : "%2d MCs";
             String spaceFormat = (mcValue < 10) ? "%-58s" : "%-57s";
@@ -68,7 +69,7 @@ public class DetailModules implements Command {
             System.out.printf("| %-78s |\n", "Prerequisites:");
             textWrapDescription(module.getPrerequisites());
             System.out.println("+--------------------------------------------------------------------------------+");
-        } else {
+        } catch (ModNotInDatabase e) {
             System.out.println("Unable to retrieve module details.");
         }
     }

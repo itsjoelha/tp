@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import seedu.duke.errors.ModNotInDatabase;
+
 public class User {
     private String name;
     private EducationLevel education;
@@ -74,17 +76,23 @@ public class User {
             return false; // Invalid semester
         }
 
-        UserMod newMod = new UserMod(code);
+        try {
+            UserMod newMod = new UserMod(code);
 
-        semesterModules.putIfAbsent(semester, new ArrayList<>());
-        if (semesterModules.get(semester).contains(newMod)) {
-            return false; // Module already exists
+            semesterModules.putIfAbsent(semester, new ArrayList<>());
+            if (semesterModules.get(semester).contains(newMod)) {
+                return false; // Module already exists
+            }
+
+            semesterModules.get(semester).add(newMod);
+            updateGPA(); // Recalculate GPA
+            checkAllPrereqs();
+            return true;
+
+        } catch (ModNotInDatabase e) {
+            System.out.println(code + " not in database. /addCustom to add custom modules");
+            return false;
         }
-
-        semesterModules.get(semester).add(newMod);
-        updateGPA(); // Recalculate GPA
-        checkAllPrereqs();
-        return true;
     }
 
     public boolean removeModule(String code) {
