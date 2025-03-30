@@ -73,7 +73,6 @@ public class CommandParser {
                 logger.info("Executing AddUserModule command with module code: " + words[1] +
                         ", semester: " + semester);
                 new AddUserModule(currentUser, words[1], semester).execute();
-                System.out.println("Mod " + words[1] + " added");
             } catch (NumberFormatException e) {
                 logger.warning("Invalid semester format.");
                 System.out.println("Error: Semester must be a number between 1 and 8.");
@@ -89,7 +88,6 @@ public class CommandParser {
             }
             logger.info("Executing RemoveUserModule command with module code: " + words[1]);
             new DeleteUserModule(currentUser, words[1]).execute();
-            System.out.println("Deleted " + words[1] + " from list.");
             break;
 
         case "/su":
