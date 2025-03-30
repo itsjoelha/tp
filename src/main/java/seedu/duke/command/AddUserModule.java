@@ -22,9 +22,9 @@ public class AddUserModule implements Command {
 
         boolean added = user.addModule(moduleCode, semester);
         if (added) {
-            System.out.println("Module " + moduleCode + " successfully added to semester " + semester);
+            System.out.println("Module " + moduleCode.toUpperCase() + " successfully added to Semester " + semester);
         } else {
-            System.out.println("Failed to add module " + moduleCode + ". It may already exist.");
+            System.out.println("Failed to add module " + moduleCode.toUpperCase() + ". It may already exist.");
         }
     }
 }
