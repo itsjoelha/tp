@@ -34,7 +34,7 @@ public class DetailModules implements Command {
                 currentLine.setLength(0);
             }
 
-            if (currentLine.length() > 0) {
+            if (!currentLine.isEmpty()) {
                 currentLine.append(" ");
             }
             currentLine.append(word);

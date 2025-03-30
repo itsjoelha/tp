@@ -12,11 +12,14 @@ public class User {
     private Map<Integer, ArrayList<UserMod>> semesterModules;
 
     public User() {
+        // Default constructor initializes with empty values
+
         this.name = "";
         this.education = null;
         this.gpa = 0.0;
         this.currentSemester = 1;
         this.semesterModules = new HashMap<>();
+
     }
 
     public User(String name, EducationLevel education) {
@@ -59,7 +62,7 @@ public class User {
     public boolean updateModuleGPA(String code, Grade grade) {
         for (ArrayList<UserMod> mods : semesterModules.values()) {
             for (UserMod mod : mods) {
-                if ( mod.getCode() != null && mod.getCode().equalsIgnoreCase(code)) {
+                if (mod.getCode() != null && mod.getCode().equalsIgnoreCase(code)) {
                     mod.setGrade(grade);
                     return true;
                 }
@@ -112,7 +115,7 @@ public class User {
     public boolean hasModule(String code) {
         for (ArrayList<UserMod> mods : semesterModules.values()) {
             for (UserMod mod : mods) {
-                if ( mod.getCode() != null && mod.getCode().equalsIgnoreCase(code)) {
+                if (mod.getCode() != null && mod.getCode().equalsIgnoreCase(code)) {
                     return true;
                 }
             }
