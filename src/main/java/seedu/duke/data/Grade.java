@@ -37,4 +37,8 @@ public enum Grade {
         }
         throw new IllegalArgumentException("Invalid grade: " + text);
     }
+
+    public static boolean isHigherOrEqual(Grade grade1, Grade grade2) {
+        return grade1.getGradePoint() >= grade2.getGradePoint();
+    }
 }

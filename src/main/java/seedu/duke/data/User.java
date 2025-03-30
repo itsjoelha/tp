@@ -3,6 +3,7 @@ package seedu.duke.data;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class User {
     private String name;
@@ -82,6 +83,7 @@ public class User {
 
         semesterModules.get(semester).add(newMod);
         updateGPA(); // Recalculate GPA
+        checkAllPrereqs();
         return true;
     }
 
@@ -90,6 +92,7 @@ public class User {
             if (semesterModules.get(semester).removeIf(UserMod ->
                     UserMod.getCode().equals(code.toUpperCase()))) {
                 updateGPA(); // Recalculate GPA after removal
+                checkAllPrereqs();
                 return true;
             }
         }
@@ -126,6 +129,23 @@ public class User {
     }
 
 
+    public void checkAllPrereqs() {
+        int semester = 0;
+        for (ArrayList<UserMod> mods : semesterModules.values()) {
+            for (UserMod mod : mods) {
+                Prereq prereqTree = mod.getPrereqTree();
+                if (prereqTree == null) {
+                    continue;
+                }
+                if (!prereqTree.fulfillsPrereq(getAllModulesTilSemester(semester))) {
+                    System.out.println(mod.getCode() + " missing prereqs");
+                }
+            }
+            semester++;
+        }
+    }
+
+
     public int getCurrentSemester() {
         return currentSemester;
     }
@@ -148,6 +168,21 @@ public class User {
 
     public void setEducation(EducationLevel education) {
         this.education = education;
+    }
+
+    public ArrayList<UserMod> getAllModules() {
+        return semesterModules.values()
+                .stream()
+                .flatMap(ArrayList::stream)
+                .collect(Collectors.toCollection(ArrayList::new));
+    }
+
+    public ArrayList<UserMod> getAllModulesTilSemester(int semester) {
+        return semesterModules.values()
+                .stream()
+                .limit(semester)
+                .flatMap(ArrayList::stream)
+                .collect(Collectors.toCollection(ArrayList::new));
     }
 }
 
