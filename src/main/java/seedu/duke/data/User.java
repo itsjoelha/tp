@@ -12,7 +12,7 @@ public class User {
     private EducationLevel education;
     private double gpa;
     private int currentSemester;
-    private Map<Integer, ArrayList<UserMod>> semesterModules;
+    private final Map<Integer, ArrayList<UserMod>> semesterModules;
 
     public User() {
         this.name = "";
@@ -62,7 +62,7 @@ public class User {
     public boolean updateModuleGPA(String code, Grade grade) {
         for (ArrayList<UserMod> mods : semesterModules.values()) {
             for (UserMod mod : mods) {
-                if ( mod.getCode() != null && mod.getCode().equalsIgnoreCase(code)) {
+                if (mod.getCode() != null && mod.getCode().equalsIgnoreCase(code)) {
                     mod.setGrade(grade);
                     return true;
                 }
@@ -88,7 +88,7 @@ public class User {
             updateGPA(); // Recalculate GPA
             if (!fulfillsModPrereq(newMod, semester)) {
                 System.out.println("WARNING: " + code + " missing prerequisites");
-            };
+            }
             return true;
 
         } catch (ModNotInDatabase e) {
@@ -125,7 +125,7 @@ public class User {
     public boolean hasModule(String code) {
         for (ArrayList<UserMod> mods : semesterModules.values()) {
             for (UserMod mod : mods) {
-                if ( mod.getCode() != null && mod.getCode().equalsIgnoreCase(code)) {
+                if (mod.getCode() != null && mod.getCode().equalsIgnoreCase(code)) {
                     return true;
                 }
             }
@@ -145,7 +145,7 @@ public class User {
         for (ArrayList<UserMod> mods : semesterModules.values()) {
             for (UserMod mod : mods) {
                 if (!fulfillsModPrereq(mod, semester)) {
-                   missingMods.append(mod.getCode()).append(", ");
+                    missingMods.append(mod.getCode()).append(", ");
                 }
             }
             semester++;

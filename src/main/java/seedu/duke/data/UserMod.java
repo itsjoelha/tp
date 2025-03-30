@@ -20,7 +20,7 @@ public class UserMod extends Mod {
         this.su = su;
     }
 
-    public UserMod(String code) throws ModNotInDatabase{
+    public UserMod(String code) throws ModNotInDatabase {
         super(code);
         this.grade = null;
         this.su = false;

@@ -1,13 +1,14 @@
 package seedu.duke.command;
 
-import seedu.duke.data.UserMod;
 import seedu.duke.data.User;
+import seedu.duke.data.UserMod;
 
 public class ListModules implements Command {
     private final User user;
+
     public ListModules(User user) {
         this.user = user;
-    };
+    }
 
 
     @Override
