@@ -33,6 +33,21 @@ public class Mod {
         this.prereqTree = prereqTree;
     }
 
+    public Mod(String code, int numMC, String name) {
+        this.code = code;
+        this.numMC = numMC;
+        this.name = name;
+        this.description = "";
+        this.lectureHours = 0;
+        this.tutHours = 0;
+        this.labHours = 0;
+        this.projHours = 0;
+        this.prepHours = 0;
+        this.preclusion = "";
+        this.prerequisites = "";
+        this.prereqTree = null;
+    }
+
     public Mod(String code) {
         Mod foundMod = MasterModuleList.findModuleByCode(code.toUpperCase());
         if (foundMod != null) {

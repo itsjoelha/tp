@@ -10,8 +10,16 @@ public class UserMod extends Mod {
                    String preclusion, String prerequisites, Prereq prereqTree) {
         super(name, description, numMC, code, lectureHours, tutHours, labHours, projHours, prepHours,
                 preclusion, prerequisites, prereqTree);
+        this.grade = null;
+        this.su = false;
     }
 
+    public UserMod(String code, int numMC, String name) {
+        super(code, numMC, name);
+        this.grade = null;
+        this.su = false;
+
+    }
     public UserMod(String code, Grade grade, boolean su) {
         super(code);
         this.grade = grade;

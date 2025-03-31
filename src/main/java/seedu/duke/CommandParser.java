@@ -3,18 +3,7 @@ package seedu.duke;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import seedu.duke.command.ListModules;
-import seedu.duke.command.DetailModules;
-import seedu.duke.command.AddUserModule;
-import seedu.duke.command.DeleteUserModule;
-import seedu.duke.command.SuUserModule;
-import seedu.duke.command.GetUserGPA;
-import seedu.duke.command.GradeModule;
-import seedu.duke.command.Help;
-import seedu.duke.command.ViewGradRequirements;
-import seedu.duke.command.RecommendedSchedule;
-import seedu.duke.command.Specialisation;
-import seedu.duke.command.Workload;
+import seedu.duke.command.*;
 
 
 import static seedu.duke.Duke.currentUser;
@@ -42,7 +31,7 @@ public class CommandParser {
             return false;
         }
 
-        String[] words = userInput.split(" ");
+        String[] words = userInput.split(" ", 5);
         String command = words[0];
 
         switch (command) {
@@ -64,7 +53,7 @@ public class CommandParser {
         case "/add":
             if (words.length < 3) {
                 logger.warning("Add command missing module code or semester.");
-                System.out.println("Error: Please specify a module code to add.");
+                System.out.println("Error: Please specify a module code and semester to add.");
                 System.out.println("Usage: /add MODULE_CODE SEMESTER");
                 return false;
             }
@@ -73,10 +62,30 @@ public class CommandParser {
                 logger.info("Executing AddUserModule command with module code: " + words[1] +
                         ", semester: " + semester);
                 new AddUserModule(currentUser, words[1], semester).execute();
-                System.out.println("Mod " + words[1] + " added");
             } catch (NumberFormatException e) {
                 logger.warning("Invalid semester format.");
                 System.out.println("Error: Semester must be a number between 1 and 8.");
+                return false;
+            }
+            break;
+
+        case "/addCustom":
+            if (words.length < 5) {
+                logger.warning("Add custom module command missing unspecified content");
+                System.out.println("Error: Please specify module details to add custom module.");
+                System.out.println("Usage: /addCustom MODULE_CODE SEMESTER CREDIT_NUMBER NAME");
+                return false;
+            }
+            try {
+                int semester = Integer.parseInt(words[2]);
+                int creditNum = Integer.parseInt(words[3]);
+                logger.info("Executing AddCustomModule command with module code: " + words[1] +
+                        ", semester: " + semester);
+                new AddCustomModule(currentUser, words[1], semester, creditNum, words[4]).execute();
+            } catch (NumberFormatException e) {
+                logger.warning("Invalid semester format in AddCustomModule command.");
+                System.out.println("Error: Semester must be a number between 1 and 8 and credit number must"
+                + " be a positive integer.");
                 return false;
             }
             break;

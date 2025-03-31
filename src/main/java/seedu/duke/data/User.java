@@ -85,6 +85,22 @@ public class User {
         return true;
     }
 
+    public boolean addCustomModule(String code, int numMC, String name, int semester) {
+        if (semester < 1 || semester > 8) {
+            return false;
+        }
+        UserMod newMod = new UserMod(code, numMC, name);
+
+        semesterModules.putIfAbsent(semester, new ArrayList<>());
+        if (semesterModules.get(semester).contains(newMod)) {
+            return false; // Module already exists
+        }
+
+        semesterModules.get(semester).add(newMod);
+        updateGPA(); // Recalculate GPA
+        return true;
+    }
+
     public boolean removeModule(String code) {
         for (int semester : semesterModules.keySet()) {
             if (semesterModules.get(semester).removeIf(UserMod ->
