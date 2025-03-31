@@ -4,9 +4,12 @@ import org.junit.jupiter.api.Test;
 import seedu.duke.command.ListModules;
 import seedu.duke.data.User;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static seedu.duke.Duke.currentUser;
+
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
@@ -48,7 +51,7 @@ public class CommandParserTest {
         parser.parseCommand("/delete");
         System.setOut(System.out); // Reset System.out
 
-        String expectedOutput = "Error: Please specify a module code to add."
+        String expectedOutput = "Error: Please specify a module code and semester to add."
                 + System.lineSeparator() + "Usage: /add MODULE_CODE SEMESTER"
                 + System.lineSeparator() + "Error: Please specify a module code to delete.";
         assertEquals(expectedOutput, out.toString().trim());
@@ -67,6 +70,35 @@ public class CommandParserTest {
 
         assertTrue(output.contains("Module EG1311 successfully added to Semester 2"));
         assertTrue(output.contains("Module EG1311 successfully removed."));
+    }
+
+    @Test
+    public void parseCommand_addCustomModule() {
+        CommandParser parser = new CommandParser();
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+
+        parser.parseCommand("/addCustom PL1101E 2 4 Intro to Psychology");
+        assertTrue(currentUser.hasModule("PL1101E"));
+
+        System.setOut(System.out);
+        String output = out.toString().trim();
+        assertTrue(output.contains("Module PL1101E successfully added to semester 2 as a Custom Module"));
+    }
+
+    @Test
+    public void parseCommand_addCustomModuleFails() {
+        currentUser.clearModules();
+        CommandParser parser = new CommandParser();
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+
+        parser.parseCommand("/addCustom PL1101E 3");
+        assertFalse(currentUser.hasModule("PL1101E"));
+
+        System.setOut(System.out);
+        String output = out.toString().trim();
+        assertTrue(output.contains("Error: Please specify module details to add custom module."));
     }
 
     @Test
