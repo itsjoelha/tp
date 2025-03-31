@@ -2,6 +2,7 @@ package seedu.duke;
 
 import org.junit.jupiter.api.Test;
 import seedu.duke.command.ListModules;
+import seedu.duke.data.User;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -74,10 +75,11 @@ public class CommandParserTest {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         PrintStream originalOut = System.out;
         System.setOut(new PrintStream(out));
+        User testUser = new User();
 
         try {
             // Ensure the module list is empty before executing
-            ListModules listModules = new ListModules();
+            ListModules listModules = new ListModules(testUser);
             listModules.execute();
             assertEquals("=============== SEMESTER 1 ===============\n" +
                     "-------------------NULL-----------------\n" +

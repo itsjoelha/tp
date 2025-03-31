@@ -21,14 +21,6 @@ public enum Grade {
         this.gpa = gpa;
     }
 
-    public String getLabel() {
-        return label == null ? "null" : label;
-    }
-
-    public double getGradePoint() {
-        return gpa;
-    }
-
     public static Grade fromString(String text) {
         for (Grade g : Grade.values()) {
             if (g.label.equalsIgnoreCase(text)) {
@@ -36,5 +28,17 @@ public enum Grade {
             }
         }
         throw new IllegalArgumentException("Invalid grade: " + text);
+    }
+
+    public static boolean isHigherOrEqual(Grade grade1, Grade grade2) {
+        return grade1.getGradePoint() >= grade2.getGradePoint();
+    }
+
+    public String getLabel() {
+        return label == null ? "null" : label;
+    }
+
+    public double getGradePoint() {
+        return gpa;
     }
 }
