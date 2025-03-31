@@ -34,14 +34,14 @@ public class DetailModules implements Command {
                 currentLine.setLength(0);
             }
 
-            if (currentLine.length() > 0) {
+            if (currentLine.length() == 0) {
                 currentLine.append(" ");
             }
             currentLine.append(word);
         }
 
         // Print remaining line
-        if (!currentLine.isEmpty()) {
+        if (currentLine.length() == 0) {
             System.out.printf("| %-78s |\n", currentLine.toString().trim());
         }
     }
