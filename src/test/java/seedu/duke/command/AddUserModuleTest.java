@@ -42,5 +42,6 @@ public class AddUserModuleTest {
 
         assertFalse(currentUser.hasModule(testModule1));
         assertFalse(currentUser.hasModule(testModule2));
+        assertTrue(currentUser.getAllModules().isEmpty());
     }
 }

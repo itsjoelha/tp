@@ -37,7 +37,7 @@ public class CommandParser {
         switch (command) {
         case "/view":
             logger.info("Executing ListModules command.");
-            new ListModules().execute();
+            new ListModules(currentUser).execute();
             break;
 
         case "/detail":
@@ -98,7 +98,6 @@ public class CommandParser {
             }
             logger.info("Executing RemoveUserModule command with module code: " + words[1]);
             new DeleteUserModule(currentUser, words[1]).execute();
-            System.out.println("Deleted " + words[1] + " from list.");
             break;
 
         case "/su":

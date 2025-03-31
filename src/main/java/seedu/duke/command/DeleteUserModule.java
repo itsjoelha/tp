@@ -15,9 +15,9 @@ public class DeleteUserModule implements Command {
     public void execute() {
         boolean removed = user.removeModule(moduleCode);
         if (removed) {
-            System.out.println("Module " + moduleCode + " successfully removed.");
+            System.out.println("Module " + moduleCode.toUpperCase() + " successfully removed.");
         } else {
-            System.out.println("Module " + moduleCode + " not found.");
+            System.out.println("Module " + moduleCode.toUpperCase() + " not found.");
         }
     }
 }

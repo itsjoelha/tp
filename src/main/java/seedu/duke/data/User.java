@@ -3,20 +3,26 @@ package seedu.duke.data;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
+
+import seedu.duke.errors.ModNotInDatabase;
 
 public class User {
     private String name;
     private EducationLevel education;
     private double gpa;
     private int currentSemester;
-    private Map<Integer, ArrayList<UserMod>> semesterModules;
+    private final Map<Integer, ArrayList<UserMod>> semesterModules;
 
     public User() {
+        // Default constructor initializes with empty values
+
         this.name = "";
         this.education = null;
         this.gpa = 0.0;
         this.currentSemester = 1;
         this.semesterModules = new HashMap<>();
+
     }
 
     public User(String name, EducationLevel education) {
@@ -59,7 +65,7 @@ public class User {
     public boolean updateModuleGPA(String code, Grade grade) {
         for (ArrayList<UserMod> mods : semesterModules.values()) {
             for (UserMod mod : mods) {
-                if ( mod.getCode() != null && mod.getCode().equalsIgnoreCase(code)) {
+                if (mod.getCode() != null && mod.getCode().equalsIgnoreCase(code)) {
                     mod.setGrade(grade);
                     return true;
                 }
@@ -73,16 +79,25 @@ public class User {
             return false; // Invalid semester
         }
 
-        UserMod newMod = new UserMod(code);
+        try {
+            UserMod newMod = new UserMod(code);
 
-        semesterModules.putIfAbsent(semester, new ArrayList<>());
-        if (semesterModules.get(semester).contains(newMod)) {
-            return false; // Module already exists
+            semesterModules.putIfAbsent(semester, new ArrayList<>());
+            if (semesterModules.get(semester).contains(newMod)) {
+                return false; // Module already exists
+            }
+
+            semesterModules.get(semester).add(newMod);
+            updateGPA(); // Recalculate GPA
+            if (!fulfillsModPrereq(newMod, semester)) {
+                System.out.println("WARNING: " + code + " missing prerequisites");
+            }
+            return true;
+
+        } catch (ModNotInDatabase e) {
+            System.out.println(code + " not in database. /addCustom to add custom modules");
+            return false;
         }
-
-        semesterModules.get(semester).add(newMod);
-        updateGPA(); // Recalculate GPA
-        return true;
     }
 
     public boolean addCustomModule(String code, int numMC, String name, int semester) {
@@ -106,6 +121,7 @@ public class User {
             if (semesterModules.get(semester).removeIf(UserMod ->
                     UserMod.getCode().equals(code.toUpperCase()))) {
                 updateGPA(); // Recalculate GPA after removal
+                checkAllPrereqs();
                 return true;
             }
         }
@@ -128,7 +144,7 @@ public class User {
     public boolean hasModule(String code) {
         for (ArrayList<UserMod> mods : semesterModules.values()) {
             for (UserMod mod : mods) {
-                if ( mod.getCode() != null && mod.getCode().equalsIgnoreCase(code)) {
+                if (mod.getCode() != null && mod.getCode().equalsIgnoreCase(code)) {
                     return true;
                 }
             }
@@ -139,6 +155,37 @@ public class User {
     public void clearModules() {
         semesterModules.clear();
         updateGPA(); // Reset GPA after clearing modules
+    }
+
+
+    public void checkAllPrereqs() {
+        int semester = 0;
+        StringBuilder missingMods = new StringBuilder();
+        for (ArrayList<UserMod> mods : semesterModules.values()) {
+            for (UserMod mod : mods) {
+                if (!fulfillsModPrereq(mod, semester)) {
+                    missingMods.append(mod.getCode()).append(", ");
+                }
+            }
+            semester++;
+        }
+        if (missingMods.length() == 0) {
+            return;
+        }
+        assert missingMods.charAt(missingMods.length() - 1) == ' '
+                && missingMods.charAt(missingMods.length() - 2) == ',';
+
+        missingMods.deleteCharAt(missingMods.length() - 2); //remove last comma
+        missingMods.append("missing prerequisites");
+        System.out.println(missingMods);
+    }
+
+    public boolean fulfillsModPrereq(UserMod mod, int semester) {
+        Prereq prereqTree = mod.getPrereqTree();
+        if (prereqTree == null) {
+            return true;
+        }
+        return prereqTree.fulfillsPrereq(getAllModulesTilSemester(semester));
     }
 
 
@@ -164,6 +211,21 @@ public class User {
 
     public void setEducation(EducationLevel education) {
         this.education = education;
+    }
+
+    public ArrayList<UserMod> getAllModules() {
+        return semesterModules.values()
+                .stream()
+                .flatMap(ArrayList::stream)
+                .collect(Collectors.toCollection(ArrayList::new));
+    }
+
+    public ArrayList<UserMod> getAllModulesTilSemester(int semester) {
+        return semesterModules.values()
+                .stream()
+                .limit(semester)
+                .flatMap(ArrayList::stream)
+                .collect(Collectors.toCollection(ArrayList::new));
     }
 }
 

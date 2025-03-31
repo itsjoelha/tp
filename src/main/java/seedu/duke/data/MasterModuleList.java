@@ -8,6 +8,8 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
+import seedu.duke.errors.ModNotInDatabase;
+
 public class MasterModuleList {
     private static final List<Mod> modules = new ArrayList<>();
 
@@ -44,13 +46,13 @@ public class MasterModuleList {
         }
     }
 
-    public static Mod findModuleByCode(String code) {
+    public static Mod findModuleByCode(String code) throws ModNotInDatabase {
         for (Mod mod : modules) {
             if (mod.getCode().equals(code)) {
                 return mod;
             }
         }
-        return null;
+        throw new ModNotInDatabase(code + " not found in database");
     }
 
     public static List<Mod> getModules() {
