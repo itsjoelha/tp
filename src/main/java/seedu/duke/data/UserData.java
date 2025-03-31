@@ -4,23 +4,33 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import seedu.duke.CommandParser;
 
 public class UserData {
     private final File file;
+    private static final Logger logger = Logger.getLogger(UserData.class.getName());
+
+    static {
+        logger.setLevel(Level.OFF);
+    }
 
     public UserData(String filepath) {
         this.file = new File(filepath);
         if (!file.exists()) {
-            System.out.println("No existing user data found: " + filepath);
+            logger.warning("No existing user data found: " + filepath);
         }
     }
 
     public void saveUserData(User user) {
         try (BufferedWriter out = new BufferedWriter(new FileWriter(file))) {
-            out.write(/*user.getName()*/ "Skibidi" + "\n");
-            out.write(/*"user.getEducation().toString()"*/ "JC" + "\n");
+            out.write(user.getName() + "\n");
+            out.write(user.getEducation().toString() + "\n");
             out.write(user.getCurrentSemester() + "\n");
 
             for (int semester : user.getSemesterModules().keySet()) {
@@ -29,12 +39,21 @@ public class UserData {
                 }
             }
         } catch (Exception e) {
-            System.out.println("Error saving user data: " + e.getMessage());
+            logger.severe("Error saving user data: " + e.getMessage());
         }
     }
 
     public User loadUserData() {
+        if (!file.exists()) {
+            logger.warning("No existing user data found: " + file.getPath());
+            return new User();
+        }
+
         try (Scanner scanner = new Scanner(file)) {
+            if (scanner.nextLine().isEmpty()) {
+                return new User();
+            }
+            // Read user data
             String name = scanner.nextLine();
             EducationLevel education = EducationLevel.valueOf(scanner.nextLine());
             int currentSemester = Integer.parseInt(scanner.nextLine());
@@ -43,10 +62,9 @@ public class UserData {
             user.setCurrentSemester(currentSemester);
 
             while (scanner.hasNextLine()) {
-                ArrayList<UserMod> mods = new ArrayList<>();
                 String line = scanner.nextLine();
                 if (line.isEmpty()) {
-                    break;
+                    continue;
                 }
                 String[] parts = line.split(",");
                 int semester = Integer.parseInt(parts[0]);
@@ -55,14 +73,12 @@ public class UserData {
                     mod.setGrade(Grade.valueOf(parts[2]));
                     mod.setSU(Boolean.parseBoolean(parts[3]));
                 }
-                mods.add(mod);
-                user.getSemesterModules().put(semester, mods);
+                user.getSemesterModules().computeIfAbsent(semester, k -> new ArrayList<>()).add(mod);
             }
             user.getGPA();
-
             return user;
-        } catch (FileNotFoundException e) {
-            System.out.println("Error loading user data: " + e.getMessage());
+        } catch (IOException | IllegalArgumentException e) {
+            logger.severe("Error loading user data: " + e.getMessage());
         }
         return new User();
     }
