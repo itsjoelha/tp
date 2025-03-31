@@ -9,6 +9,8 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import seedu.duke.errors.ModNotInDatabase;
+
 public class UserData {
     private static final Logger logger = Logger.getLogger(UserData.class.getName());
 
@@ -27,9 +29,9 @@ public class UserData {
 
     public void saveUserData(User user) {
         try (BufferedWriter out = new BufferedWriter(new FileWriter(file))) {
-            out.write(user.getName() + "\n");
-            out.write(user.getEducation().toString() + "\n");
-            out.write(user.getCurrentSemester() + "\n");
+            out.write(/*user.getName()*/"Skibidi" + "\n");
+            out.write(/*user.getEducation().toString()*/"JC" + "\n");
+            out.write(/*user.getCurrentSemester()*/"1" + "\n");
 
             for (int semester : user.getSemesterModules().keySet()) {
                 for (UserMod mod : user.getSemesterModules().get(semester)) {
@@ -48,9 +50,6 @@ public class UserData {
         }
 
         try (Scanner scanner = new Scanner(file)) {
-            if (scanner.nextLine().isEmpty()) {
-                return new User();
-            }
             // Read user data
             String name = scanner.nextLine();
             EducationLevel education = EducationLevel.valueOf(scanner.nextLine());
@@ -77,6 +76,9 @@ public class UserData {
             return user;
         } catch (IOException | IllegalArgumentException e) {
             logger.severe("Error loading user data: " + e.getMessage());
+        } catch (ModNotInDatabase e) {
+            System.out.println("Fail to load module");
+            throw new RuntimeException(e);
         }
         return new User();
     }

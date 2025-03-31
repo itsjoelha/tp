@@ -37,7 +37,6 @@ public class Duke {
 
         }
 
-
         userData.saveUserData(currentUser);
         in.close(); // Close scanner when the program exits
         System.out.println("Goodbye, thank you for using Grand Rhombus"); // Handle exit command
