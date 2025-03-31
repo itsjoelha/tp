@@ -85,7 +85,7 @@ public class CommandParser {
             } catch (NumberFormatException e) {
                 logger.warning("Invalid semester format in AddCustomModule command.");
                 System.out.println("Error: Semester must be a number between 1 and 8 and credit number must"
-                + " be a positive integer.");
+                        + " be a positive integer.");
                 return false;
             }
             break;

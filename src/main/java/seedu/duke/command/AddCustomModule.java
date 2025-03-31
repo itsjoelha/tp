@@ -1,7 +1,5 @@
 package seedu.duke.command;
 
-import seedu.duke.data.Mod;
-import seedu.duke.data.Prereq;
 import seedu.duke.data.User;
 
 public class AddCustomModule implements Command {
