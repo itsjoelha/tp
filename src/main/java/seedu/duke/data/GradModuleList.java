@@ -27,19 +27,32 @@ public class GradModuleList {
                     MasterModuleList.findModuleByCode("EG1311"),
                     MasterModuleList.findModuleByCode("MA1511"),
                     MasterModuleList.findModuleByCode("MA1512"),
-                    new Mod("English for Academic Purposes", "ES1103 serves as a bridging course for" +
-                            " students who have taken the university’s Qualifying English Test and are deemed to require" +
-                            " additional language support for the academic context. It aims to equip students with the" +
-                            " knowledge of the academic genre and the ability to apply such knowledge in academic" +
-                            " communication. The course adopts a reading-into-writing approach using themed readings" +
-                            " as springboard texts for students’ writing and provides opportunities for analysing and" +
-                            " internalising ways of organising academic texts. Students will acquire essential academic" +
-                            " skills required to cope with the rigour of academic writing at a tertiary level.",
-                            4, "ES1103", 0, 4, 0, 3, 3, "If undertaking an Undergraduate Degree THEN (( EP ENGLISH LANGUAGE" +
-                            " PROFICIENCY TEST at a grade of at least N) AND must not have completed 1 of AR1000, BE1000," +
-                            " EA1101, EG1471, ES1101, ES1102, ES1301, ET1000, ID1000, NK1001)", "If undertaking" +
-                            " an Undergraduate Degree THEN ( must have completed EP ENGLISH LANGUAGE PROFICIENCY TEST at a" +
-                            " grade of at least Y OR must have completed ES1000 at a grade of at least D)", null)
+                    new Mod("English for Academic Purposes",
+                            "ES1103 serves as a bridging course for" +
+                            " students who have taken the university’s" +
+                            " Qualifying English Test and are deemed to require" +
+                            " additional language support for the academic context." +
+                            " It aims to equip students with the" +
+                            " knowledge of the academic genre and" +
+                            " the ability to apply such knowledge in academic" +
+                            " communication. The course adopts a" +
+                            " reading-into-writing approach using themed readings" +
+                            " as springboard texts for students’" +
+                            " writing and provides opportunities for analysing and" +
+                            " internalising ways of organising academic texts." +
+                            " Students will acquire essential academic" +
+                            " skills required to cope with the rigour" +
+                            " of academic writing at a tertiary level.",
+                            4, "ES1103", 0, 4, 0, 3, 3,
+                            "If undertaking an Undergraduate Degree THEN (( EP ENGLISH LANGUAGE" +
+                            " PROFICIENCY TEST at a grade of at least N)" +
+                            " AND must not have completed 1 of AR1000, BE1000," +
+                            " EA1101, EG1471, ES1101, ES1102, ES1301, ET1000, ID1000, NK1001)",
+                            "If undertaking" +
+                            " an Undergraduate Degree THEN ( must have completed" +
+                            " EP ENGLISH LANGUAGE PROFICIENCY TEST at a" +
+                            " grade of at least Y OR must have completed " +
+                            "ES1000 at a grade of at least D)", null)
             ));
 
             YEAR1SEM2MODULES = new ArrayList<>(Arrays.asList(

@@ -153,7 +153,9 @@ public class User {
         if (missingMods.length() == 0) {
             return;
         }
-        assert missingMods.charAt(missingMods.length() - 1) == ' ' && missingMods.charAt(missingMods.length() - 2) == ',';
+        assert missingMods.charAt(missingMods.length() - 1) == ' '
+                && missingMods.charAt(missingMods.length() - 2) == ',';
+
         missingMods.deleteCharAt(missingMods.length() - 2); //remove last comma
         missingMods.append("missing prerequisites");
         System.out.println(missingMods);
