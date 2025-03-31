@@ -2,7 +2,6 @@ package seedu.duke.data;
 
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,15 +9,14 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import seedu.duke.CommandParser;
-
 public class UserData {
-    private final File file;
     private static final Logger logger = Logger.getLogger(UserData.class.getName());
 
     static {
         logger.setLevel(Level.OFF);
     }
+
+    private final File file;
 
     public UserData(String filepath) {
         this.file = new File(filepath);
