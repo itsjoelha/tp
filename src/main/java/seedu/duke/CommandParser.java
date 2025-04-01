@@ -48,7 +48,7 @@ public class CommandParser {
 
         switch (command) {
         case "/view":
-            if (words.length > 1) {
+            if (words.length == 2) {
                 logger.info("Executing ListModules command to view modules in semester" + "semester");
                 new ListModules(currentUser, words[1]).execute();
             } else {
@@ -165,7 +165,13 @@ public class CommandParser {
 
         case "/workload":
             logger.info("Executing Workload command.");
-            new Workload().execute();
+            if (words.length == 2) {
+                logger.info("Executing Workload command to view modules in semester" + "semester");
+                new Workload(words[1]).execute();
+            } else {
+                logger.info("Executing Workload command to view all modules.");
+                new Workload().execute();
+            }
             break;
 
         case "/exit":
