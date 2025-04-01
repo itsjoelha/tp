@@ -12,7 +12,7 @@ public class User {
     private EducationLevel education;
     private double gpa;
     private int currentSemester;
-    private final Map<Integer, ArrayList<UserMod>> semesterModules;
+    private Map<Integer, ArrayList<UserMod>> semesterModules;
 
     public User() {
         // Default constructor initializes with empty values
@@ -34,6 +34,10 @@ public class User {
     }
 
 
+    public void setSemesterModules(Map<Integer, ArrayList<UserMod>> semesterModules) {
+        this.semesterModules = semesterModules;
+    }
+
     public Map<Integer, ArrayList<UserMod>> getSemesterModules() {
         return semesterModules;
     }
@@ -43,7 +47,7 @@ public class User {
         return gpa;
     }
 
-    private void updateGPA() {
+    public void updateGPA() {
         double totalGradePoints = 0;
         int totalMCs = 0;
 
@@ -72,33 +76,6 @@ public class User {
             }
         }
         return false;
-    }
-
-
-    public boolean addModule(String code, int semester) {
-        if (semester < 1 || semester > 8) {
-            return false; // Invalid semester
-        }
-
-        try {
-            UserMod newMod = new UserMod(code);
-
-            semesterModules.putIfAbsent(semester, new ArrayList<>());
-            if (hasModule(code)) {
-                return false; // Module already exists
-            }
-
-            semesterModules.get(semester).add(newMod);
-            updateGPA(); // Recalculate GPA
-            if (!fulfillsModPrereq(newMod, semester)) {
-                System.out.println("WARNING: " + code + " missing prerequisites");
-            }
-            return true;
-
-        } catch (ModNotInDatabase e) {
-            System.out.println(code + " not in database. /addCustom to add custom modules");
-            return false;
-        }
     }
 
     public boolean addCustomModule(String code, int numMC, String name, int semester) {
