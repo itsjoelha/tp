@@ -54,7 +54,7 @@ public class UserGPATest {
         assertEquals(expected_combinedGPA, currentUser.getGPA());
     }
 
-    public void SU() {
+    public void SuGPA() {
         //SUed
         String moduleCode1 = "CG2028"; //2 MC
         int semester1 = 3;
@@ -65,7 +65,7 @@ public class UserGPATest {
         String moduleCode2 = "CS1010"; //4 MC
         int semester2 = 3;
 
-        double expected_combinedGPA = 1.0;
+        double expectedCombinedGPA = 1.0;
 
         Command addModule1 = new AddUserModule(currentUser, moduleCode1, semester1);
         addModule1.execute();
@@ -89,7 +89,7 @@ public class UserGPATest {
 
         Command gradeCommand2 = new GradeModule(currentUser, moduleCode2, grade2);
         gradeCommand2.execute();
-        assertEquals(expected_combinedGPA, currentUser.getGPA());
+        assertEquals(expectedCombinedGPA, currentUser.getGPA());
 
     }
 
