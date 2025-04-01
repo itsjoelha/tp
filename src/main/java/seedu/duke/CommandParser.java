@@ -48,8 +48,13 @@ public class CommandParser {
 
         switch (command) {
         case "/view":
-            logger.info("Executing ListModules command.");
-            new ListModules(currentUser).execute();
+            if (words.length > 1) {
+                logger.info("Executing ListModules command to view modules in semester" + "semester");
+                new ListModules(currentUser, words[1]).execute();
+            } else {
+                logger.info("Executing ListModules command to view all modules.");
+                new ListModules(currentUser).execute();
+            }
             break;
 
         case "/detail":
