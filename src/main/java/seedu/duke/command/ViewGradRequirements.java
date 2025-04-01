@@ -1,11 +1,12 @@
 package seedu.duke.command;
 
 import seedu.duke.data.Mod;
+import seedu.duke.data.UserMod;
+
 import java.util.List;
 import java.util.ArrayList;
 
-import static seedu.duke.Duke.moduleList;
-import static seedu.duke.Duke.totalMCs;
+import static seedu.duke.Duke.currentUser;
 import static seedu.duke.data.GradModuleList.YEAR1SEM1MODULES;
 import static seedu.duke.data.GradModuleList.YEAR1SEM2MODULES;
 import static seedu.duke.data.GradModuleList.YEAR2SEM1MODULES;
@@ -22,6 +23,7 @@ import static seedu.duke.data.GradModuleList.YEAR4SEM2MODULES;
 public class ViewGradRequirements implements Command {
     public void execute() {
         System.out.println("=== Viewing Graduation Requirements ===");
+        int totalMCs = getMC();
         System.out.println("Current MCs: " + totalMCs);
 
         if (totalMCs >= 160) {
@@ -63,11 +65,23 @@ public class ViewGradRequirements implements Command {
     }
 
     private boolean hasModule(Mod module) {
-        for (Mod m : moduleList) {
+        for (Mod m : currentUser.getAllModules()) {
             if (m.getCode().equals(module.getCode())) {
                 return true;
             }
         }
         return false;
+    }
+
+    private int getMC() {
+        int modCreds = 0;
+
+        for (ArrayList<UserMod> mods : currentUser.getSemesterModules().values()) {
+            for (UserMod mod : mods) {
+                int modMC = mod.getNumMC();
+                modCreds += modMC;
+            }
+        }
+        return modCreds;
     }
 }

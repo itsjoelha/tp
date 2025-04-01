@@ -1,9 +1,7 @@
 package seedu.duke;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
-import seedu.duke.data.Mod;
 import seedu.duke.data.User;
 import seedu.duke.data.UserData;
 
@@ -11,8 +9,6 @@ public class Duke {
     /**
      * Main entry-point for the java.duke.Duke application.
      */
-    public static ArrayList<Mod> moduleList = new ArrayList<>();
-    public static int totalMCs = 0;
     public static CommandParser commandParser = new CommandParser();
     public static User currentUser = new User();
     public static UserData userData = new UserData("data/user.txt");

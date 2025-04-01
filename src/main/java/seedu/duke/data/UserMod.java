@@ -56,7 +56,9 @@ public class UserMod extends Mod {
         this.su = su;
     }
 
-    public boolean isCustom() { return isCustom;}
+    public boolean isCustom() {
+        return isCustom;
+    }
 
     public void print() {
         if (grade != null) {
