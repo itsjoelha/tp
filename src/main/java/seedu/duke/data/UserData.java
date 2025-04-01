@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -86,6 +87,9 @@ public class UserData {
         } catch (ModNotInDatabase e) {
             System.out.println("Fail to load module");
             throw new RuntimeException(e);
+        } catch (NoSuchElementException e) {
+            logger.warning("User data file is empty: " + file.getPath());
+            return new User();
         }
         return new User();
     }
