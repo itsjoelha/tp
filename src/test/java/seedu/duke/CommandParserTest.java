@@ -159,6 +159,7 @@ public class CommandParserTest {
 
     @Test
     public void parseCommand_workloadEmptyList() {
+        currentUser.clearModules();
         CommandParser parser = new CommandParser();
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));

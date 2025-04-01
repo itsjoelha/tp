@@ -25,8 +25,9 @@ public class ViewGradRequirements implements Command {
 
     public void execute() {
         System.out.println("=== Viewing Graduation Requirements ===");
-
+      
         int totalMCs = user.getTotalMCs();
+
         System.out.println("Current MCs: " + totalMCs);
 
         if (totalMCs >= 160) {
