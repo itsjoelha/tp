@@ -1,11 +1,12 @@
 package seedu.duke.command;
 
 import seedu.duke.data.Mod;
+import seedu.duke.data.User;
+import seedu.duke.data.UserMod;
+
 import java.util.List;
 import java.util.ArrayList;
 
-import static seedu.duke.Duke.moduleList;
-import static seedu.duke.Duke.totalMCs;
 import static seedu.duke.data.GradModuleList.YEAR1SEM1MODULES;
 import static seedu.duke.data.GradModuleList.YEAR1SEM2MODULES;
 import static seedu.duke.data.GradModuleList.YEAR2SEM1MODULES;
@@ -16,12 +17,17 @@ import static seedu.duke.data.GradModuleList.YEAR4SEM1MODULES;
 import static seedu.duke.data.GradModuleList.YEAR4SEM2MODULES;
 
 
-
-
-
 public class ViewGradRequirements implements Command {
+    private final User user;
+
+    public ViewGradRequirements(User user) {
+        this.user = user;
+    }
+
     public void execute() {
         System.out.println("=== Viewing Graduation Requirements ===");
+
+        int totalMCs = user.getTotalMCs();
         System.out.println("Current MCs: " + totalMCs);
 
         if (totalMCs >= 160) {
@@ -55,19 +61,10 @@ public class ViewGradRequirements implements Command {
 
         List<Mod> missingModules = new ArrayList<>();
         for (Mod m : allGradModules) {
-            if (!hasModule(m)) {
+            if (!user.hasModule(m.getCode())) {
                 missingModules.add(m);
             }
         }
         return missingModules;
-    }
-
-    private boolean hasModule(Mod module) {
-        for (Mod m : moduleList) {
-            if (m.getCode().equals(module.getCode())) {
-                return true;
-            }
-        }
-        return false;
     }
 }

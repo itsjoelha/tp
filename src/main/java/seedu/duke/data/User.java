@@ -16,7 +16,6 @@ public class User {
 
     public User() {
         // Default constructor initializes with empty values
-
         this.name = "";
         this.education = null;
         this.gpa = 0.0;
@@ -47,10 +46,25 @@ public class User {
         return gpa;
     }
 
-    public void updateGPA() {
-        double totalGradePoints = 0;
+    public int getTotalMCs() {
         int totalMCs = 0;
+        for (ArrayList<UserMod> mods : semesterModules.values()) {
+            for (UserMod mod : mods) {
+                int modMC = mod.getNumMC();
+                totalMCs += modMC;
+            }
+        }
+        return totalMCs;
+    }
 
+    public void updateGPA() {
+        int totalMCs = getTotalMCs();
+        if (totalMCs == 0) {
+            this.gpa = 0.0;
+            return;
+        }
+
+        double totalGradePoints = 0;
         for (ArrayList<UserMod> mods : semesterModules.values()) {
             for (UserMod mod : mods) {
                 Grade moduleGrade = mod.getGrade();
@@ -58,17 +72,12 @@ public class User {
 
                 if (moduleGrade != null && !mod.isSU()) {
                     totalGradePoints += moduleGrade.getGradePoint() * modMC;
-                    totalMCs += modMC;
                 }
             }
         }
 
-        if (totalMCs > 0) {
-            //calculates GPA to 2dp
-            this.gpa = Math.floor(totalGradePoints / totalMCs * 100) / 100;
-        } else {
-            this.gpa = 0.0;
-        }
+        //calculates GPA to 2dp
+        this.gpa = Math.floor(totalGradePoints / totalMCs * 100) / 100;
     }
 
 

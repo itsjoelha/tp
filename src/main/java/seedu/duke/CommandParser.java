@@ -145,7 +145,7 @@ public class CommandParser {
 
         case "/grad":
             logger.info("Executing ViewGradRequirements command.");
-            new ViewGradRequirements().execute();
+            new ViewGradRequirements(currentUser).execute();
             break;
 
         case "/schedule":
@@ -160,7 +160,7 @@ public class CommandParser {
 
         case "/workload":
             logger.info("Executing Workload command.");
-            new Workload().execute();
+            new Workload(currentUser).execute();
             break;
 
         case "/exit":
