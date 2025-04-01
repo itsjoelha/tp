@@ -78,34 +78,6 @@ public class User {
         return false;
     }
 
-    public boolean addCustomModule(String code, int numMC, String name, int semester) {
-        if (semester < 1 || semester > 8) {
-            return false;
-        }
-        UserMod newMod = new UserMod(code, numMC, name);
-
-        semesterModules.putIfAbsent(semester, new ArrayList<>());
-        if (hasModule(code)) {
-            return false; // Module already exists
-        }
-
-        semesterModules.get(semester).add(newMod);
-        updateGPA(); // Recalculate GPA
-        return true;
-    }
-
-    public boolean removeModule(String code) {
-        for (int semester : semesterModules.keySet()) {
-            if (semesterModules.get(semester).removeIf(UserMod ->
-                    UserMod.getCode().equals(code.toUpperCase()))) {
-                updateGPA(); // Recalculate GPA after removal
-                checkAllPrereqs();
-                return true;
-            }
-        }
-        return false; // Module not found in any semester
-    }
-
     public boolean suModule(String code) {
         for (ArrayList<UserMod> mods : semesterModules.values()) {
             for (UserMod mod : mods) {
