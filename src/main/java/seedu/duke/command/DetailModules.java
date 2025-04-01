@@ -36,16 +36,16 @@ public class DetailModules implements Command {
                 currentLine.setLength(0);
             }
 
-            if (currentLine.length() == 0) {
+            if (currentLine.isEmpty()) {
                 currentLine.append(" ");
             }
             currentLine.append(word);
+            currentLine.append(" ");
         }
 
         // Print remaining line
-        if (currentLine.length() == 0) {
-            System.out.printf("| %-78s |\n", currentLine.toString().trim());
-        }
+        System.out.printf("| %-78s |\n", currentLine.toString().trim());
+
     }
 
     public void execute() {
