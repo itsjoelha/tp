@@ -50,7 +50,7 @@ public class GradeModuleTest {
     }
 
     @Test
-    public void validGrade_CustomMod() {
+    public void validGradeCustomMod() {
         String grade1 = "A-";
         String moduleCode1 = "CG3207";
         String name1 = "Computer Architecture";

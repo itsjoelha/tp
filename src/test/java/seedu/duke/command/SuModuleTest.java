@@ -15,7 +15,7 @@ public class SuModuleTest {
     }
 
     @Test
-    public void Su() {
+    public void testSu() {
         String moduleCode1 = "CG2028"; //2 MC
         int semester1 = 3;
 
