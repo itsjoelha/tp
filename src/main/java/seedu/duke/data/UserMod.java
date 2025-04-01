@@ -5,6 +5,7 @@ import seedu.duke.errors.ModNotInDatabase;
 public class UserMod extends Mod {
     private Grade grade;
     private boolean su;
+    private boolean isCustom;
 
 
     public UserMod(String name, String description, int numMC, String code, double lectureHours, double tutHours,
@@ -14,25 +15,28 @@ public class UserMod extends Mod {
                 preclusion, prerequisites, prereqTree);
         this.grade = null;
         this.su = false;
+        this.isCustom = false;
     }
 
-    public UserMod(String code, int numMC, String name) {
+    public UserMod(String code, int numMC, String name) { // for custom modules
         super(code, numMC, name);
         this.grade = null;
         this.su = false;
-
+        this.isCustom = true;
     }
 
     public UserMod(String code, Grade grade, boolean su) throws ModNotInDatabase {
         super(code);
         this.grade = grade;
         this.su = su;
+        this.isCustom = false;
     }
 
     public UserMod(String code) throws ModNotInDatabase {
         super(code);
         this.grade = null;
         this.su = false;
+        this.isCustom = false;
     }
 
 
@@ -51,6 +55,8 @@ public class UserMod extends Mod {
     public void setSU(boolean su) {
         this.su = su;
     }
+
+    public boolean isCustom() { return isCustom;}
 
     public void print() {
         if (grade != null) {
