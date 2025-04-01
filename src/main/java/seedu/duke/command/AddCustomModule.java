@@ -1,6 +1,10 @@
 package seedu.duke.command;
 
+import java.util.ArrayList;
+import java.util.Map;
+
 import seedu.duke.data.User;
+import seedu.duke.data.UserMod;
 
 public class AddCustomModule implements Command {
     private final String name;
@@ -25,13 +29,21 @@ public class AddCustomModule implements Command {
             return;
         }
 
-        boolean added = user.addCustomModule(moduleCode, numMC, name, semester);
-        if (added) {
-            System.out.println("Module " + moduleCode + " successfully added to semester " + semester +
-                    " as a Custom Module.");
-        } else {
-            System.out.println("Failed to add module " + moduleCode + ". It may already exist.");
+        UserMod newMod = new UserMod(moduleCode, numMC, name);
+        Map<Integer, ArrayList<UserMod>> semesterModules = user.getSemesterModules();
+        semesterModules.putIfAbsent(semester, new ArrayList<>());
+
+        if (user.hasModule(moduleCode)) {
+            System.out.println("Failed to add module " + moduleCode + ". It already exists.");
+            return; // Module already exists
         }
+
+        semesterModules.get(semester).add(newMod);
+        user.setSemesterModules(semesterModules);
+        user.updateGPA();
+
+        System.out.println("Module " + moduleCode + " successfully added to semester " + semester +
+                " as a Custom Module.");
     }
 
 }
