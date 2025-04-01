@@ -63,7 +63,12 @@ public class User {
             }
         }
 
-        this.gpa = totalMCs > 0 ? totalGradePoints / totalMCs : 0.0;
+        if (totalMCs > 0) {
+            //calculates GPA to 2dp
+            this.gpa = Math.floor(totalGradePoints / totalMCs * 100) / 100;
+        } else {
+            this.gpa = 0.0;
+        }
     }
 
     public boolean suModule(String code) {
