@@ -9,7 +9,7 @@ import seedu.duke.data.UserMod;
 
 public class Workload implements Command {
     private final User user;
-    
+
     public Workload(User user) {
         this.user = user;
     }

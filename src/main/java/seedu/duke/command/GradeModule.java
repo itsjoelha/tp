@@ -9,8 +9,8 @@ import seedu.duke.data.UserMod;
 
 public class GradeModule implements Command {
     private final String moduleCode;
-    private Grade grade;
     private final User user;
+    private Grade grade;
 
     public GradeModule(User user, String moduleCode, String grade) {
         this.moduleCode = moduleCode;

@@ -5,8 +5,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import seedu.duke.errors.ModNotInDatabase;
-
 public class User {
     private String name;
     private EducationLevel education;
@@ -32,13 +30,12 @@ public class User {
         this.semesterModules = new HashMap<>();
     }
 
+    public Map<Integer, ArrayList<UserMod>> getSemesterModules() {
+        return semesterModules;
+    }
 
     public void setSemesterModules(Map<Integer, ArrayList<UserMod>> semesterModules) {
         this.semesterModules = semesterModules;
-    }
-
-    public Map<Integer, ArrayList<UserMod>> getSemesterModules() {
-        return semesterModules;
     }
 
     public double getGPA() {
@@ -79,7 +76,6 @@ public class User {
         //calculates GPA to 2dp
         this.gpa = Math.floor(totalGradePoints / totalMCs * 100) / 100;
     }
-
 
 
     public boolean hasModule(String code) {

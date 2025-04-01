@@ -1,12 +1,5 @@
 package seedu.duke.command;
 
-import seedu.duke.data.Mod;
-import seedu.duke.data.User;
-import seedu.duke.data.UserMod;
-
-import java.util.List;
-import java.util.ArrayList;
-
 import static seedu.duke.data.GradModuleList.YEAR1SEM1MODULES;
 import static seedu.duke.data.GradModuleList.YEAR1SEM2MODULES;
 import static seedu.duke.data.GradModuleList.YEAR2SEM1MODULES;
@@ -15,6 +8,12 @@ import static seedu.duke.data.GradModuleList.YEAR3SEM1MODULES;
 import static seedu.duke.data.GradModuleList.YEAR3SEM2MODULES;
 import static seedu.duke.data.GradModuleList.YEAR4SEM1MODULES;
 import static seedu.duke.data.GradModuleList.YEAR4SEM2MODULES;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import seedu.duke.data.Mod;
+import seedu.duke.data.User;
 
 
 public class ViewGradRequirements implements Command {

@@ -24,7 +24,7 @@ public class Data {
         // Initialize Scanner and handle resources properly
         try (Scanner scanner = new Scanner(file)) {
             while (scanner.hasNextLine()) {
-                String line = scanner.nextLine().replace("\r", "" );
+                String line = scanner.nextLine().replace("\r", "");
                 String[] words = line.split("\\|");
 
                 // Check if the current line contains the desired modCode

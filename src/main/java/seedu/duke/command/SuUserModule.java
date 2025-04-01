@@ -1,19 +1,17 @@
 package seedu.duke.command;
 
-import java.util.ArrayList;
-import java.util.Map;
-
 import seedu.duke.data.User;
 import seedu.duke.data.UserMod;
 
 public class SuUserModule implements Command {
-    private String moduleCode;
     private final User user;
+    private final String moduleCode;
 
     public SuUserModule(User user, String moduleCode) {
         this.user = user;
         this.moduleCode = moduleCode;
     }
+
     @Override
     public void execute() {
         UserMod module = user.getModule(moduleCode);

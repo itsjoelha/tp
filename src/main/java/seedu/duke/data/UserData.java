@@ -37,7 +37,7 @@ public class UserData {
             for (int semester : user.getSemesterModules().keySet()) {
                 for (UserMod mod : user.getSemesterModules().get(semester)) {
                     out.write(semester + "," + mod.getCode() + "," + mod.getGrade() + "," + mod.isSU() +
-                             "," + mod.isCustom() + "," + mod.getName() + "," + mod.getNumMC() + "\n");
+                            "," + mod.isCustom() + "," + mod.getName() + "," + mod.getNumMC() + "\n");
                 }
             }
         } catch (Exception e) {
