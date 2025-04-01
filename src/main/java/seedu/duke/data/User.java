@@ -66,18 +66,6 @@ public class User {
         this.gpa = totalMCs > 0 ? totalGradePoints / totalMCs : 0.0;
     }
 
-    public boolean updateModuleGPA(String code, Grade grade) {
-        for (ArrayList<UserMod> mods : semesterModules.values()) {
-            for (UserMod mod : mods) {
-                if (mod.getCode() != null && mod.getCode().equalsIgnoreCase(code)) {
-                    mod.setGrade(grade);
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
     public boolean suModule(String code) {
         for (ArrayList<UserMod> mods : semesterModules.values()) {
             for (UserMod mod : mods) {
@@ -92,19 +80,23 @@ public class User {
     }
 
     public boolean hasModule(String code) {
-        for (ArrayList<UserMod> mods : semesterModules.values()) {
-            for (UserMod mod : mods) {
-                if (mod.getCode() != null && mod.getCode().equalsIgnoreCase(code)) {
-                    return true;
-                }
-            }
-        }
-        return false;
+        return getModule(code) != null;
     }
 
     public void clearModules() {
         semesterModules.clear();
         updateGPA(); // Reset GPA after clearing modules
+    }
+
+    public UserMod getModule(String code) {
+        for (ArrayList<UserMod> mods : semesterModules.values()) {
+            for (UserMod mod : mods) {
+                if (mod.getCode() != null && mod.getCode().equalsIgnoreCase(code)) {
+                    return mod;
+                }
+            }
+        }
+        return null;
     }
 
 

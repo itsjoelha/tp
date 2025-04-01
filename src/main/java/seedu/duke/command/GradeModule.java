@@ -1,26 +1,45 @@
 package seedu.duke.command;
 
+import java.util.ArrayList;
+import java.util.Map;
+
 import seedu.duke.data.Grade;
 import seedu.duke.data.User;
+import seedu.duke.data.UserMod;
 
 public class GradeModule implements Command {
-    private String moduleCode;
+    private final String moduleCode;
     private Grade grade;
-    private User user;
+    private final User user;
 
     public GradeModule(User user, String moduleCode, String grade) {
         this.moduleCode = moduleCode;
         this.user = user;
-        this.grade = Grade.fromString(grade);
+        try {
+            this.grade = Grade.fromString(grade);
+        } catch (IllegalArgumentException e) {
+            this.grade = null;
+            System.out.println(e.getMessage());
+        }
     }
 
     @Override
     public void execute() {
-        boolean updated = user.updateModuleGPA(moduleCode, grade);
-        if (updated) {
-            System.out.println("Module " + moduleCode + " successfully graded as " + grade.getLabel());
-        } else {
-            System.out.println("Grading unsuccessful");
+        String errorMsg = "Grading unsuccessful";
+        if (grade == null) {
+            System.out.println(errorMsg);
+            return;
         }
+        Map<Integer, ArrayList<UserMod>> semesterModules = user.getSemesterModules();
+        for (ArrayList<UserMod> mods : semesterModules.values()) {
+            for (UserMod mod : mods) {
+                if (mod.getCode() != null && mod.getCode().equalsIgnoreCase(moduleCode)) {
+                    mod.setGrade(grade);
+                    System.out.println("Module " + moduleCode + " successfully graded as " + grade.getLabel());
+                    return;
+                }
+            }
+        }
+        System.out.println(errorMsg);
     }
 }
