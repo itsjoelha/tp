@@ -35,7 +35,8 @@ public class UserData {
 
             for (int semester : user.getSemesterModules().keySet()) {
                 for (UserMod mod : user.getSemesterModules().get(semester)) {
-                    out.write(semester + "," + mod.getCode() + "," + mod.getGrade() + "," + mod.isSU() + "\n");
+                    out.write(semester + "," + mod.getCode() + "," + mod.getGrade() + "," + mod.isSU() +
+                             "," + mod.isCustom() + "," + mod.getName() + "," + mod.getNumMC() + "\n");
                 }
             }
         } catch (Exception e) {
@@ -65,7 +66,13 @@ public class UserData {
                 }
                 String[] parts = line.split(",");
                 int semester = Integer.parseInt(parts[0]);
-                UserMod mod = new UserMod(parts[1]);
+                UserMod mod;
+                if (parts[4].equals("true")) { //custom module
+                    int numMC = Integer.parseInt(parts[6]);
+                    mod = new UserMod(parts[1], numMC, parts[5]);
+                } else {
+                    mod = new UserMod(parts[1]);
+                }
                 if (!parts[2].equals("null")) {
                     mod.setGrade(Grade.valueOf(parts[2]));
                     mod.setSU(Boolean.parseBoolean(parts[3]));
