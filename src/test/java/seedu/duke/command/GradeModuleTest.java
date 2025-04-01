@@ -100,4 +100,6 @@ public class GradeModuleTest {
         UserMod userMod1 = currentUser.getModule(moduleCode1);
         assertNull(userMod1.getGrade());
     }
+
+
 }

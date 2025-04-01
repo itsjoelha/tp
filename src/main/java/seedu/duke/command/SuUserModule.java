@@ -1,6 +1,10 @@
 package seedu.duke.command;
 
+import java.util.ArrayList;
+import java.util.Map;
+
 import seedu.duke.data.User;
+import seedu.duke.data.UserMod;
 
 public class SuUserModule implements Command {
     private String moduleCode;
@@ -12,11 +16,12 @@ public class SuUserModule implements Command {
     }
     @Override
     public void execute() {
-        boolean sUed = user.suModule(moduleCode);
-        if (sUed) {
-            System.out.println("Module " + moduleCode.toUpperCase() + " successfully SU-ed");
-        } else {
+        UserMod module = user.getModule(moduleCode);
+        if (module == null) {
             System.out.println("Failed to SU " + moduleCode.toUpperCase() + ". It may not exist");
+            return;
         }
+        module.setSU(true);
+        System.out.println("Module " + moduleCode.toUpperCase() + " successfully SU-ed");
     }
 }
