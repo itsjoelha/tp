@@ -5,7 +5,7 @@ import seedu.duke.errors.ModNotInDatabase;
 public class UserMod extends Mod {
     private Grade grade;
     private boolean su;
-    private boolean isCustom;
+    private final boolean isCustom;
 
 
     public UserMod(String name, String description, int numMC, String code, double lectureHours, double tutHours,

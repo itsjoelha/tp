@@ -150,7 +150,7 @@ public class CommandParser {
 
         case "/grad":
             logger.info("Executing ViewGradRequirements command.");
-            new ViewGradRequirements().execute();
+            new ViewGradRequirements(currentUser).execute();
             break;
 
         case "/schedule":
@@ -165,13 +165,15 @@ public class CommandParser {
 
         case "/workload":
             logger.info("Executing Workload command.");
+
             if (words.length == 2) {
                 logger.info("Executing Workload command to view modules in semester" + "semester");
-                new Workload(words[1]).execute();
+                new Workload(currentUser, words[1]).execute();
             } else {
                 logger.info("Executing Workload command to view all modules.");
-                new Workload().execute();
+                new Workload(currentUser).execute();
             }
+            
             break;
 
         case "/exit":

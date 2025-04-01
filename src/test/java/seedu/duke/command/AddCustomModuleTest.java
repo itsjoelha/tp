@@ -57,7 +57,7 @@ public class AddCustomModuleTest {
 
         System.setOut(System.out);
         String output = out.toString().trim();
-        assertTrue(output.contains("Failed to add module PL1101E. It may already exist."));
+        assertTrue(output.contains("Failed to add module PL1101E. It already exists."));
     }
 
     @Test public void testAddCustomModuleFails() {

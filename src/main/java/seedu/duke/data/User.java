@@ -5,18 +5,15 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import seedu.duke.errors.ModNotInDatabase;
-
 public class User {
     private String name;
     private EducationLevel education;
     private double gpa;
     private int currentSemester;
-    private final Map<Integer, ArrayList<UserMod>> semesterModules;
+    private Map<Integer, ArrayList<UserMod>> semesterModules;
 
     public User() {
         // Default constructor initializes with empty values
-
         this.name = "";
         this.education = null;
         this.gpa = 0.0;
@@ -33,9 +30,12 @@ public class User {
         this.semesterModules = new HashMap<>();
     }
 
-
     public Map<Integer, ArrayList<UserMod>> getSemesterModules() {
         return semesterModules;
+    }
+
+    public void setSemesterModules(Map<Integer, ArrayList<UserMod>> semesterModules) {
+        this.semesterModules = semesterModules;
     }
 
     public double getGPA() {
@@ -43,10 +43,25 @@ public class User {
         return gpa;
     }
 
-    private void updateGPA() {
-        double totalGradePoints = 0;
+    public int getTotalMCs() {
         int totalMCs = 0;
+        for (ArrayList<UserMod> mods : semesterModules.values()) {
+            for (UserMod mod : mods) {
+                int modMC = mod.getNumMC();
+                totalMCs += modMC;
+            }
+        }
+        return totalMCs;
+    }
 
+    public void updateGPA() {
+        int totalMCs = getTotalMCs();
+        if (totalMCs == 0) {
+            this.gpa = 0.0;
+            return;
+        }
+
+        double totalGradePoints = 0;
         for (ArrayList<UserMod> mods : semesterModules.values()) {
             for (UserMod mod : mods) {
                 Grade moduleGrade = mod.getGrade();
@@ -54,108 +69,33 @@ public class User {
 
                 if (moduleGrade != null && !mod.isSU()) {
                     totalGradePoints += moduleGrade.getGradePoint() * modMC;
-                    totalMCs += modMC;
                 }
             }
         }
 
-        this.gpa = totalMCs > 0 ? totalGradePoints / totalMCs : 0.0;
+        //calculates GPA to 2dp
+        this.gpa = Math.floor(totalGradePoints / totalMCs * 100) / 100;
     }
 
-    public boolean updateModuleGPA(String code, Grade grade) {
-        for (ArrayList<UserMod> mods : semesterModules.values()) {
-            for (UserMod mod : mods) {
-                if (mod.getCode() != null && mod.getCode().equalsIgnoreCase(code)) {
-                    mod.setGrade(grade);
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-
-    public boolean addModule(String code, int semester) {
-        if (semester < 1 || semester > 8) {
-            return false; // Invalid semester
-        }
-
-        try {
-            UserMod newMod = new UserMod(code);
-
-            semesterModules.putIfAbsent(semester, new ArrayList<>());
-            if (hasModule(code)) {
-                return false; // Module already exists
-            }
-
-            semesterModules.get(semester).add(newMod);
-            updateGPA(); // Recalculate GPA
-            if (!fulfillsModPrereq(newMod, semester)) {
-                System.out.println("WARNING: " + code + " missing prerequisites");
-            }
-            return true;
-
-        } catch (ModNotInDatabase e) {
-            System.out.println(code + " not in database. /addCustom to add custom modules");
-            return false;
-        }
-    }
-
-    public boolean addCustomModule(String code, int numMC, String name, int semester) {
-        if (semester < 1 || semester > 8) {
-            return false;
-        }
-        UserMod newMod = new UserMod(code, numMC, name);
-
-        semesterModules.putIfAbsent(semester, new ArrayList<>());
-        if (hasModule(code)) {
-            return false; // Module already exists
-        }
-
-        semesterModules.get(semester).add(newMod);
-        updateGPA(); // Recalculate GPA
-        return true;
-    }
-
-    public boolean removeModule(String code) {
-        for (int semester : semesterModules.keySet()) {
-            if (semesterModules.get(semester).removeIf(UserMod ->
-                    UserMod.getCode().equals(code.toUpperCase()))) {
-                updateGPA(); // Recalculate GPA after removal
-                checkAllPrereqs();
-                return true;
-            }
-        }
-        return false; // Module not found in any semester
-    }
-
-    public boolean suModule(String code) {
-        for (ArrayList<UserMod> mods : semesterModules.values()) {
-            for (UserMod mod : mods) {
-                if (mod.getCode().equalsIgnoreCase(code)) {
-                    mod.setSU(true);
-                    updateGPA(); // Recalculate GPA after SU
-                    return true;
-                }
-            }
-        }
-        return false; // Module not found
-    }
 
     public boolean hasModule(String code) {
-        for (ArrayList<UserMod> mods : semesterModules.values()) {
-            for (UserMod mod : mods) {
-                if (mod.getCode() != null && mod.getCode().equalsIgnoreCase(code)) {
-                    return true;
-                }
-            }
-        }
-        return false;
+        return getModule(code) != null;
     }
 
     public void clearModules() {
         semesterModules.clear();
         updateGPA(); // Reset GPA after clearing modules
+    }
+
+    public UserMod getModule(String code) {
+        for (ArrayList<UserMod> mods : semesterModules.values()) {
+            for (UserMod mod : mods) {
+                if (mod.getCode() != null && mod.getCode().equalsIgnoreCase(code)) {
+                    return mod;
+                }
+            }
+        }
+        return null;
     }
 
 
