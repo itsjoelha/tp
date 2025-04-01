@@ -40,7 +40,6 @@ public class AddCustomModule implements Command {
 
         semesterModules.get(semester).add(newMod);
         user.setSemesterModules(semesterModules);
-        user.updateGPA();
 
         System.out.println("Module " + moduleCode + " successfully added to semester " + semester +
                 " as a Custom Module.");

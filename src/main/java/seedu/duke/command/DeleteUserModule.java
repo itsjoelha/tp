@@ -22,7 +22,6 @@ public class DeleteUserModule implements Command {
         for (int semester : semesterModules.keySet()) {
             if (semesterModules.get(semester).removeIf(UserMod ->
                     UserMod.getCode().equals(moduleCode.toUpperCase()))) {
-                user.updateGPA(); // Recalculate GPA after removal
                 user.checkAllPrereqs();
                 System.out.println("Module " + moduleCode.toUpperCase() + " successfully removed.");
                 return;

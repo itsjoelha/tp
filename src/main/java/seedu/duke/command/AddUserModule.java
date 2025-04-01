@@ -38,7 +38,6 @@ public class AddUserModule implements Command {
 
             semesterModules.get(semester).add(newMod);
             user.setSemesterModules(semesterModules);
-            user.updateGPA();
 
             if (!user.fulfillsModPrereq(newMod, semester)) {
                 System.out.println("WARNING: " + moduleCode + " missing prerequisites");
