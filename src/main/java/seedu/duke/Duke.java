@@ -1,9 +1,7 @@
 package seedu.duke;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
-import seedu.duke.data.Mod;
 import seedu.duke.data.User;
 import seedu.duke.data.UserData;
 
