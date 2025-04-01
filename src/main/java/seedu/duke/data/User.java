@@ -74,6 +74,7 @@ public class User {
         return false;
     }
 
+
     public boolean addModule(String code, int semester) {
         if (semester < 1 || semester > 8) {
             return false; // Invalid semester
@@ -83,7 +84,7 @@ public class User {
             UserMod newMod = new UserMod(code);
 
             semesterModules.putIfAbsent(semester, new ArrayList<>());
-            if (semesterModules.get(semester).contains(newMod)) {
+            if (hasModule(code)) {
                 return false; // Module already exists
             }
 
@@ -107,7 +108,7 @@ public class User {
         UserMod newMod = new UserMod(code, numMC, name);
 
         semesterModules.putIfAbsent(semester, new ArrayList<>());
-        if (semesterModules.get(semester).contains(newMod)) {
+        if (hasModule(code)) {
             return false; // Module already exists
         }
 

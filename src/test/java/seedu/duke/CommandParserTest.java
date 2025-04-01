@@ -83,11 +83,11 @@ public class CommandParserTest {
 
         System.setOut(System.out);
         String output = out.toString().trim();
-        assertTrue(output.contains("Module PL1101E successfully added to semester 2 as a Custom Module"));
+        assertTrue(output.contains("Module PL1101E successfully added to semester 2 as a Custom Module."));
     }
 
     @Test
-    public void parseCommand_addCustomModuleFails() {
+    public void parseCommand_addCustomModuleInsufficientArguments() {
         currentUser.clearModules();
         CommandParser parser = new CommandParser();
         ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -100,6 +100,23 @@ public class CommandParserTest {
         String output = out.toString().trim();
         assertTrue(output.contains("Error: Please specify module details to add custom module."));
     }
+
+    @Test
+    public void parseCommand_addCustomModuleIncorrectArguments() {
+        currentUser.clearModules();
+        CommandParser parser = new CommandParser();
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+
+        parser.parseCommand("/addCustom PL1101E this this this");
+        assertFalse(currentUser.hasModule("PL1101E"));
+
+        System.setOut(System.out);
+        String output = out.toString().trim();
+        assertTrue(output.contains("Error: Semester must be a number between 1 and 8 and credit number must"
+                + " be a positive integer."));
+    }
+
 
     @Test
     public void execute_noModulesInList() {

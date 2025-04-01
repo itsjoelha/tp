@@ -19,7 +19,7 @@ public class AddCustomModule implements Command {
     }
 
     @Override
-    public void execute() {
+    public void execute() { // test
         if (semester < 1 || semester > 8) {
             System.out.println("Invalid semester. Please choose between 1 and 8.");
             return;
