@@ -12,9 +12,12 @@ loop isRunning
 GrandRhombus -> CommandParser: parseCommand(userInput)
 CommandParser -> Command: new Command
 Command -> Command: execute
-Command --> GrandRhombus: isRunning
+Command --> CommandParser
+CommandParser --> GrandRhombus: isRunning
 end
 GrandRhombus -> UserData: saveUserData
+UserData -> User:getSemesterModules
+User-->UserData: semesterModules
 UserData --> GrandRhombus
 
 @enduml
