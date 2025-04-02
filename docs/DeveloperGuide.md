@@ -92,7 +92,7 @@ The bulk of the app’s work is done by the following four components:
 - **`UI`**: The UI of the App.
 - **`Logic`**: The command executor.
 - **`Model`**: Holds the data of the App in memory.
-- **`Storage`**: Reads data from, and writes data to, the hard disk.
+- **`Data`**: Reads data from, and writes data to, the hard disk.
 
 **`Commons`** represents a collection of classes used by multiple other
 components.
@@ -211,13 +211,15 @@ The `Model` component,
 <span style="color:orange; text-decoration:underline;">Storage component</span>
 </h4>
 
+<!---
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-
 level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+--->
 
-The `Storage` component,
+The `Data` component,
 
-- can save both address book data and user preference data in JSON format, and read them back into corresponding objects.
-- inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+- Loads user data and module data when program starts.
+- Saves user data when program is terminated.
 - depends on some classes in the `Model` component (because the `Storage` component’s job is to save/retrieve objects that belong to the `Model`)
 
 <h4>
