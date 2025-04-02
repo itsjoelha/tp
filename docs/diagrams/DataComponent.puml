@@ -1,0 +1,18 @@
+@startuml
+
+hide circle
+skinparam classAttributeIconSize 0
+
+
+class ModData
+class MasterModuleList
+MasterModuleList -d-> ModData
+class GradModuleList
+GradModuleList-d-> MasterModuleList
+class UserData
+class User
+UserData -u-> User
+
+
+
+@enduml
