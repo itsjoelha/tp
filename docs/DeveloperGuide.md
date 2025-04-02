@@ -371,14 +371,14 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile** :
 
-- has a need to manage a significant number of contacts
+- NUS CEG Students
+- has a need to manage their academic workload
 - prefer desktop apps over other types
 - can type fast
 - prefers typing to mouse interactions
 - is reasonably comfortable using CLI apps
 
-**Value proposition** : manage contacts faster than a typical mouse/GUI driven
-app
+**Value proposition** : We provide CEG Students with an Academic Life Planner which is in-depth and clear to plan their future. This planner reduces confusion from having to cross-reference multiple sources so that students do not miss academic opportunities.
 
 <h4>
 <span style="color:orange; text-decoration:underline;">User Stories</span>
@@ -387,32 +387,31 @@ app
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low
 (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ---------------------------- | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
-
-_{More to be added}_
+| Priority | As a …​                                                | I want to …​                                                                                | So that I can…​                                            |
+|----------|--------------------------------------------------------|---------------------------------------------------------------------------------------------|------------------------------------------------------------|
+| `* * *`  | disciplined student                                    | be able to see my GPA, as well as an estimated future GPA based on my current module grades | make informed decisions about my future workload.          |
+| `* * *`  | international student, entering NUS as a CEG1 student. | be able to see the platforms that I need to register on and their deadlines                 | register on time.                                          |
+| `* * *`  | student who wants to plan my academic journey          | view my graduation requirements and track my progress                                       | ensure I graduate on time.                                 |
+| `* *`    | student who is considering taking a minor              | see how the minor requirements fit into my current schedule                                 | decide if I can take the minor without overloading myself. |
+| `* *`    | student who is planning to go on an exchange program   | know which modules I can map to my degree requirements                                      | plan my exchange program effectively.                      |
+| `*`      | student who is curious about other specializations     | explore the requirements for other specializations                                          | consider switching if needed.                              |
+| `*`      | student who wants to improve my productivity           | receive tips on how to manage my time effectively                                           | balance my academic and personal life.                     |
 
 <h4>
 <span style="color:orange; text-decoration:underline;">Use cases</span>
 </h4>
 
-(For all use cases below, the **System** is the `AddressBook` and the
+(For all use cases below, the **System** is `GrandRhombus` and the
 **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Add a Module**
 
 **MSS**
 
-1. User requests to list persons
-2. AddressBook shows a list of persons
-3. User requests to delete a specific person in the list
-4. AddressBook deletes the person
+1. User requests to list modules
+2. AddressBook shows a list of modules in their schedule
+3. User requests to add a specific module in the list
+4. AddressBook adds the module
 
 Use case ends.
 
@@ -431,7 +430,7 @@ Use case resumes at step 2.
 _{More to be added}_
 
 <h4>
-<span style="color:orange; text-decoration:underline;">Non-Fuctional Requirements</span>
+<span style="color:orange; text-decoration:underline;">Non-Functional Requirements</span>
 </h4>
 
 1. Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
@@ -445,7 +444,6 @@ _{More to be added}_
 </h4>
 
 - **Mainstream OS** : Windows, Linux, Unix, MacOS
-- **Private contact detail** : A contact detail that is not meant to be shared with others
 
 ---
 
