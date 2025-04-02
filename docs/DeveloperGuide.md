@@ -44,7 +44,28 @@ This planner <span style="color:red;">reduces confusion</span> from having to cr
 <span style="color:orange;">Acknowledgements</span>
 </h2>
 
-- {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries – include links to the original source as well}
+- This project was inspired by the popular NUSMods website, aiding NUS students with their course and study plannings.
+
+This project would not have been possible without the contributions and resources provided by various individuals and organizations. We would like to express our sincere gratitude to:
+
+- **NUSMods Developers & Contributors**
+    - For maintaining the NUSMods API and open-source data, which this module planner relies on for retrieving module information.
+
+- **National University of Singapore (NUS)**
+    - For providing the curriculum structure and academic resources that guided the development of this planner.
+
+- **Open-Source Libraries & Frameworks**
+    - This project referenced and used the following:
+        - [JUnit](https://junit.org/) for testing
+        - [Duke project](https://github.com/nus-cs2103-AY2324S1/ip), which provided a foundational understanding of Java-based CLI applications and software engineering principles.
+        - [Gradle](https://gradle.org/) for build automation and dependency management
+
+- **Professors, Mentors, and Peers**
+    - Special thanks to Professor Akshay, TA Aditi & TA Donovan, and our peers for their valuable guidance, feedback, and support throughout this project.
+
+- **Online Resources & Developer Communities**
+    - We also appreciate the vast knowledge shared by developers on platforms like Stack Overflow, GitHub, and various Java documentation sources that helped us troubleshoot and enhance our implementation.
+
 
 ---
 
@@ -52,8 +73,33 @@ This planner <span style="color:red;">reduces confusion</span> from having to cr
 <span style="color:orange;">Setting up & Getting Started</span>
 </h2>
 
-Refer to the guide [_Setting up and getting started_](/addressbook-
-level3/SettingUp.html).
+<div style="background-color: #fff3cd; border-left: 6px solid #ffa502; padding: 10px;">
+<strong>⚠️  Caution: Follow the steps in the following guide precisely. </strong>
+The code may not work as intended if steps are deviated from
+</div>
+
+<br/>
+
+First, **fork** this repo, and **clone** the fork into your computer.
+
+##### If you plan to use Intellij IDEA (highly recommended):
+
+**Configure the JDK:** Follow the guide [se-edu/guides] IDEA: Configuring the JDK to ensure Intellij is configured to use JDK 17.
+
+**Import the project as a Gradle project:** For instructions on importing a Gradle project into IntelliJ IDEA, refer to the [se-edu guide](https://se-education.org/guides/tutorials/intellijImportGradleProject.html).
+
+
+<div style="background-color: #89CFF0; border-left: 6px solid #ffa502; padding: 10px;">
+<strong> Note: </strong> Importing a Gradle project is slightly different from importing a normal Java project.
+</div>
+<br/>
+
+**Verify the setup:**
+- Run the seedu.address.Main and try a few commands.
+- Run the tests to ensure they all pass.
+- Refer to the **Manual Testing** section for more in-depth instructions on testing
+
+
 
 ---
 
