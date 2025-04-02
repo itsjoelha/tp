@@ -118,7 +118,7 @@ public class CommandParser {
             break;
 
         case "/su":
-            if (words.length < 3) {
+            if (words.length < 2) {
                 logger.warning("Su command missing module code.");
                 System.out.println("Error: Please specify a module code to suspend.");
                 return false;

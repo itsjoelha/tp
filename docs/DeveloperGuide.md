@@ -462,52 +462,72 @@ on; testers are expected to do more _exploratory_ testing.
 <span style="color:orange; text-decoration:underline;">Launch and shutdown</span>
 </h3>
 
-1.  Initial launch
+#### Initial Launch
+1. Download the JAR file and copy it into an empty folder.
+2. Open a terminal or command prompt, navigate to the folder, and run:
+   ```sh
+   java -jar GrandRhombus.jar
+   ```
+   The GUI launches successfully with an initial state.
 
-    1. Download the jar file and copy into an empty folder
-
-    2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
-
-2.  Saving window preferences
-
-        1. Resize the window to an optimum size. Move the window to a different location. Close the window.
-
-        2. Re-launch the app by double-clicking the jar file.
-
-    Expected: The most recent window size and location is retained.
-
-3.  _{ more test cases …​ }_
-
-<h3>
-<span style="color:orange; text-decoration:underline;">Deleting a person</span>
-</h3>
-
-1.  Deleting a person while all persons are being shown
-
-        1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
-
-        2. Test case: `delete 1`
-
-    Expected: First contact is deleted from the list. Details of the deleted
-    contact shown in the status message. Timestamp in the status bar is updated.
-
-        3. Test case: `delete 0`
-
-    Expected: No person is deleted. Error details shown in the status message.
-    Status bar remains the same.
-
-        4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)
-
-    Expected: Similar to previous.
-
-2.  _{ more test cases …​ }_
+#### Saving Window Preferences
+1. Resize the window to an optimum size.
+2. Move the window to a different location.
+3. Close the window.
+4. Re-launch the app by double-clicking the JAR file.
+   - Expected: The most recent window size and location is retained.
 
 <h3>
-<span style="color:orange; text-decoration:underline;">Saving data</span>
+<span style="color:orange; text-decoration:underline;">Command testing</span>
 </h3>
 
-1. Dealing with missing/corrupted data files
+#### Exiting the Application
+- Type `/exit` in the command line and press Enter.
+    - The application shuts down successfully.
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+#### Viewing Modules
+- Test case: `/view`
+    - Displays the list of modules.
 
-2. _{ more test cases …​ }_
+#### Viewing Module Details
+- Test case: `/detail CS2113`
+    - Displays details of the module CS2113.
+
+#### Adding a Module
+- Test case: `/add CS2113 4`
+    - Adds module CS2113 successfully to semester 4.
+- Test case: `/add`
+    - "Error: Please specify a module code to add. Usage: /add MODULE_CODE SEMESTER"
+
+#### Deleting a Module
+- Test case: `/delete CS2113`
+    - Deletes module CS2113 successfully.
+- Test case: `/delete`
+    - "Error: Please specify a module code to delete."
+
+#### Invalid Commands
+- Test case: `/randomcommand`
+    - "Unknown command. Type '/help' for a list of commands."
+
+#### Checking Workload
+- Test case: `/workload`
+    - Displays the workload if modules are present.
+    - Edge Case: If no modules are present, displays "No modules in List".
+
+#### Checking Graduation Status
+- Test case: `/grad`
+    - Displays graduation progress.
+
+<h3>
+<span style="color:orange; text-decoration:underline;">Data persistence testing</span>
+</h3>
+
+#### Handling Empty Module List
+- Test case: Ensure no modules are added, then execute `/view`.
+    - Displays empty semester lists.
+
+#### Saving data
+
+These tests help verify the core functionality of the command parser and the application's robustness
+against invalid inputs.
+
