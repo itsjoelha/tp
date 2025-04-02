@@ -1,0 +1,20 @@
+
+@startuml
+!include Style.puml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+GrandRhombus -> UserData: loadUserData
+UserData -> User: new User
+User --> GrandRhombus
+loop isRunning
+GrandRhombus -> CommandParser: parseCommand(userInput)
+CommandParser -> Command: new Command
+Command -> Command: execute
+Command --> GrandRhombus: isRunning
+end
+GrandRhombus -> UserData: saveUserData
+UserData --> GrandRhombus
+
+@enduml
