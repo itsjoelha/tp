@@ -218,8 +218,12 @@ level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 The `Data` component,
 
+![Diagram] (docs/diagrams/DataComponent.puml)
+
 - Loads user data and module data when program starts.
 - Saves user data when program is terminated.
+- ModData deals with module data from the database. UserData deals with storage of User
+data such as user details and modules. 
 - depends on some classes in the `Model` component (because the `Storage` component’s job is to save/retrieve objects that belong to the `Model`)
 
 <h4>
