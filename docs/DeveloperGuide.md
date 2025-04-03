@@ -266,6 +266,27 @@ This section describes some noteworthy details on how certain features are
 implemented.
 
 <h4>
+<span style="color:orange; text-decoration:underline;">Add/Delete Module feature</span>
+</h4>
+
+<h4>
+<span style="color:orange;">Add Custom Module</span>
+</h4>
+
+The add custom module feature is implemented in the `AddCustomModule1` class that implements the
+`Command` class. This feature allows the user to add modules that are not within the existing
+database into their schedule. 
+
+The `execute()` method of this class creates a new `UserMod` object that contains the module code, 
+module name and number of MCs inputted by the user. It then adds the new module into a semester specified by the user. 
+
+<h4>
+<span style="color:orange; text-decoration:underline;">Module Data feature</span>
+</h4>
+
+<h4>
+<span style="color:orange;">Check for prerequisites</span>
+
 <span style="color:orange; text-decoration:underline;">Add User Module</span>
 </h4>
 
@@ -275,11 +296,31 @@ not exist. Then it sets the new list of modules in the `User` class `semesterMod
 
 <h4>
 <span style="color:orange; text-decoration:underline;">Specialisation</span>
+
 </h4>
 This class simply prints out all the Specialisations. 
 
+This check for prerequisite mechanism is implemented by `Prereq`. It contains a `fulfillsPrereq()` function
+that returns true if all the modules in the user's schedule have had their prerequisite modules cleared.
+This class includes the following subclasses: 
+
+- `ModPrereq` -- Contains a constructor to instantiate a `Prereq` object containing the module code 
+and the minimum grade required.
+- `AndPrereq` -- Contains functions to check for 'AND' prerequisites (i.e. prerequisites that must all be
+completed before taking a module).
+- `OrPrereq` -- Contains functions to check for 'OR' prerequisites (i.e. prerequisites where only one needs
+to be completed before taking module).
+
+`AndPrereq` and `OrPrereq` overrides the `fulfillsPrereq()` function.
+
+
+
+
+_{more aspects and alternatives to be added}_
+
 <span style="color:orange; text-decoration:underline;">Retrieve User GPA</span>
 </h4>
+
 
 The GPA feature is implemented in the `GetUserGPA` class, which implements the `Command` interface.
 The `execute()` method of this class retrieves the user's GPA from the `User` object and displays it
