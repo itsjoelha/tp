@@ -191,7 +191,7 @@ The `Data` component,
 data such as user details and modules. 
 - depends on some classes in the `Model` component (because the `Storage` component’s job is to save/retrieve objects that belong to the `Model`)
 
-### User class
+### `User` class
 
 The `User` class represents a user in the system. It contains information about the user's name, education level, GPA, current semester, and the modules they are taking each semester.
 
@@ -220,7 +220,7 @@ The `User` class represents a user in the system. It contains information about 
 - `getAllModules()`: Returns a list of all modules the user has taken.
 - `getAllModulesTilSemester(int semester)`: Returns a list of all modules the user has taken up to a specific semester.
 
-### UserMod class
+### `UserMod` class
 
 The `UserMod` class represents a module that a user is taking. It contains information about the module's code, name, number of modular credits (MCs), grade, and whether the module is S/U (Satisfactory/Unsatisfactory) optioned.
 
@@ -238,7 +238,7 @@ The `UserMod` class represents a module that a user is taking. It contains infor
 - `getGrade()`: Returns the grade received for the module.
 - `isSU()`: Returns whether the module is S/U optioned.
 
-### Mod class
+### `Mod` class
 
 The `Mod` class represents a module in the system. It contains information about the module's code, name, number of modular credits (MCs), and prerequisites.
 
@@ -253,13 +253,8 @@ The `Mod` class represents a module in the system. It contains information about
 - `getName()`: Returns the name of the module.
 - `getNumMC()`: Returns the number of modular credits (MCs) for the module.
 - `getPrereqTree()`: Returns the prerequisite tree for the module.
+- `getPrerequisites()`: Returns the list of prerequisite modules for the module.
 
-
-<h4>
-<span style="color:orange; text-decoration:underline;">Common Classes</span>
-</h4>
-Classes used by multiple components are in the `seedu.address.commons`
-package.
 
 ---
 
