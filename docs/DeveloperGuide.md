@@ -242,12 +242,34 @@ This section describes some noteworthy details on how certain features are
 implemented.
 
 <h4>
-<span style="color:orange; text-decoration:underline;">[Proposed] Undo/redo feature</span>
+<span style="color:orange; text-decoration:underline;">Add/Delete Module feature</span>
 </h4>
 
 <h4>
-<span style="color:orange;">Proposed Implementation</span>
+<span style="color:orange;">Add Custom Module</span>
 </h4>
+
+The add custom module feature is implemented in the `AddCustomModule1` class that implements the
+`Command` class. This feature allows the user to add modules that are not within the existing
+database into their schedule. 
+
+The `execute()` method of this class creates a new `UserMod` object that contains the module code, 
+module name and number of MCs inputted by the user. It then adds the new module into a semester specified by the user. 
+
+<h4>
+<span style="color:orange; text-decoration:underline;">Module Data feature</span>
+</h4>
+
+<h4>
+<span style="color:orange;">Check for prerequisites</span>
+</h4>
+
+This check for prerequisite mechanism is facilitated by `Prereq`. It contains a `fulfillsPrereq This class includes the following
+subclasses: 
+
+- `ModPrereq` -- Contains a constructor to instantiate a `Prereq` object containing the module code 
+and the minimum grade required.
+- `AndPrereq` -- Contains functions to check  
 
 The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It
 extends `AddressBook` with an undo/redo history, stored internally as an
