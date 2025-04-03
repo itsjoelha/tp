@@ -1,0 +1,23 @@
+
+@startuml
+!include Style.puml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+GrandRhombus -> UserData: loadUserData
+UserData -> User: new User
+User --> GrandRhombus
+loop isRunning
+GrandRhombus -> CommandParser: parseCommand(userInput)
+CommandParser -> Command: new Command
+Command -> Command: execute
+Command --> CommandParser
+CommandParser --> GrandRhombus: isRunning
+end
+GrandRhombus -> UserData: saveUserData
+UserData -> User:getSemesterModules
+User-->UserData: semesterModules
+UserData --> GrandRhombus
+
+@enduml
