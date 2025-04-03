@@ -11,32 +11,44 @@ Grand Rhombus aims to provide <span style="color:blue;">CEG Students</span> with
 This planner <span style="color:red;">reduces confusion</span> from having to cross-reference multiple sources so that students <span style="color:red;">do not miss academic opportunities</span>.
 
 ---
+<h2>
+<span style="color:orange;">Table of Contents</span>
+</h2>
 
 - **Acknowledgements**
 - **Setting up, getting started**
 - **Design**
-  - Architecture
-  - UI component
-  - Logic component
-  - Model component
-  - Storage component
-  - Common classes
+    - Architecture
+    - UI component
+    - Logic component
+    - Model component
+    - Storage component
+    - Common classes
+
 - **Implementation**
-  - [Proposed] Undo/redo feature
-    - Proposed Implementation
-    - Design considerations:
-  - [Proposed] Data archiving
+    - Detail Module
+    - Grade Module
+    - List Module
+    - Recommended Schedule
+    - SU User Module
+    - View Graduation Requirements
+    - Graduation Module List
+    - Master Module List
+
+
 - **Documentation, logging, testing, configuration, dev-ops**
+
 - **Appendix: Requirements**
-  - Product scope
-  - User stories
-  - Use cases
-  - Non-Functional Requirements
-  - Glossary
+    - Product scope
+    - User stories
+    - Use cases
+    - Non-Functional Requirements
+    - Glossary
+
 - **Appendix: Instructions for manual testing**
-  - Launch and shutdown
-  - Deleting a person
-  - Saving data
+    - Launch and shutdown
+    - Deleting a person
+    - Saving data
 
 ---
 
