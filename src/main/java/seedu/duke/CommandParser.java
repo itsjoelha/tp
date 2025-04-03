@@ -145,7 +145,11 @@ public class CommandParser {
 
         case "/help":
             logger.info("Displaying help file.");
-            Help.displayHelpFile();
+            if (words.length == 2) {
+                Help.help(words[1]);
+            } else {
+                Help.help();
+            }
             break;
 
         case "/grad":
