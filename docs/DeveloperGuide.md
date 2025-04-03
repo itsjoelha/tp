@@ -191,7 +191,69 @@ The `Data` component,
 data such as user details and modules. 
 - depends on some classes in the `Model` component (because the `Storage` component’s job is to save/retrieve objects that belong to the `Model`)
 
-Section about USER class
+### User class
+
+The `User` class represents a user in the system. It contains information about the user's name, education level, GPA, current semester, and the modules they are taking each semester.
+
+#### Attributes:
+- `name`: The name of the user.
+- `education`: The education level of the user.
+- `gpa`: The current GPA of the user.
+- `currentSemester`: The current semester the user is in.
+- `semesterModules`: A map where the key is the semester number and the value is a list of `UserMod` objects representing the modules taken in that semester.
+
+#### Methods:
+- `getGPA()`: Returns the current GPA of the user.
+- `getTotalMCs()`: Returns the total number of modular credits (MCs) the user has taken.
+- `updateGPA()`: Updates the user's GPA based on their module grades.
+- `hasModule(String code)`: Checks if the user has a module with the given code.
+- `clearModules()`: Clears all modules from the user's record and resets the GPA.
+- `getModule(String code)`: Retrieves a module by its code.
+- `checkAllPrereqs()`: Checks if the user fulfills all prerequisites for their modules.
+- `fulfillsModPrereq(UserMod mod, int semester)`: Checks if the user fulfills the prerequisites for a specific module.
+- `getCurrentSemester()`: Returns the current semester of the user.
+- `setCurrentSemester(int currentSemester)`: Sets the current semester of the user.
+- `getName()`: Returns the name of the user.
+- `setName(String name)`: Sets the name of the user.
+- `getEducation()`: Returns the education level of the user.
+- `setEducation(EducationLevel education)`: Sets the education level of the user.
+- `getAllModules()`: Returns a list of all modules the user has taken.
+- `getAllModulesTilSemester(int semester)`: Returns a list of all modules the user has taken up to a specific semester.
+
+### UserMod class
+
+The `UserMod` class represents a module that a user is taking. It contains information about the module's code, name, number of modular credits (MCs), grade, and whether the module is S/U (Satisfactory/Unsatisfactory) optioned.
+
+#### Attributes:
+- `code`: The code of the module.
+- `name`: The name of the module.
+- `numMC`: The number of modular credits (MCs) for the module.
+- `grade`: The grade received for the module.
+- `isSU`: A boolean indicating if the module is S/U optioned.
+
+#### Methods:
+- `getCode()`: Returns the code of the module.
+- `getName()`: Returns the name of the module.
+- `getNumMC()`: Returns the number of modular credits (MCs) for the module.
+- `getGrade()`: Returns the grade received for the module.
+- `isSU()`: Returns whether the module is S/U optioned.
+
+### Mod class
+
+The `Mod` class represents a module in the system. It contains information about the module's code, name, number of modular credits (MCs), and prerequisites.
+
+#### Attributes:
+- `code`: The code of the module.
+- `name`: The name of the module.
+- `numMC`: The number of modular credits (MCs) for the module.
+- `prereqTree`: The prerequisite tree for the module.
+
+#### Methods:
+- `getCode()`: Returns the code of the module.
+- `getName()`: Returns the name of the module.
+- `getNumMC()`: Returns the number of modular credits (MCs) for the module.
+- `getPrereqTree()`: Returns the prerequisite tree for the module.
+
 
 <h4>
 <span style="color:orange; text-decoration:underline;">Common Classes</span>
@@ -209,12 +271,29 @@ This section describes some noteworthy details on how certain features are
 implemented.
 
 <h4>
-<span style="color:orange; text-decoration:underline;">[Proposed] Undo/redo feature</span>
+<span style="color:orange; text-decoration:underline;">Retrieve User GPA</span>
 </h4>
 
 <h4>
-<span style="color:orange;">Proposed Implementation</span>
+<span style="color:orange;">Implementation</span>
 </h4>
+
+The GPA feature is implemented in the `GetUserGPA` class, which implements the `Command` interface.
+The `execute()` method of this class retrieves the user's GPA from the `User` object and displays it
+to the user. This mechanism is facilitated by the `User` class, which contains the `updateGPA()` method
+to calculate the GPA based on the user's module grades.
+
+<h4>
+<span style="color:orange; text-decoration:underline;">Help Command</span>
+</h4><h4>
+<span style="color:orange;">Implementation</span>
+</h4>The help command is implemented in the `HelpCommand` class, which implements the `Command` interface.
+The `execute()` method of this class displays a list of available commands and their descriptions to the user.
+This mechanism is facilitated by the `CommandParser` class, which maps user input to the corresponding command.
+
+<h2>
+<span style="color:orange; text-decoration:bold;">START OF TEMPLATE</span>
+</h2>
 
 The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It
 extends `AddressBook` with an undo/redo history, stored internally as an
@@ -296,6 +375,10 @@ applications follow.
 
 The following activity diagram summarizes what happens when a user executes a
 new command:
+
+<h2>
+<span style="color:orange; text-decoration:bold;">END OF TEMPLATE</span>
+</h2>
 
 <h4>
 <span style="color:orange;">Design considerations:</span>
