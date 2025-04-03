@@ -44,7 +44,28 @@ This planner <span style="color:red;">reduces confusion</span> from having to cr
 <span style="color:orange;">Acknowledgements</span>
 </h2>
 
-- {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries – include links to the original source as well}
+- This project was inspired by the popular NUSMods website, aiding NUS students with their course and study plannings.
+
+This project would not have been possible without the contributions and resources provided by various individuals and organizations. We would like to express our sincere gratitude to:
+
+- **NUSMods Developers & Contributors**
+    - For maintaining the NUSMods API and open-source data, which this module planner relies on for retrieving module information.
+
+- **National University of Singapore (NUS)**
+    - For providing the curriculum structure and academic resources that guided the development of this planner.
+
+- **Open-Source Libraries & Frameworks**
+    - This project referenced and used the following:
+        - [JUnit](https://junit.org/) for testing
+        - [Duke project](https://github.com/nus-cs2103-AY2324S1/ip), which provided a foundational understanding of Java-based CLI applications and software engineering principles.
+        - [Gradle](https://gradle.org/) for build automation and dependency management
+
+- **Professors, Mentors, and Peers**
+    - Special thanks to Professor Akshay, TA Aditi & TA Donovan, and our peers for their valuable guidance, feedback, and support throughout this project.
+
+- **Online Resources & Developer Communities**
+    - We also appreciate the vast knowledge shared by developers on platforms like Stack Overflow, GitHub, and various Java documentation sources that helped us troubleshoot and enhance our implementation.
+
 
 ---
 
@@ -52,8 +73,33 @@ This planner <span style="color:red;">reduces confusion</span> from having to cr
 <span style="color:orange;">Setting up & Getting Started</span>
 </h2>
 
-Refer to the guide [_Setting up and getting started_](/addressbook-
-level3/SettingUp.html).
+<div style="background-color: #fff3cd; border-left: 6px solid #ffa502; padding: 10px;">
+<strong>⚠️  Caution: Follow the steps in the following guide precisely. </strong>
+The code may not work as intended if steps are deviated from
+</div>
+
+<br/>
+
+First, **fork** this repo, and **clone** the fork into your computer.
+
+##### If you plan to use Intellij IDEA (highly recommended):
+
+**Configure the JDK:** Follow the guide [se-edu/guides] IDEA: Configuring the JDK to ensure Intellij is configured to use JDK 17.
+
+**Import the project as a Gradle project:** For instructions on importing a Gradle project into IntelliJ IDEA, refer to the [se-edu guide](https://se-education.org/guides/tutorials/intellijImportGradleProject.html).
+
+
+<div style="background-color: #89CFF0; border-left: 6px solid #ffa502; padding: 10px;">
+<strong> Note: </strong> Importing a Gradle project is slightly different from importing a normal Java project.
+</div>
+<br/>
+
+**Verify the setup:**
+- Run the seedu.address.Main and try a few commands.
+- Run the tests to ensure they all pass.
+- Refer to the **Manual Testing** section for more in-depth instructions on testing
+
+
 
 ---
 
@@ -61,14 +107,12 @@ level3/SettingUp.html).
 <span style="color:orange;">Design</span>
 </h2>
 
-**Tip:** The `.puml` files used to create diagrams in this document
-`docs/diagrams` folder. Refer to the [_PlantUML Tutorial_ at se-
-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn
-how to create and edit diagrams.
-
 <h4>
 <span style="color:orange;">Architechture</span>
 </h4>
+
+
+![image](diagrams/Architecture.png)
 
 The **_Architecture Diagram_** given above explains the high-level design of
 the App.
@@ -78,153 +122,76 @@ each other.
 
 **Main components of the architecture**
 
-**`Main`** (consisting of classes [`Main`](https://github.com/se-
-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and
-[`MainApp`](https://github.com/se-edu/addressbook-
-level3/tree/master/src/main/java/seedu/address/MainApp.java)) is in charge of
-the app launch and shut down.
+**`GrandRhombus`** is in charge of the app launch and shut down.
 
 - At app launch, it initializes the other components in the correct sequence, and connects them up with each other.
 - At shut down, it shuts down the other components and invokes cleanup methods where necessary.
 
-The bulk of the app’s work is done by the following four components:
+The bulk of the app’s work is done by the following three components:
 
-- **`UI`**: The UI of the App.
-- **`Logic`**: The command executor.
-- **`Model`**: Holds the data of the App in memory.
-- **`Data`**: Reads data from, and writes data to, the hard disk.
+- **`CommandParser`**: Parses user input and chooses the command
+- **`Command`**: The individual commands which are then executed. 
+- **`Data`**: A collection of classes including `User`, `UserData` which loads and saves user's modules (`Mod`) into **`user.txt`** file
 
-**`Commons`** represents a collection of classes used by multiple other
-components.
+*`Resources`* contains the `moduledata.txt` file which serves as the database of all CEG modules. 
+These modules are converted into `Mod`s to be stored in other components.
 
 **How the architecture components interact with each other**
 
-The _Sequence Diagram_ below shows how the components interact with each other
-for the scenario where the user issues the command `delete 1`.
+The _Sequence Diagram_ below shows how the components interact with each other from startup to termination.
+![image](diagrams/SequenceDiagram.png)
+Note: Command.execute() may use User depending on which command it is e.g. `/add` adds a module to the User's semesterModules list
 
-Each of the four main components (also shown in the diagram above),
-
-- defines its _API_ in an `interface` with the same name as the Component.
-- implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
-
-For example, the `Logic` component defines its API in the `Logic.java`
-interface and implements its functionality using the `LogicManager.java` class
-which follows the `Logic` interface. Other components interact with a given
-component through its interface rather than the concrete class (reason: to
-prevent outside component’s being coupled to the implementation of a
-component), as illustrated in the (partial) class diagram below.
+The program runs continuously till the user inputs `/exit`, which causes `CommandParser` to return **false** to isRunning.
 
 The sections below give more details of each component.
 
 ---
 
 <h4>
-<span style="color:orange; text-decoration:underline;">UI component</span>
+<span style="color:orange; text-decoration:underline;">CommandParser component</span>
 </h4>
 
-The **API** of this component is specified in
-[`Ui.java`](https://github.com/se-edu/addressbook-
-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The `CommandParser` component consists of the `CommandParser` class. 
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`,
-`ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these,
-including the `MainWindow`, inherit from the abstract `UiPart` class which
-captures the commonalities between classes that represent parts of the visible
-GUI.
+The `CommandParser` component,
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts
-are defined in matching `.fxml` files that are in the
-`src/main/resources/view` folder. For example, the layout of the
-[`MainWindow`](https://github.com/se-edu/addressbook-
-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is
-specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-
-level3/tree/master/src/main/resources/view/MainWindow.fxml)
-
-The `UI` component,
-
-- executes user commands using the `Logic` component.
-- listens for changes to `Model` data so that the UI can be updated with the modified data.
-- keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-- depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+- processes user input and chooses corresponding command.
+- creates new command parses arguments into the command.
+- executes user commands using the `Command` component.
+- returns `isRunning` which is true for all user inputs except `/exit`
 
 ---
 
 <h4>
-<span style="color:orange; text-decoration:underline;">Logic component</span>
+<span style="color:orange; text-decoration:underline;">Command component</span>
 </h4>
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-
-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+Here’s a (partial) class diagram of the `Command` component:
+![image](diagrams/Command.png)
 
-Here’s a (partial) class diagram of the `Logic` component:
+To add: Sequence Diagram for /add command 
 
-The sequence diagram below illustrates the interactions within the `Logic`
-component, taking `execute("delete 1")` API call as an example.
+How the `Command` component works:
 
-**Note:** The lifeline for `DeleteCommandParser` should end at the destroy
-marker (X) but due to a limitation of PlantUML, the lifeline continues till
-the end of diagram.
-
-How the `Logic` component works:
-
-1. When `Logic` is called upon to execute a command, it is passed to an `AddressBookParser` object which in turn creates a parser that matches the command (e.g., `DeleteCommandParser`) and uses it to parse the command.
-2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `DeleteCommand`) which is executed by the `LogicManager`.
-3. The command can communicate with the `Model` when it is executed (e.g. to delete a person).  
-   Note that although this is shown as a single step in the diagram above (for
-   simplicity), in the code it can take several interactions (between the command
-   object and the `Model`) to achieve.
-
-4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
-
-Here are the other classes in `Logic` (omitted from the class diagram above)
-that are used for parsing a user command:
-
-How the parsing works:
-
-- When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
-- All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, …) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+1. The parameters of `Command` are passed into the chosen command object and the object is created
+2. `Command` is then executed to perform its corresponding function
 
 ---
 
 <h4>
-<span style="color:orange; text-decoration:underline;">Model component</span>
+<span style="color:orange; text-decoration:underline;">Data component</span>
 </h4>
-
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-
-level3/tree/master/src/main/java/seedu/address/model/Model.java)
-
-The `Model` component,
-
-- stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-- stores the currently ‘selected’ `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be ‘observed’ e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-- stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-- does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
-
-**Note:** An alternative (arguably, a more OOP) model is given below. It has a
-`Tag` list in the `AddressBook`, which `Person` references. This allows
-`AddressBook` to only require one `Tag` object per unique tag, instead of each
-`Person` needing their own `Tag` objects.
-
----
-
-<h4>
-<span style="color:orange; text-decoration:underline;">Storage component</span>
-</h4>
-
-<!---
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-
-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
---->
 
 The `Data` component,
-
-![Diagram] (docs/diagrams/DataComponent.puml)
 
 - Loads user data and module data when program starts.
 - Saves user data when program is terminated.
 - ModData deals with module data from the database. UserData deals with storage of User
 data such as user details and modules. 
 - depends on some classes in the `Model` component (because the `Storage` component’s job is to save/retrieve objects that belong to the `Model`)
+
+Section about USER class
 
 <h4>
 <span style="color:orange; text-decoration:underline;">Common Classes</span>
@@ -407,14 +374,14 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile** :
 
-- has a need to manage a significant number of contacts
+- NUS CEG Students
+- has a need to manage their academic workload
 - prefer desktop apps over other types
 - can type fast
 - prefers typing to mouse interactions
 - is reasonably comfortable using CLI apps
 
-**Value proposition** : manage contacts faster than a typical mouse/GUI driven
-app
+**Value proposition** : We provide CEG Students with an Academic Life Planner which is in-depth and clear to plan their future. This planner reduces confusion from having to cross-reference multiple sources so that students do not miss academic opportunities.
 
 <h4>
 <span style="color:orange; text-decoration:underline;">User Stories</span>
@@ -423,32 +390,31 @@ app
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low
 (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ---------------------------- | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
-
-_{More to be added}_
+| Priority | As a …​                                                | I want to …​                                                                                | So that I can…​                                            |
+|----------|--------------------------------------------------------|---------------------------------------------------------------------------------------------|------------------------------------------------------------|
+| `* * *`  | disciplined student                                    | be able to see my GPA, as well as an estimated future GPA based on my current module grades | make informed decisions about my future workload.          |
+| `* * *`  | international student, entering NUS as a CEG1 student. | be able to see the platforms that I need to register on and their deadlines                 | register on time.                                          |
+| `* * *`  | student who wants to plan my academic journey          | view my graduation requirements and track my progress                                       | ensure I graduate on time.                                 |
+| `* *`    | student who is considering taking a minor              | see how the minor requirements fit into my current schedule                                 | decide if I can take the minor without overloading myself. |
+| `* *`    | student who is planning to go on an exchange program   | know which modules I can map to my degree requirements                                      | plan my exchange program effectively.                      |
+| `*`      | student who is curious about other specializations     | explore the requirements for other specializations                                          | consider switching if needed.                              |
+| `*`      | student who wants to improve my productivity           | receive tips on how to manage my time effectively                                           | balance my academic and personal life.                     |
 
 <h4>
 <span style="color:orange; text-decoration:underline;">Use cases</span>
 </h4>
 
-(For all use cases below, the **System** is the `AddressBook` and the
+(For all use cases below, the **System** is `GrandRhombus` and the
 **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Add a Module**
 
 **MSS**
 
-1. User requests to list persons
-2. AddressBook shows a list of persons
-3. User requests to delete a specific person in the list
-4. AddressBook deletes the person
+1. User requests to list modules
+2. AddressBook shows a list of modules in their schedule
+3. User requests to add a specific module in the list
+4. AddressBook adds the module
 
 Use case ends.
 
@@ -467,7 +433,7 @@ Use case resumes at step 2.
 _{More to be added}_
 
 <h4>
-<span style="color:orange; text-decoration:underline;">Non-Fuctional Requirements</span>
+<span style="color:orange; text-decoration:underline;">Non-Functional Requirements</span>
 </h4>
 
 1. Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
@@ -481,7 +447,6 @@ _{More to be added}_
 </h4>
 
 - **Mainstream OS** : Windows, Linux, Unix, MacOS
-- **Private contact detail** : A contact detail that is not meant to be shared with others
 
 ---
 

@@ -1,0 +1,108 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+
+interface Command {
+    void execute()
+}
+class AddUserModule {
+    - moduleCode: String
+    - semester: int
+    + void execute()
+}
+
+class AddCustomModule {
+    -name: String
+    -moduleCode: String
+    -numMC : int
+    -semester: int
+    + void execute()
+}
+
+class DeleteUserModule {
+- moduleCode: String
+    + void execute()
+}
+class DetailModules {
+    - modCode: String
+    + void execute()
+}
+class GetUserGPA{
+- gpa:double
+    + void execute()
+}
+class GradeModule {
+- moduleCode: String
+    + void execute()
+}
+class Help {
++ {static} displayHelpFile()
+}
+
+class ListModules {
+-sem:int
+    + void execute()
+}
+
+class RecommendedSchedule {
+        + void execute()
+        - void printSemester()
+}
+class Specialisation {
++{static} displaySpecialisations()
+}
+class SuUserModule {
+-moduleCode:String
++ void execute()
+}
+class ViewGradRequirements {
++ void execute()
+}
+class Workload {
+-sem:int
++Workload(user:User)
++Workload(user:User, semester:String)
++void execute()
+}
+
+enum Grade {
+-label:String
+-gpa:double
+    A_PLUS("A+", 5.0)
+    A("A", 5.0)
+    A_MINUS("A-", 4.5)
+    B_PLUS("B+", 4.0)
+    B("B", 3.5)
+    B_MINUS("B-", 3.0)
+    C_PLUS("C+", 2.5)
+    C("C", 2.0)
+    D_PLUS("D+", 1.5)
+    D("D", 1.0)
+    F("F", 0.0)
+}
+
+class User
+
+User <-- GetUserGPA
+User <--AddUserModule
+User <--AddCustomModule
+User <-- DeleteUserModule
+GradeModule --> User
+Grade <-- GradeModule
+
+Command <|-[dashed]- AddUserModule
+Command <|-[dashed]- AddCustomModule
+Command <|-[dashed]- DeleteUserModule
+Command <|-[dashed]- DetailModules
+Command <|-[dashed]- GetUserGPA
+Command <|-[dashed]- ListModules
+
+SuUserModule -[dashed]-|> Command
+GradeModule -[dashed]-|> Command
+RecommendedSchedule -[dashed]-|> Command
+Workload -[dashed]-|> Command
+ViewGradRequirements-[dashed]-|> Command
+
+
+
+@enduml

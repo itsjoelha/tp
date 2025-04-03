@@ -1,0 +1,32 @@
+@startuml
+'https://plantuml.com/deployment-diagram
+
+actor Human
+card GrandRhombus
+
+package Command
+package Data {
+    card User
+    card UserData
+    Node Mod
+}
+folder resources {
+    file moduledata.txt
+}
+card CommandParser
+file user.txt
+
+Human --> GrandRhombus
+GrandRhombus --> UserData
+GrandRhombus --> User
+GrandRhombus --> CommandParser
+CommandParser --> Command
+Command --> User
+UserData <--> User
+UserData --> user.txt
+User --> Mod
+Mod --> moduledata.txt
+
+
+
+@enduml
