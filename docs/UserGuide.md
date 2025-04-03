@@ -9,7 +9,7 @@ GrandRhombus is an Academic Life Planner which is in-depth and clear to plan the
 {Give steps to get started quickly}
 
 1. Ensure that you have Java 17 or above installed.
-1. Down the latest version of `GrandRhombus` from our [Github](https://github.com/AY2425S2-CS2113-T11b-2/tp).
+2. Down the latest version of `GrandRhombus` from our [GitHub](https://github.com/AY2425S2-CS2113-T11b-2/tp).
 
 ## Features 
 
@@ -38,7 +38,7 @@ GrandRhombus is an Academic Life Planner which is in-depth and clear to plan the
   <br>
 
 - Extraneous parameters for commands that do not take in parameters (such as list and bye) will cause errors.
-  e.g. if the command specifies bye 123, it will be create an error.
+  e.g. if the command specifies bye 123, it will create an error.
   <br>
   <br>
 
@@ -158,20 +158,25 @@ GrandRhombus' data is automatically saved as a `.txt` file at `[JAR file locatio
 <div style="border: 1px solid #FF9800; background-color: #FFEB3B; padding: 10px; border-radius: 5px;">
   <strong>Caution:</strong>  If your changes to the data file makes its format invalid, GrandRhombus will not work as intended and return error codes/ not run.
 
-Furthermore, certain edits can cause GrandRhombus to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
+Furthermore, certain edits can cause GrandRhombus to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 
 </div>
 
 ## Command Summary
-| Command           | Description                           | Arguments            | Format                     |
-|------------------|-----------------------------------|----------------------|---------------------------|
-| `/view`         | View all modules                 | None                 | `/view`                   |
-| `/add`          | Add a module to the list        | `<module_code>`      | `/add CDE3301`            |
-| `/delete`       | Delete a module from the list   | `<module_code>`      | `/delete CDE3301`         |
-| `/detail`       | View details of a module       | `<module_code>`      | `/detail CDE3301`         |
-| `/grad`         | Check if you can graduate      | None                 | `/grad`                    |
-| `/schedule`     | Generate a schedule for students | None   | `/schedule` |
-| `/specialisation` | View specialisations         | None                 | `/specialisation`          |
-| `/workload`     | Display workload               | None                 | `/workload`                |
-| `/help`         | Show this help message         | None                 | `/help`                    |
-| `/exit`         | Exit the program               | None                 | `/exit`  
+
+| Command           | Description                      | Arguments               | Format                       |
+|-------------------|----------------------------------|-------------------------|------------------------------|
+| `/view`           | View all modules                 | `<semester>`            | `/view` or `/view 1`         |
+| `/add`            | Add a module to the list         | `<module_code>`         | `/add CDE3301`               |
+| `/addCustom`      | Add a custom module to the list  | `<module_code>`         | `/addCustom CDE3302`         |
+| `/su`             | S/U a module                     | `<module_code>`         | `/su CS1010`                 |
+| `/delete`         | Delete a module from the list    | `<module_code>`         | `/delete CDE3301`            |
+| `/detail`         | View details of a module         | `<module_code>`         | `/detail CDE3301`            |
+| `/grade`          | Set a module's grade             | `<module_code> <grade>` | `/grade CDE3301 A`           |
+| `/gpa`            | Retrieve your GPA                | None                    | `/gpa`                       |
+| `/grad`           | Check if you can graduate        | None                    | `/grad`                      |
+| `/schedule`       | Generate a schedule for students | None                    | `/schedule`                  |
+| `/specialisation` | View specialisations             | None                    | `/specialisation`            |
+| `/workload`       | Display workload                 | `<semester>`            | `/workload` or `/workload 1` |
+| `/help`           | Show this help message           | `<command>`             | `/help` or `/help help`      |
+| `/exit`           | Exit the program                 | None                    | `/exit`                      |
