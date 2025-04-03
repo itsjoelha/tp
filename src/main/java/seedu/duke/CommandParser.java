@@ -185,7 +185,7 @@ public class CommandParser {
         case "/exit":
             logger.info("User exited program.");
             System.out.println("Exiting program...");
-            return true;
+            return false;
 
         default:
             logger.warning("Unknown command: " + command);
@@ -196,7 +196,7 @@ public class CommandParser {
             cmdObject.execute();
         }
 
-        return false;
+        return true;
 
     }
 }
