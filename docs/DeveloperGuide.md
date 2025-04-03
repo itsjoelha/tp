@@ -296,7 +296,19 @@ to calculate the GPA based on the user's module grades.
 
 <h4>
 <span style="color:orange;">Check for prerequisites</span>
+
+<span style="color:orange; text-decoration:underline;">Add User Module</span>
 </h4>
+
+This class takes in the Module Code and Semester. It then retrieves the dictionary of User's modules (`semesterModules`) 
+from the `User` class, adds the new `Mod` to the corresponding semester list, creating new semester lists if it does 
+not exist. Then it sets the new list of modules in the `User` class `semesterModules`
+
+<h4>
+<span style="color:orange; text-decoration:underline;">Specialisation</span>
+
+</h4>
+This class simply prints out all the Specialisations. 
 
 This check for prerequisite mechanism is implemented by `Prereq`. It contains a `fulfillsPrereq()` function
 that returns true if all the modules in the user's schedule have had their prerequisite modules cleared.
@@ -316,7 +328,14 @@ to be completed before taking module).
 
 _{more aspects and alternatives to be added}_
 
----
+<span style="color:orange; text-decoration:underline;">Retrieve User GPA</span>
+</h4>
+
+
+The GPA feature is implemented in the `GetUserGPA` class, which implements the `Command` interface.
+The `execute()` method of this class retrieves the user's GPA from the `User` object and displays it
+to the user. This mechanism is facilitated by the `User` class, which contains the `updateGPA()` method
+to calculate the GPA based on the user's module grades.
 
 <h4>
 <span style="color:orange; text-decoration:underline;">Help Command</span>
