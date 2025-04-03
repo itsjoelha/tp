@@ -6,10 +6,8 @@ GrandRhombus is an Academic Life Planner which is in-depth and clear to plan the
 
 ## Quick Start
 
-{Give steps to get started quickly}
-
 1. Ensure that you have Java 17 or above installed.
-2. Down the latest version of `GrandRhombus` from our [GitHub](https://github.com/AY2425S2-CS2113-T11b-2/tp).
+2. Download the latest version of `GrandRhombus` from our [GitHub](https://github.com/AY2425S2-CS2113-T11b-2/tp).
 
 ## Features 
 
