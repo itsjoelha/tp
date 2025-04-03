@@ -285,7 +285,7 @@ module name and number of MCs inputted by the user. It then adds the new module 
 </h4>
 
 <h4>
-<span style="color:orange; text-decoration:underline;">Retrieve User GPA</span>
+<span style="color:orange;">Retrieve User GPA</span>
 </h4>
 
 The GPA feature is implemented in the `GetUserGPA` class, which implements the `Command` interface.
