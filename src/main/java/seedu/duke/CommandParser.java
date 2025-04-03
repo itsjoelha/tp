@@ -168,7 +168,7 @@ public class CommandParser {
 
         case "/specialisation":
             logger.info("Displaying Specialisations.");
-            Specialisation.displaySpecialisations();
+            cmdObject = new Specialisation();
             break;
 
         case "/workload":
