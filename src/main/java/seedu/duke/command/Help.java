@@ -19,7 +19,7 @@ public class Help implements Command {
         }
     }
 
-    public void printAll() {
+    private void printAll() {
         System.out.println("+-----------------------+-----------------------------------+");
         System.out.println("| Command               | Description                       |");
         System.out.println("+-----------------------+-----------------------------------+");
@@ -42,7 +42,7 @@ public class Help implements Command {
         System.out.println("For further assistance, refer to the user guide at our GitHub repository.");
     }
 
-    public void printSpecific(String command) {
+    private void printSpecific(String command) {
 
         switch (command) {
         case "view":

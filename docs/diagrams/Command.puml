@@ -1,14 +1,16 @@
 @startuml
 'https://plantuml.com/class-diagram
+hide circle
+skinparam classAttributeIconSize 0
 
-
-interface Command {
-    void execute()
+interface Command <<interface>>{
+    +  execute() : void
 }
 class AddUserModule {
+    +AddUserModule(user: User, moduleCode: String, semester: int)
     - moduleCode: String
     - semester: int
-    + void execute()
+    + execute() : void
 }
 
 class AddCustomModule {
@@ -16,56 +18,74 @@ class AddCustomModule {
     -moduleCode: String
     -numMC : int
     -semester: int
-    + void execute()
+    + AddCustomModule(user: User, moduleCode: String, semester: int, numMC: int, name: String)
+    + execute():void
 }
 
 class DeleteUserModule {
++ DeleteUserModule(user: User, moduleCode: String)
 - moduleCode: String
-    + void execute()
+    + execute() : void
 }
 class DetailModules {
-    - modCode: String
-    + void execute()
+    - modCode:String
+    + DetailModules(modCode:String)
+    + void textWrapDescription(description:String)
+    + execute() : void
 }
+
 class GetUserGPA{
 - gpa:double
-    + void execute()
++ GetUserGPA(user: User)
+    + execute() : void
 }
 class GradeModule {
 - moduleCode: String
-    + void execute()
++ GradeModule(user: User, moduleCode: String, grade: String)
+    + execute() : void
 }
+
 class Help {
-+ {static} displayHelpFile()
+    - command:String
+    + Help()
+    + Help(command:String)
+    + execute() : void
+    - void printAll()
+    - void printSpecific(command:String)
 }
+
 
 class ListModules {
--sem:int
-    + void execute()
+    - sem:int
+    + ListModules(user:User)
+    + ListModules(user:User, semester:String)
+    + execute() : void
+    + execute(sem:int):void
 }
-
 class RecommendedSchedule {
-        + void execute()
-        - void printSemester()
+    + execute():void
+    - printSemester():void
 }
 class Specialisation {
-+{static} displaySpecialisations()
++ execute() : void
 }
 class SuUserModule {
 -moduleCode:String
-+ void execute()
++ SuUserModule(user: User, moduleCode: String)
++ execute() : void
 }
 class ViewGradRequirements {
-+ void execute()
++ ViewGradRequirements(user: User)
++ execute() : void
 }
 class Workload {
 -sem:int
 +Workload(user:User)
 +Workload(user:User, semester:String)
-+void execute()
++execute() : void
 }
 
-enum Grade {
+enum Grade <<enumeration>>{
 -label:String
 -gpa:double
     A_PLUS("A+", 5.0)
@@ -85,24 +105,28 @@ class User
 
 User <-- GetUserGPA
 User <--AddUserModule
-User <--AddCustomModule
+AddCustomModule --> User
 User <-- DeleteUserModule
+User <-- ListModules
+
 GradeModule --> User
 Grade <-- GradeModule
 
+Command <|-[dashed]- Specialisation
 Command <|-[dashed]- AddUserModule
-Command <|-[dashed]- AddCustomModule
+
 Command <|-[dashed]- DeleteUserModule
 Command <|-[dashed]- DetailModules
 Command <|-[dashed]- GetUserGPA
 Command <|-[dashed]- ListModules
 
+Command <|.. Help
 SuUserModule -[dashed]-|> Command
 GradeModule -[dashed]-|> Command
 RecommendedSchedule -[dashed]-|> Command
 Workload -[dashed]-|> Command
 ViewGradRequirements-[dashed]-|> Command
-
+AddCustomModule-[dashed]-|> Command
 
 
 @enduml
