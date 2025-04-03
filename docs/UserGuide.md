@@ -88,7 +88,36 @@ Deletes a module from the list of modules the user has.
 
 Example: `/delete CS2113`
 ```
-Module CS2113 successfully removed."
+Module CS2113 successfully removed.
+```
+
+## Details
+**`/detail MODULE_CODE`**
+
+Returns the details of the module. 
+
+Example: `/detail MA1511`
+```
++--------------------------------------------------------------------------------+
+| MA1511    | Engineering Calculus                                       | 2 MCs |
++--------------------------------------------------------------------------------+
+| This is a seven-week course specially designed for students majoring in        |
+| Engineering. It introduces the basic concepts in one variable and several      |
+| variable calculus with applications in engineering. Main topics: One           |
+| variable calculus. Power series. Partial differentiation. Multiple             |
+| integrals. Vector Calculus.                                                    |
++--------------------------------------------------------------------------------+
+| Preclusions:                                                                   |
+| If undertaking an Undergraduate Degree THEN ( must not have completed 1 of     |
+| MA1312/MA1505/MA1521/MA2002/MA2311/PC2134/PC2174/PC2174A/YSC1216 at a grade    |
+| of at least D)                                                                 |
++--------------------------------------------------------------------------------+
+| Prerequisites:                                                                 |
+| If undertaking an Undergraduate Degree THEN (( must have completed 1 of 06     |
+| MATHEMATICS/07 FURTHER MATHEMATICS at a grade of at least E) OR ( must have    |
+| completed 1 of MA1301/MA1301X at a grade of at least D))                       |
++--------------------------------------------------------------------------------+
+
 ```
 
 ## Help  
