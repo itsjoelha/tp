@@ -462,12 +462,17 @@ on; testers are expected to do more _exploratory_ testing.
 <span style="color:orange; text-decoration:underline;">Data persistence testing</span>
 </h3>
 
+These tests help verify the core functionality of the command parser and the application's robustness
+against invalid inputs.
+
+
 #### Handling Empty Module List
 - Test case: Ensure no modules are added, then execute `/view`.
     - Displays empty semester lists.
 
-#### Saving data
 
-These tests help verify the core functionality of the command parser and the application's robustness
-against invalid inputs.
+#### Saving data
+User and module data will be automatically saved upon call of `/exit` at  `[JAR file location]/data/mod_data.txt` & `[JAR file location]/data/user.txt` respectively.
+
+
 
