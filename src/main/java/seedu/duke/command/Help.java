@@ -1,7 +1,25 @@
 package seedu.duke.command;
 
-public class Help {
-    public static void help() {
+public class Help implements Command {
+    private final String command;
+
+    public Help() {
+        this.command = null;
+    }
+
+    public Help(String command) {
+        this.command = command;
+    }
+
+    public void execute() {
+        if (command == null) {
+            printAll();
+        } else {
+            printSpecific(command);
+        }
+    }
+
+    public void printAll() {
         System.out.println("+-----------------------+-----------------------------------+");
         System.out.println("| Command               | Description                       |");
         System.out.println("+-----------------------+-----------------------------------+");
@@ -24,7 +42,7 @@ public class Help {
         System.out.println("For further assistance, refer to the user guide at our GitHub repository.");
     }
 
-    public static void help(String command) {
+    public void printSpecific(String command) {
 
         switch (command) {
         case "view":

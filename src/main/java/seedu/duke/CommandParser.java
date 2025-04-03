@@ -3,6 +3,7 @@ package seedu.duke;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import seedu.duke.command.Command;
 import seedu.duke.command.ListModules;
 import seedu.duke.command.DetailModules;
 import seedu.duke.command.AddUserModule;
@@ -30,6 +31,8 @@ public class CommandParser {
 
     // This method will parse and handle commands
     public boolean parseCommand(String userInput) {
+
+        Command cmdObject = null;
 
         logger.info("Received user input: " + userInput);
         assert userInput != null : "User input should not be null";
@@ -145,10 +148,11 @@ public class CommandParser {
 
         case "/help":
             logger.info("Displaying help file.");
+
             if (words.length == 2) {
-                Help.help(words[1]);
+                cmdObject = new Help(words[1]);
             } else {
-                Help.help();
+                cmdObject = new Help();
             }
             break;
 
@@ -189,6 +193,8 @@ public class CommandParser {
             logger.warning("Unknown command: " + command);
             System.out.println("Unknown command. Type '/help' for a list of commands.");
         }
+
+        cmdObject.execute();
 
         return false;
 
