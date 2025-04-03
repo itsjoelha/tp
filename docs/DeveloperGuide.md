@@ -266,6 +266,18 @@ This section describes some noteworthy details on how certain features are
 implemented.
 
 <h4>
+<span style="color:orange; text-decoration:underline;">Add User Module</span>
+</h4>
+
+This class takes in the Module Code and Semester. It then retrieves the dictionary of User's modules (`semesterModules`) 
+from the `User` class, adds the new `Mod` to the corresponding semester list, creating new semester lists if it does 
+not exist. Then it sets the new list of modules in the `User` class `semesterModules`
+
+<h4>
+<span style="color:orange; text-decoration:underline;">Specialisation</span>
+</h4>
+This class simply prints out all the Specialisations. 
+
 <span style="color:orange; text-decoration:underline;">Retrieve User GPA</span>
 </h4>
 
