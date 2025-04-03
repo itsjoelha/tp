@@ -264,12 +264,20 @@ module name and number of MCs inputted by the user. It then adds the new module 
 <span style="color:orange;">Check for prerequisites</span>
 </h4>
 
-This check for prerequisite mechanism is facilitated by `Prereq`. It contains a `fulfillsPrereq This class includes the following
-subclasses: 
+This check for prerequisite mechanism is implemented by `Prereq`. It contains a `fulfillsPrereq()` function
+that returns true if all the modules in the user's schedule have had their prerequisite modules cleared.
+This class includes the following subclasses: 
 
 - `ModPrereq` -- Contains a constructor to instantiate a `Prereq` object containing the module code 
 and the minimum grade required.
-- `AndPrereq` -- Contains functions to check  
+- `AndPrereq` -- Contains functions to check for 'AND' prerequisites (i.e. prerequisites that must all be
+completed before taking a module).
+- `OrPrereq` -- Contains functions to check for 'OR' prerequisites (i.e. prerequisites where only one needs
+to be completed before taking module).
+
+`AndPrereq` and `OrPrereq` overrides the `fulfillsPrereq()` function.
+
+
 
 The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It
 extends `AddressBook` with an undo/redo history, stored internally as an
