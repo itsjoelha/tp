@@ -1,10 +1,5 @@
 package seedu.duke.command;
 
-import seedu.duke.data.Mod;
-
-import java.util.List;
-
-//import static seedu.duke.Duke.moduleList; // to implement strikethrough if already in list
 import static seedu.duke.data.GradModuleList.YEAR1SEM1MODULES;
 import static seedu.duke.data.GradModuleList.YEAR1SEM2MODULES;
 import static seedu.duke.data.GradModuleList.YEAR2SEM1MODULES;
@@ -14,8 +9,9 @@ import static seedu.duke.data.GradModuleList.YEAR3SEM2MODULES;
 import static seedu.duke.data.GradModuleList.YEAR4SEM1MODULES;
 import static seedu.duke.data.GradModuleList.YEAR4SEM2MODULES;
 
+import java.util.List;
 
-
+import seedu.duke.data.Mod;
 
 
 public class RecommendedSchedule implements Command {
@@ -38,7 +34,7 @@ public class RecommendedSchedule implements Command {
             return;
         }
         for (Mod m : semesterModules) {
-            System.out.println( m.getCode() + " - " + m.getName() );
+            System.out.println(m.getCode() + " - " + m.getName());
         }
     }
 

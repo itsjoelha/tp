@@ -1,5 +1,6 @@
 package seedu.duke;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import seedu.duke.command.ListModules;
 import seedu.duke.data.User;
@@ -14,6 +15,11 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 public class CommandParserTest {
+    @BeforeEach
+    public void setUp() {
+        currentUser.clearModules();
+    }
+
     @Test
     public void parseCommand_validCommands() {
         CommandParser parser = new CommandParser();

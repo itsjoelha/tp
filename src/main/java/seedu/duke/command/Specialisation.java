@@ -1,8 +1,8 @@
 package seedu.duke.command;
 
-public class Specialisation {
+public class Specialisation implements Command {
 
-    public static void displaySpecialisations() {
+    public void execute() {
 
         System.out.println("========== SPECIALISATIONS ==========\n" +
                 "Each specialisation offers a focused curriculum designed to equip students with\n" +

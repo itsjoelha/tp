@@ -1,17 +1,19 @@
 package seedu.duke.command;
 
-import static seedu.duke.Duke.currentUser;
-
 import seedu.duke.data.Mod;
+import seedu.duke.data.User;
 
 public class Workload implements Command {
+    private final User currentUser;
     private final int sem;
 
-    public Workload() {
+    public Workload(User user) {
+        this.currentUser = user;
         this.sem = 0;
     }
 
-    public Workload(String semester) {
+    public Workload(User user, String semester) {
+        this.currentUser = user;
         this.sem = Integer.parseInt(semester);
     }
 
@@ -30,6 +32,7 @@ public class Workload implements Command {
 
     @Override
     public void execute() {
+      
         if (currentUser.getAllModules().isEmpty()) {
             System.out.println("No modules in List");
             return;

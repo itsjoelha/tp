@@ -1,6 +1,11 @@
 package seedu.duke.command;
 
+import java.util.ArrayList;
+import java.util.Map;
+
 import seedu.duke.data.User;
+import seedu.duke.data.UserMod;
+import seedu.duke.errors.ModNotInDatabase;
 
 public class AddUserModule implements Command {
     private final String moduleCode;
@@ -20,11 +25,30 @@ public class AddUserModule implements Command {
             return;
         }
 
-        boolean added = user.addModule(moduleCode, semester);
-        if (added) {
+        Map<Integer, ArrayList<UserMod>> semesterModules = user.getSemesterModules();
+
+        try {
+            UserMod newMod = new UserMod(moduleCode);
+
+            semesterModules.putIfAbsent(semester, new ArrayList<>());
+            if (user.hasModule(moduleCode)) {
+                System.out.println("Failed to add module " + moduleCode.toUpperCase() + ". It may already exist.");
+                return;
+            }
+
+            semesterModules.get(semester).add(newMod);
+            user.setSemesterModules(semesterModules);
+
+            if (!user.fulfillsModPrereq(newMod, semester)) {
+                System.out.println("WARNING: " + moduleCode + " missing prerequisites");
+                return;
+            }
+
             System.out.println("Module " + moduleCode.toUpperCase() + " successfully added to Semester " + semester);
-        } else {
-            System.out.println("Failed to add module " + moduleCode.toUpperCase() + ". It may already exist.");
+
+
+        } catch (ModNotInDatabase e) {
+            System.out.println(moduleCode + " not in database. /addCustom to add custom modules");
         }
     }
 }
