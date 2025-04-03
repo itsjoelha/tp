@@ -113,6 +113,7 @@ Furthermore, certain edits can cause GrandRhombus to behave in unexpected ways (
 </div>
 
 ## Command Summary
+
 | Command           | Description                      | Arguments               | Format                       |
 |-------------------|----------------------------------|-------------------------|------------------------------|
 | `/view`           | View all modules                 | `<semester>`            | `/view` or `/view 1`         |
