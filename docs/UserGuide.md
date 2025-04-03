@@ -58,22 +58,72 @@ GrandRhombus is an Academic Life Planner which is in-depth and clear to plan the
 Lists out all selected modules.
 
 ## Add Module  
-**`/add MODULE_CODE`**  
+**`/add MODULE_CODE SEMESTER`**
+
 Adds a module to the list of modules the user has.  
-- Only adds if the module is in the database.  
-- Example:  
+- Only adds if the module is in the database.
+
+Example:  `/add CS2113 2`
+
+```
+Module CS2113 successfully added to Semester 2.
+```
 
 
 ## Add Custom Module  
-**`/addCustom MODULE_CODE`**  
-Prompts for MCs, workload (lectures, projects, assignments).  
-Adds a custom module.  
-- Example:  
+**`/addCustom MODULE_CODE SEMESTER CREDIT_NUMBER NAME`**
+
+Adds a module that is not in the existing database to the list of modules the user has.
+
+Example:  `/addCustom PL1101E 2 4 Intro to Psychology`
+
+
+```
+Module PL1101E successfully added to semester 2 as a Custom Module.
+```
 
 ## Delete  
 **`/delete MODULE_CODE`**  
-Deletes a module from the list of modules the user has.  
-- Example:  
+Deletes a module from the list of modules the user has.
+
+Example: `/delete CS2113`
+```
+Module CS2113 successfully removed.
+```
+
+## Details
+**`/detail MODULE_CODE`**
+
+Returns the details of the module. 
+
+Example: `/detail MA1511`
+```
++--------------------------------------------------------------------------------+
+| MA1511    | Engineering Calculus                                       | 2 MCs |
++--------------------------------------------------------------------------------+
+| This is a seven-week course specially designed for students majoring in        |
+| Engineering. It introduces the basic concepts in one variable and several      |
+| variable calculus with applications in engineering. Main topics: One           |
+| variable calculus. Power series. Partial differentiation. Multiple             |
+| integrals. Vector Calculus.                                                    |
++--------------------------------------------------------------------------------+
+| Preclusions:                                                                   |
+| If undertaking an Undergraduate Degree THEN ( must not have completed 1 of     |
+| MA1312/MA1505/MA1521/MA2002/MA2311/PC2134/PC2174/PC2174A/YSC1216 at a grade    |
+| of at least D)                                                                 |
++--------------------------------------------------------------------------------+
+| Prerequisites:                                                                 |
+| If undertaking an Undergraduate Degree THEN (( must have completed 1 of 06     |
+| MATHEMATICS/07 FURTHER MATHEMATICS at a grade of at least E) OR ( must have    |
+| completed 1 of MA1301/MA1301X at a grade of at least D))                       |
++--------------------------------------------------------------------------------+
+
+```
+## SU
+
+## GPA
+
+## Workload
 
 
 ## Help  

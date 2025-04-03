@@ -276,13 +276,7 @@ database into their schedule.
 The `execute()` method of this class creates a new `UserMod` object that contains the module code, 
 module name and number of MCs inputted by the user. It then adds the new module into a semester specified by the user. 
 
-<!-- <h4>
-<span style="color:orange; text-decoration:underline;">Module Data feature</span>
-</h4>
 
-<h4>
-<span style="color:orange; text-decoration:underline;">Check for prerequisites</span>
-</h4> -->
 
 <h4>
 <span style="color:orange; text-decoration:underline;">Add User Module</span>
