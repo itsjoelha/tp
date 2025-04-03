@@ -371,10 +371,6 @@ applications follow.
 The following activity diagram summarizes what happens when a user executes a
 new command:
 
-<h2>
-<span style="color:orange; text-decoration:bold;">END OF TEMPLATE</span>
-</h2>
-
 <h4>
 <span style="color:orange;">Design considerations:</span>
 </h4>
@@ -397,6 +393,9 @@ _{more aspects and alternatives to be added}_
 </h4>
 
 _{Explain here how the data archiving feature will be implemented}_
+<h2>
+<span style="color:orange; text-decoration:bold;">END OF TEMPLATE</span>
+</h2>
 
 ---
 
@@ -460,9 +459,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low
 **MSS**
 
 1. User requests to list modules
-2. AddressBook shows a list of modules in their schedule
+2. GrandRhombus shows a list of modules in their schedule
 3. User requests to add a specific module in the list
-4. AddressBook adds the module
+4. GrandRhombus adds the module
 
 Use case ends.
 
@@ -472,9 +471,9 @@ Use case ends.
 
 Use case ends.
 
-- 3a. The given index is invalid.
+- 3a. The given module code is invalid.
 
-  - 3a1. AddressBook shows an error message.
+  - 3a1. GrandRhombus shows an error message.
 
 Use case resumes at step 2.
 
@@ -485,7 +484,7 @@ _{More to be added}_
 </h4>
 
 1. Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
-2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2. Should be able to hold up to 180 MCs worth of modules in the list without a noticeable sluggishness in performance for typical usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 _{More to be added}_
@@ -495,6 +494,12 @@ _{More to be added}_
 </h4>
 
 - **Mainstream OS** : Windows, Linux, Unix, MacOS
+- **MC** : Modular Credits
+- **GPA** : Grade Point Average
+- **S/U** : Satisfactory/Unsatisfactory
+- **CEG** : Computer Engineering
+- **NUS** : National University of Singapore
+- **NUSMods** : A web application that provides information about modules and their prerequisites at NUS.
 
 ---
 
