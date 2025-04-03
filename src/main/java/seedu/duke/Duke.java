@@ -29,7 +29,7 @@ public class Duke {
             }
 
             String userInput = in.nextLine().trim();
-            isRunning = !commandParser.parseCommand(userInput); // If parseCommand returns true, exit loop
+            isRunning = commandParser.parseCommand(userInput); // If parseCommand returns true, exit loop
 
         }
 
