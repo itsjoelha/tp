@@ -552,8 +552,4 @@ on; testers are expected to do more _exploratory_ testing.
 <span style="color:orange; text-decoration:underline;">Saving data</span>
 </h3>
 
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-2. _{ more test cases …​ }_
+User and module data will be automatically saved upon call of `/exit` at  `[JAR file location]/data/mod_data.txt` & `[JAR file location]/data/user.txt` respectively.
