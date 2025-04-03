@@ -11,32 +11,44 @@ Grand Rhombus aims to provide <span style="color:blue;">CEG Students</span> with
 This planner <span style="color:red;">reduces confusion</span> from having to cross-reference multiple sources so that students <span style="color:red;">do not miss academic opportunities</span>.
 
 ---
+<h2>
+<span style="color:orange;">Table of Contents</span>
+</h2>
 
 - **Acknowledgements**
 - **Setting up, getting started**
 - **Design**
-  - Architecture
-  - UI component
-  - Logic component
-  - Model component
-  - Storage component
-  - Common classes
+    - Architecture
+    - UI component
+    - Logic component
+    - Model component
+    - Storage component
+    - Common classes
+
 - **Implementation**
-  - [Proposed] Undo/redo feature
-    - Proposed Implementation
-    - Design considerations:
-  - [Proposed] Data archiving
+    - Detail Module
+    - Grade Module
+    - List Module
+    - Recommended Schedule
+    - SU User Module
+    - View Graduation Requirements
+    - Graduation Module List
+    - Master Module List
+
+
 - **Documentation, logging, testing, configuration, dev-ops**
+
 - **Appendix: Requirements**
-  - Product scope
-  - User stories
-  - Use cases
-  - Non-Functional Requirements
-  - Glossary
+    - Product scope
+    - User stories
+    - Use cases
+    - Non-Functional Requirements
+    - Glossary
+
 - **Appendix: Instructions for manual testing**
-  - Launch and shutdown
-  - Deleting a person
-  - Saving data
+    - Launch and shutdown
+    - Deleting a person
+    - Saving data
 
 ---
 
@@ -180,7 +192,7 @@ How the `Command` component works:
 ---
 
 <h4>
-<span style="color:orange; text-decoration:underline;">Data component</span>
+<span style="color:orange; text-decoration:underline;">Data components</span>
 </h4>
 
 The `Data` component,
@@ -191,13 +203,70 @@ The `Data` component,
 data such as user details and modules. 
 - depends on some classes in the `Model` component (because the `Storage` component’s job is to save/retrieve objects that belong to the `Model`)
 
-Section about USER class
+### `User` class
 
-<h4>
-<span style="color:orange; text-decoration:underline;">Common Classes</span>
-</h4>
-Classes used by multiple components are in the `seedu.address.commons`
-package.
+The `User` class represents a user in the system. It contains information about the user's name, education level, GPA, current semester, and the modules they are taking each semester.
+
+#### Attributes:
+- `name`: The name of the user.
+- `education`: The education level of the user.
+- `gpa`: The current GPA of the user.
+- `currentSemester`: The current semester the user is in.
+- `semesterModules`: A map where the key is the semester number and the value is a list of `UserMod` objects representing the modules taken in that semester.
+
+#### Methods:
+- `getGPA()`: Returns the current GPA of the user.
+- `getTotalMCs()`: Returns the total number of modular credits (MCs) the user has taken.
+- `updateGPA()`: Updates the user's GPA based on their module grades.
+- `hasModule(String code)`: Checks if the user has a module with the given code.
+- `clearModules()`: Clears all modules from the user's record and resets the GPA.
+- `getModule(String code)`: Retrieves a module by its code.
+- `checkAllPrereqs()`: Checks if the user fulfills all prerequisites for their modules.
+- `fulfillsModPrereq(UserMod mod, int semester)`: Checks if the user fulfills the prerequisites for a specific module.
+- `getCurrentSemester()`: Returns the current semester of the user.
+- `setCurrentSemester(int currentSemester)`: Sets the current semester of the user.
+- `getName()`: Returns the name of the user.
+- `setName(String name)`: Sets the name of the user.
+- `getEducation()`: Returns the education level of the user.
+- `setEducation(EducationLevel education)`: Sets the education level of the user.
+- `getAllModules()`: Returns a list of all modules the user has taken.
+- `getAllModulesTilSemester(int semester)`: Returns a list of all modules the user has taken up to a specific semester.
+
+### `UserMod` class
+
+The `UserMod` class represents a module that a user is taking. It contains information about the module's code, name, number of modular credits (MCs), grade, and whether the module is S/U (Satisfactory/Unsatisfactory) optioned.
+
+#### Attributes:
+- `code`: The code of the module.
+- `name`: The name of the module.
+- `numMC`: The number of modular credits (MCs) for the module.
+- `grade`: The grade received for the module.
+- `isSU`: A boolean indicating if the module is S/U optioned.
+
+#### Methods:
+- `getCode()`: Returns the code of the module.
+- `getName()`: Returns the name of the module.
+- `getNumMC()`: Returns the number of modular credits (MCs) for the module.
+- `getGrade()`: Returns the grade received for the module.
+- `isSU()`: Returns whether the module is S/U optioned.
+
+### `Mod` class
+
+The `Mod` class represents a module in the system. It contains information about the module's code, name, number of modular credits (MCs), and prerequisites.
+
+#### Attributes:
+- `code`: The code of the module.
+- `name`: The name of the module.
+- `numMC`: The number of modular credits (MCs) for the module.
+- `prereqTree`: The prerequisite tree for the module.
+
+#### Methods:
+- `getCode()`: Returns the code of the module.
+- `getName()`: Returns the name of the module.
+- `getNumMC()`: Returns the number of modular credits (MCs) for the module.
+- `getPrereqTree()`: Returns the prerequisite tree for the module.
+- `getPrerequisites()`: Returns the list of prerequisite modules for the module.
+
 
 ---
 
@@ -205,132 +274,106 @@ package.
 <span style="color:orange;">Implementation</span>
 </h2>
 
-This section describes some noteworthy details on how certain features are
-implemented.
+*This section explains in detail how some noteworthy features are implemented for future developers to reference.*
+
 
 <h4>
-<span style="color:orange; text-decoration:underline;">[Proposed] Undo/redo feature</span>
+<span style="color:orange; text-decoration:underline;">Add Custom Module</span>
 </h4>
+
+The add custom module feature is implemented in the `AddCustomModule1` class that implements the
+`Command` class. This feature allows the user to add modules that are not within the existing
+database into their schedule. 
+
+The `execute()` method of this class creates a new `UserMod` object that contains the module code, 
+module name and number of MCs inputted by the user. It then adds the new module into a semester specified by the user. 
+
+
 
 <h4>
-<span style="color:orange;">Proposed Implementation</span>
+<span style="color:orange; text-decoration:underline;">Add User Module</span>
 </h4>
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It
-extends `AddressBook` with an undo/redo history, stored internally as an
-`addressBookStateList` and `currentStatePointer`. Additionally, it implements
-the following operations:
+This class takes in the Module Code and Semester. It then retrieves the dictionary of User's modules (`semesterModules`)  from the `User` class, adds the new `Mod` to the corresponding semester list, creating new semester lists if it does 
+not exist. 
 
-- `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-- `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-- `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+Then it sets the new list of modules in the `User` class `semesterModules`
 
-These operations are exposed in the `Model` interface as
-`Model#commitAddressBook()`, `Model#undoAddressBook()` and
-`Model#redoAddressBook()` respectively.
 
-Given below is an example usage scenario and how the undo/redo mechanism
-behaves at each step.
-
-Step 1. The user launches the application for the first time. The
-`VersionedAddressBook` will be initialized with the initial address book
-state, and the `currentStatePointer` pointing to that single address book
-state.
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the
-address book. The `delete` command calls `Model#commitAddressBook()`, causing
-the modified state of the address book after the `delete 5` command executes
-to be saved in the `addressBookStateList`, and the `currentStatePointer` is
-shifted to the newly inserted address book state.
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add`
-command also calls `Model#commitAddressBook()`, causing another modified
-address book state to be saved into the `addressBookStateList`.
-
-**Note:** If a command fails its execution, it will not call
-`Model#commitAddressBook()`, so the address book state will not be saved into
-the `addressBookStateList`.
-
-Step 4. The user now decides that adding the person was a mistake, and decides
-to undo that action by executing the `undo` command. The `undo` command will
-call `Model#undoAddressBook()`, which will shift the `currentStatePointer`
-once to the left, pointing it to the previous address book state, and restores
-the address book to that state.
-
-**Note:** If the `currentStatePointer` is at index 0, pointing to the initial
-AddressBook state, then there are no previous AddressBook states to restore.
-The `undo` command uses `Model#canUndoAddressBook()` to check if this is the
-case. If so, it will return an error to the user rather than attempting to
-perform the undo.
-
-The following sequence diagram shows how an undo operation goes through the
-`Logic` component:
-
-**Note:** The lifeline for `UndoCommand` should end at the destroy marker (X)
-but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-Similarly, how an undo operation goes through the `Model` component is shown
-below:
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`,
-which shifts the `currentStatePointer` once to the right, pointing to the
-previously undone state, and restores the address book to that state.
-
-**Note:** If the `currentStatePointer` is at index
-`addressBookStateList.size() - 1`, pointing to the latest address book state,
-then there are no undone AddressBook states to restore. The `redo` command
-uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will
-return an error to the user rather than attempting to perform the redo.
-
-Step 5. The user then decides to execute the command `list`. Commands that do
-not modify the address book, such as `list`, will usually not call
-`Model#commitAddressBook()`, `Model#undoAddressBook()` or
-`Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`.
-Since the `currentStatePointer` is not pointing at the end of the
-`addressBookStateList`, all address book states after the
-`currentStatePointer` will be purged. Reason: It no longer makes sense to redo
-the `add n/David …​` command. This is the behavior that most modern desktop
-applications follow.
-
-The following activity diagram summarizes what happens when a user executes a
-new command:
 
 <h4>
-<span style="color:orange;">Design considerations:</span>
+<span style="color:orange; text-decoration:underline;">Specialisation</span>
 </h4>
 
-**Aspect: How undo & redo executes:**
+This class simply prints out all the Specialisations. 
 
-- **Alternative 1 (current choice):** Saves the entire address book.
-  - Pros: Easy to implement.
-  - Cons: May have performance issues in terms of memory usage.
-- **Alternative 2:** Individual command knows how to undo/redo by itself.
-  - Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  - Cons: We must ensure that the implementation of each individual command are correct.
+This check for prerequisite mechanism is implemented by `Prereq`. It contains a `fulfillsPrereq()` function
+that returns true if all the modules in the user's schedule have had their prerequisite modules cleared.
+This class includes the following subclasses: 
 
-_{more aspects and alternatives to be added}_
+- `ModPrereq` -- Contains a constructor to instantiate a `Prereq` object containing the module code 
+and the minimum grade required.
+- `AndPrereq` -- Contains functions to check for 'AND' prerequisites (i.e. prerequisites that must all be
+completed before taking a module).
+- `OrPrereq` -- Contains functions to check for 'OR' prerequisites (i.e. prerequisites where only one needs
+to be completed before taking module).
 
----
+`AndPrereq` and `OrPrereq` overrides the `fulfillsPrereq()` function.
+
 
 <h4>
-<span style="color:orange; text-decoration:underline;">[Proposed] Data archiving</span>
+<span style="color:orange; text-decoration:underline;">Detail Module</span>
 </h4>
 
-_{Explain here how the data archiving feature will be implemented}_
+The Detail Module feature is implemented in the DetailModuleCommand class, which implements the Command interface. This feature allows the user to view detailed information about a particular module.
 
----
+<strong> How it works: </strong> When a user inputs a module code, such as `/detail CS2113`, the CommandParser processes the input and passes the module code to the `DetailModuleCommand`. The `execute()` method fetches information from the module database (stored in `ModData`), such as the module description, prerequisites, and credits, and displays it to the user.
 
-<h2>
-<span style="color:orange; text-decoration:bold;">Documentation, logging, testing, configuration, dev-ops</span>
-</h2>
 
-- [Documentation guide](/addressbook-level3/Documentation.html)
-- [Testing guide](/addressbook-level3/Testing.html)
-- [Logging guide](/addressbook-level3/Logging.html)
-- [Configuration guide](/addressbook-level3/Configuration.html)
-- [DevOps guide](/addressbook-level3/DevOps.html)
+<h4>
+<span style="color:orange; text-decoration:underline;">List Module</span>
+</h4>
+
+The List Module feature is implemented in the ListModuleCommand class, which lists all modules that a user has registered for.
+
+The user enters `/list` to see all the modules they are currently taking. 
+
+The command fetches the user's list of modules from all semesters from the `User` and displays them in a readable format, sorted by semester, including the `moduleCode`, `moduleName`, and the `GPA` that the user had recorded for that module.
+
+<h4>
+<span style="color:orange; text-decoration:underline;">Retrieve User GPA</span>
+</h4>
+
+
+The GPA feature is implemented in the `GetUserGPA` class, which implements the `Command` interface.
+
+The `execute()` method of this class retrieves the user's GPA from the `User` object and displays it
+to the user. 
+
+This mechanism is facilitated by the `User` class, which contains the `updateGPA()` method to calculate the GPA based on the user's module grades.
+
+<h4>
+<span style="color:orange; text-decoration:underline;">Help Command</span>
+</h4>
+
+The help command is implemented in the `HelpCommand` class, which implements the `Command` interface.
+
+The `execute()` method of this class displays a list of available commands and their descriptions to the user.
+
+This mechanism is facilitated by the `CommandParser` class, which maps user input to the corresponding command.
+
+
+<h4>
+<span style="color:orange; text-decoration:underline;">SU User Module</span>
+</h4>
+
+The SU (Satisfactory/Unsatisfactory) User Module feature is implemented in the `SUUserModuleCommand` class, which allows users to mark a module as taken under the **S/U** grading option.
+
+The user can type a command like `/su CS2113` to mark the module `CS2113` as S/U should it be stored as a `UserMod` within the current `User`. 
+
+This will allow the user to void the module when calculating their GPA.
+
+The system updates the `UserMod` object, setting the `isSU` flag to true for that module. The grade of the module is still stored but doesn't contribute to GPA calculations.
 
 ---
 
@@ -344,14 +387,14 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile** :
 
-- has a need to manage a significant number of contacts
+- NUS CEG Students
+- has a need to manage their academic workload
 - prefer desktop apps over other types
 - can type fast
 - prefers typing to mouse interactions
 - is reasonably comfortable using CLI apps
 
-**Value proposition** : manage contacts faster than a typical mouse/GUI driven
-app
+**Value proposition** : We provide CEG Students with an Academic Life Planner which is in-depth and clear to plan their future. This planner reduces confusion from having to cross-reference multiple sources so that students do not miss academic opportunities.
 
 <h4>
 <span style="color:orange; text-decoration:underline;">User Stories</span>
@@ -360,32 +403,31 @@ app
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low
 (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ---------------------------- | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
-
-_{More to be added}_
+| Priority | As a …​                                                | I want to …​                                                                                | So that I can…​                                            |
+|----------|--------------------------------------------------------|---------------------------------------------------------------------------------------------|------------------------------------------------------------|
+| `* * *`  | disciplined student                                    | be able to see my GPA, as well as an estimated future GPA based on my current module grades | make informed decisions about my future workload.          |
+| `* * *`  | international student, entering NUS as a CEG1 student. | be able to see the platforms that I need to register on and their deadlines                 | register on time.                                          |
+| `* * *`  | student who wants to plan my academic journey          | view my graduation requirements and track my progress                                       | ensure I graduate on time.                                 |
+| `* *`    | student who is considering taking a minor              | see how the minor requirements fit into my current schedule                                 | decide if I can take the minor without overloading myself. |
+| `* *`    | student who is planning to go on an exchange program   | know which modules I can map to my degree requirements                                      | plan my exchange program effectively.                      |
+| `*`      | student who is curious about other specializations     | explore the requirements for other specializations                                          | consider switching if needed.                              |
+| `*`      | student who wants to improve my productivity           | receive tips on how to manage my time effectively                                           | balance my academic and personal life.                     |
 
 <h4>
 <span style="color:orange; text-decoration:underline;">Use cases</span>
 </h4>
 
-(For all use cases below, the **System** is the `AddressBook` and the
+(For all use cases below, the **System** is `GrandRhombus` and the
 **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Add a Module**
 
 **MSS**
 
-1. User requests to list persons
-2. AddressBook shows a list of persons
-3. User requests to delete a specific person in the list
-4. AddressBook deletes the person
+1. User requests to list modules
+2. GrandRhombus shows a list of modules in their schedule
+3. User requests to add a specific module in the list
+4. GrandRhombus adds the module
 
 Use case ends.
 
@@ -395,20 +437,20 @@ Use case ends.
 
 Use case ends.
 
-- 3a. The given index is invalid.
+- 3a. The given module code is invalid.
 
-  - 3a1. AddressBook shows an error message.
+  - 3a1. GrandRhombus shows an error message.
 
 Use case resumes at step 2.
 
 _{More to be added}_
 
 <h4>
-<span style="color:orange; text-decoration:underline;">Non-Fuctional Requirements</span>
+<span style="color:orange; text-decoration:underline;">Non-Functional Requirements</span>
 </h4>
 
 1. Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
-2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2. Should be able to hold up to 180 MCs worth of modules in the list without a noticeable sluggishness in performance for typical usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 _{More to be added}_
@@ -418,7 +460,12 @@ _{More to be added}_
 </h4>
 
 - **Mainstream OS** : Windows, Linux, Unix, MacOS
-- **Private contact detail** : A contact detail that is not meant to be shared with others
+- **MC** : Modular Credits
+- **GPA** : Grade Point Average
+- **S/U** : Satisfactory/Unsatisfactory
+- **CEG** : Computer Engineering
+- **NUS** : National University of Singapore
+- **NUSMods** : A web application that provides information about modules and their prerequisites at NUS.
 
 ---
 
@@ -495,12 +542,17 @@ on; testers are expected to do more _exploratory_ testing.
 <span style="color:orange; text-decoration:underline;">Data persistence testing</span>
 </h3>
 
+These tests help verify the core functionality of the command parser and the application's robustness
+against invalid inputs.
+
+
 #### Handling Empty Module List
 - Test case: Ensure no modules are added, then execute `/view`.
     - Displays empty semester lists.
 
-#### Saving data
 
-These tests help verify the core functionality of the command parser and the application's robustness
-against invalid inputs.
+#### Saving data
+User and module data will be automatically saved upon call of `/exit` at  `[JAR file location]/data/mod_data.txt` & `[JAR file location]/data/user.txt` respectively.
+
+
 
