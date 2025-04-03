@@ -120,11 +120,40 @@ Example: `/detail MA1511`
 
 ```
 ## SU
+**`/su MODULE_CODE`**
+
+S/U a module.
+
+Example: `/su CS2113`
+```
+Module CS2113 successfully SU-ed.
+```
+
 
 ## GPA
+**`/gpa`**
+
+Calculates the GPA of the modules the user has taken.
+
+Example: `/gpa`
+```
+Your Current GPA: 4.0
+```
 
 ## Workload
+**`/workload`**
+**`/workload SEMESTER`**
 
+Calculates the workload of the modules the user has taken.
+
+Example: `/workload 1`
+```
++-----------+-----+-------------+---------+---------+----------+----------+
+| Code      | MCs | Lecture Hrs | Tut Hrs | Lab Hrs | Proj Hrs | Prep Hrs |
++-----------+-----+-------------+---------+---------+----------+----------+
+| CS2113    | 4   | 2.0         | 1.0     | 0.0     | 3.0      | 4.0      |
++-----------+-----+-------------+---------+---------+----------+----------+
+```
 
 ## Help  
 **`/help`**  
