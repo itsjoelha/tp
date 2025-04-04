@@ -221,5 +221,6 @@ public class Specialisation implements Command {
         textWrapDescription("EE4503 Power Electronics for Sustainable Energy Technologies (4 Units)");
         textWrapDescription("EE4101 RF Communications (4 Units)");
         printHeaderDivider();
+
     }
 }
