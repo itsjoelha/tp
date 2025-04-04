@@ -17,12 +17,14 @@ This planner <span style="color:red;">reduces confusion</span> from having to cr
 Here are my contributions to the project
 
 - **Command Parser**
-    - Splits the user inputs into different commands and executes the relevant methods.
+  - Splits the user inputs into different commands and executes the relevant methods.
 - **Workload**
-    - Implemented 'workload' command to display workload hours for the modules taken by the user.
-    - Displays workload by Semester or for all the modules the user is taking.
+  - Implemented 'workload' command to display workload hours for the modules taken by the user.
+  - Displays workload by Semester or for all the modules the user is taking.
 - **Specialisation**
-    - Displays all the specialisations that users can take.
+  - Displays all the specialisations that users can take.
+- **Graduation**
+  - Displays modules required for the user to graduate.
 - **Refactored Code**
 - **Test Cases**
 
