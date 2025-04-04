@@ -25,7 +25,7 @@ public class AddCustomModule implements Command {
     @Override
     public void execute() { // test
         if (semester < 1 || semester > 8) {
-            System.out.println("Invalid semester. Please choose between 1 and 8.");
+            System.out.println("Invalid semester. Please choose a number between 1 and 8.");
             return;
         }
 
@@ -36,14 +36,14 @@ public class AddCustomModule implements Command {
         semesterModules.putIfAbsent(semester, new ArrayList<>());
 
         if (user.hasModule(moduleCode)) {
-            System.out.println("Failed to add module " + moduleCode + ". It already exists.");
+            System.out.println("Failed to add module " + moduleCode.toUpperCase() + ". It already exists.");
             return; // Module already exists
         }
 
         semesterModules.get(semester).add(newMod);
         user.setSemesterModules(semesterModules);
 
-        System.out.println("Module " + moduleCode + " successfully added to semester " + semester +
+        System.out.println("Module " + moduleCode.toUpperCase() + " successfully added to Semester " + semester +
                 " as a Custom Module.");
     }
 

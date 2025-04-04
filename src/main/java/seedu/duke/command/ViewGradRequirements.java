@@ -32,13 +32,12 @@ public class ViewGradRequirements implements Command {
                 "-----------------+");
 
         int totalMCs = user.getTotalMCs();
-        System.out.println("| Current MCs: " + totalMCs + "                                             " +
-                "            " +
-                "                       |");
+        System.out.println("| Current MCs: " + totalMCs + String.format("%-" + (94 - ("Current MCs: " +
+                totalMCs).length()) + "s", "") + "|");
 
         if (totalMCs >= 160) {
-            System.out.println("| You have sufficient MCs to graduate!                                          " +
-                    "     |");
+            System.out.println("| You have sufficient MCs to graduate!                              " +
+                    "                            |");
         } else {
             System.out.println("| Missing MCs: " + (160 - totalMCs) + "                                      " +
                     "                                        |");

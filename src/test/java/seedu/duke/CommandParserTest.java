@@ -89,7 +89,7 @@ public class CommandParserTest {
 
         System.setOut(System.out);
         String output = out.toString().trim();
-        assertTrue(output.contains("Module PL1101E successfully added to semester 2 as a Custom Module."));
+        assertTrue(output.contains("Module PL1101E successfully added to Semester 2 as a Custom Module."));
     }
 
     @Test
