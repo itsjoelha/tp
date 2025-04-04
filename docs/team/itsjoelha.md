@@ -23,6 +23,8 @@ Here are my contributions to the project
     - Displays workload by Semester or for all the modules the user is taking.
 - **Specialisation**
     - Displays all the specialisations that users can take.
+- **Graduation**
+    - Displays modules required for the user to graduate.
 - **Refactored Code**
 - **Test Cases**
 
