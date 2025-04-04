@@ -92,7 +92,7 @@ public class CommandParser {
             if (words.length < 5) {
                 logger.warning("Add custom module command missing unspecified content");
                 System.out.println("Error: Please specify module details to add custom module.");
-                System.out.println("Usage: /addCustom MODULE_CODE SEMESTER CREDIT_NUMBER NAME");
+                System.out.println("Usage: /addCustom MODULE_CODE SEMESTER NUMBER_OF_CREDITS NAME");
                 break;
             }
             try {
@@ -122,7 +122,7 @@ public class CommandParser {
         case "/su":
             if (words.length < 2) {
                 logger.warning("Su command missing module code.");
-                System.out.println("Error: Please specify a module code to suspend.");
+                System.out.println("Error: Please specify a module code to S/U.");
                 break;
             }
             logger.info("Executing su command with module code: " + words[1]);
@@ -156,8 +156,13 @@ public class CommandParser {
             break;
 
         case "/grad":
-            logger.info("Executing ViewGradRequirements command.");
-            cmdObject = new ViewGradRequirements(currentUser);
+            if (words.length > 1) {
+                logger.warning("Graduation Requirements command doesn't accept additional arguments.");
+                System.out.println("Error: The '/grad' command doesn't accept any arguments.");
+            } else {
+                logger.info("Executing ViewGradRequirements command.");
+                cmdObject = new ViewGradRequirements(currentUser);
+            }
             break;
 
         case "/schedule":
@@ -166,8 +171,13 @@ public class CommandParser {
             break;
 
         case "/spec":
-            logger.info("Displaying Specialisations.");
-            cmdObject = new Specialisation();
+            if (words.length > 1) {
+                logger.warning("Specialisation command doesn't accept additional arguments.");
+                System.out.println("Error: The '/spec' command doesn't accept any arguments.");
+            } else {
+                logger.info("Displaying Specialisations.");
+                cmdObject = new Specialisation();
+            }
             break;
 
         case "/workload":
