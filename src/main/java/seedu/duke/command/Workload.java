@@ -21,12 +21,12 @@ public class Workload implements Command {
 
         if (currentUser.getSemesterModules().containsKey(sem)) {
             for (Mod m : currentUser.getSemesterModules().get(sem)) {
-                System.out.printf("| %-9s | %-3d | %-11.1f | %-7.1f | %-7.1f | %-8.1f | %-8.1f |\n",
-                        m.getCode(), m.getNumMC(), m.getLectureHours(), m.getTutHours(),
+                System.out.printf("| %-9s | %-3d | %-3d | %-11.1f | %-7.1f | %-7.1f | %-8.1f | %-8.1f |\n",
+                        m.getCode(), sem, m.getNumMC(), m.getLectureHours(), m.getTutHours(),
                         m.getLabHours(), m.getProjHours(), m.getPrepHours());
             }
 
-            System.out.println("+-----------+-----+-------------+---------+---------+----------+----------+");
+            System.out.println("+-----------+-----+-----+-------------+---------+---------+----------+----------+");
         }
     }
 
@@ -38,9 +38,9 @@ public class Workload implements Command {
             return;
         }
 
-        System.out.println("+-----------+-----+-------------+---------+---------+----------+----------+");
-        System.out.println("| Code      | MCs | Lecture Hrs | Tut Hrs | Lab Hrs | Proj Hrs | Prep Hrs |");
-        System.out.println("+-----------+-----+-------------+---------+---------+----------+----------+");
+        System.out.println("+-----------+-----+-----+-------------+---------+---------+----------+----------+");
+        System.out.println("| Code      | Sem | MCs | Lecture Hrs | Tut Hrs | Lab Hrs | Proj Hrs | Prep Hrs |");
+        System.out.println("+-----------+-----+-----+-------------+---------+---------+----------+----------+");
 
         if (sem != 0) {
             execute(sem);
@@ -48,11 +48,23 @@ public class Workload implements Command {
         }
 
         for (Mod m : currentUser.getAllModules()) {
-            System.out.printf("| %-9s | %-3d | %-11.1f | %-7.1f | %-7.1f | %-8.1f | %-8.1f |\n",
-                    m.getCode(), m.getNumMC(), m.getLectureHours(), m.getTutHours(),
+            // Get the semester for each module
+            int moduleSem = getSemesterForModule(m);
+            System.out.printf("| %-9s | %-3d | %-3d | %-11.1f | %-7.1f | %-7.1f | %-8.1f | %-8.1f |\n",
+                    m.getCode(), moduleSem, m.getNumMC(), m.getLectureHours(), m.getTutHours(),
                     m.getLabHours(), m.getProjHours(), m.getPrepHours());
         }
 
-        System.out.println("+-----------+-----+-------------+---------+---------+----------+----------+");
+        System.out.println("+-----------+-----+-----+-------------+---------+---------+----------+----------+");
+    }
+
+    // Helper method to get semester for a module
+    private int getSemesterForModule(Mod module) {
+        for (int semester : currentUser.getSemesterModules().keySet()) {
+            if (currentUser.getSemesterModules().get(semester).contains(module)) {
+                return semester;
+            }
+        }
+        return 0; // Default if not found
     }
 }
