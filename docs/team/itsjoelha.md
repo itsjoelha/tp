@@ -16,7 +16,7 @@ This planner <span style="color:red;">reduces confusion</span> from having to cr
 
 Here are my contributions to the project
 
-- **CommandParser**
+- **Command Parser**
   - Splits the user inputs into different commands and executes the relevant methods.
 - **Workload**
   - Implemented 'workload' command to display workload hours for the modules taken by the user.
