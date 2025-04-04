@@ -18,7 +18,7 @@ public class AddCustomModule implements Command {
         this.numMC = numMC;
         this.name = name;
         this.user = user;
-        this.moduleCode = moduleCode;
+        this.moduleCode = moduleCode.toUpperCase();
         this.semester = semester;
     }
 
@@ -30,7 +30,7 @@ public class AddCustomModule implements Command {
         }
 
         assert semester >= 1 && semester <= 8 : "Invalid semester";
-        UserMod newMod = new UserMod(moduleCode, numMC, name);
+        UserMod newMod = new UserMod(moduleCode.toUpperCase(), numMC, name);
         assert newMod != null: "newMod not instantiated yet";
         Map<Integer, ArrayList<UserMod>> semesterModules = user.getSemesterModules();
         semesterModules.putIfAbsent(semester, new ArrayList<>());
