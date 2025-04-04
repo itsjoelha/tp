@@ -24,27 +24,67 @@ public class ViewGradRequirements implements Command {
     }
 
     public void execute() {
-        System.out.println("=== Viewing Graduation Requirements ===");
-      
-        int totalMCs = user.getTotalMCs();
+        System.out.println("+----------------------------------------------------------------------------------------" +
+                "-------+");
+        System.out.println("| Viewing Graduation Requirements                                                               |");
+        System.out.println("+----------------------------------------------------------------------------------------" +
+                "-------+");
 
-        System.out.println("Current MCs: " + totalMCs);
+        int totalMCs = user.getTotalMCs();
+        System.out.println("| Current MCs: " + totalMCs + "                                                         " +
+                "                       |");
 
         if (totalMCs >= 160) {
-            System.out.println("You have sufficient MCs to graduate!");
+            System.out.println("| You have sufficient MCs to graduate!                                          " +
+                    "     |");
         } else {
-            System.out.println("Missing MCs: " + (160 - totalMCs));
+            System.out.println("| Missing MCs: " + (160 - totalMCs) + "                                      " +
+                    "                                        |");
         }
 
-        System.out.println("\n=== Modules Missing ===");
+        System.out.println("+------------------------------------------------------------------------------" +
+                "-----------------+");
+        System.out.println("| Modules Missing                              " +
+                "                                                 |");
+
         List<Mod> missingModules = getMissingModules();
 
         if (missingModules.isEmpty()) {
-            System.out.println("You have completed all required modules!");
+            System.out.println("| You have completed all required modules!                                                 |");
+            System.out.println("+-----------+-----------------------------------+-----------+----------------------------------+");
         } else {
-            for (Mod m : missingModules) {
-                System.out.println("X" + m.getCode() + " - " + m.getName());
+            // Display missing modules in a table format with two columns
+            System.out.println("+-----------+-----------------------------------+-----------+-----------------------------------+");
+            System.out.println("| Mod Code  | Mod Name                          | Mod Code  | Mod Name                          |");
+            System.out.println("+-----------+-----------------------------------+-----------+-----------------------------------+");
+
+            for (int i = 0; i < missingModules.size(); i += 2) {
+                String code1 = missingModules.get(i).getCode();
+                String name1 = missingModules.get(i).getName();
+
+                if (i + 1 < missingModules.size()) {
+                    // Two modules per row
+                    String code2 = missingModules.get(i + 1).getCode();
+                    String name2 = missingModules.get(i + 1).getName();
+
+                    // Truncate long module names
+                    String truncatedName1 = name1.length() > 33 ? name1.substring(0, 30) + "..." : name1;
+                    String truncatedName2 = name2.length() > 33 ? name2.substring(0, 30) + "..." : name2;
+
+                    System.out.printf("| %-9s | %-33s | %-9s | %-33s |\n",
+                            code1, truncatedName1, code2, truncatedName2);
+                } else {
+                    // Last row with only one module
+                    // Truncate long module name
+                    String truncatedName1 = name1.length() > 33 ? name1.substring(0, 30) + "..." : name1;
+
+                    System.out.printf("| %-9s | %-33s | %-9s | %-33s |\n",
+                            code1, truncatedName1, "", "");
+                }
             }
+
+            System.out.println("+-----------+-----------------------------------+-----------+---------------" +
+                    "--------------------+");
         }
     }
 
