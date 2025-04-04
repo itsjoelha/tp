@@ -50,9 +50,23 @@ public class CommandParser {
 
         switch (command) {
         case "/view":
-            if (words.length == 2) {
-                logger.info("Executing ListModules command to view modules in semester" + "semester");
-                cmdObject = new ListModules(currentUser, words[1]);
+            if (words.length > 2) {
+                logger.warning("View command has too many arguments.");
+                System.out.println("Error: The '/view' command accepts at most one argument (semester number).");
+            } else if (words.length == 2) {
+                try {
+                    int semester = Integer.parseInt(words[1]);
+                    if (semester < 1 || semester > 8) {
+                        logger.warning("Invalid semester number: " + semester);
+                        System.out.println("Error: Semester must be a number between 1 and 8.");
+                    } else {
+                        logger.info("Executing ListModules command to view modules in semester " + semester);
+                        cmdObject = new ListModules(currentUser, words[1]);
+                    }
+                } catch (NumberFormatException e) {
+                    logger.warning("Invalid semester format in View command.");
+                    System.out.println("Error: Semester must be a number between 1 and 8.");
+                }
             } else {
                 logger.info("Executing ListModules command to view all modules.");
                 cmdObject = new ListModules(currentUser);
@@ -222,3 +236,4 @@ public class CommandParser {
 
     }
 }
+
