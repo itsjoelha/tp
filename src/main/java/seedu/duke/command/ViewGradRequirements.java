@@ -14,6 +14,7 @@ import java.util.List;
 
 import seedu.duke.data.Mod;
 import seedu.duke.data.User;
+import seedu.duke.data.UserMod;
 
 
 public class ViewGradRequirements implements Command {
@@ -95,6 +96,12 @@ public class ViewGradRequirements implements Command {
     }
 
     private List<Mod> getMissingModules() {
+
+        // Check if user has any GEC module
+        boolean hasGecModule = hasModuleWithSubstring("GEC");
+        // Check if user has any GEN module
+        boolean hasGenModule = hasModuleWithSubstring("GEN");
+
         List<Mod> allGradModules = new ArrayList<>();
         allGradModules.addAll(YEAR1SEM1MODULES);
         allGradModules.addAll(YEAR1SEM2MODULES);
@@ -106,12 +113,45 @@ public class ViewGradRequirements implements Command {
         allGradModules.addAll(YEAR4SEM2MODULES);
 
         List<Mod> missingModules = new ArrayList<>();
+
         for (Mod m : allGradModules) {
-            if (!user.hasModule(m.getCode())) {
+            String code = m.getCode();
+
+            // For GEC1XXX check if user has any GEC module
+            if (code.equals("GEC1XXX")) {
+                if (!hasGecModule) {
+                    missingModules.add(m);
+                }
+            }
+
+            // For GEN1XXX check if user has any GEN module
+            else if (code.equals("GEN1XXX")) {
+                if (!hasGenModule) {
+                    missingModules.add(m);
+                }
+            }
+
+            // For all other modules check normally
+            else if (!user.hasModule(code)) {
                 missingModules.add(m);
             }
         }
         return missingModules;
+    }
+
+    private boolean hasModuleWithSubstring(String substring) {
+        // Get all modules from the user
+        ArrayList<UserMod> userModules = user.getAllModules();
+
+        // Check if any module code contains the substring
+        for (UserMod module : userModules) {
+            String code = module.getCode();
+            if (code != null && code.contains(substring)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
 
