@@ -6,9 +6,12 @@
 
 ---
 
-Grand Rhombus aims to provide <span style="color:blue;">CEG Students</span> with an <span style="color:green;">Academic Life Planner</span> which is <span style="color:red;">_in-depth_</span> and <span style="color:red;">_clear_</span> to plan their future.
+Grand Rhombus aims to provide <span style="color:blue;">CEG Students</span> with an 
+<span style="color:green;">Academic Life Planner</span> which is 
+<span style="color:red;">_in-depth_</span> and <span style="color:red;">_clear_</span> to plan their future.
 
-This planner <span style="color:red;">reduces confusion</span> from having to cross-reference multiple sources so that students <span style="color:red;">do not miss academic opportunities</span>.
+This planner <span style="color:red;">reduces confusion</span> from having to cross-reference multiple 
+sources so that students <span style="color:red;">do not miss academic opportunities</span>.
 
 ---
 <h2>
