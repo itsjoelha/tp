@@ -16,17 +16,14 @@ This planner <span style="color:red;">reduces confusion</span> from having to cr
 
 Here are my contributions to the project
 
-- **New Features**
-    - CommandParser
-      1. Splits the user inputs into different commands and executes the relevant methods.
-    - Workload
-      1. Implemented 'workload' command to display workload hours for the modules taken by the user.
-      2. Displays workload by Semester or for all the modules the user is taking.
-    - Specialisation
-      1. Displays all the specialisations that users can take.
-
+- **CommandParser**
+  - Splits the user inputs into different commands and executes the relevant methods.
+- **Workload**
+  - Implemented 'workload' command to display workload hours for the modules taken by the user.
+  - Displays workload by Semester or for all the modules the user is taking.
+- **Specialisation**
+  - Displays all the specialisations that users can take.
 - **Refactored Code**
-- **Documentation**
 - **Test Cases**
 
 ---
