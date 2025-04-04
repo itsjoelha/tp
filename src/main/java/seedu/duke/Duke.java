@@ -17,7 +17,6 @@ public class Duke {
         System.out.println("Welcome to Grand Rhombus, your personal CEG Assistant");
 
         currentUser = userData.loadUserData();
-
         Scanner in = new Scanner(System.in);
         boolean isRunning = true;
 

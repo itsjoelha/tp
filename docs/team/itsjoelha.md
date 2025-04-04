@@ -4,9 +4,12 @@
 <h2>
 <span style="color:orange;">Project: Grand Rhombus</span>
 </h2>
-Grand Rhombus aims to provide <span style="color:blue;">CEG Students</span> with an <span style="color:green;">Academic Life Planner</span> which is <span style="color:red;"> in-depth </span> and <span style="color:red;"> clear </span> to plan their future.
+Grand Rhombus aims to provide <span style="color:blue;">CEG Students</span> with an 
+<span style="color:green;">Academic Life Planner</span> which is <span style="color:red;"> in-depth 
+</span> and <span style="color:red;"> clear </span> to plan their future.
 
-This planner <span style="color:red;">reduces confusion</span> from having to cross-reference multiple sources so that students <span style="color:red;">do not miss academic opportunities</span>.
+This planner <span style="color:red;">reduces confusion</span> from having to cross-reference multiple sources 
+so that students <span style="color:red;">do not miss academic opportunities</span>.
 
 ---
 
@@ -17,12 +20,14 @@ This planner <span style="color:red;">reduces confusion</span> from having to cr
 Here are my contributions to the project
 
 - **Command Parser**
-    - Splits the user inputs into different commands and executes the relevant methods.
+  - Splits the user inputs into different commands and executes the relevant methods.
 - **Workload**
-    - Implemented 'workload' command to display workload hours for the modules taken by the user.
-    - Displays workload by Semester or for all the modules the user is taking.
+  - Implemented 'workload' command to display workload hours for the modules taken by the user.
+  - Displays workload by Semester or for all the modules the user is taking.
 - **Specialisation**
-    - Displays all the specialisations that users can take.
+  - Displays all the specialisations that users can take.
+- **Graduation**
+  - Displays modules required for the user to graduate.
 - **Refactored Code**
 - **Test Cases**
 
