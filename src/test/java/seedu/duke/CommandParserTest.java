@@ -31,7 +31,7 @@ public class CommandParserTest {
         assertDoesNotThrow(() -> parser.parseCommand("/help"));
         assertDoesNotThrow(() -> parser.parseCommand("/view"));
         assertDoesNotThrow(() -> parser.parseCommand("/schedule"));
-        assertDoesNotThrow(() -> parser.parseCommand("/specialisation"));
+        assertDoesNotThrow(() -> parser.parseCommand("/spec"));
         assertDoesNotThrow(() -> parser.parseCommand("/delete CS2113"));
     }
 
