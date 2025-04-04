@@ -24,14 +24,16 @@ public class ViewGradRequirements implements Command {
     }
 
     public void execute() {
-        System.out.println("+----------------------------------------------------------------------------------------" +
-                "-------+");
-        System.out.println("| Viewing Graduation Requirements                                                               |");
-        System.out.println("+----------------------------------------------------------------------------------------" +
-                "-------+");
+        System.out.println("+----------------------------------------------------------------------------" +
+                "-------------------+");
+        System.out.println("| Viewing Graduation Requirements                                            " +
+                "                   |");
+        System.out.println("+------------------------------------------------------------------------------" +
+                "-----------------+");
 
         int totalMCs = user.getTotalMCs();
-        System.out.println("| Current MCs: " + totalMCs + "                                                         " +
+        System.out.println("| Current MCs: " + totalMCs + "                                             " +
+                "            " +
                 "                       |");
 
         if (totalMCs >= 160) {
@@ -50,13 +52,18 @@ public class ViewGradRequirements implements Command {
         List<Mod> missingModules = getMissingModules();
 
         if (missingModules.isEmpty()) {
-            System.out.println("| You have completed all required modules!                                                 |");
-            System.out.println("+-----------+-----------------------------------+-----------+----------------------------------+");
+            System.out.println("| You have completed all required modules!                             " +
+                    "                    |");
+            System.out.println("+-----------+-----------------------------------+-----------+----------" +
+                    "------------------------+");
         } else {
             // Display missing modules in a table format with two columns
-            System.out.println("+-----------+-----------------------------------+-----------+-----------------------------------+");
-            System.out.println("| Mod Code  | Mod Name                          | Mod Code  | Mod Name                          |");
-            System.out.println("+-----------+-----------------------------------+-----------+-----------------------------------+");
+            System.out.println("+-----------+-----------------------------------+-----------+-------------" +
+                    "----------------------+");
+            System.out.println("| Mod Code  | Mod Name                          | Mod Code  | Mod Name     " +
+                    "                     |");
+            System.out.println("+-----------+-----------------------------------+-----------+--------------" +
+                    "---------------------+");
 
             for (int i = 0; i < missingModules.size(); i += 2) {
                 String code1 = missingModules.get(i).getCode();
