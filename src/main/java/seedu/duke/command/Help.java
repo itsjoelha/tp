@@ -33,7 +33,7 @@ public class Help implements Command {
         System.out.printf("| %-28s | %-33s |\n", "/detail <module code>", "View details of a module");
         System.out.printf("| %-28s | %-33s |\n", "/grad", "Check if you can graduate");
         System.out.printf("| %-28s | %-33s |\n", "/schedule", "Generate a schedule for students");
-        System.out.printf("| %-28s | %-33s |\n", "/specialisation", "View specialisations");
+        System.out.printf("| %-28s | %-33s |\n", "/spec", "View specialisations");
         System.out.printf("| %-28s | %-33s |\n", "/workload", "Display workload");
         System.out.printf("| %-28s | %-33s |\n", "/help", "Show this help message");
         System.out.printf("| %-28s | %-33s |\n", "/exit", "Exit the program");

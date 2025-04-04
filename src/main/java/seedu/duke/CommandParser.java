@@ -165,7 +165,7 @@ public class CommandParser {
             cmdObject = new RecommendedSchedule();
             break;
 
-        case "/specialisation":
+        case "/spec":
             logger.info("Displaying Specialisations.");
             cmdObject = new Specialisation();
             break;
