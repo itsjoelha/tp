@@ -40,7 +40,7 @@ public class AddUserModule implements Command {
             user.setSemesterModules(semesterModules);
 
             if (!user.fulfillsModPrereq(newMod, semester)) {
-                System.out.println("WARNING: " + moduleCode + " missing prerequisites");
+                System.out.println("WARNING: " + moduleCode.toUpperCase() + " missing prerequisites");
                 return;
             }
 
@@ -48,7 +48,7 @@ public class AddUserModule implements Command {
 
 
         } catch (ModNotInDatabase e) {
-            System.out.println(moduleCode + " not in database. /addCustom to add custom modules");
+            System.out.println(moduleCode.toUpperCase() + " not in database. /addCustom to add custom modules");
         }
     }
 }
