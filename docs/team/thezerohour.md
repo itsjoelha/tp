@@ -15,15 +15,24 @@ This planner <span style="color:red;">reduces confusion</span> from having to cr
 
 Here are my contributions to the project
 
-- **New Feature**
-    /help
+* **New Feature:** Added and maintained the Help command
+  * What it does: List out the commands in the application, and show the command format.
+  * Justification: For the user to effectively use the app, they need to be able to input commands in the right format.
+  * Highlights:
+  * Credits
 
-- **New Feature**
-    /exit
+- **New Feature:** Exit command for safe termination of application
+  * What it does:
+  * Justification:
+  * Highlights:
+  * Credits
 
-- **New Feature**
-    `Storage` class
-    
+
+- **New Feature:** User data storage classes
+  * What it does:
+  * Justification:
+  * Highlights:
+  * Credits
 
 ---
 
