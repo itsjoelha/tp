@@ -93,6 +93,7 @@ Module CS2113 successfully removed.
 **`/detail MODULE_CODE`**
 
 Returns the details of the module. 
+Details include: Module name, Number of MCs, Preclusions and Prerequisites
 
 Example: `/detail MA1511`
 ```
@@ -120,7 +121,7 @@ Example: `/detail MA1511`
 ## SU
 **`/su MODULE_CODE`**
 
-S/U a module.
+S/U a module. Module will be excluded from GPA calculation. 
 
 Example: `/su CS2113`
 ```
@@ -160,7 +161,7 @@ Displays a list of commands with a brief explanation of each.
 
 ## View Graduation Requirements  
 **`/grad`**  
-Shows a list of modules students are required to take to graduate.  
+Shows a list of the modules the user is missing from meeting graduation requirements.
 
 ## Recommended Schedule for CEG Students AY23/24  
 - **`/schedule -jc`** → Shows the recommended schedule for CEG JC students.  
