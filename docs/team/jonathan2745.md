@@ -17,7 +17,18 @@ This planner <span style="color:red;">reduces confusion</span> from having to cr
 Here are my contributions to the project
 
 - **New Feature**
-    - ft
+    - `/schedule` -  added feature for user to see their reccomended schedule
+    - `/gpa` - added feature for user to see their current GPA
+    - `/grade` - added feature for user to mark the grades for their selected modules
+    - `/SU` - added feautre for user to Saistactory/ Unsatisfactory their modules, to not be calculated in their GPA
+    - `/view` - added feature to see currently taken modules 
+</br>
+- **User Guide**
+    - Contributed to template, saving and loading data, reformatted using html for caution, notes etc.
+</br>
+- **Developer Guide**
+    - Contributed to implementation sections, acknoledgements and design.
+    - Reformatted using html for clarity and cleanliness
     
 
 ---
@@ -28,5 +39,4 @@ Here are my contributions to the project
 
 My contributions can be found [here](https://nus-cs2113-ay2425s2.github.io/tp-dashboard/?search=jonathan2745&breakdown=true)
 
----
-
+--- 
