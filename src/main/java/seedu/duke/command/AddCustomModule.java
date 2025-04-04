@@ -31,7 +31,7 @@ public class AddCustomModule implements Command {
 
         assert semester >= 1 && semester <= 8 : "Invalid semester";
         UserMod newMod = new UserMod(moduleCode, numMC, name);
-        assert newMod != null: "newMod not instantiated";
+        assert newMod != null: "newMod not instantiated yet";
         Map<Integer, ArrayList<UserMod>> semesterModules = user.getSemesterModules();
         semesterModules.putIfAbsent(semester, new ArrayList<>());
 
