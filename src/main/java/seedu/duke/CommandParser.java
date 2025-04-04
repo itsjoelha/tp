@@ -181,11 +181,23 @@ public class CommandParser {
             break;
 
         case "/workload":
-            logger.info("Executing Workload command.");
-
-            if (words.length == 2) {
-                logger.info("Executing Workload command to view modules in semester" + "semester");
-                cmdObject = new Workload(currentUser, words[1]);
+            if (words.length > 2) {
+                logger.warning("Workload command has too many arguments.");
+                System.out.println("Error: The '/workload' command accepts at most one argument (semester number).");
+            } else if (words.length == 2) {
+                try {
+                    int semester = Integer.parseInt(words[1]);
+                    if (semester < 1 || semester > 8) {
+                        logger.warning("Invalid semester number: " + semester);
+                        System.out.println("Error: Semester must be a number between 1 and 8.");
+                    } else {
+                        logger.info("Executing Workload command to view modules in semester " + semester);
+                        cmdObject = new Workload(currentUser, words[1]);
+                    }
+                } catch (NumberFormatException e) {
+                    logger.warning("Invalid semester format in Workload command.");
+                    System.out.println("Error: Semester must be a number between 1 and 8.");
+                }
             } else {
                 logger.info("Executing Workload command to view all modules.");
                 cmdObject = new Workload(currentUser);
