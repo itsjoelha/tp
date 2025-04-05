@@ -23,8 +23,12 @@ public class SuModuleTest {
         addModule1.execute();
         assertTrue(currentUser.hasModule(moduleCode1));
 
+        Command gradeModule1 = new GradeModule(currentUser, moduleCode1, "A+" );
+        gradeModule1.execute();
+
         Command testCommand1 = new SuUserModule(currentUser, moduleCode1);
         testCommand1.execute();
+
         UserMod mod1 = currentUser.getModule(moduleCode1);
         assertTrue(mod1.isSU());
 

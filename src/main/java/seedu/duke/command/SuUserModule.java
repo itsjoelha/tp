@@ -19,7 +19,20 @@ public class SuUserModule implements Command {
             System.out.println("Failed to SU " + moduleCode.toUpperCase() + ". It may not exist");
             return;
         }
-        module.setSU(true);
-        System.out.println("Module " + moduleCode.toUpperCase() + " successfully SU-ed");
+
+        if (module.getGrade() == null){
+            System.out.println("Failed to SU " + moduleCode.toUpperCase() + "." +
+                    " It has not been initialised with a grade yet");
+            return;
+        }
+
+        module.toggleSU();
+
+        if (module.isSU()){
+            System.out.println("Module " + moduleCode.toUpperCase() + " S/U status: true");
+        } else {
+            System.out.println("Module " + moduleCode.toUpperCase() + " S/U status: false");
+        }
     }
 }
+
