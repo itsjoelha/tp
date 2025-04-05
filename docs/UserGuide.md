@@ -118,6 +118,17 @@ Example: `/detail MA1511`
 +--------------------------------------------------------------------------------+
 
 ```
+
+## Grade
+**`/grade MODULE_CODE GRADE`**
+
+Set the grade of a module.
+
+Example: `/grade CS2113 A`
+```
+Module CS2113 successfully graded as A
+```
+
 ## SU
 **`/su MODULE_CODE`**
 
