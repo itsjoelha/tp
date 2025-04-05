@@ -12,29 +12,45 @@ public class Duke {
     public static CommandParser commandParser = new CommandParser();
     public static User currentUser = new User();
     public static UserData userData = new UserData("data/user.txt");
+    public static Ui ui = new Ui();
 
     public static void main(String[] args) {
-        System.out.println("Welcome to Grand Rhombus, your personal CEG Assistant");
-
+        ui.welcomeMessage();
         currentUser = userData.loadUserData();
-        Scanner in = new Scanner(System.in);
+        String userInput = ui.readInput();
         boolean isRunning = true;
 
         while (isRunning) {
-            System.out.print("Enter command: ");
+            ui.enterCommand();
 
             if (!in.hasNextLine()) {  // Prevent NoSuchElementException
                 break;
             }
 
-            String userInput = in.nextLine().trim();
             isRunning = commandParser.parseCommand(userInput); // If parseCommand returns true, exit loop
+            userData.saveUserData(currentUser);
+        }
+        ui.farewellMessage();
+    }
+    public void run() {
+        ui.welcomeMessage();
+        String input = ui.readInput();
 
+        while (!input.equals("bye")) {
+            String[] command = null;
+            try {
+                command = Parser.parseCommand(input);
+                tasks.execute(command);
+            } catch (ArrayIndexOutOfBoundsException e) {
+                Ui.printDescriptionError(command[0]);
+            } catch (NullPointerException e) {
+                Ui.printEmptyCommandError();
+            } finally {
+                storage.saveTasks(tasks.tasks);
+                input = ui.readInput();
+            }
         }
 
-        userData.saveUserData(currentUser);
-        in.close(); // Close scanner when the program exits
-        System.out.println("Goodbye, thank you for using Grand Rhombus"); // Handle exit command
-
+        ui.farewellMessage();
     }
 }

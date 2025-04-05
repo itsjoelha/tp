@@ -17,6 +17,7 @@ import seedu.duke.command.RecommendedSchedule;
 import seedu.duke.command.Specialisation;
 import seedu.duke.command.Workload;
 import seedu.duke.command.AddCustomModule;
+import seedu.duke.Ui;
 
 
 import static seedu.duke.Duke.currentUser;
@@ -30,25 +31,22 @@ public class CommandParser {
     }
 
     // This method will parse and handle commands
-    public boolean parseCommand(String userInput) {
-
-        logger.info("Received user input: " + userInput);
+    public String[] parseCommand(String userInput) {
         assert userInput != null : "User input should not be null";
-
-        // Trim leading/trailing spaces
-        userInput = userInput.trim();
-
+        
         if (userInput.isEmpty()) {
             logger.warning("User entered an empty command.");
-            System.out.println("No command entered. Try again.");
+            Ui.printEmptyCommandError();
             return true;
         }
 
         String[] words = userInput.split(" ", 5);
         String command = words[0];
         Command cmdObject = null;
+    }
 
-        switch (command) {
+    public boolean callCommand(String[] command) throws ArrayIndexOutOfBoundsException {
+        switch (command[0]) {
         case "/view":
             if (words.length > 2) {
                 logger.warning("View command has too many arguments.");
