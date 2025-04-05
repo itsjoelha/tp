@@ -116,7 +116,7 @@ public class ViewGradRequirements implements Command {
      * Determines which graduation requirement modules are missing from the user's completed modules.
      * Special handling is included for GEC and GEN module categories.
      *
-     * @return List<Mod> A list of modules that the user still needs to complete
+     * @return A list of modules that the user still needs to complete
      */
     private List<Mod> getMissingModules() {
 
