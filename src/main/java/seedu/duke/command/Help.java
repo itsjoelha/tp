@@ -56,7 +56,7 @@ public class Help implements Command {
             System.out.println("Description: Add a module to the list.");
             break;
         case "addCustom":
-            System.out.println("Usage: /addCustom <module code>");
+            System.out.println("Usage: /addCustom <module code> <semester> <# of MCs> <name>");
             System.out.println("Description: Add a custom module to the list.");
             break;
         case "su":
@@ -87,8 +87,8 @@ public class Help implements Command {
             System.out.println("Usage: /schedule");
             System.out.println("Description: Retrieve the recommended schedule.");
             break;
-        case "specialisation":
-            System.out.println("Usage: /specialisation");
+        case "spec":
+            System.out.println("Usage: /spec");
             System.out.println("Description: View specialisations.");
             break;
         case "workload":

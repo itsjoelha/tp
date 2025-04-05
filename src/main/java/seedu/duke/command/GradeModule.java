@@ -35,7 +35,8 @@ public class GradeModule implements Command {
             for (UserMod mod : mods) {
                 if (mod.getCode() != null && mod.getCode().equalsIgnoreCase(moduleCode)) {
                     mod.setGrade(grade);
-                    System.out.println("Module " + moduleCode + " successfully graded as " + grade.getLabel());
+                    System.out.println("Module " + moduleCode.toUpperCase() + " successfully graded as " +
+                            grade.getLabel());
                     return;
                 }
             }
