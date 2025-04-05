@@ -25,7 +25,7 @@ public class Help implements Command {
         System.out.println("+--------------------------------+--------------------------------------+");
         System.out.printf("| %-30s | %-36s |\n", "/view", "View all modules");
         System.out.printf("| %-30s | %-36s |\n", "/add <module code>", "Add a module to the list");
-        System.out.printf("| %-30s | %-36s |\n", "/addCustom <module code>", "Add a custom module to the list");
+        System.out.printf("| %-30s | %-36s |\n", "/addCustom <module code> ...", "Add a custom module to the list");
         System.out.printf("| %-30s | %-36s |\n", "/su <module code>", "S/U a module");
         System.out.printf("| %-30s | %-36s |\n", "/gpa", "Retrieve your GPA");
         System.out.printf("| %-30s | %-36s |\n", "/grade <module code> <grade>", "Set a module's grade");
