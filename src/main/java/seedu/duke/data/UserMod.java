@@ -70,7 +70,7 @@ public class UserMod extends Mod {
     }
 
     public void toggleSU() {
-        this.su = !su;
+        this.su = !this.su;
     }
 }
 
