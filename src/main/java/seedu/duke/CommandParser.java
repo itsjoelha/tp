@@ -181,7 +181,7 @@ public class CommandParser {
 
         case "/schedule":
             if (words.length > 1) {
-                logger.warning("Specialisation command doesn't accept additional arguments.");
+                logger.warning("Schedule command doesn't accept additional arguments.");
                 System.out.println("Error: The '/schedule' command doesn't accept any arguments.");
             } else {
                 logger.info("Executing RecommendedSchedule command.");
