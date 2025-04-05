@@ -169,14 +169,8 @@ public class CommandParser {
                 System.out.println("Error: The '/workload' command accepts at most one argument (semester number).");
             } else if (words.length == 2) {
                 semester = parseInteger(words[1], "semester", "Workload");
-                if (semester < 1 || semester > 8) {
-                    logger.warning("Invalid semester number: " + semester);
-                    System.out.println("Error: Semester must be a number between 1 and 8.");
-                } else {
-                    logger.info("Executing Workload command to view modules in semester " + semester);
-                    cmdObject = new Workload(currentUser, words[1]);
-                }
-                
+                logger.info("Executing Workload command to view modules in semester " + semester);
+                cmdObject = new Workload(currentUser, semester);
             } else {
                 logger.info("Executing Workload command to view all modules.");
                 cmdObject = new Workload(currentUser);

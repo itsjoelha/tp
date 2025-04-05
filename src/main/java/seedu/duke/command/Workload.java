@@ -12,12 +12,16 @@ public class Workload implements Command {
         this.sem = 0;
     }
 
-    public Workload(User user, String semester) {
+    public Workload(User user, int semester) {
         this.currentUser = user;
-        this.sem = Integer.parseInt(semester);
+        this.sem = semester;
     }
 
     public void execute(int sem) {
+        if (sem < 1 || sem > 8) {
+            System.out.println("Invalid semester. Please choose a number between 1 and 8.");
+            return;
+        }
 
         if (currentUser.getSemesterModules().containsKey(sem)) {
             for (Mod m : currentUser.getSemesterModules().get(sem)) {
@@ -32,7 +36,8 @@ public class Workload implements Command {
 
     @Override
     public void execute() {
-      
+
+
         if (currentUser.getAllModules().isEmpty()) {
             System.out.println("No modules in List");
             return;
