@@ -8,7 +8,6 @@ import java.util.stream.Collectors;
 import seedu.duke.data.Grade;
 import seedu.duke.data.Prereq;
 import seedu.duke.data.UserMod;
-import seedu.duke.user.EducationLevel;
 
 public class User {
     private String name;

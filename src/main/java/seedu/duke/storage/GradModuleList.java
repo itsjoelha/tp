@@ -6,7 +6,6 @@ import java.util.List;
 
 import seedu.duke.data.Mod;
 import seedu.duke.errors.ModNotInDatabase;
-import seedu.duke.storage.ModStorage;
 
 public class GradModuleList {
 
