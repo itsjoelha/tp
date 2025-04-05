@@ -10,7 +10,8 @@ public class DetailModules implements Command {
         this.modCode = modCode.toUpperCase();
     }
 
-    public void textWrapDescription(String description) { // prints description to fit into the output window
+    public void textWrapDescription(String description) { // prints description to fit
+        // into the output window
         int wrapLength = 77;
         StringBuilder currentLine = new StringBuilder();
         String[] words = description.split(" ");

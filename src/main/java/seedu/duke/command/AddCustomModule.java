@@ -14,7 +14,8 @@ public class AddCustomModule implements Command {
     private final User user;
 
 
-    public AddCustomModule(User user, String moduleCode, int semester, int numMC, String name) {
+    public AddCustomModule(User user, String moduleCode, int semester, int numMC,
+                           String name) {
         this.numMC = numMC;
         this.name = name;
         this.user = user;
