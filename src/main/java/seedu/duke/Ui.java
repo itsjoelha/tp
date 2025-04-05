@@ -39,6 +39,10 @@ public class Ui {
         System.out.println("No command entered. Try again.");
     }
 
+    public static void printUnknownCommandError() {
+        System.out.println("Unknown command. Type '/help' for a list of commands.");
+    }
+
     public static void printUserInputError(String command) {
         System.out.println("Invalid command. Try again.");
         switch (command) {
@@ -56,10 +60,18 @@ public class Ui {
         case "/delete":
             System.out.println("Error: Please specify a module code to delete.");
             System.out.println("Usage: /delete MODULE_CODE");
+        case "/grade":
+            System.out.println("Error: Please specify a module code and grade.");
+            System.out.println("Usage: /grade MODULE_CODE GRADE");
+
         }
+    }
 
-
+    public static void printExcessInputError(String command) {
+        System.out.println("Error: The '" + command + "' command does not accept any arguments.");
 
     }
 
 }
+
+

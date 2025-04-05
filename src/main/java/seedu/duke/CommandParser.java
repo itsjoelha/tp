@@ -45,12 +45,12 @@ public class CommandParser {
         return input;
     }
 
-    public int parseInteger(String input, String word) throws NumberFormatException {
+    public int parseInteger(String input, String word, String command) throws NumberFormatException {
         int number = -1;
         try {
             number = Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            ErrorHandler.integerInputError(word);
+            ErrorHandler.integerInputError(word, command);
         }
         return number;
 
@@ -92,25 +92,18 @@ public class CommandParser {
             break;
 
         case "/add":
-            semester = parseInteger(words[2], "semester");
+            semester = parseInteger(words[2], "semester", "Add");
             logger.info("Executing AddUserModule command with module code: " + words[1] +
                     ", semester: " + semester);
             cmdObject = new AddUserModule(currentUser, words[1], semester);
             break;
 
         case "/addCustom":
-            try {
-                semester = parseInteger(words[2], "semester");
-                int creditNum = parseInteger(words[3], "creditNum");
-                logger.info("Executing AddCustomModule command with module code: " + words[1] +
-                        ", semester: " + semester);
-                cmdObject = new AddCustomModule(currentUser, words[1], semester, creditNum, words[4]);
-            } catch (NumberFormatException e) {
-                logger.warning("Invalid semester format in AddCustomModule command.");
-                System.out.println("Error: Semester must be a number between 1 and 8 and credit number must"
-                        + " be a positive integer.");
-                break;
-            }
+            semester = parseInteger(words[2], "semester", "AddCustom");
+            int creditNum = parseInteger(words[3], "creditNum", "AddCustom");
+            logger.info("Executing AddCustomModule command with module code: " + words[1] +
+                    ", semester: " + semester);
+            cmdObject = new AddCustomModule(currentUser, words[1], semester, creditNum, words[4]);
             break;
 
         case "/delete":
@@ -129,11 +122,6 @@ public class CommandParser {
             break;
 
         case "/grade":
-            if (words.length < 3) {
-                logger.warning("Grade command missing module code or grade");
-                System.out.println("Error: Please specify a module code to grade.");
-                break;
-            }
             logger.info("Executing grade module");
             cmdObject = new GradeModule(currentUser, words[1], words[2]);
             break;
@@ -150,8 +138,7 @@ public class CommandParser {
 
         case "/grad":
             if (words.length > 1) {
-                logger.warning("Graduation Requirements command doesn't accept additional arguments.");
-                System.out.println("Error: The '/grad' command doesn't accept any arguments.");
+                ErrorHandler.excessInputError(command);
             } else {
                 logger.info("Executing ViewGradRequirements command.");
                 cmdObject = new ViewGradRequirements(currentUser);
@@ -160,8 +147,7 @@ public class CommandParser {
 
         case "/schedule":
             if (words.length > 1) {
-                logger.warning("Specialisation command doesn't accept additional arguments.");
-                System.out.println("Error: The '/schedule' command doesn't accept any arguments.");
+                ErrorHandler.excessInputError(command);
             } else {
                 logger.info("Executing RecommendedSchedule command.");
                 cmdObject = new RecommendedSchedule();
@@ -170,8 +156,7 @@ public class CommandParser {
 
         case "/spec":
             if (words.length > 1) {
-                logger.warning("Specialisation command doesn't accept additional arguments.");
-                System.out.println("Error: The '/spec' command doesn't accept any arguments.");
+                ErrorHandler.excessInputError(command);
             } else {
                 logger.info("Displaying Specialisations.");
                 cmdObject = new Specialisation();
@@ -183,19 +168,15 @@ public class CommandParser {
                 logger.warning("Workload command has too many arguments.");
                 System.out.println("Error: The '/workload' command accepts at most one argument (semester number).");
             } else if (words.length == 2) {
-                try {
-                    semester = Integer.parseInt(words[1]);
-                    if (semester < 1 || semester > 8) {
-                        logger.warning("Invalid semester number: " + semester);
-                        System.out.println("Error: Semester must be a number between 1 and 8.");
-                    } else {
-                        logger.info("Executing Workload command to view modules in semester " + semester);
-                        cmdObject = new Workload(currentUser, words[1]);
-                    }
-                } catch (NumberFormatException e) {
-                    logger.warning("Invalid semester format in Workload command.");
+                semester = parseInteger(words[1], "semester", "Workload");
+                if (semester < 1 || semester > 8) {
+                    logger.warning("Invalid semester number: " + semester);
                     System.out.println("Error: Semester must be a number between 1 and 8.");
+                } else {
+                    logger.info("Executing Workload command to view modules in semester " + semester);
+                    cmdObject = new Workload(currentUser, words[1]);
                 }
+                
             } else {
                 logger.info("Executing Workload command to view all modules.");
                 cmdObject = new Workload(currentUser);
@@ -214,7 +195,7 @@ public class CommandParser {
 
         default:
             logger.warning("Unknown command: " + command);
-            System.out.println("Unknown command. Type '/help' for a list of commands.");
+            Ui.printUnknownCommandError();
         }
 
         if (cmdObject != null) {
