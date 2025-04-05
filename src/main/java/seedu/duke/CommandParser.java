@@ -41,7 +41,7 @@ public class CommandParser {
         if (userInput.isEmpty()) {
             logger.warning("User entered an empty command.");
             System.out.println("No command entered. Try again.");
-            return false;
+            return true;
         }
 
         String[] words = userInput.split(" ", 5);
