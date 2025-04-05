@@ -37,5 +37,9 @@ public class Ui {
 
     public static void printUserInputError(String command) {
         System.out.println("Invalid command. Try again.");
+        switch (command) {
+        case "/detail":
+
+        }
     }
 }

@@ -16,6 +16,7 @@ public class ListModules implements Command {
         this.sem = Integer.parseInt(semester);
     }
 
+
     public void execute(int sem) {
         // Print Semester header
         System.out.print("=============== SEMESTER " + sem + " ===============\n");
