@@ -32,7 +32,7 @@ public class Ui {
     }
 
     public void printEnterCommand() {
-        System.out.println("Enter command: ");
+        System.out.print("Enter command: ");
     }
 
     public static void printEmptyCommandError() {
@@ -44,7 +44,6 @@ public class Ui {
     }
 
     public static void printUserInputError(String command) {
-        System.out.println("Invalid command. Try again.");
         switch (command) {
         case "/detail":
             System.out.println("Error: Please specify a module code to view details.");
@@ -57,12 +56,15 @@ public class Ui {
         case "/addCustom":
             System.out.println("Error: Please specify module details to add custom module.");
             System.out.println("Usage: /addCustom MODULE_CODE SEMESTER NUMBER_OF_CREDITS NAME");
+            break;
         case "/delete":
             System.out.println("Error: Please specify a module code to delete.");
             System.out.println("Usage: /delete MODULE_CODE");
+            break;
         case "/grade":
             System.out.println("Error: Please specify a module code and grade.");
             System.out.println("Usage: /grade MODULE_CODE GRADE");
+            break;
 
         }
     }

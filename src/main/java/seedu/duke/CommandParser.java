@@ -45,16 +45,6 @@ public class CommandParser {
         return input;
     }
 
-    public int parseInteger(String input, String word, String command) throws NumberFormatException {
-        int number = -1;
-        try {
-            number = Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            ErrorHandler.integerInputError(word, command);
-        }
-        return number;
-
-    }
 
     // This method calls the appropriate command
     public boolean callCommand(String[] words) throws ArrayIndexOutOfBoundsException, NumberFormatException {
@@ -92,18 +82,22 @@ public class CommandParser {
             break;
 
         case "/add":
-            semester = parseInteger(words[2], "semester", "Add");
+            semester = Integer.parseInt(words[2]);
             logger.info("Executing AddUserModule command with module code: " + words[1] +
                     ", semester: " + semester);
             cmdObject = new AddUserModule(currentUser, words[1], semester);
             break;
 
         case "/addCustom":
-            semester = parseInteger(words[2], "semester", "AddCustom");
-            int creditNum = parseInteger(words[3], "creditNum", "AddCustom");
-            logger.info("Executing AddCustomModule command with module code: " + words[1] +
-                    ", semester: " + semester);
-            cmdObject = new AddCustomModule(currentUser, words[1], semester, creditNum, words[4]);
+            semester = Integer.parseInt(words[2]);
+            try {
+                int creditNum = Integer.parseInt(words[3]);
+                logger.info("Executing AddCustomModule command with module code: " + words[1] +
+                        ", semester: " + semester);
+                cmdObject = new AddCustomModule(currentUser, words[1], semester, creditNum, words[4]);
+            } catch (NumberFormatException e) {
+                ErrorHandler.integerInputError("creditNum", command);
+            }
             break;
 
         case "/delete":
@@ -169,7 +163,7 @@ public class CommandParser {
                 logger.warning("Workload command has too many arguments.");
                 System.out.println("Error: The '/workload' command accepts at most one argument (semester number).");
             } else if (words.length == 2) {
-                semester = parseInteger(words[1], "semester", "Workload");
+                semester = Integer.parseInt(words[1]);
                 logger.info("Executing Workload command to view modules in semester " + semester);
                 cmdObject = new Workload(currentUser, semester);
             } else {

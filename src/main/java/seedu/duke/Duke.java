@@ -16,11 +16,12 @@ public class Duke {
     public static void main(String[] args) {
         ui.welcomeMessage();
         currentUser = userData.loadUserData();
-        String userInput = ui.readInput();
+
         boolean isRunning = true;
 
         while (isRunning) {
             ui.printEnterCommand();
+            String userInput = ui.readInput();
             String[] command = null;
             try {
                 command = commandParser.parseCommand(userInput);
@@ -28,8 +29,10 @@ public class Duke {
             } catch (ArrayIndexOutOfBoundsException e) {
                 assert command != null;
                 ErrorHandler.userInputError(command);
+            } catch (NumberFormatException e) {
+                assert command != null;
+                ErrorHandler.integerInputError("semester", command[0]);
             }  finally {
-                userInput = ui.readInput();
                 userData.saveUserData(currentUser);
             }
         }
