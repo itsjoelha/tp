@@ -129,6 +129,7 @@ public class CommandParser {
 
         case "/help":
             logger.info("Displaying help file.");
+
             if (words.length == 2) {
                 cmdObject = new Help(words[1]);
             } else {
