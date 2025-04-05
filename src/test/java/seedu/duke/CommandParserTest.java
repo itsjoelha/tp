@@ -120,7 +120,7 @@ public class CommandParserTest {
 
         System.setOut(System.out);
         String output = out.toString().trim();
-        assertTrue(output.contains("Error: Semester must be a number between 1 and 8 and credit number must"
+        assertTrue(output.contains("Error: Semester must be a number between 1 and 8 and number of MCs must"
                 + " be a positive integer."));
     }
 

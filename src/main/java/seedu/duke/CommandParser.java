@@ -44,7 +44,7 @@ public class CommandParser {
             return true;
         }
 
-        String[] words = userInput.split(" ", 5);
+        String[] words = userInput.split("\\s+", 5);
         String command = words[0];
         Command cmdObject = null;
 
@@ -117,7 +117,7 @@ public class CommandParser {
                 cmdObject = new AddCustomModule(currentUser, words[1], semester, creditNum, words[4]);
             } catch (NumberFormatException e) {
                 logger.warning("Invalid semester format in AddCustomModule command.");
-                System.out.println("Error: Semester must be a number between 1 and 8 and credit number must"
+                System.out.println("Error: Semester must be a number between 1 and 8 and number of MCs must"
                         + " be a positive integer.");
                 break;
             }

@@ -69,7 +69,9 @@ public class GradModuleList {
                     MasterModuleList.findModuleByCode("IE2141"),
                     MasterModuleList.findModuleByCode("ES2631"),
                     new Mod("Cultures and Connections", "", 4, "GEC1XXX",
-                            0, 0, 0, 0, 0, "Unconfirmed preclusions", "Unconfirmed prerequisites", null)
+                            0, 0, 0, 0, 0,
+                            "Unconfirmed preclusions", "Unconfirmed prerequisites",
+                            null)
             ));
 
             YEAR2SEM2MODULES = new ArrayList<>(Arrays.asList(
@@ -100,7 +102,8 @@ public class GradModuleList {
                     MasterModuleList.findModuleByCode("EE4204"),
                     new Mod("Communities and Engagement", "", 4, "GEN1XXX",
                             0, 0, 0, 0, 0,
-                            "Unconfirmed preclusions", "Unconfirmed prerequisites", null),
+                            "Unconfirmed preclusions", "Unconfirmed prerequisites",
+                            null),
                     generateUE()
             ));
         } catch (ModNotInDatabase e) {
