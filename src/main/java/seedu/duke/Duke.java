@@ -21,36 +21,19 @@ public class Duke {
         boolean isRunning = true;
 
         while (isRunning) {
-            ui.enterCommand();
-
-            if (!in.hasNextLine()) {  // Prevent NoSuchElementException
-                break;
-            }
-
-            isRunning = commandParser.parseCommand(userInput); // If parseCommand returns true, exit loop
-            userData.saveUserData(currentUser);
-        }
-        ui.farewellMessage();
-    }
-    public void run() {
-        ui.welcomeMessage();
-        String input = ui.readInput();
-
-        while (!input.equals("bye")) {
+            ui.printEnterCommand();
             String[] command = null;
             try {
-                command = Parser.parseCommand(input);
-                tasks.execute(command);
+                command = commandParser.parseCommand(userInput);
+                isRunning = commandParser.callCommand(command);// If parseCommand returns false, exit loop
             } catch (ArrayIndexOutOfBoundsException e) {
-                Ui.printDescriptionError(command[0]);
-            } catch (NullPointerException e) {
-                Ui.printEmptyCommandError();
+                assert command != null;
+                Ui.printUserInputError(command[0]);
             } finally {
-                storage.saveTasks(tasks.tasks);
-                input = ui.readInput();
+                userInput = ui.readInput();
+                userData.saveUserData(currentUser);
             }
         }
-
         ui.farewellMessage();
     }
 }

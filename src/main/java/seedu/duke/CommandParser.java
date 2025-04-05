@@ -30,23 +30,26 @@ public class CommandParser {
         logger.setLevel(Level.OFF);
     }
 
-    // This method will parse and handle commands
+    // This method will parse and separate into required sections
     public String[] parseCommand(String userInput) {
         assert userInput != null : "User input should not be null";
-        
-        if (userInput.isEmpty()) {
-            logger.warning("User entered an empty command.");
-            Ui.printEmptyCommandError();
-            return true;
-        }
-
         String[] words = userInput.split(" ", 5);
-        String command = words[0];
-        Command cmdObject = null;
+        return removeWhitespace(words);
     }
 
-    public boolean callCommand(String[] command) throws ArrayIndexOutOfBoundsException {
-        switch (command[0]) {
+    // remove any extra spaces around each split
+    public String[] removeWhitespace(String[] input) {
+        for (int i = 0; i < input.length; i++) {
+            input[i] = input[i].trim();
+        }
+        return input;
+    }
+
+    // This method calls the appropriate command
+    public boolean callCommand(String[] words) throws ArrayIndexOutOfBoundsException {
+        String command = words[0];
+        Command cmdObject = null;
+        switch (command) {
         case "/view":
             if (words.length > 2) {
                 logger.warning("View command has too many arguments.");
@@ -225,6 +228,11 @@ public class CommandParser {
             logger.info("User exited program.");
             System.out.println("Exiting program...");
             return false;
+
+        case "" : // empty command line
+            logger.warning("User entered an empty command.");
+            Ui.printEmptyCommandError();
+            return true;
 
         default:
             logger.warning("Unknown command: " + command);

@@ -27,11 +27,15 @@ public class Ui {
         System.out.println("Goodbye, thank you for using Grand Rhombus");
     }
 
-    public void enterCommand() {
+    public void printEnterCommand() {
         System.out.println("Enter command: ");
     }
 
     public static void printEmptyCommandError() {
         System.out.println("No command entered. Try again.");
+    }
+
+    public static void printUserInputError(String command) {
+        System.out.println("Invalid command. Try again.");
     }
 }
