@@ -34,27 +34,30 @@ public class ErrorHandler {
         case "/grade":
             logger.warning("Grade command missing module code or grade");
             break;
+        default:
+            logger.warning("Unknown error occurred.");
+            break;
         }
         Ui.printUserInputError(command);
-    }
-
-    public static void integerInputError(String word, String command) {
-        if (word.equals("semester")) {
-            logger.warning("Invalid semester format in " + command + " command.");
-            System.out.println("Error: Semester must be a number between 1 and 8.");
-        } else if (word.equals("creditNum")) {
-            logger.warning("Invalid credit number format in " + command + " command.");
-            System.out.println("Error: Credit number must be a positive integer.");
         }
 
-    }
+        public static void integerInputError (String word, String command){
+            if (word.equals("semester")) {
+                logger.warning("Invalid semester format in " + command + " command.");
+                System.out.println("Error: Semester must be a number between 1 and 8.");
+            } else if (word.equals("creditNum")) {
+                logger.warning("Invalid credit number format in " + command + " command.");
+                System.out.println("Error: Credit number must be a positive integer.");
+            }
 
-    public static void excessInputError(String command) {
-        logger.warning("Additional inputs for " + command + " command.");
-        Ui.printExcessInputError(command);
-    }
+        }
 
-    public static void handleModuleDoesNotExist() {
-        // System.err.println("[ERROR] Module not found");
+        public static void excessInputError (String command){
+            logger.warning("Additional inputs for " + command + " command.");
+            Ui.printExcessInputError(command);
+        }
+
+        public static void handleModuleDoesNotExist () {
+            // System.err.println("[ERROR] Module not found");
+        }
     }
-}

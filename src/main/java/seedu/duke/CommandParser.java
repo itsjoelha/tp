@@ -17,7 +17,6 @@ import seedu.duke.command.RecommendedSchedule;
 import seedu.duke.command.Specialisation;
 import seedu.duke.command.Workload;
 import seedu.duke.command.AddCustomModule;
-import seedu.duke.Ui;
 import seedu.duke.errors.ErrorHandler;
 
 

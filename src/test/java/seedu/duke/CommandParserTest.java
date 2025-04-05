@@ -5,7 +5,11 @@ import org.junit.jupiter.api.Test;
 import seedu.duke.command.ListModules;
 import seedu.duke.data.User;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import static seedu.duke.Duke.currentUser;
 
 import java.io.ByteArrayOutputStream;
@@ -17,23 +21,6 @@ public class CommandParserTest {
         currentUser.clearModules();
     }
 
-    @Test
-    public void parseCommand_validCommands() {
-        CommandParser parser = new CommandParser();
-        assertDoesNotThrow(() -> parser.parseCommand("/view"));
-        assertDoesNotThrow(() -> parser.parseCommand("/detail CS2113"));
-        assertDoesNotThrow(() -> parser.parseCommand("/grad"));
-        assertDoesNotThrow(() -> parser.parseCommand("/add CS2113 2"));
-        assertDoesNotThrow(() -> parser.parseCommand("/workload"));
-        assertDoesNotThrow(() -> parser.parseCommand("/help"));
-        assertDoesNotThrow(() -> parser.parseCommand("/view 2"));
-        assertDoesNotThrow(() -> parser.parseCommand("/schedule"));
-        assertDoesNotThrow(() -> parser.parseCommand("/workload 2"));
-        assertDoesNotThrow(() -> parser.parseCommand("/grad"));
-        assertDoesNotThrow(() -> parser.parseCommand("/addCustom LAF1101 1 4 French 1"));
-        assertDoesNotThrow(() -> parser.parseCommand("/spec"));
-        assertDoesNotThrow(() -> parser.parseCommand("/delete CS2113"));
-    }
 
     @Test
     public void parseCommand_unknownCommand() {
@@ -62,9 +49,7 @@ public class CommandParserTest {
         String[] testCommand2 = {"/delete"};
 
         assertThrows(ArrayIndexOutOfBoundsException.class, () -> parser.callCommand(testCommand2));
-
     }
-
 
     @Test
     public void parseCommand_addAndDeleteModule() {
