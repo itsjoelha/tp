@@ -1,3 +1,10 @@
+/**
+ * The ViewGradRequirements class implements the Command interface and is responsible for
+ * displaying the user's progress toward graduation requirements.
+ *
+ * This class analyzes the user's completed modules against required graduation modules,
+ * displays MC (Modular Credits) status, and lists missing modules in a formatted table.
+ */
 package seedu.duke.command;
 
 import static seedu.duke.data.GradModuleList.YEAR1SEM1MODULES;
@@ -20,10 +27,20 @@ import seedu.duke.data.UserMod;
 public class ViewGradRequirements implements Command {
     private final User user;
 
+    /**
+     * Constructs a ViewGradRequirements object with the specified user.
+     *
+     * @param user The user whose graduation requirements will be analyzed
+     */
     public ViewGradRequirements(User user) {
         this.user = user;
     }
 
+    /**
+     * Executes the view graduation requirements command.
+     * Analyzes and displays the user's progress towards graduation requirements,
+     * including total MCs earned, MCs needed, and a list of missing modules.
+     */
     public void execute() {
         System.out.println("+----------------------------------------------------------------------------" +
                 "-------------------+");
@@ -95,6 +112,12 @@ public class ViewGradRequirements implements Command {
         }
     }
 
+    /**
+     * Determines which graduation requirement modules are missing from the user's completed modules.
+     * Special handling is included for GEC and GEN module categories.
+     *
+     * @return List<Mod> A list of modules that the user still needs to complete
+     */
     private List<Mod> getMissingModules() {
 
         // Check if user has any GEC module
@@ -139,6 +162,13 @@ public class ViewGradRequirements implements Command {
         return missingModules;
     }
 
+    /**
+     * Checks if the user has completed any module with a code containing the specified substring.
+     * Used primarily to check for GEC and GEN category modules.
+     *
+     * @param substring The substring to search for in module codes
+     * @return boolean True if a matching module is found, false otherwise
+     */
     private boolean hasModuleWithSubstring(String substring) {
         // Get all modules from the user
         ArrayList<UserMod> userModules = user.getAllModules();
