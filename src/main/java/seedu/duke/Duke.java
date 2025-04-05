@@ -1,9 +1,8 @@
 package seedu.duke;
 
-import java.util.Scanner;
-
 import seedu.duke.data.User;
 import seedu.duke.data.UserData;
+import seedu.duke.errors.ErrorHandler;
 
 public class Duke {
     /**
@@ -28,8 +27,8 @@ public class Duke {
                 isRunning = commandParser.callCommand(command);// If parseCommand returns false, exit loop
             } catch (ArrayIndexOutOfBoundsException e) {
                 assert command != null;
-                Ui.printUserInputError(command[0]);
-            } finally {
+                ErrorHandler.userInputError(command);
+            }  finally {
                 userInput = ui.readInput();
                 userData.saveUserData(currentUser);
             }
