@@ -54,8 +54,21 @@ public class User {
         return totalMCs;
     }
 
+    public int getGradedMCs() {
+        int totalMCs = 0;
+        for (ArrayList<UserMod> mods : semesterModules.values()) {
+            for (UserMod mod : mods) {
+                if (mod.getGrade() != null && mod.isSU() == false) {
+                    int modMC = mod.getNumMC();
+                    totalMCs += modMC;
+                }
+            }
+        }
+        return totalMCs;
+    }
+
     public void updateGPA() {
-        int totalMCs = getTotalMCs();
+        int totalMCs = getGradedMCs();
         if (totalMCs == 0) {
             this.gpa = 0.0;
             return;
