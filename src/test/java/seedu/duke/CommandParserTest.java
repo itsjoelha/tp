@@ -3,7 +3,7 @@ package seedu.duke;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import seedu.duke.command.ListModules;
-import seedu.duke.data.User;
+import seedu.duke.user.User;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;

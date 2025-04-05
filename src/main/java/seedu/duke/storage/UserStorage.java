@@ -1,4 +1,4 @@
-package seedu.duke.data;
+package seedu.duke.storage;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -10,10 +10,14 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import seedu.duke.data.Grade;
+import seedu.duke.data.UserMod;
 import seedu.duke.errors.ModNotInDatabase;
+import seedu.duke.user.EducationLevel;
+import seedu.duke.user.User;
 
-public class UserData {
-    private static final Logger logger = Logger.getLogger(UserData.class.getName());
+public class UserStorage {
+    private static final Logger logger = Logger.getLogger(UserStorage.class.getName());
 
     static {
         logger.setLevel(Level.OFF);
@@ -21,14 +25,14 @@ public class UserData {
 
     private final File file;
 
-    public UserData(String filepath) {
+    public UserStorage(String filepath) {
         this.file = new File(filepath);
         if (!file.exists()) {
             logger.warning("No existing user data found: " + filepath);
         }
     }
 
-    public void saveUserData(User user) {
+    public void saveUserData(seedu.duke.user.User user) {
         try (BufferedWriter out = new BufferedWriter(new FileWriter(file))) {
             out.write(/*user.getName()*/"Skibidi" + "\n");
             out.write(/*user.getEducation().toString()*/"JC" + "\n");

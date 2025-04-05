@@ -1,10 +1,12 @@
-package seedu.duke.data;
+package seedu.duke.storage;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import seedu.duke.data.Mod;
 import seedu.duke.errors.ModNotInDatabase;
+import seedu.duke.storage.ModStorage;
 
 public class GradModuleList {
 
@@ -22,11 +24,11 @@ public class GradModuleList {
     static {
         try {
             YEAR1SEM1MODULES = new ArrayList<>(Arrays.asList(
-                    MasterModuleList.findModuleByCode("CG1111A"),
-                    MasterModuleList.findModuleByCode("CS1010"),
-                    MasterModuleList.findModuleByCode("EG1311"),
-                    MasterModuleList.findModuleByCode("MA1511"),
-                    MasterModuleList.findModuleByCode("MA1512"),
+                    ModStorage.findModuleByCode("CG1111A"),
+                    ModStorage.findModuleByCode("CS1010"),
+                    ModStorage.findModuleByCode("EG1311"),
+                    ModStorage.findModuleByCode("MA1511"),
+                    ModStorage.findModuleByCode("MA1512"),
                     new Mod("English for Academic Purposes",
                             "ES1103 serves as a bridging course for" +
                             " students who have taken the university’s" +
@@ -56,18 +58,18 @@ public class GradModuleList {
             ));
 
             YEAR1SEM2MODULES = new ArrayList<>(Arrays.asList(
-                    MasterModuleList.findModuleByCode("CG2111A"),
-                    MasterModuleList.findModuleByCode("DTK1234"),
-                    MasterModuleList.findModuleByCode("MA1508E"),
-                    MasterModuleList.findModuleByCode("PF1101"),
-                    MasterModuleList.findModuleByCode("GEA1000")
+                    ModStorage.findModuleByCode("CG2111A"),
+                    ModStorage.findModuleByCode("DTK1234"),
+                    ModStorage.findModuleByCode("MA1508E"),
+                    ModStorage.findModuleByCode("PF1101"),
+                    ModStorage.findModuleByCode("GEA1000")
             ));
 
             YEAR2SEM1MODULES = new ArrayList<>(Arrays.asList(
-                    MasterModuleList.findModuleByCode("CS1231"),
-                    MasterModuleList.findModuleByCode("CS2040C"),
-                    MasterModuleList.findModuleByCode("IE2141"),
-                    MasterModuleList.findModuleByCode("ES2631"),
+                    ModStorage.findModuleByCode("CS1231"),
+                    ModStorage.findModuleByCode("CS2040C"),
+                    ModStorage.findModuleByCode("IE2141"),
+                    ModStorage.findModuleByCode("ES2631"),
                     new Mod("Cultures and Connections", "", 4, "GEC1XXX",
                             0, 0, 0, 0, 0,
                             "Unconfirmed preclusions", "Unconfirmed prerequisites",
@@ -75,31 +77,31 @@ public class GradModuleList {
             ));
 
             YEAR2SEM2MODULES = new ArrayList<>(Arrays.asList(
-                    MasterModuleList.findModuleByCode("CG2023"),
-                    MasterModuleList.findModuleByCode("CS2113"),
-                    MasterModuleList.findModuleByCode("EE2211"),
-                    MasterModuleList.findModuleByCode("EE2026"),
-                    MasterModuleList.findModuleByCode("CDE2501")
+                    ModStorage.findModuleByCode("CG2023"),
+                    ModStorage.findModuleByCode("CS2113"),
+                    ModStorage.findModuleByCode("EE2211"),
+                    ModStorage.findModuleByCode("EE2026"),
+                    ModStorage.findModuleByCode("CDE2501")
             ));
 
             YEAR3SEM1MODULES = new ArrayList<>(Arrays.asList(
-                    MasterModuleList.findModuleByCode("EG2401A"),
-                    MasterModuleList.findModuleByCode("EG3611A"),
-                    MasterModuleList.findModuleByCode("CP3880"),
+                    ModStorage.findModuleByCode("EG2401A"),
+                    ModStorage.findModuleByCode("EG3611A"),
+                    ModStorage.findModuleByCode("CP3880"),
                     generateUE()
             ));
 
             YEAR3SEM2MODULES = new ArrayList<>(Arrays.asList(
-                    MasterModuleList.findModuleByCode("CG2027"),
-                    MasterModuleList.findModuleByCode("CG2028"),
-                    MasterModuleList.findModuleByCode("CG2271"),
-                    MasterModuleList.findModuleByCode("CDE2000"),
-                    MasterModuleList.findModuleByCode("ST2334")
+                    ModStorage.findModuleByCode("CG2027"),
+                    ModStorage.findModuleByCode("CG2028"),
+                    ModStorage.findModuleByCode("CG2271"),
+                    ModStorage.findModuleByCode("CDE2000"),
+                    ModStorage.findModuleByCode("ST2334")
             ));
 
             YEAR4SEM1MODULES = new ArrayList<>(Arrays.asList(
-                    MasterModuleList.findModuleByCode("CG4002"),
-                    MasterModuleList.findModuleByCode("EE4204"),
+                    ModStorage.findModuleByCode("CG4002"),
+                    ModStorage.findModuleByCode("EE4204"),
                     new Mod("Communities and Engagement", "", 4, "GEN1XXX",
                             0, 0, 0, 0, 0,
                             "Unconfirmed preclusions", "Unconfirmed prerequisites",

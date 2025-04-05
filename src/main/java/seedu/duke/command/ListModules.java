@@ -1,6 +1,6 @@
 package seedu.duke.command;
 
-import seedu.duke.data.User;
+import seedu.duke.user.User;
 import seedu.duke.data.UserMod;
 
 public class ListModules implements Command {
