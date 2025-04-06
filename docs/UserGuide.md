@@ -203,19 +203,19 @@ Furthermore, certain edits can cause GrandRhombus to behave in unexpected ways (
 
 ## Command Summary
 
-| Command      | Description                      | Arguments                                              | Format                           |
-|--------------|----------------------------------|--------------------------------------------------------|----------------------------------|
-| `/view`      | View all modules                 | `<semester>`                                           | `/view` or `/view 1`             |
-| `/add`       | Add a module to the list         | `<module_code>`                                        | `/add CG1111A 1`                 |
-| `/addCustom` | Add a custom module to the list  | `<module_code>`, `<semester>`, `<# of MCs>`, `<name>`  | `/addCustom CDE3302 3 4 ModName` |
-| `/su`        | S/U a module                     | `<module_code>`                                        | `/su CS1010`                     |
-| `/delete`    | Delete a module from the list    | `<module_code>`                                        | `/delete CDE3301`                |
-| `/detail`    | View details of a module         | `<module_code>`                                        | `/detail CDE3301`                |
-| `/grade`     | Set a module's grade             | `<module_code> <grade>`                                | `/grade CDE3301 A`               |
-| `/gpa`       | Retrieve your GPA                | None                                                   | `/gpa`                           |
-| `/grad`      | Check if you can graduate        | None                                                   | `/grad`                          |
-| `/schedule`  | Generate a schedule for students | None                                                   | `/schedule`                      |
-| `/spec `     | View specialisations             | None                                                   | `/spec`                          |
-| `/workload`  | Display workload                 | `<semester>`                                           | `/workload` or `/workload 1`     |
-| `/help`      | Show this help message           | `<command>`                                            | `/help` or `/help help`          |
-| `/exit`      | Exit the program                 | None                                                   | `/exit`                          |
+| Command      | Description                      | Arguments                                             | Format                           |
+|--------------|----------------------------------|-------------------------------------------------------|----------------------------------|
+| `/view`      | View all modules                 | `<semester>`                                          | `/view` or `/view 1`             |
+| `/add`       | Add a module to the list         | `<module_code>`, `<semester>`                         | `/add CG1111A 1`                 |
+| `/addCustom` | Add a custom module to the list  | `<module_code>`, `<semester>`, `<# of MCs>`, `<name>` | `/addCustom CDE3302 3 4 ModName` |
+| `/su`        | S/U a module                     | `<module_code>`                                       | `/su CS1010`                     |
+| `/delete`    | Delete a module from the list    | `<module_code>`                                       | `/delete CDE3301`                |
+| `/detail`    | View details of a module         | `<module_code>`                                       | `/detail CDE3301`                |
+| `/grade`     | Set a module's grade             | `<module_code>`, `<grade>`                            | `/grade CDE3301 A`               |
+| `/gpa`       | Retrieve your GPA                | None                                                  | `/gpa`                           |
+| `/grad`      | Check if you can graduate        | None                                                  | `/grad`                          |
+| `/schedule`  | Generate a schedule for students | None                                                  | `/schedule`                      |
+| `/spec `     | View specialisations             | None                                                  | `/spec`                          |
+| `/workload`  | Display workload                 | `<semester>`                                          | `/workload` or `/workload 1`     |
+| `/help`      | Show this help message           | `<command>`                                           | `/help` or `/help help`          |
+| `/exit`      | Exit the program                 | None                                                  | `/exit`                          |
