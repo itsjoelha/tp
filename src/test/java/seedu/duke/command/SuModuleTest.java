@@ -76,5 +76,5 @@ public class SuModuleTest {
         assertFalse(mod1.isSU());
 
     }
-    
+
 }
