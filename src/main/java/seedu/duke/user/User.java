@@ -16,7 +16,9 @@ public class User {
     private double gpa;
     private int currentSemester;
     private Map<Integer, ArrayList<UserMod>> semesterModules;
-    private ArrayList<Boolean> bridging;
+    private Boolean isExemptedMA1301 = null;
+    private Boolean isExemptedPC1101 =  null;
+    private Boolean isExemptedEnglish = null;
 
     public User() {
         // Default constructor initializes with empty values
@@ -25,7 +27,6 @@ public class User {
         this.gpa = 0.0;
         this.currentSemester = -1;
         this.semesterModules = new HashMap<>();
-        this.bridging = new ArrayList<>();
     }
 
     public User(String name, EducationLevel education, int currentSemester) {
@@ -34,7 +35,6 @@ public class User {
         this.currentSemester = currentSemester;
         this.gpa = 0.0;
         this.semesterModules = new HashMap<>();
-        this.bridging = new ArrayList<>();
     }
 
     public Map<Integer, ArrayList<UserMod>> getSemesterModules() {
@@ -173,6 +173,30 @@ public class User {
         this.education = education;
     }
 
+    public boolean isExemptedMA1301() {
+        return isExemptedMA1301;
+    }
+
+    public void setExemptedMA1301(boolean exemptedMA1301) {
+        isExemptedMA1301 = exemptedMA1301;
+    }
+
+    public boolean isExemptedPC1101() {
+        return isExemptedPC1101;
+    }
+
+    public void setExemptedPC1101(boolean exemptedPC1101) {
+        isExemptedPC1101 = exemptedPC1101;
+    }
+
+    public boolean isExemptedEnglish() {
+        return isExemptedEnglish;
+    }
+
+    public void setExemptedEnglish(boolean exemptedEnglish) {
+        isExemptedEnglish = exemptedEnglish;
+    }
+
     public ArrayList<UserMod> getAllModules() {
         return semesterModules.values()
                 .stream()
@@ -207,6 +231,11 @@ public class User {
                 return false;
             }
         }
+
+        if (isExemptedEnglish == null || isExemptedPC1101 == null || isExemptedMA1301 == null) {
+            bridgingCourseCheck();
+        }
+
         System.out.println("You're all set!");
         return true;
     }
@@ -258,6 +287,40 @@ public class User {
             }
             setName(userInput);
         }
+        return true;
+    }
+
+    private boolean bridgingCourseCheck() {
+        System.out.println("Some courses in NUS require bridging courses:");
+        Boolean result;
+
+        if (isExemptedMA1301 == null) {
+            System.out.println("Are you exempted from MA1301? (y/n)");
+            result = Ui.askYesNo();
+            if (result == null) {
+                return false;
+            }
+            setExemptedMA1301(Boolean.TRUE.equals(result));
+        }
+
+        if (isExemptedPC1101 == null) {
+            System.out.println("Are you exempted from PC1101? (y/n)");
+            result = Ui.askYesNo();
+            if (result == null) {
+                return false;
+            }
+            setExemptedPC1101(Boolean.TRUE.equals(result));
+        }
+
+        if (isExemptedEnglish == null) {
+            System.out.println("Are you exempted from ES1000 & ES1103? (y/n)");
+            result = Ui.askYesNo();
+            if (result == null) {
+                return false;
+            }
+            setExemptedPC1101(Boolean.TRUE.equals(result));
+        }
+
         return true;
     }
 

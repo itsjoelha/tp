@@ -127,6 +127,22 @@ public class Ui {
         }
         return true;
     }
+
+    public static Boolean askYesNo() {
+
+        while (true) {
+            String userInput = Ui.readInput();
+            if (userInput.equals("/exit")) {
+                return null;
+            }
+            if (userInput.equalsIgnoreCase("y")) {
+                return true;
+            } else if (userInput.equalsIgnoreCase("n")) {
+                return false;
+            }
+            System.out.println("Please enter a 'y' or 'n'.");
+        }
+    }
 }
 
 
