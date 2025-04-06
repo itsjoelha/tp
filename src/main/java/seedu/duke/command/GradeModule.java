@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import seedu.duke.data.Grade;
-import seedu.duke.data.User;
+import seedu.duke.user.User;
 import seedu.duke.data.UserMod;
 
 public class GradeModule implements Command {

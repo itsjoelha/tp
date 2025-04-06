@@ -9,7 +9,7 @@
 package seedu.duke.command;
 
 import seedu.duke.data.Mod;
-import seedu.duke.data.User;
+import seedu.duke.user.User;
 
 public class Workload implements Command {
     private final User currentUser;
@@ -31,9 +31,9 @@ public class Workload implements Command {
      * @param user The user whose module workload will be displayed
      * @param semester The specific semester to display workload for (as a String)
      */
-    public Workload(User user, String semester) {
+    public Workload(User user, int semester) {
         this.currentUser = user;
-        this.sem = Integer.parseInt(semester);
+        this.sem = semester;
     }
 
     /**
@@ -43,6 +43,10 @@ public class Workload implements Command {
      * @param sem The semester number to display workload for
      */
     public void execute(int sem) {
+        if (sem < 1 || sem > 8) {
+            System.out.println("Invalid semester. Please choose a number between 1 and 8.");
+            return;
+        }
 
         if (currentUser.getSemesterModules().containsKey(sem)) {
             for (Mod m : currentUser.getSemesterModules().get(sem)) {

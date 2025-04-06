@@ -1,6 +1,7 @@
 package seedu.duke.data;
 
 import seedu.duke.errors.ModNotInDatabase;
+import seedu.duke.storage.ModStorage;
 
 public class Mod {
     private String name = null;
@@ -49,7 +50,7 @@ public class Mod {
     }
 
     public Mod(String code) throws ModNotInDatabase {
-        Mod foundMod = MasterModuleList.findModuleByCode(code.toUpperCase());
+        Mod foundMod = ModStorage.findModuleByCode(code.toUpperCase());
         this.code = foundMod.getCode();
         this.description = foundMod.getDescription();
         this.name = foundMod.getName();

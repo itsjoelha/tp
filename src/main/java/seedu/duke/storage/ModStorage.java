@@ -1,4 +1,4 @@
-package seedu.duke.data;
+package seedu.duke.storage;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -8,9 +8,14 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
+import seedu.duke.data.AndPrereq;
+import seedu.duke.data.Mod;
+import seedu.duke.data.ModPrereq;
+import seedu.duke.data.OrPrereq;
+import seedu.duke.data.Prereq;
 import seedu.duke.errors.ModNotInDatabase;
 
-public class MasterModuleList {
+public class ModStorage {
     private static final List<Mod> modules = new ArrayList<>();
 
     static {
@@ -18,7 +23,7 @@ public class MasterModuleList {
     }
 
     private static void loadModulesFromFile() {
-        try (InputStream inputStream = MasterModuleList.class.getClassLoader()
+        try (InputStream inputStream = ModStorage.class.getClassLoader()
                 .getResourceAsStream("moduledata.txt")) {
             if (inputStream == null) {
                 System.err.println("File not found: moduledata.txt");

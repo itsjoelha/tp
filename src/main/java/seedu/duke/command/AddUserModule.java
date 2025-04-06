@@ -3,7 +3,8 @@ package seedu.duke.command;
 import java.util.ArrayList;
 import java.util.Map;
 
-import seedu.duke.data.User;
+import seedu.duke.Ui;
+import seedu.duke.user.User;
 import seedu.duke.data.UserMod;
 import seedu.duke.errors.ModNotInDatabase;
 
@@ -41,6 +42,10 @@ public class AddUserModule implements Command {
 
             if (!user.fulfillsModPrereq(newMod, semester)) {
                 System.out.println("WARNING: " + moduleCode.toUpperCase() + " missing prerequisites");
+                Ui.printDashes();
+                System.out.printf("| %-78s |\n", "Prerequisites:");
+                Ui.textWrapDescription(newMod.getPrerequisites());
+                Ui.printDashes();
                 return;
             }
 

@@ -1,9 +1,13 @@
-package seedu.duke.data;
+package seedu.duke.user;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
+
+import seedu.duke.data.Grade;
+import seedu.duke.data.Prereq;
+import seedu.duke.data.UserMod;
 
 public class User {
     private String name;

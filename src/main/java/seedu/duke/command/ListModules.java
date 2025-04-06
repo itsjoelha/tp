@@ -1,6 +1,6 @@
 package seedu.duke.command;
 
-import seedu.duke.data.User;
+import seedu.duke.user.User;
 import seedu.duke.data.UserMod;
 
 public class ListModules implements Command {
@@ -15,6 +15,7 @@ public class ListModules implements Command {
         this.user = user;
         this.sem = Integer.parseInt(semester);
     }
+
 
     public void execute(int sem) {
         // Print Semester header
