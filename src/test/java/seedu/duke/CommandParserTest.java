@@ -151,4 +151,79 @@ public class CommandParserTest {
 
         assertEquals("No modules in List", out.toString().trim());
     }
+
+    @Test
+    public void parseCommand_helpWithValidArg() {
+        CommandParser parser = new CommandParser();
+        ByteArrayOutputStream out = new ByteArrayOutputStream(); // Capture output
+        System.setOut(new PrintStream(out)); // Redirect to out
+        String[] testCommands = {"/help", "grade"};
+
+        parser.callCommand(testCommands);
+        System.setOut(System.out); // Reset System.out
+
+        String output = out.toString().trim();
+        assertTrue(output.contains("Usage: /grade <module code> <grade>"));
+        assertTrue(output.contains("Description: Set a module's grade."));
+        assertFalse(output.contains("| Command                        | Description                          |"));
+    }
+
+    @Test
+    public void parseCommand_gradExecutesSuccessfully() {
+        CommandParser parser = new CommandParser();
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+        String[] testCommand = {"/grad"};
+
+        parser.callCommand(testCommand);
+        System.setOut(System.out);
+
+        String output = out.toString().trim();
+        assertTrue(output.contains("Viewing Graduation Requirements"));
+        assertTrue(output.contains("Current MCs:"));
+    }
+
+    @Test
+    public void parseCommand_specExecutesSuccessfully() {
+        CommandParser parser = new CommandParser();
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+        String[] testCommand = {"/spec"};
+
+        parser.callCommand(testCommand);
+        System.setOut(System.out);
+
+        String output = out.toString().trim();
+        assertTrue(output.contains("SPECIALISATIONS"));
+        assertTrue(output.contains("ADVANCED ELECTRONICS"));
+    }
+
+    @Test
+    public void parseCommand_gradWithArgumentsFails() {
+        CommandParser parser = new CommandParser();
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+        String[] testCommand = {"/grad", "extraArg"};
+
+        parser.callCommand(testCommand);
+        System.setOut(System.out);
+
+        String output = out.toString().trim();
+        assertFalse(output.contains("Viewing Graduation Requirements"));
+    }
+
+    @Test
+    public void parseCommand_specWithArgumentsFails() {
+        CommandParser parser = new CommandParser();
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+        String[] testCommand = {"/spec", "extraArg"};
+
+        parser.callCommand(testCommand);
+        System.setOut(System.out);
+
+        String output = out.toString().trim();
+        assertFalse(output.contains("SPECIALISATIONS"));
+    }
 }
+
