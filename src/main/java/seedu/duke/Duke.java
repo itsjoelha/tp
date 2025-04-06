@@ -1,7 +1,7 @@
 package seedu.duke;
 
-import seedu.duke.data.User;
-import seedu.duke.data.UserData;
+import seedu.duke.user.User;
+import seedu.duke.storage.UserStorage;
 import seedu.duke.errors.ErrorHandler;
 
 public class Duke {
@@ -10,7 +10,7 @@ public class Duke {
      */
     public static CommandParser commandParser = new CommandParser();
     public static User currentUser = new User();
-    public static UserData userData = new UserData("data/user.txt");
+    public static UserStorage userData = new UserStorage("data/user.txt");
     public static Ui ui = new Ui();
 
     public static void main(String[] args) {

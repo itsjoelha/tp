@@ -9,7 +9,7 @@
 package seedu.duke.command;
 
 import seedu.duke.data.Mod;
-import seedu.duke.data.User;
+import seedu.duke.user.User;
 
 public class Workload implements Command {
     private final User currentUser;

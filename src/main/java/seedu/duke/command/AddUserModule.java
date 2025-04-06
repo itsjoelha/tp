@@ -3,7 +3,7 @@ package seedu.duke.command;
 import java.util.ArrayList;
 import java.util.Map;
 
-import seedu.duke.data.User;
+import seedu.duke.user.User;
 import seedu.duke.data.UserMod;
 import seedu.duke.errors.ModNotInDatabase;
 
