@@ -225,5 +225,61 @@ public class CommandParserTest {
         String output = out.toString().trim();
         assertFalse(output.contains("SPECIALISATIONS"));
     }
+
+    @Test
+    public void parseCommand_detailExecutesSuccessfully() {
+        CommandParser parser = new CommandParser();
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+        String[] testCommand = {"/detail", "CS1010"};
+
+        parser.callCommand(testCommand);
+        System.setOut(System.out);
+
+        String output = out.toString().trim();
+        assertTrue(output.contains("CS1010"));
+        assertTrue(output.contains("Prerequisites:"));
+        assertTrue(output.contains("Preclusions:"));
+    }
+
+    @Test
+    public void parseCommand_detailWithoutArgumentsFails() {
+        CommandParser parser = new CommandParser();
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+        String[] testCommand = {"/detail"};
+
+        assertThrows(ArrayIndexOutOfBoundsException.class, () -> parser.callCommand(testCommand));
+    }
+
+    @Test
+    public void parseCommand_viewExecutesSuccessfully() {
+        CommandParser parser = new CommandParser();
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+        String[] testCommand = {"/view"};
+
+        parser.callCommand(testCommand);
+        System.setOut(System.out);
+
+        String output = out.toString().trim();
+        assertTrue(output.contains("SEMESTER 1"));
+        assertTrue(output.contains("SEMESTER 8"));
+    }
+
+    @Test
+    public void parseCommand_viewWithSemesterExecutesSuccessfully() {
+        CommandParser parser = new CommandParser();
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+        String[] testCommand = {"/view", "3"};  // View modules in semester 3
+
+        parser.callCommand(testCommand);
+        System.setOut(System.out);
+
+        String output = out.toString().trim();
+        assertTrue(output.contains("SEMESTER 3"));
+        assertFalse(output.contains("SEMESTER 1"));  // Should only show semester 3
+    }
 }
 
