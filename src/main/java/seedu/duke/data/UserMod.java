@@ -11,9 +11,10 @@ public class UserMod extends Mod {
     public UserMod(String name, String description, int numMC, String code, double lectureHours,
                    double tutHours,
                    double labHours, double projHours, double prepHours,
-                   String preclusion, String prerequisites, Prereq prereqTree) {
+                   String preclusion, String prerequisites, Prereq prereqTree,
+                   boolean canSu) {
         super(name, description, numMC, code, lectureHours, tutHours, labHours, projHours, prepHours,
-                preclusion, prerequisites, prereqTree);
+                preclusion, prerequisites, prereqTree, canSu);
         this.grade = null;
         this.su = false;
         this.isCustom = false;
