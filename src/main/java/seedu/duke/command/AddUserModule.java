@@ -21,8 +21,8 @@ public class AddUserModule implements Command {
 
     @Override
     public void execute() {
-        if (semester < 1 || semester > 8) {
-            System.out.println("Invalid semester. Please choose between 1 and 8.");
+
+        if (!Ui.isValidSem(semester)) {
             return;
         }
 

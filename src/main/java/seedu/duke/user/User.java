@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import seedu.duke.Ui;
 import seedu.duke.data.Grade;
 import seedu.duke.data.Prereq;
 import seedu.duke.data.UserMod;
@@ -15,23 +16,25 @@ public class User {
     private double gpa;
     private int currentSemester;
     private Map<Integer, ArrayList<UserMod>> semesterModules;
+    private ArrayList<Boolean> bridging;
 
     public User() {
         // Default constructor initializes with empty values
         this.name = "";
         this.education = null;
         this.gpa = 0.0;
-        this.currentSemester = 1;
+        this.currentSemester = -1;
         this.semesterModules = new HashMap<>();
-
+        this.bridging = new ArrayList<>();
     }
 
-    public User(String name, EducationLevel education) {
+    public User(String name, EducationLevel education, int currentSemester) {
         this.name = name;
         this.education = education;
+        this.currentSemester = currentSemester;
         this.gpa = 0.0;
-        this.currentSemester = 1;
         this.semesterModules = new HashMap<>();
+        this.bridging = new ArrayList<>();
     }
 
     public Map<Integer, ArrayList<UserMod>> getSemesterModules() {
@@ -184,5 +187,79 @@ public class User {
                 .flatMap(ArrayList::stream)
                 .collect(Collectors.toCollection(ArrayList::new));
     }
+
+
+    public boolean initialiseUser() {
+        if (getName().isEmpty()) {
+            if (!initialiseName()) { //user exit
+                return false;
+            };
+        }
+
+        if (getEducation() == null) {
+            if (!initialiseEducation()) { //user exit
+                return false;
+            }
+        }
+
+        if (getCurrentSemester() == -1) {
+            if (!initialiseSemester()) { //user exit
+                return false;
+            }
+        }
+        System.out.println("You're all set!");
+        return true;
+    }
+
+    private boolean initialiseSemester()  {
+        System.out.println("Please enter current semester: (1-8)");
+        while (getCurrentSemester() == -1 ) { // semester is uninitialised
+            try {
+                String userInput = Ui.readInput();
+                if (userInput.equals("/exit")){
+                    return false;
+                }
+                int semester = Integer.parseInt(userInput);
+                if (Ui.isValidSem(semester)) {
+                    setCurrentSemester(semester);
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Please enter a number from 1-8");
+            }
+        }
+        return true;
+    }
+
+    private boolean initialiseEducation() {
+        System.out.println("Are you from JC or Poly? (jc/poly)");
+        while (getEducation() == null) {
+            String userInput = Ui.readInput();
+            if (userInput.equals("/exit")){
+                return false;
+            }
+            if (userInput.equalsIgnoreCase("jc")) {
+                setEducation(EducationLevel.JC);
+            } else if (userInput.equalsIgnoreCase("poly")) {
+                setEducation(EducationLevel.POLY);
+            } else {
+                System.out.println("Please enter either 'jc' or 'poly'");
+            }
+        }
+        return true;
+    }
+
+    private boolean initialiseName() {
+
+        while (getName().isBlank()) {
+            System.out.println("Please enter your name:");
+            String userInput = Ui.readInput();
+            if (userInput.equals("/exit")) {
+                return false;
+            }
+            setName(userInput);
+        }
+        return true;
+    }
+
 }
 

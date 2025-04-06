@@ -1,5 +1,6 @@
 package seedu.duke;
 
+import seedu.duke.user.EducationLevel;
 import seedu.duke.user.User;
 import seedu.duke.storage.UserStorage;
 import seedu.duke.errors.ErrorHandler;
@@ -19,9 +20,12 @@ public class Duke {
 
         boolean isRunning = true;
 
+        //New User
+        isRunning = currentUser.initialiseUser();
+
         while (isRunning) {
             ui.printEnterCommand();
-            String userInput = ui.readInput();
+            String userInput = Ui.readInput();
             String[] command = null;
             try {
                 command = commandParser.parseCommand(userInput);
@@ -36,6 +40,7 @@ public class Duke {
                 userData.saveUserData(currentUser);
             }
         }
-        ui.farewellMessage();
+        ui.farewellMessage(currentUser.getName());
     }
+
 }
