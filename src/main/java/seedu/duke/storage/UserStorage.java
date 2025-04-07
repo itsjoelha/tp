@@ -66,7 +66,7 @@ public class UserStorage {
             user.setEducation(education);
             int currentSemester = Integer.parseInt(scanner.nextLine());
             user.setCurrentSemester(currentSemester);
-
+            String[] exemptions = scanner.nextLine().split(",");
 
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
