@@ -46,12 +46,22 @@ public class CommandParser {
     }
 
     public int requiredInput(String command) {
-        return switch (command) {
-            case "/gpa", "/grad", "/spec", "/clear" -> 1;
-            case "/view", "/detail", "/delete", "/su", "/grade", "/help", "/workload", "/schedule" -> 2;
-            case "/add" -> 3;
-            default -> 5;
-        };
+        int input = 0;
+        switch (command) {
+        case "/gpa", "/grad", "/spec", "/clear":
+            input = 1;
+            break;
+        case "/view", "/detail", "/delete", "/su", "/grade", "/help", "/workload", "/schedule":
+            input = 2;
+            break;
+        case "/add":
+            input = 3;
+            break;
+        default:
+            input = 5;
+            break;
+        }
+        return input;
     }
 
     // This method calls the appropriate command
@@ -92,7 +102,8 @@ public class CommandParser {
             semester = Integer.parseInt(words[2]);
             try {
                 int creditNum = Integer.parseInt(words[3]);
-                logger.info("Executing AddCustomModule command with module code: " + words[1] + ", semester: " + semester);
+                logger.info("Executing AddCustomModule command with module code: " + words[1]
+                        + ", semester: " + semester);
                 cmdObject = new AddCustomModule(currentUser, words[1], semester, creditNum, words[4]);
             } catch (NumberFormatException e) {
                 ErrorHandler.integerInputError("creditNum", command);
