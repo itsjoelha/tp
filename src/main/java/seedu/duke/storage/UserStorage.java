@@ -53,7 +53,6 @@ public class UserStorage {
     public User loadUserData() {
         if (!file.exists()) {
             logger.warning("No existing user data found: " + file.getPath());
-            System.out.println("No existing user data found");
             return new User();
         }
 
