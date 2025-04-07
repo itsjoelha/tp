@@ -14,7 +14,7 @@ so that students <span style="color:red;">do not miss academic opportunities</sp
 ---
 
 <h2>
-<span style="color:orange;">Summary of Contributions<span>
+<span style="color:orange;">Summary of Contributions</span>
 </h2>
 
 Here are my contributions to the project
@@ -36,7 +36,7 @@ Here are my contributions to the project
 ---
 
 <h2>
-<span style="color:orange;">Link to dashboard<span>
+<span style="color:orange;">Link to dashboard</span>
 </h2>
 
 My contributions can be found 
