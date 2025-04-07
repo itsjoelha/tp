@@ -42,7 +42,8 @@ public class WorkloadTest {
         String output = outContent.toString();
 
         // Verify table headers are present
-        assertTrue(output.contains("| Code      | Sem | MCs | Lecture Hrs | Tut Hrs | Lab Hrs | Proj Hrs | Prep Hrs |"));
+        assertTrue(output.contains("| Code      | Sem | MCs | Lecture Hrs | Tut Hrs | " +
+                "Lab Hrs | Proj Hrs | Prep Hrs |"));
 
         // Verify both modules' information is displayed
         assertTrue(output.contains("CS2113"));
@@ -113,7 +114,8 @@ public class WorkloadTest {
         String output = outContent.toString();
 
         // Verify table header is displayed but no module information
-        assertTrue(output.contains("| Code      | Sem | MCs | Lecture Hrs | Tut Hrs | Lab Hrs | Proj Hrs | Prep Hrs |"));
+        assertTrue(output.contains("| Code      | Sem | MCs | Lecture Hrs | Tut Hrs | Lab Hrs | " +
+                "Proj Hrs | Prep Hrs |"));
         assertFalse(output.contains("| CS2113"));
         assertFalse(output.contains("| CS2040C"));
     }
