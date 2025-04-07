@@ -23,7 +23,7 @@ public class WaiveModPrereq implements Command {
                 if (userMod.getCode().equalsIgnoreCase(moduleCode)) {
                     userMod.togglePrereqWaived();
                     System.out.println((userMod.isPrereqWaived() ? "Waived" : "Unwaived") +
-                            " " + userMod.getCode());
+                            " Prerequisite Check for " + userMod.getCode());
                     return;
                 }
             }

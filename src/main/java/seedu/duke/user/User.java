@@ -117,7 +117,29 @@ public class User {
         return null;
     }
 
+    public void printWaivedModules() {
+        StringBuilder waivedMods = new StringBuilder();
+        String start = "Did not check Prerequisites for: ";
+        waivedMods.append(start);
+        
+        for (ArrayList<UserMod> mods : semesterModules.values()) {
+            for (UserMod mod : mods) {
+                if (mod.isPrereqWaived()){
+                    waivedMods.append(mod.getCode()).append(", ");
+                }
+            }
+        }
 
+        if (waivedMods.length() == start.length()) {
+            return;
+        }
+
+        assert waivedMods.charAt(waivedMods.length() - 1) == ' '
+                && waivedMods.charAt(waivedMods.length() - 2) == ',';
+
+        waivedMods.deleteCharAt(waivedMods.length() - 2); //remove last comma
+        System.out.println(waivedMods);
+    }
     public void checkAllPrereqs() {
         int semester = 0;
         StringBuilder missingMods = new StringBuilder();
