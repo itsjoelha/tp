@@ -12,7 +12,7 @@ import seedu.duke.data.UserMod;
 public class SuModuleTest {
     @BeforeEach
     public void setUp() {
-        currentUser.clearModules(); // Clear the moduleList
+        currentUser.resetUser(); // Clear and set all exemptions to false
     }
 
     @Test

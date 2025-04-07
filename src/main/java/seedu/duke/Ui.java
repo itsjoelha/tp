@@ -12,7 +12,7 @@ public class Ui {
         logger.setLevel(Level.OFF);
     }
 
-    public String readInput() {
+    public static String readInput() {
         Scanner sc = new Scanner(System.in);
         String userInput = sc.nextLine().trim();
         logger.info("Received user input: " + userInput);
@@ -27,8 +27,12 @@ public class Ui {
         System.out.println("Exiting program...");
     }
 
-    public void farewellMessage() {
-        System.out.println("Goodbye, thank you for using Grand Rhombus");
+    public void farewellMessage(String name) {
+        String farewellMessage = "Goodbye";
+        if (!name.isEmpty()) {
+            farewellMessage += " " + name;
+        }
+        System.out.println(farewellMessage + ", thank you for using Grand Rhombus");
     }
 
     public void printEnterCommand() {
@@ -128,6 +132,29 @@ public class Ui {
         System.out.println("+--------------------------------------------------------------------------------+");
     }
 
+    public static boolean isValidSem(int semester) {
+        if (semester < 1 || semester > 8) {
+            System.out.println("Invalid semester. Please choose between 1 and 8.");
+            return false;
+        }
+        return true;
+    }
+
+    public static Boolean askYesNo() {
+
+        while (true) {
+            String userInput = Ui.readInput();
+            if (userInput.equals("/exit")) {
+                return null;
+            }
+            if (userInput.equalsIgnoreCase("y")) {
+                return true;
+            } else if (userInput.equalsIgnoreCase("n")) {
+                return false;
+            }
+            System.out.println("Please enter a 'y' or 'n'.");
+        }
+    }
 }
 
 

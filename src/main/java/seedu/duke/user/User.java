@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import seedu.duke.Ui;
 import seedu.duke.data.Grade;
 import seedu.duke.data.Prereq;
 import seedu.duke.data.UserMod;
@@ -15,22 +16,24 @@ public class User {
     private double gpa;
     private int currentSemester;
     private Map<Integer, ArrayList<UserMod>> semesterModules;
+    private Boolean isExemptedMA1301 = null;
+    private Boolean isExemptedPC1101 = null;
+    private Boolean isExemptedEnglish = null;
 
     public User() {
         // Default constructor initializes with empty values
         this.name = "";
         this.education = null;
         this.gpa = 0.0;
-        this.currentSemester = 1;
+        this.currentSemester = -1;
         this.semesterModules = new HashMap<>();
-
     }
 
-    public User(String name, EducationLevel education) {
+    public User(String name, EducationLevel education, int currentSemester) {
         this.name = name;
         this.education = education;
+        this.currentSemester = currentSemester;
         this.gpa = 0.0;
-        this.currentSemester = 1;
         this.semesterModules = new HashMap<>();
     }
 
@@ -142,7 +145,18 @@ public class User {
         if (prereqTree == null) {
             return true;
         }
-        return prereqTree.fulfillsPrereq(getAllModulesTilSemester(semester));
+        ArrayList<UserMod> modules = getAllModulesTilSemester(semester);
+        if (isExemptedMA1301) {
+            modules.add(new UserMod("MA1301", 0, "Exempted MA1301"));
+        }
+        if (isExemptedPC1101) {
+            modules.add(new UserMod("PC1101", 0, "Exempted PC1101"));
+        }
+        if (isExemptedEnglish) {
+            modules.add(new UserMod("ES1000", 0, "Exempted English"));
+            modules.add(new UserMod("ES1103", 0, "Exempted English"));
+        }
+        return prereqTree.fulfillsPrereq(modules);
     }
 
 
@@ -170,6 +184,30 @@ public class User {
         this.education = education;
     }
 
+    public boolean isExemptedMA1301() {
+        return isExemptedMA1301;
+    }
+
+    public void setExemptedMA1301(boolean exemptedMA1301) {
+        isExemptedMA1301 = exemptedMA1301;
+    }
+
+    public boolean isExemptedPC1101() {
+        return isExemptedPC1101;
+    }
+
+    public void setExemptedPC1101(boolean exemptedPC1101) {
+        isExemptedPC1101 = exemptedPC1101;
+    }
+
+    public boolean isExemptedEnglish() {
+        return isExemptedEnglish;
+    }
+
+    public void setExemptedEnglish(boolean exemptedEnglish) {
+        isExemptedEnglish = exemptedEnglish;
+    }
+
     public ArrayList<UserMod> getAllModules() {
         return semesterModules.values()
                 .stream()
@@ -183,6 +221,132 @@ public class User {
                 .limit(semester)
                 .flatMap(ArrayList::stream)
                 .collect(Collectors.toCollection(ArrayList::new));
+    }
+
+
+    public boolean initialiseUser() {
+        if (getName().isEmpty()) {
+            if (!initialiseName()) { //user exit
+                return false;
+            }
+        }
+
+        if (getEducation() == null) {
+            if (!initialiseEducation()) { //user exit
+                return false;
+            }
+        }
+
+        if (getCurrentSemester() == -1) {
+            if (!initialiseSemester()) { //user exit
+                return false;
+            }
+        }
+
+        if (isExemptedEnglish == null || isExemptedPC1101 == null || isExemptedMA1301 == null) {
+            bridgingCourseCheck();
+        }
+
+        System.out.println("You're all set!");
+        return true;
+    }
+
+    private boolean initialiseSemester() {
+        System.out.println("Please enter current semester: (1-8)");
+        while (getCurrentSemester() == -1) { // semester is uninitialised
+            try {
+                String userInput = Ui.readInput();
+                if (userInput.equals("/exit")) {
+                    return false;
+                }
+                int semester = Integer.parseInt(userInput);
+                if (Ui.isValidSem(semester)) {
+                    setCurrentSemester(semester);
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Please enter a number from 1-8");
+            }
+        }
+        return true;
+    }
+
+    private boolean initialiseEducation() {
+        System.out.println("Are you from JC or Poly? (jc/poly)");
+        while (getEducation() == null) {
+            String userInput = Ui.readInput();
+            if (userInput.equals("/exit")) {
+                return false;
+            }
+            if (userInput.equalsIgnoreCase("jc")) {
+                setEducation(EducationLevel.JC);
+            } else if (userInput.equalsIgnoreCase("poly")) {
+                setEducation(EducationLevel.POLY);
+            } else {
+                System.out.println("Please enter either 'jc' or 'poly'");
+            }
+        }
+        return true;
+    }
+
+    private boolean initialiseName() {
+
+        while (getName().isBlank()) {
+            System.out.println("Please enter your name:");
+            String userInput = Ui.readInput();
+            if (userInput.equals("/exit")) {
+                return false;
+            }
+            setName(userInput);
+        }
+        return true;
+    }
+
+    private boolean bridgingCourseCheck() {
+        System.out.println("Some courses in NUS require bridging courses:");
+        Boolean result;
+
+        if (isExemptedMA1301 == null) {
+            System.out.println("Are you exempted from MA1301? (y/n)");
+            result = Ui.askYesNo();
+            if (result == null) {
+                return false;
+            }
+            setExemptedMA1301(Boolean.TRUE.equals(result));
+        }
+
+        if (isExemptedPC1101 == null) {
+            System.out.println("Are you exempted from PC1101? (y/n)");
+            result = Ui.askYesNo();
+            if (result == null) {
+                return false;
+            }
+            setExemptedPC1101(Boolean.TRUE.equals(result));
+        }
+
+        if (isExemptedEnglish == null) {
+            System.out.println("Are you exempted from ES1000 & ES1103? (y/n)");
+            result = Ui.askYesNo();
+            if (result == null) {
+                return false;
+            }
+            setExemptedEnglish(Boolean.TRUE.equals(result));
+        }
+
+        return true;
+    }
+
+    /**
+     * Sets all Exemptions to false
+     */
+    public void clearExemptions() {
+        setExemptedMA1301(false);
+        setExemptedPC1101(false);
+        setExemptedEnglish(false);
+    }
+
+    public void resetUser() {
+        clearModules();
+        clearExemptions();
     }
 }
 

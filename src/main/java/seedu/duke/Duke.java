@@ -17,11 +17,12 @@ public class Duke {
         ui.welcomeMessage();
         currentUser = userData.loadUserData();
 
-        boolean isRunning = true;
+        //New User
+        boolean isRunning = currentUser.initialiseUser();
 
         while (isRunning) {
             ui.printEnterCommand();
-            String userInput = ui.readInput();
+            String userInput = Ui.readInput();
             String[] command = null;
             try {
                 command = commandParser.parseCommand(userInput);
@@ -36,6 +37,7 @@ public class Duke {
                 userData.saveUserData(currentUser);
             }
         }
-        ui.farewellMessage();
+        ui.farewellMessage(currentUser.getName());
     }
+
 }

@@ -19,7 +19,7 @@ import java.io.PrintStream;
 public class CommandParserTest {
     @BeforeEach
     public void setUp() {
-        currentUser.clearModules();
+        currentUser.resetUser(); // Clear and set all exemptions to false
     }
 
 

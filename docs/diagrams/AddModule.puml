@@ -1,0 +1,52 @@
+@startuml
+actor User
+participant "AddUserModule" as AUM
+participant "User" as U
+participant "UserMod" as UM
+participant "Ui" as UI
+
+User -> AUM: execute()
+activate AUM
+alt invalid semester
+    AUM -> User: print("Invalid semester. Please choose between 1 and 8.")
+else valid semester
+    AUM -> U: getSemesterModules()
+    activate U
+    U --> AUM: semesterModules
+    deactivate U
+    AUM -> UM: new UserMod(moduleCode)
+    activate UM
+    alt module not in database
+        UM --> AUM: ModNotInDatabase exception
+        deactivate UM
+        AUM -> User: print(moduleCode.toUpperCase() + " not in database. /addCustom to add custom modules")
+    else module in database
+        deactivate UM
+        AUM -> U: hasModule(moduleCode)
+        activate U
+        U --> AUM: boolean
+        deactivate U
+        alt module already exists
+            AUM -> User: print("Failed to add module " + moduleCode.toUpperCase() + ". It may already exist.")
+        else module does not exist
+            AUM -> semesterModules: putIfAbsent(semester, new ArrayList<>())
+            AUM -> semesterModules: get(semester).add(newMod)
+            AUM -> U: setSemesterModules(semesterModules)
+            AUM -> U: fulfillsModPrereq(newMod, semester)
+            activate U
+            U --> AUM: boolean
+            deactivate U
+            alt missing prerequisites
+                AUM -> User: print("WARNING: " + moduleCode.toUpperCase() + " missing prerequisites")
+                AUM -> UI: printDashes()
+                activate UI
+                AUM -> UI: textWrapDescription(newMod.getPrerequisites())
+                AUM -> UI: printDashes()
+                deactivate UI
+            end
+            AUM -> User: print("Module " + moduleCode.toUpperCase() + " successfully added to Semester " + semester)
+        end
+    end
+end
+deactivate AUM
+@enduml
