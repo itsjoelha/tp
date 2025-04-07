@@ -50,8 +50,12 @@ Here are my contributions to the project
   - Built a formatted display of missing modules in a two-column table layout.
   - Implemented special handling for general education module requirements (GEC and GEN modules).
 - **Recommended Schedule Command**
-  - Created a formatted table display the schedules in two columns.
+  - Created a formatted table to display the schedules in two columns.
   - Fixed arguments to only 'jc' or 'poly' and correctly displayed respective schedule.
+- **Help Command**
+  - Designed table formatting for `/help`.
+- **Detail Command**
+  - Designed table formatting for `/detail`.
 - **Code Refactoring**
   - Improved code organization through consistent class structure.
   - Enhanced error handling with dedicated error messages.
@@ -61,7 +65,7 @@ Here are my contributions to the project
   - Created comprehensive test suite for command parsing functionality.
   - Implemented tests for edge cases in user input handling.
   - Developed validation tests for semester range restrictions.
-  - Developed tests for graduation requirement tracking logic.
+  - Developed tests for workload and graduation requirement tracking logic.
 - **User Guide**
   - Contributed to User Guide by adding commands such as `/schedule` and the example outputs.
 - **Developer Guide**
