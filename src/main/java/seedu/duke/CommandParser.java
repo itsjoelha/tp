@@ -53,6 +53,7 @@ public class CommandParser {
             default -> 5;
         };
     }
+
     // This method calls the appropriate command
     public boolean callCommand(String[] words) throws ArrayIndexOutOfBoundsException, NumberFormatException {
         String command = words[0];
@@ -66,7 +67,7 @@ public class CommandParser {
 
         switch (command) {
         case "/view":
-           if (words.length == 2) {
+            if (words.length == 2) {
                 semester = Integer.parseInt(words[1]);
                 logger.info("Executing ListModules command to view modules in semester " + semester);
                 cmdObject = new ListModules(currentUser, words[1]);
@@ -130,12 +131,12 @@ public class CommandParser {
             break;
 
         case "/grad":
-                logger.info("Executing ViewGradRequirements command.");
-                cmdObject = new ViewGradRequirements(currentUser);
+            logger.info("Executing ViewGradRequirements command.");
+            cmdObject = new ViewGradRequirements(currentUser);
             break;
 
         case "/schedule":
-           if (words.length == 1) {
+            if (words.length == 1) {
                 logger.warning("Schedule command missing required argument.");
                 System.out.println("Error: Please indicate either 'jc' or 'poly' to see the respective schedules.");
             } else if (!words[1].equals("jc") && !words[1].equals("poly")) {
@@ -148,8 +149,8 @@ public class CommandParser {
             break;
 
         case "/spec":
-                logger.info("Displaying Specialisations.");
-                cmdObject = new Specialisation();
+            logger.info("Displaying Specialisations.");
+            cmdObject = new Specialisation();
             break;
 
         case "/workload":
