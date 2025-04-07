@@ -42,6 +42,11 @@ public class AddCustomModule implements Command {
             return false;
         }
 
+        if (numMC < 1 || numMC > 20) {
+            System.out.println("Invalid numMC. Please choose a number between 1 and 20.");
+            return false;
+        }
+
         return true;
     }
 
