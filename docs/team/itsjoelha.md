@@ -27,6 +27,7 @@ Here are my contributions to the project
   - Built a command routing system that directs user inputs to the appropriate command classes.
   - Added validation for numeric inputs and semester ranges (1-8).
   - Implemented argument count validation to prevent command misuse.
+
 - **Workload Command**
   - Developed the Workload command to provide detailed analysis of user's module workload distribution.
   - Created a formatted table display showing workload breakdown by category:
@@ -37,44 +38,54 @@ Here are my contributions to the project
     - Preparation Hours
   - Implemented filtering capability to view workload by specific semester.
   - Added validation for semester input ranges (1-8).
+
 - **Specialisation Command**
   - Implemented a comprehensive system to display detailed information about available specializations.
   - Created formatting utilities for consistent text display including:
     - `textWrapDescription()` to handle long descriptions with proper word wrapping.
     - `printHeaderDivider()` for visual separation between sections.
     - `printSpecialisationHeader()` and `printSectionHeader()` for hierarchical information display.
+
 - **Graduation Requirements Command**
   - Developed the ViewGradRequirements command to track and display graduation progress.
   - Implemented analysis of completed modules against graduation requirements.
   - Created a calculation system for total Modular Credits (MCs) earned and needed.
   - Built a formatted display of missing modules in a two-column table layout.
   - Implemented special handling for general education module requirements (GEC and GEN modules).
+
 - **Recommended Schedule Command**
   - Created a formatted table to display the schedules in two columns.
   - Fixed arguments to only 'jc' or 'poly' and correctly displayed respective schedule.
+
 - **Help Command**
   - Designed table formatting for `/help`.
+
 - **Detail Command**
   - Designed table formatting for `/detail`.
-- **Code Refactoring**
-  - Improved code organization through consistent class structure.
-  - Enhanced error handling with dedicated error messages.
-  - Implemented consistent logging patterns across classes.
-  - Standardized table formatting for consistent user interface.
-- **Test Cases**
-  - Created comprehensive test suite for command parsing functionality.
-  - Implemented tests for edge cases in user input handling.
-  - Developed validation tests for semester range restrictions.
-  - Developed tests for workload and graduation requirement tracking logic.
+
+- **Contributions to team-based tasks**
+  - **Code Refactoring**
+    - Improved code organization through consistent class structure.
+    - Enhanced error handling with dedicated error messages.
+    - Implemented consistent logging patterns across classes.
+    - Standardized table formatting for consistent user interface.
+
+  - **Test Cases**
+    - Created comprehensive test suite for command parsing functionality.
+    - Implemented tests for edge cases in user input handling.
+    - Developed validation tests for semester range restrictions.
+    - Developed tests for workload and graduation requirement tracking logic.
+
 - **User Guide**
-  - Contributed to User Guide by adding commands such as `/schedule` and the example outputs.
+  - Contributed to User Guide by adding documentation for commands such as `/schedule` and the example outputs.
+
 - **Developer Guide**
   - Contributed to the Developer Guide on areas like the Appendix: Instructions for manual testing.
 
 ---
 
 <h2>
-<span style="color:orange;">Link to dashboard</span>
+<span style="color:orange;">Link to tP Code dashboard</span>
 </h2>
 
 My contributions can be found
