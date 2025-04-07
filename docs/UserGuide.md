@@ -81,6 +81,13 @@ Example:  `/addCustom PL1101E 2 4 Intro to Psychology`
 ```
 Module PL1101E successfully added to Semester 2 as a Custom Module.
 ```
+<div style="border: 1px solid #2196F3; background-color: #BBDEFB; padding: 10px; border-radius: 5px;">
+  <strong> Note about Custom Module Format:   </strong> </br>
+  Custom Modules added <strong>cannot </strong> have their details changed </br>
+  To change the detials of a custom module, you can delete the custom module form the list and add a new custom module with the adjusted details.
+</div>
+
+
 
 ## Delete  
 **`/delete MODULE_CODE`**  
