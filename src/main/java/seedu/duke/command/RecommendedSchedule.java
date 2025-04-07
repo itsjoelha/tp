@@ -30,7 +30,6 @@ public class RecommendedSchedule implements Command {
         if (scheduleType.equals("poly")) {
             executePolySchedule();
         } else {
-            // Default case for "jc" or any other value (though we've already filtered others)
             executeJcSchedule();
         }
     }
@@ -144,7 +143,7 @@ public class RecommendedSchedule implements Command {
             // Print top border using same separator as column headers
             System.out.println(columnHeaderSeparator);
 
-            // Left align the title with exact width to match column format
+            // Left align the title
             String title = "Poly Schedule";
             System.out.println("| " + title + " ".repeat(semesterSeparator.length()
                     - title.length() - 4) + " |");
@@ -191,7 +190,6 @@ public class RecommendedSchedule implements Command {
                 System.out.printf("| %-4d | %-3d | %-16s | %-4d | %-3d | %-16s |\n",
                         year1, sem1, moduleCode1, year2, sem2, moduleCode2);
             } else {
-                // For subsequent rows, leave year and semester blank
                 System.out.printf("|      |     | %-16s |      |     | %-16s |\n",
                         moduleCode1, moduleCode2);
             }
