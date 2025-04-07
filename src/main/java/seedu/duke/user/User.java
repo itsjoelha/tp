@@ -17,7 +17,7 @@ public class User {
     private int currentSemester;
     private Map<Integer, ArrayList<UserMod>> semesterModules;
     private Boolean isExemptedMA1301 = null;
-    private Boolean isExemptedPC1101 =  null;
+    private Boolean isExemptedPC1101 = null;
     private Boolean isExemptedEnglish = null;
 
     public User() {
@@ -228,7 +228,7 @@ public class User {
         if (getName().isEmpty()) {
             if (!initialiseName()) { //user exit
                 return false;
-            };
+            }
         }
 
         if (getEducation() == null) {
@@ -251,12 +251,12 @@ public class User {
         return true;
     }
 
-    private boolean initialiseSemester()  {
+    private boolean initialiseSemester() {
         System.out.println("Please enter current semester: (1-8)");
-        while (getCurrentSemester() == -1 ) { // semester is uninitialised
+        while (getCurrentSemester() == -1) { // semester is uninitialised
             try {
                 String userInput = Ui.readInput();
-                if (userInput.equals("/exit")){
+                if (userInput.equals("/exit")) {
                     return false;
                 }
                 int semester = Integer.parseInt(userInput);
@@ -274,7 +274,7 @@ public class User {
         System.out.println("Are you from JC or Poly? (jc/poly)");
         while (getEducation() == null) {
             String userInput = Ui.readInput();
-            if (userInput.equals("/exit")){
+            if (userInput.equals("/exit")) {
                 return false;
             }
             if (userInput.equalsIgnoreCase("jc")) {

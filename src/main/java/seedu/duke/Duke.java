@@ -1,6 +1,5 @@
 package seedu.duke;
 
-import seedu.duke.user.EducationLevel;
 import seedu.duke.user.User;
 import seedu.duke.storage.UserStorage;
 import seedu.duke.errors.ErrorHandler;
