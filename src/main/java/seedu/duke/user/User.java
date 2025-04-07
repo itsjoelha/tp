@@ -145,7 +145,18 @@ public class User {
         if (prereqTree == null) {
             return true;
         }
-        return prereqTree.fulfillsPrereq(getAllModulesTilSemester(semester));
+        ArrayList<UserMod> modules = getAllModulesTilSemester(semester);
+        if (isExemptedMA1301) {
+            modules.add(new UserMod("MA1301", 0, "Exempted MA1301"));
+        }
+        if (isExemptedPC1101) {
+            modules.add(new UserMod("PC1101", 0, "Exempted PC1101"));
+        }
+        if (isExemptedEnglish) {
+            modules.add(new UserMod("ES1000", 0, "Exempted English"));
+            modules.add(new UserMod("ES1103", 0, "Exempted English"));
+        }
+        return prereqTree.fulfillsPrereq(modules);
     }
 
 
