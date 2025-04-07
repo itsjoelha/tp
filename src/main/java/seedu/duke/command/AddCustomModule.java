@@ -25,13 +25,13 @@ public class AddCustomModule implements Command {
     }
 
     public boolean customModuleIsValid() {
-        if (user.hasModule(moduleCode)) { // Module exists in user's list
+        if (user.hasModule(moduleCode)) {
             System.out.println("Failed to add module " + moduleCode.toUpperCase()
                     + ". It already exists in the schedule.");
             return false;
         }
 
-        if (ModStorage.moduleExists(moduleCode.toUpperCase())) { // Module exists in database
+        if (ModStorage.moduleExists(moduleCode.toUpperCase())) {
             System.out.println("Module " + moduleCode.toUpperCase() + " already exists in the database." +
                     " Use /add to add the module.");
             return false;
