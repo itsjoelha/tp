@@ -143,15 +143,9 @@ public class ViewGradRequirements implements Command {
             // For GEC1XXX check if user has any GEC module
             if (code.equals("GEC1XXX") && !hasGecModule) {
                 missingModules.add(m);
-            }
-
-            // For GEN1XXX check if user has any GEN module
-            else if (code.equals("GEN1XXX") && !hasGenModule) {
+            } else if (code.equals("GEN1XXX") && !hasGenModule) { // For GEN1XXX check if user has any GEN module
                 missingModules.add(m);
-            }
-
-            // For all other modules check normally
-            else if (!user.hasModule(code)) {
+            } else if (!user.hasModule(code)) { // For all other modules check normally
                 missingModules.add(m);
             }
         }
