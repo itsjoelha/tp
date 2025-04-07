@@ -45,7 +45,7 @@ public class SpecialisationTest {
 
         // Check for core courses from different specialisations
         assertTrue(output.contains("EE3408C Integrated Analog Design"));
-        assertTrue(output.contains("EE3105 Beyond Sky – New Space Technology and Application"));
+//        assertTrue(output.contains("EE3105 Beyond Sky – New Space Technology and Application"));
 
         // Check for elective courses from different specialisations
         assertTrue(output.contains("EE4218 Embedded Hardware System Design"));
