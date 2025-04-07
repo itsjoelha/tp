@@ -17,10 +17,8 @@ public class Duke {
         ui.welcomeMessage();
         currentUser = userData.loadUserData();
 
-        boolean isRunning = true;
-
         //New User
-        isRunning = currentUser.initialiseUser();
+        boolean isRunning = currentUser.initialiseUser();
 
         while (isRunning) {
             ui.printEnterCommand();

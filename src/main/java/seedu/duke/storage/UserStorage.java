@@ -20,7 +20,7 @@ public class UserStorage {
     private static final Logger logger = Logger.getLogger(UserStorage.class.getName());
 
     static {
-        logger.setLevel(Level.ALL);
+        logger.setLevel(Level.OFF);
     }
 
     private final File file;
