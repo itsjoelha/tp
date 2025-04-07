@@ -178,6 +178,40 @@ Shows a list of the modules the user is missing from meeting graduation requirem
 - **`/schedule jc`** → Shows the recommended schedule for CEG JC students.  
 - **`/schedule poly`** → Shows the recommended schedule for CEG Poly students.  
 
+Example: `/schedule jc`
+```
++---------------------------------------------------------------+
+| JC Schedule                                                   |
++------+-----+------------------+------+-----+------------------+
+| Year | Sem | Module Code      | Year | Sem | Module Code      |
++------+-----+------------------+------+-----+------------------+
+| 1    | 1   | CG1111A          | 1    | 2   | CG2111A          |
+|      |     | CS1010           |      |     | DTK1234          |
+|      |     | EG1311           |      |     | MA1508E          |
+|      |     | MA1511           |      |     | PF1101           |
+|      |     | MA1512           |      |     | GEA1000          |
+|      |     | ES1103           |      |     |                  |
++------+-----+------------------+------+-----+------------------+
+| 2    | 1   | CS1231           | 2    | 2   | CG2023           |
+|      |     | CS2040C          |      |     | CS2113           |
+|      |     | IE2141           |      |     | EE2211           |
+|      |     | ES2631           |      |     | EE2026           |
+|      |     | GEC1XXX          |      |     | CDE2501          |
++------+-----+------------------+------+-----+------------------+
+| 3    | 1   | EG2401A          | 3    | 2   | CG2027           |
+|      |     | EG3611A          |      |     | CG2028           |
+|      |     | CP3880           |      |     | CG2271           |
+|      |     | UE               |      |     | CDE2000          |
+|      |     |                  |      |     | ST2334           |
++------+-----+------------------+------+-----+------------------+
+| 4    | 1   | CG4002           | 4    | 2   | UE               |
+|      |     | EE4204           |      |     | UE               |
+|      |     | GEN1XXX          |      |     | UE               |
+|      |     | UE               |      |     | UE               |
+|      |     |                  |      |     | UE               |
++------+-----+------------------+------+-----+------------------+
+```
+
 ## View Available Specialisations  
 **`/spec`**  
 Lists all specialisations available to CEG students.  

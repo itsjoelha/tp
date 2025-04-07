@@ -65,6 +65,10 @@ public class Ui {
             System.out.println("Error: Please specify a module code and grade.");
             System.out.println("Usage: /grade MODULE_CODE GRADE");
             break;
+        case "/su":
+            System.out.println("Error: Please specify a module code to S/U.");
+            System.out.println("Usage: /su MODULE_CODE");
+            break;
         default:
             System.out.println("Unknown command. Type '/help' for a list of commands.");
             break;
