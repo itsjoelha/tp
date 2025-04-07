@@ -3,7 +3,6 @@ package seedu.duke.command;
 import java.util.ArrayList;
 import java.util.Map;
 
-import seedu.duke.data.Mod;
 import seedu.duke.storage.ModStorage;
 import seedu.duke.user.User;
 import seedu.duke.data.UserMod;
@@ -25,44 +24,43 @@ public class AddCustomModule implements Command {
         this.semester = semester;
     }
 
-    public boolean moduleExists(String moduleCode) {
-        for (Mod mod : ModStorage.getModules()) {
-            if (mod.getCode().equals(moduleCode)) {
-                return true;
-            }
+    public boolean customModuleIsValid() {
+        if (user.hasModule(moduleCode)) { // Module exists in user's list
+            System.out.println("Failed to add module " + moduleCode.toUpperCase()
+                    + ". It already exists in the schedule.");
+            return false;
         }
-        return false;
+
+        if (ModStorage.moduleExists(moduleCode.toUpperCase())) { // Module exists in database
+            System.out.println("Module " + moduleCode.toUpperCase() + " already exists in the database." +
+                    " Use /add to add the module.");
+            return false;
+        }
+
+        if (semester < 1 || semester > 8) {
+            System.out.println("Invalid semester. Please choose a number between 1 and 8.");
+            return false;
+        }
+
+        return true;
     }
 
     @Override
     public void execute() { // test
-        if (semester < 1 || semester > 8) {
-            System.out.println("Invalid semester. Please choose a number between 1 and 8.");
-            return;
+        if (customModuleIsValid()) {
+            assert semester >= 1 && semester <= 8 : "Invalid semester";
+            assert numMC >= 1 && numMC <= 20 : "Invalid numMC";
+            UserMod newMod = new UserMod(moduleCode.toUpperCase(), numMC, name);
+            Map<Integer, ArrayList<UserMod>> semesterModules = user.getSemesterModules();
+            semesterModules.putIfAbsent(semester, new ArrayList<>());
+
+
+            semesterModules.get(semester).add(newMod);
+            user.setSemesterModules(semesterModules);
+
+            System.out.println("Module " + moduleCode.toUpperCase() + " successfully added to Semester " + semester +
+                    " as a Custom Module.");
         }
-
-        assert semester >= 1 && semester <= 8 : "Invalid semester";
-        UserMod newMod = new UserMod(moduleCode.toUpperCase(), numMC, name);
-        assert newMod != null: "newMod not instantiated yet";
-        Map<Integer, ArrayList<UserMod>> semesterModules = user.getSemesterModules();
-        semesterModules.putIfAbsent(semester, new ArrayList<>());
-
-        if (user.hasModule(moduleCode)) { // Module exists in user's list
-            System.out.println("Failed to add module " + moduleCode.toUpperCase() + ". It already exists.");
-            return;
-        }
-
-        if (moduleExists(moduleCode.toUpperCase())) { // Module exists in database
-            System.out.println("Module " + moduleCode.toUpperCase() + " already exists in the database." +
-                    " Use /add to add the module.");
-            return;
-        }
-
-        semesterModules.get(semester).add(newMod);
-        user.setSemesterModules(semesterModules);
-
-        System.out.println("Module " + moduleCode.toUpperCase() + " successfully added to Semester " + semester +
-                " as a Custom Module.");
     }
 
 }

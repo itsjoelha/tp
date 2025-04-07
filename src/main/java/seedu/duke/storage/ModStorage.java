@@ -63,6 +63,15 @@ public class ModStorage {
         throw new ModNotInDatabase(code + " not found in database");
     }
 
+    public static boolean moduleExists(String code) {
+        for (Mod mod : modules) {
+            if (mod.getCode().equals(code)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static List<Mod> getModules() {
         return modules;
     }
