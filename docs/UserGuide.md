@@ -175,8 +175,8 @@ Displays a list of commands with a brief explanation of each.
 Shows a list of the modules the user is missing from meeting graduation requirements.
 
 ## Recommended Schedule for CEG Students AY23/24  
-- **`/schedule -jc`** → Shows the recommended schedule for CEG JC students.  
-- **`/schedule -poly`** → Shows the recommended schedule for CEG Poly students.  
+- **`/schedule jc`** → Shows the recommended schedule for CEG JC students.  
+- **`/schedule poly`** → Shows the recommended schedule for CEG Poly students.  
 
 ## View Available Specialisations  
 **`/spec`**  
@@ -214,7 +214,7 @@ Furthermore, certain edits can cause GrandRhombus to behave in unexpected ways (
 | `/grade`     | Set a module's grade             | `<module_code>`, `<grade>`                            | `/grade CDE3301 A`               |
 | `/gpa`       | Retrieve your GPA                | None                                                  | `/gpa`                           |
 | `/grad`      | Check if you can graduate        | None                                                  | `/grad`                          |
-| `/schedule`  | Generate a schedule for students | None                                                  | `/schedule`                      |
+| `/schedule`  | Generate a schedule for students | `<jc>` or `<poly>`                                    | `/schedule jc`                   |
 | `/spec `     | View specialisations             | None                                                  | `/spec`                          |
 | `/workload`  | Display workload                 | `<semester>`                                          | `/workload` or `/workload 1`     |
 | `/help`      | Show this help message           | `<command>`                                           | `/help` or `/help help`          |

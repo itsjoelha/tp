@@ -33,7 +33,7 @@ public class CommandParser {
 
     // This method will parse and separate into required sections
     public String[] parseCommand(String userInput) {
-        String[] words = userInput.split(" ", 5);
+        String[] words = userInput.trim().split("\\s+", 5);
         return removeWhitespace(words);
     }
 
@@ -120,7 +120,6 @@ public class CommandParser {
             cmdObject = new GradeModule(currentUser, words[1], words[2]);
             break;
 
-
         case "/help":
             logger.info("Displaying help file.");
 
@@ -141,11 +140,18 @@ public class CommandParser {
             break;
 
         case "/schedule":
-            if (words.length > 1) {
-                ErrorHandler.excessInputError(command);
+            if (words.length > 2) {
+                logger.warning("Schedule command has too many arguments.");
+                System.out.println("Error: The '/schedule' command accepts at most one argument.");
+            } else if (words.length == 1) {
+                logger.warning("Schedule command missing required argument.");
+                System.out.println("Please indicate either 'jc' or 'poly' to see the respective schedules.");
+            } else if (!words[1].equals("jc") && !words[1].equals("poly")) {
+                logger.warning("Schedule command has invalid argument: " + words[1]);
+                System.out.println("Invalid argument. Please use either 'jc' or 'poly'.");
             } else {
-                logger.info("Executing RecommendedSchedule command.");
-                cmdObject = new RecommendedSchedule();
+                logger.info("Executing RecommendedSchedule command with argument: " + words[1]);
+                cmdObject = new RecommendedSchedule(words[1]);
             }
             break;
 

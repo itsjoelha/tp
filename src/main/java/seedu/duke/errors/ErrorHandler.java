@@ -57,7 +57,4 @@ public class ErrorHandler {
         Ui.printExcessInputError(command);
     }
 
-    public static void handleModuleDoesNotExist() {
-        // System.err.println("[ERROR] Module not found");
-    }
 }
