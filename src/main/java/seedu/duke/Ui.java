@@ -43,6 +43,11 @@ public class Ui {
         System.out.println("Unknown command. Type '/help' for a list of commands.");
     }
 
+    public static void printInvalidCharacterInputError(String command) {
+        System.out.println("Invalid characters detected. Only letters and digits are allowed (no symbols or spaces).");
+    }
+
+
     public static void printUserInputError(String command) {
         switch (command) {
         case "/detail":
