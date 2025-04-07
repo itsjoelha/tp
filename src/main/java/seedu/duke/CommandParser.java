@@ -120,7 +120,6 @@ public class CommandParser {
             cmdObject = new GradeModule(currentUser, words[1], words[2]);
             break;
 
-
         case "/help":
             logger.info("Displaying help file.");
 
