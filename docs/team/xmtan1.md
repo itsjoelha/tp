@@ -17,9 +17,11 @@ so that students <span style="color:red;">do not miss academic opportunities</sp
 <span style="color:orange;">Summary of Contributions</span>
 </h2>
 
-Here are my contributions to the project
+Here are my contributions to the project:
 
-- **New Feature** : added the ability to do add custom modules not within the existing database to schedule.
+- **AddCustomModule class** :
+added the ability to do add custom modules not within the existing database to schedule.
+  - 
 - **New Feature** : added the ability to view the details of the modules in the database.
 
 - **Enhancements to existing features**
