@@ -8,7 +8,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class HelpTest {
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
@@ -83,9 +82,8 @@ public class HelpTest {
     @Test
     void testAllSpecificCommands() {
         // Array of all valid commands based on the switch case in Help.java
-        String[] commands = {"view", "add", "addCustom", "su", "gpa", "grade",
-                "delete", "detail", "grad", "schedule", "spec",
-                "workload", "help", "exit"};
+        String[] commands = {"view", "add", "addCustom", "su", "gpa", "grade", "delete", "detail", "grad",
+                "schedule", "spec", "workload", "help", "exit"};
 
         for (String cmd : commands) {
             outContent.reset();
