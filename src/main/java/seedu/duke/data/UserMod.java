@@ -6,7 +6,7 @@ public class UserMod extends Mod {
     private Grade grade;
     private boolean su;
     private final boolean isCustom;
-
+    private boolean prereqWaived = false;
 
     public UserMod(String name, String description, int numMC, String code, double lectureHours,
                    double tutHours,
@@ -73,6 +73,14 @@ public class UserMod extends Mod {
 
     public void toggleSU() {
         this.su = !this.su;
+    }
+
+    public boolean isPrereqWaived() {
+        return prereqWaived;
+    }
+
+    public void togglePrereqWaived() {
+        this.prereqWaived = !this.prereqWaived;
     }
 }
 

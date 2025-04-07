@@ -45,7 +45,8 @@ public class UserStorage {
             for (int semester : user.getSemesterModules().keySet()) {
                 for (UserMod mod : user.getSemesterModules().get(semester)) {
                     out.write(semester + "," + mod.getCode() + "," + mod.getGrade() + "," + mod.isSU() +
-                            "," + mod.isCustom() + "," + mod.getName() + "," + mod.getNumMC() + "\n");
+                            "," + mod.isCustom() + "," + mod.getName() + "," + mod.getNumMC() + "," +
+                            mod.isPrereqWaived() + "\n");
                 }
             }
         } catch (Exception e) {
@@ -93,6 +94,12 @@ public class UserStorage {
                     mod.setGrade(Grade.valueOf(parts[2]));
                     mod.setSU(Boolean.parseBoolean(parts[3]));
                 }
+
+                if (parts[7].equals("true")) {
+                    mod.togglePrereqWaived();
+                    assert mod.isPrereqWaived();
+                }
+
                 user.getSemesterModules().computeIfAbsent(semester, k -> new ArrayList<>()).add(mod);
             }
             user.getGPA();
