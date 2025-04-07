@@ -28,7 +28,11 @@ public class Ui {
     }
 
     public void farewellMessage(String name) {
-        System.out.println("Goodbye " + name + ", thank you for using Grand Rhombus");
+        String farewellMessage = "Goodbye";
+        if (!name.isEmpty()) {
+            farewellMessage += " " + name;
+        }
+        System.out.println(farewellMessage + ", thank you for using Grand Rhombus");
     }
 
     public void printEnterCommand() {
