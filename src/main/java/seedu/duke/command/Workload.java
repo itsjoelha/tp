@@ -76,7 +76,7 @@ public class Workload implements Command {
             System.out.println("No modules in List");
             return;
         }
-        
+
         System.out.println("+-----------+-----+-----+-------------+---------+---------+----------+----------+");
         System.out.println("| Code      | Sem | MCs | Lecture Hrs | Tut Hrs | Lab Hrs | Proj Hrs | Prep Hrs |");
         System.out.println("+-----------+-----+-----+-------------+---------+---------+----------+----------+");

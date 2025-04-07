@@ -45,16 +45,28 @@ public class CommandParser {
         return input;
     }
 
+    public int requiredInput(String command) {
+        return switch (command) {
+            case "/gpa", "/grad", "/schedule", "/spec", "/clear" -> 1;
+            case "/view", "/detail", "/delete", "/su", "/grade", "/help", "/workload" -> 2;
+            case "/add" -> 3;
+            default -> 5;
+        };
+    }
     // This method calls the appropriate command
     public boolean callCommand(String[] words) throws ArrayIndexOutOfBoundsException, NumberFormatException {
         String command = words[0];
         Command cmdObject = null;
         int semester;
+
+        if (words.length > requiredInput(command)) {
+            ErrorHandler.excessInputError(command);
+            return true;
+        }
+
         switch (command) {
         case "/view":
-            if (words.length > 2) {
-                ErrorHandler.excessInputError(command);
-            } else if (words.length == 2) {
+           if (words.length == 2) {
                 semester = Integer.parseInt(words[1]);
                 logger.info("Executing ListModules command to view modules in semester " + semester);
                 cmdObject = new ListModules(currentUser, words[1]);
@@ -108,7 +120,6 @@ public class CommandParser {
             cmdObject = new GradeModule(currentUser, words[1], words[2]);
             break;
 
-
         case "/help":
             logger.info("Displaying help file.");
             if (words.length == 2) {
@@ -119,36 +130,22 @@ public class CommandParser {
             break;
 
         case "/grad":
-            if (words.length > 1) {
-                ErrorHandler.excessInputError(command);
-            } else {
                 logger.info("Executing ViewGradRequirements command.");
                 cmdObject = new ViewGradRequirements(currentUser);
-            }
             break;
 
         case "/schedule":
-            if (words.length > 1) {
-                ErrorHandler.excessInputError(command);
-            } else {
                 logger.info("Executing RecommendedSchedule command.");
                 cmdObject = new RecommendedSchedule();
-            }
             break;
 
         case "/spec":
-            if (words.length > 1) {
-                ErrorHandler.excessInputError(command);
-            } else {
                 logger.info("Displaying Specialisations.");
                 cmdObject = new Specialisation();
-            }
             break;
 
         case "/workload":
-            if (words.length > 2) {
-                ErrorHandler.excessInputError(command);
-            } else if (words.length == 2) {
+            if (words.length == 2) {
                 semester = Integer.parseInt(words[1]);
                 logger.info("Executing Workload command to view modules in semester " + semester);
                 cmdObject = new Workload(currentUser, semester);
@@ -180,9 +177,7 @@ public class CommandParser {
         if (cmdObject != null) {
             cmdObject.execute();
         }
-
         return true;
-
     }
 }
 
