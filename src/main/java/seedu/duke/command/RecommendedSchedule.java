@@ -20,7 +20,7 @@ import seedu.duke.storage.ModStorage;
 
 public class RecommendedSchedule implements Command {
     private String scheduleType;
-    private static final int TABLE_WIDTH = 70; // Total table width including borders
+    private final int TABLE_WIDTH = 70; // Total table width including borders
 
     public RecommendedSchedule(String scheduleType) {
         this.scheduleType = scheduleType;
