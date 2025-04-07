@@ -25,11 +25,12 @@ public class UserStorage {
 
     private final File file;
 
-    public UserStorage(String filepath) {
-        this.file = new File(filepath);
-        if (!file.exists()) {
-            logger.warning("No existing user data found: " + filepath);
+    public UserStorage(String filepath, String filename) {
+        File directory = new File(filepath);
+        if (!directory.mkdirs()) {
+            logger.info("Directory already exists: " + filepath);
         }
+        file = new File(directory, filename);
     }
 
     public void saveUserData(seedu.duke.user.User user) {
