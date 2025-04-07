@@ -42,11 +42,14 @@ added the ability to view the details of the modules in the database.
 
 
 - **Enhancements to existing features**
-  - Added the Ui and Error Handler class to increase abstraction of the CommandParser Class
-    - Makes the happy path in CommandParser easier to spot, and shortens the length of the callCommand function
+  - Added the Ui and Error Handler class 
+    - Makes CommandParser easier to read, and shortens the length of the callCommand function
     drastically.
-    - 
-  - Wrote additional tests for CommandParser to cover 
+    - Helps to standardise level of abstraction in main Duke class and CommandParser classes. 
+  - Abstracted CommandParser Class function callCommand()
+    - Shifted out check and parser functions to manage errors all together instead of within each case. 
+  - Wrote additional tests for CommandParser 
+    - increase coverage from 60 to 70%.
 
 - **Documentation**:
   - User Guide:
