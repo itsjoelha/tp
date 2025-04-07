@@ -132,6 +132,19 @@ Example: `/detail MA1511`
 +--------------------------------------------------------------------------------+
 
 ```
+## Waive Pre-Requisites
+**`/waive MODULE_CODE`**
+
+Toggles whether or not the pre-requisites of a module are waived
+
+Example: `/waive CS2040C`
+```
+Unwaived Prerequisite Check for CS2040C
+```
+```
+Waived Prerequisite Check for CS2040C
+```
+
 
 ## Grade
 **`/grade MODULE_CODE GRADE`**
@@ -261,6 +274,7 @@ GrandRhombus' data is automatically saved as a `.txt` file at `[JAR file locatio
 | `/delete`     | Delete a module from the list        | `<module_code>`                                         | `/delete CDE3301`                     |
 | `/detail`     | View details of a module             | `<module_code>`                                         | `/detail CDE3301`                     |
 | `/grade`      | Set a module's grade                 | `<module_code>`, `<grade>`                              | `/grade CDE3301 A`                    |
+| `/waive`      | Waives the pre-requisites of a module| `<module_code>`                                         | `/waive CS2040C`                      |
 | `/gpa`        | Retrieve your GPA                    | None                                                    | `/gpa`                                |
 | `/grad`       | Check if you can graduate            | None                                                    | `/grad`                               |
 | `/schedule`   | Generate a schedule                  | `<jc>` or `<poly>`                                      | `/schedule`                           |
