@@ -145,10 +145,10 @@ public class CommandParser {
                 System.out.println("Error: The '/schedule' command accepts at most one argument.");
             } else if (words.length == 1) {
                 logger.warning("Schedule command missing required argument.");
-                System.out.println("Please indicate either 'jc' or 'poly' to see the respective schedules.");
+                System.out.println("Error: Please indicate either 'jc' or 'poly' to see the respective schedules.");
             } else if (!words[1].equals("jc") && !words[1].equals("poly")) {
                 logger.warning("Schedule command has invalid argument: " + words[1]);
-                System.out.println("Invalid argument. Please use either 'jc' or 'poly'.");
+                System.out.println("Error: Please use either 'jc' or 'poly'.");
             } else {
                 logger.info("Executing RecommendedSchedule command with argument: " + words[1]);
                 cmdObject = new RecommendedSchedule(words[1]);
