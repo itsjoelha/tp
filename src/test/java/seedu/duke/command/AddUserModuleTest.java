@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 public class AddUserModuleTest {
     @BeforeEach
     public void setUp() {
-        currentUser.clearModules(); // Clear the moduleList
+        currentUser.resetUser(); // Clear and set all exemptions to false
     }
 
     @Test

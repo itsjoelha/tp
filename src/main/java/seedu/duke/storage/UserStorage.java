@@ -35,9 +35,12 @@ public class UserStorage {
 
     public void saveUserData(seedu.duke.user.User user) {
         try (BufferedWriter out = new BufferedWriter(new FileWriter(file))) {
-            out.write(/*user.getName()*/"Skibidi" + "\n");
-            out.write(/*user.getEducation().toString()*/"JC" + "\n");
-            out.write(/*user.getCurrentSemester()*/"1" + "\n");
+            out.write(user.getName() + "\n");
+            out.write(user.getEducation().toString() + "\n");
+            out.write(user.getCurrentSemester() + "\n");
+            out.write((user.isExemptedMA1301() ? "1" : "0") + ",");
+            out.write((user.isExemptedPC1101() ? "1" : "0" )+ ",");
+            out.write((user.isExemptedEnglish() ? "1" : "0") + "\n");
 
             for (int semester : user.getSemesterModules().keySet()) {
                 for (UserMod mod : user.getSemesterModules().get(semester)) {
@@ -51,19 +54,26 @@ public class UserStorage {
     }
 
     public User loadUserData() {
+        System.out.println("Loading user data...");
         if (!file.exists()) {
             logger.warning("No existing user data found: " + file.getPath());
             return new User();
         }
 
+        User user = new User();
         try (Scanner scanner = new Scanner(file)) {
             // Read user data
             String name = scanner.nextLine();
+            user.setName(name);
             EducationLevel education = EducationLevel.valueOf(scanner.nextLine());
+            user.setEducation(education);
             int currentSemester = Integer.parseInt(scanner.nextLine());
-
-            User user = new User(name, education);
             user.setCurrentSemester(currentSemester);
+
+            String[] exemptions = scanner.nextLine().split(",");
+            user.setExemptedMA1301("1".equals(exemptions[0]));
+            user.setExemptedPC1101("1".equals(exemptions[1]));
+            user.setExemptedEnglish("1".equals(exemptions[2]));
 
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
@@ -86,7 +96,7 @@ public class UserStorage {
                 user.getSemesterModules().computeIfAbsent(semester, k -> new ArrayList<>()).add(mod);
             }
             user.getGPA();
-            return user;
+
         } catch (IOException | IllegalArgumentException e) {
             logger.severe("Error loading user data: " + e.getMessage());
         } catch (ModNotInDatabase e) {
@@ -95,8 +105,10 @@ public class UserStorage {
         } catch (NoSuchElementException e) {
             logger.warning("User data file is empty: " + file.getPath());
             return new User();
+        } catch (ArrayIndexOutOfBoundsException e) {
+            logger.severe("User data file missing exemptions: " + file.getPath());
         }
-        return new User();
-    }
 
+        return user;
+    }
 }
