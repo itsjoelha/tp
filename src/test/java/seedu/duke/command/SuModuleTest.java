@@ -12,7 +12,7 @@ import seedu.duke.data.UserMod;
 public class SuModuleTest {
     @BeforeEach
     public void setUp() {
-        currentUser.clearModules(); // Clear the moduleList
+        currentUser.resetUser(); // Clear and set all exemptions to false
     }
 
     @Test
@@ -24,7 +24,7 @@ public class SuModuleTest {
         addModule1.execute();
         assertTrue(currentUser.hasModule(moduleCode1));
 
-        Command gradeModule1 = new GradeModule(currentUser, moduleCode1, "A+" );
+        Command gradeModule1 = new GradeModule(currentUser, moduleCode1, "A+");
         gradeModule1.execute();
 
         Command testCommand1 = new SuUserModule(currentUser, moduleCode1);
@@ -44,7 +44,7 @@ public class SuModuleTest {
         addModule1.execute();
         assertTrue(currentUser.hasModule(moduleCode1));
 
-        Command gradeModule1 = new GradeModule(currentUser, moduleCode1, "A+" );
+        Command gradeModule1 = new GradeModule(currentUser, moduleCode1, "A+");
         gradeModule1.execute();
 
         Command testCommand1 = new SuUserModule(currentUser, moduleCode1);

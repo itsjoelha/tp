@@ -16,28 +16,22 @@ GrandRhombus is an Academic Life Planner which is in-depth and clear to plan the
 
 ## Commands
 
-
-
 <div style="border: 1px solid #2196F3; background-color: #BBDEFB; padding: 10px; border-radius: 5px;">
 
 <strong> Notes about the Command Format </strong>
   <br>
-  <br>
 
 - Words in UPPER_CASE are the parameters to be supplied by the user.
-  e.g. in TASK_DESCRIPTION is a parameter which can be replaced with the description of the task to be added
-  <br>
+  e.g. in MODULE_CODE is a parameter which can be replaced with the code of the module to be added
   <br>
 
 - Parameters <strong> must </strong> be in the specified order.
-  e.g. if the command specifies TASK_DESCRIPTION followed by TASK_DATE,
-  TASK_DATE followed by TASK_DESCRIPTION is <strong> NOT </strong> acceptable and will cause issues.
-  <br>
+  e.g. if the command specifies MODULE_CODE followed by SEMESTER,
+  SEMESTER followed by MODULE_CODE is <strong> NOT </strong> acceptable and will cause issues.
   <br>
 
-- Extraneous parameters for commands that do not take in parameters (such as list and bye) will cause errors.
-  e.g. if the command specifies bye 123, it will create an error.
-  <br>
+- Extraneous parameters for commands that do not take in parameters (such as list and   bye) may cause errors.
+  e.g. if the command specifies bye 123, it may create an error.
   <br>
 
 - If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
@@ -53,7 +47,14 @@ GrandRhombus is an Academic Life Planner which is in-depth and clear to plan the
 
 ## View  
 **`/view`**  
+
 Lists out all selected modules.
+
+<div style="border: 1px solid #2196F3; background-color: #BBDEFB; padding: 10px; border-radius: 5px;">
+  <strong> Note about View Format:   </strong> </br>
+  Modules marked with `[O]` have their module pre-requisites fulfilled </br>
+  Modules marked with `[X]` do not have their module pre-requisites fulfilled
+</div>
 
 ## Add Module  
 **`/add MODULE_CODE SEMESTER`**
@@ -68,6 +69,7 @@ Module CS2113 successfully added to Semester 2.
 ```
 
 
+
 ## Add Custom Module  
 **`/addCustom MODULE_CODE SEMESTER NUMBER_OF_CREDITS NAME`**
 
@@ -79,6 +81,18 @@ Example:  `/addCustom PL1101E 2 4 Intro to Psychology`
 ```
 Module PL1101E successfully added to Semester 2 as a Custom Module.
 ```
+<div style="border: 1px solid #2196F3; background-color: #BBDEFB; padding: 10px; border-radius: 5px;">
+  <strong> Note about Custom Module Format:   </strong> </br>
+  Custom Modules are intended to be used when Add Module is unable to find the module within the pre-existing database of core CEG Modules. </br> 
+  </br>
+  Custom Modules added <strong>cannot </strong> have their details changed </br>
+  </br>
+  To change the details of a custom module, you can delete the custom module form the list and add a new custom module with the adjusted details. </br>
+  </br>
+  Custom Modules are outside the core CEG modules and thus have tutorial, lab, project, prep and lecture hours intialised to  <strong> zero (0)</strong>. This <strong> cannot </strong> be changed.
+</div>
+
+
 
 ## Delete  
 **`/delete MODULE_CODE`**  
@@ -118,6 +132,19 @@ Example: `/detail MA1511`
 +--------------------------------------------------------------------------------+
 
 ```
+## Waive Pre-Requisites
+**`/waive MODULE_CODE`**
+
+Toggles whether or not the pre-requisites of a module are waived
+
+Example: `/waive CS2040C`
+```
+Unwaived Prerequisite Check for CS2040C
+```
+```
+Waived Prerequisite Check for CS2040C
+```
+
 
 ## Grade
 **`/grade MODULE_CODE GRADE`**
@@ -229,27 +256,30 @@ Exits the program.
 GrandRhombus' data is automatically saved as a `.txt` file at `[JAR file location]/data/mod_data.txt` & `[JAR file location]/data/user.txt`. Advanced users are welcome to update data directly by editing that data file.
 
 <div style="border: 1px solid #FF9800; background-color: #FFEB3B; padding: 10px; border-radius: 5px;">
-  <strong>Caution:</strong>  If your changes to the data file makes its format invalid, GrandRhombus will not work as intended and return error codes/ not run.
+  <strong>Caution:</strong> If your changes to the data file makes its format invalid, GrandRhombus will not work as intended and may return error codes/ not run. 
 
-Furthermore, certain edits can cause GrandRhombus to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
-
+  Furthermore, certain edits can cause GrandRhombus to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
+  Therefore, we cannot guarantee the proper functioning of the GrandRhombus Program if the data file has been tampered with.
 </div>
 
 ## Command Summary
 
-| Command      | Description                      | Arguments                                             | Format                           |
-|--------------|----------------------------------|-------------------------------------------------------|----------------------------------|
-| `/view`      | View all modules                 | `<semester>`                                          | `/view` or `/view 1`             |
-| `/add`       | Add a module to the list         | `<module_code>`, `<semester>`                         | `/add CG1111A 1`                 |
-| `/addCustom` | Add a custom module to the list  | `<module_code>`, `<semester>`, `<# of MCs>`, `<name>` | `/addCustom CDE3302 3 4 ModName` |
-| `/su`        | S/U a module                     | `<module_code>`                                       | `/su CS1010`                     |
-| `/delete`    | Delete a module from the list    | `<module_code>`                                       | `/delete CDE3301`                |
-| `/detail`    | View details of a module         | `<module_code>`                                       | `/detail CDE3301`                |
-| `/grade`     | Set a module's grade             | `<module_code>`, `<grade>`                            | `/grade CDE3301 A`               |
-| `/gpa`       | Retrieve your GPA                | None                                                  | `/gpa`                           |
-| `/grad`      | Check if you can graduate        | None                                                  | `/grad`                          |
-| `/schedule`  | Generate a schedule for students | `<jc>` or `<poly>`                                    | `/schedule jc`                   |
-| `/spec `     | View specialisations             | None                                                  | `/spec`                          |
-| `/workload`  | Display workload                 | `<semester>`                                          | `/workload` or `/workload 1`     |
-| `/help`      | Show this help message           | `<command>`                                           | `/help` or `/help help`          |
-| `/exit`      | Exit the program                 | None                                                  | `/exit`                          |
+
+| Command       | Description                          | Arguments                                               | Format                                |
+|---------------|--------------------------------------|---------------------------------------------------------|----------------------------------------|
+| `/view`       | View all modules                     | `<semester> (optional)`                                 | `/view` or `/view 1`                  |
+| `/add`        | Add a module to the list             | `<module_code>`, `<semester>`                           | `/add CG1111A 1`                      |
+| `/addCustom`  | Add a custom module to the list      | `<module_code>`, `<semester>`, `<# of MCs>`, `<name>`   | `/addCustom CDE3302 3 4 ModName`      |
+| `/su`         | S/U a module                         | `<module_code>`                                         | `/su CS1010`                          |
+| `/delete`     | Delete a module from the list        | `<module_code>`                                         | `/delete CDE3301`                     |
+| `/detail`     | View details of a module             | `<module_code>`                                         | `/detail CDE3301`                     |
+| `/grade`      | Set a module's grade                 | `<module_code>`, `<grade>`                              | `/grade CDE3301 A`                    |
+| `/waive`      | Waives the pre-requisites of a module| `<module_code>`                                         | `/waive CS2040C`                      |
+| `/gpa`        | Retrieve your GPA                    | None                                                    | `/gpa`                                |
+| `/grad`       | Check if you can graduate            | None                                                    | `/grad`                               |
+| `/schedule`   | Generate a schedule                  | `<jc>` or `<poly>`                                      | `/schedule`                           |
+| `/spec`       | View specialisations                 | None                                                    | `/spec`                               |
+| `/workload`   | Display workload                     | `<semester> (optional)`                                 | `/workload` or `/workload 1`          |
+| `/help`       | Show a help message                  | `<command> (optional)`                                  | `/help` or `/help add`                |
+| `/clear`      | Clear all modules from the list      | None                                                    | `/clear`                              |
+| `/exit`       | Exit the program                     | None                                                    | `/exit`                               |

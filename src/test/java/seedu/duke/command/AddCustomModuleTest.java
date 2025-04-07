@@ -15,7 +15,7 @@ public class AddCustomModuleTest {
 
     @BeforeEach
     public void setUp() {
-        currentUser.clearModules(); // Clear the moduleList
+        currentUser.resetUser(); // Clear and set all exemptions to false
     }
 
     @Test
@@ -51,14 +51,14 @@ public class AddCustomModuleTest {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
 
-        Command test = new AddCustomModule(currentUser, "PL1101E", 3, 4,"intro to psych");
+        Command test = new AddCustomModule(currentUser, "PL1101E", 3, 4, "intro to psych");
         test.execute();
-        Command test1 = new AddCustomModule(currentUser, "PL1101E", 3, 4,"intro");
+        Command test1 = new AddCustomModule(currentUser, "PL1101E", 3, 4, "intro");
         test1.execute();
 
         System.setOut(System.out);
         String output = out.toString().trim();
-        assertTrue(output.contains("Failed to add module PL1101E. It already exists."));
+        assertTrue(output.contains("Failed to add module PL1101E. It already exists in the schedule."));
     }
 
     @Test
@@ -71,7 +71,6 @@ public class AddCustomModuleTest {
         String testModule2 = "GEI1000";
         String testName1 = "Intro to Psychology";
         String testName2 = "Cell-based proteins";
-
 
 
         Command testCommand1 = new AddCustomModule(currentUser, testModule1, testSemester1, testMC1, testName1);

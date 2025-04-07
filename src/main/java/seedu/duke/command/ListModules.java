@@ -82,5 +82,6 @@ public class ListModules implements Command {
             }
         }
         user.checkAllPrereqs();
+        user.printWaivedModules();
     }
 }
