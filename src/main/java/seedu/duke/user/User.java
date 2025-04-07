@@ -141,6 +141,10 @@ public class User {
     }
 
     public boolean fulfillsModPrereq(UserMod mod, int semester) {
+        if (mod.isPrereqWaived()) {
+            return true;
+        }
+
         Prereq prereqTree = mod.getPrereqTree();
         if (prereqTree == null) {
             return true;

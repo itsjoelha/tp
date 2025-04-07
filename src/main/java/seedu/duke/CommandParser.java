@@ -16,6 +16,7 @@ import seedu.duke.command.Help;
 import seedu.duke.command.ViewGradRequirements;
 import seedu.duke.command.RecommendedSchedule;
 import seedu.duke.command.Specialisation;
+import seedu.duke.command.WaiveModPrereq;
 import seedu.duke.command.Workload;
 import seedu.duke.command.AddCustomModule;
 import seedu.duke.errors.ErrorHandler;
@@ -51,7 +52,7 @@ public class CommandParser {
         case "/gpa", "/grad", "/spec", "/clear":
             input = 1;
             break;
-        case "/view", "/detail", "/delete", "/su", "/help", "/workload", "/schedule":
+        case "/view", "/detail", "/delete", "/su", "/help", "/workload", "/schedule", "/waive":
             input = 2;
             break;
         case "/add", "/grade":
@@ -179,6 +180,11 @@ public class CommandParser {
 
         case "/clear":
             cmdObject = new ClearModules(currentUser);
+            break;
+
+        case "/waive":
+            logger.info("Executing WaiveModPrereq command with module code: " + words[1]);
+            cmdObject = new WaiveModPrereq(currentUser, words[1]);
             break;
 
         case "/exit":
