@@ -20,6 +20,7 @@ public class AddUserModule implements Command {
         this.semester = semester;
     }
 
+
     public boolean moduleIsValid() {
         if (!ModStorage.moduleExists(moduleCode.toUpperCase())) {
             System.out.println("Module " + moduleCode.toUpperCase() + " not in database." +

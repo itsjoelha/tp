@@ -18,7 +18,7 @@ import java.io.PrintStream;
 public class CommandParserTest {
     @BeforeEach
     public void setUp() {
-        currentUser.clearModules();
+        currentUser.resetUser(); // Clear and set all exemptions to false
     }
 
 
@@ -224,7 +224,6 @@ public class CommandParserTest {
         assertTrue(output.contains("SPECIALISATIONS"));
         assertTrue(output.contains("ADVANCED ELECTRONICS"));
     }
-    
 
     @Test
     public void parseCommand_extraArgumentsFails() {
