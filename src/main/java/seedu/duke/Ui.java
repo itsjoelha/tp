@@ -77,7 +77,7 @@ public class Ui {
     }
 
     public static void printExcessInputError(String command) {
-        System.out.println("Error: The '" + command + "' command does not accept any arguments.");
+        System.out.println("Error: The '" + command + "' command has too many arguments.");
 
     }
 

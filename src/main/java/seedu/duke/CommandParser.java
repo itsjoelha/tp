@@ -45,31 +45,42 @@ public class CommandParser {
         return input;
     }
 
+    public int requiredInput(String command) {
+        int input = 0;
+        switch (command) {
+        case "/gpa", "/grad", "/spec", "/clear":
+            input = 1;
+            break;
+        case "/view", "/detail", "/delete", "/su", "/grade", "/help", "/workload", "/schedule":
+            input = 2;
+            break;
+        case "/add":
+            input = 3;
+            break;
+        default:
+            input = 5;
+            break;
+        }
+        return input;
+    }
 
     // This method calls the appropriate command
     public boolean callCommand(String[] words) throws ArrayIndexOutOfBoundsException, NumberFormatException {
         String command = words[0];
         Command cmdObject = null;
         int semester;
+
+        if (words.length > requiredInput(command)) {
+            ErrorHandler.excessInputError(command);
+            return true;
+        }
+
         switch (command) {
         case "/view":
-            if (words.length > 2) {
-                logger.warning("View command has too many arguments.");
-                System.out.println("Error: The '/view' command accepts at most one argument (semester number).");
-            } else if (words.length == 2) {
-                try {
-                    semester = Integer.parseInt(words[1]);
-                    if (semester < 1 || semester > 8) {
-                        logger.warning("Invalid semester number: " + semester);
-                        System.out.println("Error: Semester must be a number between 1 and 8.");
-                    } else {
-                        logger.info("Executing ListModules command to view modules in semester " + semester);
-                        cmdObject = new ListModules(currentUser, words[1]);
-                    }
-                } catch (NumberFormatException e) {
-                    logger.warning("Invalid semester format in View command.");
-                    System.out.println("Error: Semester must be a number between 1 and 8.");
-                }
+            if (words.length == 2) {
+                semester = Integer.parseInt(words[1]);
+                logger.info("Executing ListModules command to view modules in semester " + semester);
+                cmdObject = new ListModules(currentUser, words[1]);
             } else {
                 logger.info("Executing ListModules command to view all modules.");
                 cmdObject = new ListModules(currentUser);
@@ -83,8 +94,7 @@ public class CommandParser {
 
         case "/add":
             semester = Integer.parseInt(words[2]);
-            logger.info("Executing AddUserModule command with module code: " + words[1] +
-                    ", semester: " + semester);
+            logger.info("Executing AddUserModule command with module code: " + words[1] + ", semester: " + semester);
             cmdObject = new AddUserModule(currentUser, words[1], semester);
             break;
 
@@ -92,8 +102,8 @@ public class CommandParser {
             semester = Integer.parseInt(words[2]);
             try {
                 int creditNum = Integer.parseInt(words[3]);
-                logger.info("Executing AddCustomModule command with module code: " + words[1] +
-                        ", semester: " + semester);
+                logger.info("Executing AddCustomModule command with module code: " + words[1]
+                        + ", semester: " + semester);
                 cmdObject = new AddCustomModule(currentUser, words[1], semester, creditNum, words[4]);
             } catch (NumberFormatException e) {
                 ErrorHandler.integerInputError("creditNum", command);
@@ -122,7 +132,6 @@ public class CommandParser {
 
         case "/help":
             logger.info("Displaying help file.");
-
             if (words.length == 2) {
                 cmdObject = new Help(words[1]);
             } else {
@@ -131,19 +140,12 @@ public class CommandParser {
             break;
 
         case "/grad":
-            if (words.length > 1) {
-                ErrorHandler.excessInputError(command);
-            } else {
-                logger.info("Executing ViewGradRequirements command.");
-                cmdObject = new ViewGradRequirements(currentUser);
-            }
+            logger.info("Executing ViewGradRequirements command.");
+            cmdObject = new ViewGradRequirements(currentUser);
             break;
 
         case "/schedule":
-            if (words.length > 2) {
-                logger.warning("Schedule command has too many arguments.");
-                System.out.println("Error: The '/schedule' command accepts at most one argument.");
-            } else if (words.length == 1) {
+            if (words.length == 1) {
                 logger.warning("Schedule command missing required argument.");
                 System.out.println("Error: Please indicate either 'jc' or 'poly' to see the respective schedules.");
             } else if (!words[1].equals("jc") && !words[1].equals("poly")) {
@@ -156,19 +158,12 @@ public class CommandParser {
             break;
 
         case "/spec":
-            if (words.length > 1) {
-                ErrorHandler.excessInputError(command);
-            } else {
-                logger.info("Displaying Specialisations.");
-                cmdObject = new Specialisation();
-            }
+            logger.info("Displaying Specialisations.");
+            cmdObject = new Specialisation();
             break;
 
         case "/workload":
-            if (words.length > 2) {
-                logger.warning("Workload command has too many arguments.");
-                System.out.println("Error: The '/workload' command accepts at most one argument (semester number).");
-            } else if (words.length == 2) {
+            if (words.length == 2) {
                 semester = Integer.parseInt(words[1]);
                 logger.info("Executing Workload command to view modules in semester " + semester);
                 cmdObject = new Workload(currentUser, semester);
@@ -200,9 +195,7 @@ public class CommandParser {
         if (cmdObject != null) {
             cmdObject.execute();
         }
-
         return true;
-
     }
 }
 
