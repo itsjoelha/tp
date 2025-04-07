@@ -84,8 +84,7 @@ public class CommandParser {
 
         case "/add":
             semester = Integer.parseInt(words[2]);
-            logger.info("Executing AddUserModule command with module code: " + words[1] +
-                    ", semester: " + semester);
+            logger.info("Executing AddUserModule command with module code: " + words[1] + ", semester: " + semester);
             cmdObject = new AddUserModule(currentUser, words[1], semester);
             break;
 
@@ -93,8 +92,7 @@ public class CommandParser {
             semester = Integer.parseInt(words[2]);
             try {
                 int creditNum = Integer.parseInt(words[3]);
-                logger.info("Executing AddCustomModule command with module code: " + words[1] +
-                        ", semester: " + semester);
+                logger.info("Executing AddCustomModule command with module code: " + words[1] + ", semester: " + semester);
                 cmdObject = new AddCustomModule(currentUser, words[1], semester, creditNum, words[4]);
             } catch (NumberFormatException e) {
                 ErrorHandler.integerInputError("creditNum", command);
