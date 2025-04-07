@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import seedu.duke.Ui;
-import seedu.duke.data.Mod;
 import seedu.duke.storage.ModStorage;
 import seedu.duke.user.User;
 import seedu.duke.data.UserMod;
@@ -62,7 +61,8 @@ public class AddUserModule implements Command {
                     Ui.printDashes();
                 }
 
-                System.out.println("Module " + moduleCode.toUpperCase() + " successfully added to Semester " + semester);
+                System.out.println("Module " + moduleCode.toUpperCase() +
+                        " successfully added to Semester " + semester);
             }
         } catch (ModNotInDatabase e) {
             System.out.println("Module " + moduleCode.toUpperCase() + " not in database." +
