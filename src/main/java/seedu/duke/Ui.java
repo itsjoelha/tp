@@ -51,7 +51,6 @@ public class Ui {
         System.out.println("Invalid characters detected. Only letters and digits are allowed (no symbols or spaces).");
     }
 
-
     public static void printUserInputError(String command) {
         switch (command) {
         case "/detail":

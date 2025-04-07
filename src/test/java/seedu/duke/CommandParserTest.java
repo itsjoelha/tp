@@ -85,7 +85,6 @@ public class CommandParserTest {
 
     @Test
     public void parseCommand_addCustomModuleInsufficientArguments() {
-        currentUser.clearModules();
         CommandParser parser = new CommandParser();
         String[] testCommand = {"/addCustom", "PL1101E", "3"};
 
@@ -95,13 +94,41 @@ public class CommandParserTest {
 
     @Test
     public void parseCommand_addCustomModuleIncorrectArguments() {
-        currentUser.clearModules();
         CommandParser parser = new CommandParser();
         String[] testCommand = {"/addCustom", "PL1101E", "this", "this", "this"};
 
         assertThrows(NumberFormatException.class, () -> parser.callCommand(testCommand));
         assertFalse(currentUser.hasModule("PL1101E"));
 
+    }
+
+    @Test
+    public void parseCommand_addCustomModuleIncorrectArguments1() {
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        PrintStream originalOut = System.out;
+        System.setOut(new PrintStream(out));
+        CommandParser parser = new CommandParser();
+        String[] testCommand1 = {"/addCustom", "PL1101E", "4", "this", "this"};
+
+        parser.callCommand(testCommand1);
+        System.setOut(System.out);
+
+        assertEquals("Error: Credit number must be a positive integer.", out.toString().trim());
+    }
+
+    @Test
+    public void parseCommand_addCustomModuleInvalidInput() {
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        PrintStream originalOut = System.out;
+        System.setOut(new PrintStream(out));
+        CommandParser parser = new CommandParser();
+        String[] testCommand = {"/addCustom", "_cs1010", "4", "4", "Programming Methodology"};
+
+        parser.callCommand(testCommand);
+        System.setOut(System.out);
+
+        assertEquals("Invalid characters detected. Only letters and digits are allowed" +
+                " (no symbols or spaces).", out.toString().trim());
     }
 
 
@@ -199,31 +226,24 @@ public class CommandParserTest {
     }
 
     @Test
-    public void parseCommand_gradWithArgumentsFails() {
-        CommandParser parser = new CommandParser();
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(out));
-        String[] testCommand = {"/grad", "extraArg"};
-
-        parser.callCommand(testCommand);
-        System.setOut(System.out);
-
-        String output = out.toString().trim();
-        assertFalse(output.contains("Viewing Graduation Requirements"));
-    }
-
-    @Test
-    public void parseCommand_specWithArgumentsFails() {
+    public void parseCommand_extraArgumentsFails() {
         CommandParser parser = new CommandParser();
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
         String[] testCommand = {"/spec", "extraArg"};
+        String[] testCommand1= {"/gpa", "extraArg"};
+        String[] testCommand3 = {"/grad", "extraArg"};
 
         parser.callCommand(testCommand);
+        parser.callCommand(testCommand1);
+        parser.callCommand(testCommand3);
         System.setOut(System.out);
 
         String output = out.toString().trim();
         assertFalse(output.contains("SPECIALISATIONS"));
+        assertTrue(output.contains("Error: The '/spec' command has too many arguments."));
+        assertTrue(output.contains("Error: The '/gpa' command has too many arguments."));
+        assertTrue(output.contains("Error: The '/grad' command has too many arguments."));
     }
 
     @Test

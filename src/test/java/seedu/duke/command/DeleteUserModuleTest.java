@@ -32,7 +32,8 @@ public class DeleteUserModuleTest {
         assertTrue(currentUser.hasModule(testModCode2));
     }
 
-    @Test void deleteUserModuleDoesNotExist() {
+    @Test
+    void deleteUserModuleDoesNotExist() {
         Command testDelete1 = new DeleteUserModule(currentUser, "CDE3301");
         testDelete1.execute();
 

@@ -23,7 +23,7 @@ public class ClearModuleTest {
         String testModule2 = "CS2040C";
         Command testCommand1 = new AddUserModule(currentUser, testModule1, testSemester1);
         testCommand1.execute();
-        Command testCommand2 = new AddUserModule(currentUser, testModule2,testSemester2);
+        Command testCommand2 = new AddUserModule(currentUser, testModule2, testSemester2);
         testCommand2.execute();
         ClearModules command = new ClearModules(user);
         command.execute();
