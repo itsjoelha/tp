@@ -87,7 +87,9 @@ Module PL1101E successfully added to Semester 2 as a Custom Module.
   </br>
   Custom Modules added <strong>cannot </strong> have their details changed </br>
   </br>
-  To change the detials of a custom module, you can delete the custom module form the list and add a new custom module with the adjusted details.
+  To change the details of a custom module, you can delete the custom module form the list and add a new custom module with the adjusted details. </br>
+  </br>
+  Custom Modules are outside the core CEG modules and thus have tutorial, lab, project, prep and lecture hours intialised to  <strong> zero (0)</strong>. This <strong> cannot </strong> be changed.
 </div>
 
 
