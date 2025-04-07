@@ -63,12 +63,14 @@ Here are my contributions to the project
   - Developed validation tests for semester range restrictions.
   - Developed tests for graduation requirement tracking logic.
 - **User Guide**
+  - Contributed to User Guide by adding commands such as `/schedule` and the example outputs.
 - **Developer Guide**
+  - Contributed to the Developer Guide on areas like the Appendix: Instructions for manual testing.
 
 ---
 
 <h2>
-<span style="color:orange;">Link to dashboard<span>
+<span style="color:orange;">Link to dashboard</span>
 </h2>
 
 My contributions can be found
