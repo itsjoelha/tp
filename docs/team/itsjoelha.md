@@ -59,6 +59,8 @@ Here are my contributions to the project
   - Implemented tests for edge cases in user input handling.
   - Developed validation tests for semester range restrictions.
   - Developed tests for graduation requirement tracking logic.
+- **User Guide**
+- **Developer Guide**
 
 ---
 
