@@ -23,12 +23,12 @@ public class GradeModuleTest {
         String grade1 = "A";
         String moduleCode1 = "CG2028";
         int semester1 = 3;
-        double expected_grade1 = 5.0;
+        double expectedGrade1 = 5.0;
 
         String grade2 = "D";
         String moduleCode2 = "CG2027";
         int semester2 = 3;
-        double expected_grade2 = 1.0;
+        double expectedGrade2 = 1.0;
 
         Command addModule1 = new AddUserModule(currentUser, moduleCode1, semester1);
         addModule1.execute();
@@ -37,7 +37,7 @@ public class GradeModuleTest {
         Command testCommand1 = new GradeModule(currentUser, moduleCode1, grade1);
         testCommand1.execute();
         UserMod userMod1 = currentUser.getModule(moduleCode1);
-        assertEquals(expected_grade1, userMod1.getGrade().getGradePoint());
+        assertEquals(expectedGrade1, userMod1.getGrade().getGradePoint());
 
         Command addModule2 = new AddUserModule(currentUser, moduleCode2, semester2);
         addModule2.execute();
@@ -46,7 +46,7 @@ public class GradeModuleTest {
         Command testCommand2 = new GradeModule(currentUser, moduleCode2, grade2);
         testCommand2.execute();
         UserMod userMod2 = currentUser.getModule(moduleCode2);
-        assertEquals(expected_grade2, userMod2.getGrade().getGradePoint());
+        assertEquals(expectedGrade2, userMod2.getGrade().getGradePoint());
     }
 
     @Test

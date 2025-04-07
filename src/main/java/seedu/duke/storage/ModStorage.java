@@ -1,5 +1,12 @@
 package seedu.duke.storage;
 
+import seedu.duke.data.AndPrereq;
+import seedu.duke.data.Mod;
+import seedu.duke.data.ModPrereq;
+import seedu.duke.data.OrPrereq;
+import seedu.duke.data.Prereq;
+import seedu.duke.errors.ModNotInDatabase;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -8,12 +15,6 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
-import seedu.duke.data.AndPrereq;
-import seedu.duke.data.Mod;
-import seedu.duke.data.ModPrereq;
-import seedu.duke.data.OrPrereq;
-import seedu.duke.data.Prereq;
-import seedu.duke.errors.ModNotInDatabase;
 
 public class ModStorage {
     private static final List<Mod> modules = new ArrayList<>();
