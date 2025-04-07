@@ -10,7 +10,6 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import seedu.duke.Ui;
 import seedu.duke.data.Grade;
 import seedu.duke.data.UserMod;
 import seedu.duke.errors.ModNotInDatabase;
@@ -38,6 +37,9 @@ public class UserStorage {
             out.write(user.getName() + "\n");
             out.write(user.getEducation().toString() + "\n");
             out.write(user.getCurrentSemester() + "\n");
+            out.write((user.isExemptedMA1301() ? "1" : "0") + ",");
+            out.write((user.isExemptedPC1101() ? "1" : "0" )+ ",");
+            out.write((user.isExemptedEnglish() ? "1" : "0") + "\n");
 
             for (int semester : user.getSemesterModules().keySet()) {
                 for (UserMod mod : user.getSemesterModules().get(semester)) {
@@ -66,7 +68,11 @@ public class UserStorage {
             user.setEducation(education);
             int currentSemester = Integer.parseInt(scanner.nextLine());
             user.setCurrentSemester(currentSemester);
+
             String[] exemptions = scanner.nextLine().split(",");
+            user.setExemptedMA1301("1".equals(exemptions[0]));
+            user.setExemptedPC1101("1".equals(exemptions[1]));
+            user.setExemptedEnglish("1".equals(exemptions[2]));
 
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
@@ -98,6 +104,8 @@ public class UserStorage {
         } catch (NoSuchElementException e) {
             logger.warning("User data file is empty: " + file.getPath());
             return new User();
+        } catch (ArrayIndexOutOfBoundsException e) {
+            logger.severe("User data file missing exemptions: " + file.getPath());
         }
 
         return user;

@@ -318,7 +318,7 @@ public class User {
             if (result == null) {
                 return false;
             }
-            setExemptedPC1101(Boolean.TRUE.equals(result));
+            setExemptedEnglish(Boolean.TRUE.equals(result));
         }
 
         return true;
