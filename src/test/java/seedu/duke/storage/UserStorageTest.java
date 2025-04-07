@@ -63,10 +63,10 @@ public class UserStorageTest {
         userToSave.getSemesterModules().put(1, new ArrayList<>(List.of(new UserMod("CS1010"))));
         storage.saveUserData(userToSave);
         // Now load the user data
-//        User user = storage.loadUserData();
-//        assertEquals("Skibidi", user.getName());
-//        assertEquals(EducationLevel.JC, user.getEducation());
-//        assertEquals(1, user.getCurrentSemester());
+        // User user = storage.loadUserData();
+        // assertEquals("Skibidi", user.getName());
+        // assertEquals(EducationLevel.JC, user.getEducation());
+        // assertEquals(1, user.getCurrentSemester());
     }
 
     @Test
