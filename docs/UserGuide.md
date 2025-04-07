@@ -175,8 +175,42 @@ Displays a list of commands with a brief explanation of each.
 Shows a list of the modules the user is missing from meeting graduation requirements.
 
 ## Recommended Schedule for CEG Students AY23/24  
-- **`/schedule -jc`** → Shows the recommended schedule for CEG JC students.  
-- **`/schedule -poly`** → Shows the recommended schedule for CEG Poly students.  
+- **`/schedule jc`** → Shows the recommended schedule for CEG JC students.  
+- **`/schedule poly`** → Shows the recommended schedule for CEG Poly students.  
+
+Example: `/schedule jc`
+```
++---------------------------------------------------------------+
+| JC Schedule                                                   |
++------+-----+------------------+------+-----+------------------+
+| Year | Sem | Module Code      | Year | Sem | Module Code      |
++------+-----+------------------+------+-----+------------------+
+| 1    | 1   | CG1111A          | 1    | 2   | CG2111A          |
+|      |     | CS1010           |      |     | DTK1234          |
+|      |     | EG1311           |      |     | MA1508E          |
+|      |     | MA1511           |      |     | PF1101           |
+|      |     | MA1512           |      |     | GEA1000          |
+|      |     | ES1103           |      |     |                  |
++------+-----+------------------+------+-----+------------------+
+| 2    | 1   | CS1231           | 2    | 2   | CG2023           |
+|      |     | CS2040C          |      |     | CS2113           |
+|      |     | IE2141           |      |     | EE2211           |
+|      |     | ES2631           |      |     | EE2026           |
+|      |     | GEC1XXX          |      |     | CDE2501          |
++------+-----+------------------+------+-----+------------------+
+| 3    | 1   | EG2401A          | 3    | 2   | CG2027           |
+|      |     | EG3611A          |      |     | CG2028           |
+|      |     | CP3880           |      |     | CG2271           |
+|      |     | UE               |      |     | CDE2000          |
+|      |     |                  |      |     | ST2334           |
++------+-----+------------------+------+-----+------------------+
+| 4    | 1   | CG4002           | 4    | 2   | UE               |
+|      |     | EE4204           |      |     | UE               |
+|      |     | GEN1XXX          |      |     | UE               |
+|      |     | UE               |      |     | UE               |
+|      |     |                  |      |     | UE               |
++------+-----+------------------+------+-----+------------------+
+```
 
 ## View Available Specialisations  
 **`/spec`**  
@@ -203,19 +237,19 @@ Furthermore, certain edits can cause GrandRhombus to behave in unexpected ways (
 
 ## Command Summary
 
-| Command      | Description                      | Arguments                                              | Format                           |
-|--------------|----------------------------------|--------------------------------------------------------|----------------------------------|
-| `/view`      | View all modules                 | `<semester>`                                           | `/view` or `/view 1`             |
-| `/add`       | Add a module to the list         | `<module_code>`                                        | `/add CG1111A 1`                 |
-| `/addCustom` | Add a custom module to the list  | `<module_code>`, `<semester>`, `<# of MCs>`, `<name>`  | `/addCustom CDE3302 3 4 ModName` |
-| `/su`        | S/U a module                     | `<module_code>`                                        | `/su CS1010`                     |
-| `/delete`    | Delete a module from the list    | `<module_code>`                                        | `/delete CDE3301`                |
-| `/detail`    | View details of a module         | `<module_code>`                                        | `/detail CDE3301`                |
-| `/grade`     | Set a module's grade             | `<module_code> <grade>`                                | `/grade CDE3301 A`               |
-| `/gpa`       | Retrieve your GPA                | None                                                   | `/gpa`                           |
-| `/grad`      | Check if you can graduate        | None                                                   | `/grad`                          |
-| `/schedule`  | Generate a schedule for students | None                                                   | `/schedule`                      |
-| `/spec `     | View specialisations             | None                                                   | `/spec`                          |
-| `/workload`  | Display workload                 | `<semester>`                                           | `/workload` or `/workload 1`     |
-| `/help`      | Show this help message           | `<command>`                                            | `/help` or `/help help`          |
-| `/exit`      | Exit the program                 | None                                                   | `/exit`                          |
+| Command      | Description                      | Arguments                                             | Format                           |
+|--------------|----------------------------------|-------------------------------------------------------|----------------------------------|
+| `/view`      | View all modules                 | `<semester>`                                          | `/view` or `/view 1`             |
+| `/add`       | Add a module to the list         | `<module_code>`, `<semester>`                         | `/add CG1111A 1`                 |
+| `/addCustom` | Add a custom module to the list  | `<module_code>`, `<semester>`, `<# of MCs>`, `<name>` | `/addCustom CDE3302 3 4 ModName` |
+| `/su`        | S/U a module                     | `<module_code>`                                       | `/su CS1010`                     |
+| `/delete`    | Delete a module from the list    | `<module_code>`                                       | `/delete CDE3301`                |
+| `/detail`    | View details of a module         | `<module_code>`                                       | `/detail CDE3301`                |
+| `/grade`     | Set a module's grade             | `<module_code>`, `<grade>`                            | `/grade CDE3301 A`               |
+| `/gpa`       | Retrieve your GPA                | None                                                  | `/gpa`                           |
+| `/grad`      | Check if you can graduate        | None                                                  | `/grad`                          |
+| `/schedule`  | Generate a schedule for students | `<jc>` or `<poly>`                                    | `/schedule jc`                   |
+| `/spec `     | View specialisations             | None                                                  | `/spec`                          |
+| `/workload`  | Display workload                 | `<semester>`                                          | `/workload` or `/workload 1`     |
+| `/help`      | Show this help message           | `<command>`                                           | `/help` or `/help help`          |
+| `/exit`      | Exit the program                 | None                                                  | `/exit`                          |

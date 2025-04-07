@@ -151,4 +151,135 @@ public class CommandParserTest {
 
         assertEquals("No modules in List", out.toString().trim());
     }
+
+    @Test
+    public void parseCommand_helpWithValidArg() {
+        CommandParser parser = new CommandParser();
+        ByteArrayOutputStream out = new ByteArrayOutputStream(); // Capture output
+        System.setOut(new PrintStream(out)); // Redirect to out
+        String[] testCommands = {"/help", "grade"};
+
+        parser.callCommand(testCommands);
+        System.setOut(System.out); // Reset System.out
+
+        String output = out.toString().trim();
+        assertTrue(output.contains("Usage: /grade <module code> <grade>"));
+        assertTrue(output.contains("Description: Set a module's grade."));
+        assertFalse(output.contains("| Command                        | Description                          |"));
+    }
+
+    @Test
+    public void parseCommand_gradExecutesSuccessfully() {
+        CommandParser parser = new CommandParser();
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+        String[] testCommand = {"/grad"};
+
+        parser.callCommand(testCommand);
+        System.setOut(System.out);
+
+        String output = out.toString().trim();
+        assertTrue(output.contains("Viewing Graduation Requirements"));
+        assertTrue(output.contains("Current MCs:"));
+    }
+
+    @Test
+    public void parseCommand_specExecutesSuccessfully() {
+        CommandParser parser = new CommandParser();
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+        String[] testCommand = {"/spec"};
+
+        parser.callCommand(testCommand);
+        System.setOut(System.out);
+
+        String output = out.toString().trim();
+        assertTrue(output.contains("SPECIALISATIONS"));
+        assertTrue(output.contains("ADVANCED ELECTRONICS"));
+    }
+
+    @Test
+    public void parseCommand_gradWithArgumentsFails() {
+        CommandParser parser = new CommandParser();
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+        String[] testCommand = {"/grad", "extraArg"};
+
+        parser.callCommand(testCommand);
+        System.setOut(System.out);
+
+        String output = out.toString().trim();
+        assertFalse(output.contains("Viewing Graduation Requirements"));
+    }
+
+    @Test
+    public void parseCommand_specWithArgumentsFails() {
+        CommandParser parser = new CommandParser();
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+        String[] testCommand = {"/spec", "extraArg"};
+
+        parser.callCommand(testCommand);
+        System.setOut(System.out);
+
+        String output = out.toString().trim();
+        assertFalse(output.contains("SPECIALISATIONS"));
+    }
+
+    @Test
+    public void parseCommand_detailExecutesSuccessfully() {
+        CommandParser parser = new CommandParser();
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+        String[] testCommand = {"/detail", "CS1010"};
+
+        parser.callCommand(testCommand);
+        System.setOut(System.out);
+
+        String output = out.toString().trim();
+        assertTrue(output.contains("CS1010"));
+        assertTrue(output.contains("Prerequisites:"));
+        assertTrue(output.contains("Preclusions:"));
+    }
+
+    @Test
+    public void parseCommand_detailWithoutArgumentsFails() {
+        CommandParser parser = new CommandParser();
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+        String[] testCommand = {"/detail"};
+
+        assertThrows(ArrayIndexOutOfBoundsException.class, () -> parser.callCommand(testCommand));
+    }
+
+    @Test
+    public void parseCommand_viewExecutesSuccessfully() {
+        CommandParser parser = new CommandParser();
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+        String[] testCommand = {"/view"};
+
+        parser.callCommand(testCommand);
+        System.setOut(System.out);
+
+        String output = out.toString().trim();
+        assertTrue(output.contains("SEMESTER 1"));
+        assertTrue(output.contains("SEMESTER 8"));
+    }
+
+    @Test
+    public void parseCommand_viewWithSemesterExecutesSuccessfully() {
+        CommandParser parser = new CommandParser();
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+        String[] testCommand = {"/view", "3"};  // View modules in semester 3
+
+        parser.callCommand(testCommand);
+        System.setOut(System.out);
+
+        String output = out.toString().trim();
+        assertTrue(output.contains("SEMESTER 3"));
+        assertFalse(output.contains("SEMESTER 1"));  // Should only show semester 3
+    }
 }
+

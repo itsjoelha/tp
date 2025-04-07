@@ -10,7 +10,7 @@ public class Duke {
      */
     public static CommandParser commandParser = new CommandParser();
     public static User currentUser = new User();
-    public static UserStorage userData = new UserStorage("data/user.txt");
+    public static UserStorage userData = new UserStorage("data", "userdata.txt");
     public static Ui ui = new Ui();
 
     public static void main(String[] args) {
@@ -33,7 +33,7 @@ public class Duke {
             } catch (NumberFormatException e) {
                 assert command != null;
                 ErrorHandler.integerInputError("semester", command[0]);
-            }  finally {
+            } finally {
                 userData.saveUserData(currentUser);
             }
         }

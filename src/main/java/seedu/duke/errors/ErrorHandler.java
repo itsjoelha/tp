@@ -57,7 +57,8 @@ public class ErrorHandler {
         Ui.printExcessInputError(command);
     }
 
-    public static void handleModuleDoesNotExist() {
-        // System.err.println("[ERROR] Module not found");
+    public static void invalidCharacterInputError(String moduleCode, String command) {
+        logger.warning("Invalid input for " + moduleCode + " command.");
+        Ui.printInvalidCharacterInputError(command);
     }
 }
