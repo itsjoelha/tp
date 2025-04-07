@@ -46,7 +46,6 @@ public class AddUserModule implements Command {
                 System.out.printf("| %-78s |\n", "Prerequisites:");
                 Ui.textWrapDescription(newMod.getPrerequisites());
                 Ui.printDashes();
-                return;
             }
 
             System.out.println("Module " + moduleCode.toUpperCase() + " successfully added to Semester " + semester);

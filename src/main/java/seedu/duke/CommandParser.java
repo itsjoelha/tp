@@ -33,7 +33,7 @@ public class CommandParser {
 
     // This method will parse and separate into required sections
     public String[] parseCommand(String userInput) {
-        String[] words = userInput.split(" ", 5);
+        String[] words = userInput.trim().split("\\s+", 5);
         return removeWhitespace(words);
     }
 
@@ -47,8 +47,8 @@ public class CommandParser {
 
     public int requiredInput(String command) {
         return switch (command) {
-            case "/gpa", "/grad", "/schedule", "/spec", "/clear" -> 1;
-            case "/view", "/detail", "/delete", "/su", "/grade", "/help", "/workload" -> 2;
+            case "/gpa", "/grad", "/spec", "/clear" -> 1;
+            case "/view", "/detail", "/delete", "/su", "/grade", "/help", "/workload", "/schedule" -> 2;
             case "/add" -> 3;
             default -> 5;
         };
@@ -135,8 +135,16 @@ public class CommandParser {
             break;
 
         case "/schedule":
-                logger.info("Executing RecommendedSchedule command.");
-                cmdObject = new RecommendedSchedule();
+           if (words.length == 1) {
+                logger.warning("Schedule command missing required argument.");
+                System.out.println("Error: Please indicate either 'jc' or 'poly' to see the respective schedules.");
+            } else if (!words[1].equals("jc") && !words[1].equals("poly")) {
+                logger.warning("Schedule command has invalid argument: " + words[1]);
+                System.out.println("Error: Please use either 'jc' or 'poly'.");
+            } else {
+                logger.info("Executing RecommendedSchedule command with argument: " + words[1]);
+                cmdObject = new RecommendedSchedule(words[1]);
+            }
             break;
 
         case "/spec":
