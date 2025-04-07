@@ -83,7 +83,7 @@ public class HelpTest {
     void testAllSpecificCommands() {
         // Array of all valid commands based on the switch case in Help.java
         String[] commands = {"view", "add", "addCustom", "su", "gpa", "grade", "delete", "detail", "grad",
-            "schedule", "spec", "workload", "help", "exit"};
+                "schedule", "spec", "workload", "help", "exit"};
 
         for (String cmd : commands) {
             outContent.reset();

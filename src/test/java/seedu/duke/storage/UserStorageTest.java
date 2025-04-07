@@ -27,6 +27,7 @@ public class UserStorageTest {
             file.delete();
         }
     }
+
     @AfterAll
     public static void tearDown() {
         // Clean up the test file after all tests
