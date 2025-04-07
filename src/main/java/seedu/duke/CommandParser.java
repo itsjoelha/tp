@@ -45,7 +45,6 @@ public class CommandParser {
         return input;
     }
 
-
     // This method calls the appropriate command
     public boolean callCommand(String[] words) throws ArrayIndexOutOfBoundsException, NumberFormatException {
         String command = words[0];
@@ -54,22 +53,11 @@ public class CommandParser {
         switch (command) {
         case "/view":
             if (words.length > 2) {
-                logger.warning("View command has too many arguments.");
-                System.out.println("Error: The '/view' command accepts at most one argument (semester number).");
+                ErrorHandler.excessInputError(command);
             } else if (words.length == 2) {
-                try {
-                    semester = Integer.parseInt(words[1]);
-                    if (semester < 1 || semester > 8) {
-                        logger.warning("Invalid semester number: " + semester);
-                        System.out.println("Error: Semester must be a number between 1 and 8.");
-                    } else {
-                        logger.info("Executing ListModules command to view modules in semester " + semester);
-                        cmdObject = new ListModules(currentUser, words[1]);
-                    }
-                } catch (NumberFormatException e) {
-                    logger.warning("Invalid semester format in View command.");
-                    System.out.println("Error: Semester must be a number between 1 and 8.");
-                }
+                semester = Integer.parseInt(words[1]);
+                logger.info("Executing ListModules command to view modules in semester " + semester);
+                cmdObject = new ListModules(currentUser, words[1]);
             } else {
                 logger.info("Executing ListModules command to view all modules.");
                 cmdObject = new ListModules(currentUser);
@@ -123,7 +111,6 @@ public class CommandParser {
 
         case "/help":
             logger.info("Displaying help file.");
-
             if (words.length == 2) {
                 cmdObject = new Help(words[1]);
             } else {
@@ -160,8 +147,7 @@ public class CommandParser {
 
         case "/workload":
             if (words.length > 2) {
-                logger.warning("Workload command has too many arguments.");
-                System.out.println("Error: The '/workload' command accepts at most one argument (semester number).");
+                ErrorHandler.excessInputError(command);
             } else if (words.length == 2) {
                 semester = Integer.parseInt(words[1]);
                 logger.info("Executing Workload command to view modules in semester " + semester);

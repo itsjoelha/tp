@@ -67,12 +67,16 @@ public class Workload implements Command {
      */
     @Override
     public void execute() {
-      
+        if (sem < 1 || sem > 8) {
+            System.out.println("Invalid semester. Please choose a number between 1 and 8.");
+            return;
+        }
+
         if (currentUser.getAllModules().isEmpty()) {
             System.out.println("No modules in List");
             return;
         }
-
+        
         System.out.println("+-----------+-----+-----+-------------+---------+---------+----------+----------+");
         System.out.println("| Code      | Sem | MCs | Lecture Hrs | Tut Hrs | Lab Hrs | Proj Hrs | Prep Hrs |");
         System.out.println("+-----------+-----+-----+-------------+---------+---------+----------+----------+");
