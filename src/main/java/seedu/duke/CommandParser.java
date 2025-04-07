@@ -101,6 +101,10 @@ public class CommandParser {
         case "/addCustom":
             semester = Integer.parseInt(words[2]);
             try {
+                if (!words[1].matches("^[a-zA-Z0-9]+$")) {
+                    ErrorHandler.invalidCharacterInputError("module code", command);
+                    break;
+                }
                 int creditNum = Integer.parseInt(words[3]);
                 logger.info("Executing AddCustomModule command with module code: " + words[1]
                         + ", semester: " + semester);
