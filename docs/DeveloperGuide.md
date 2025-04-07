@@ -460,6 +460,7 @@ _{More to be added}_
 </h4>
 
 - **Mainstream OS** : Windows, Linux, Unix, MacOS
+- **CLI** : Command Line Interface
 - **MC** : Modular Credits
 - **GPA** : Grade Point Average
 - **S/U** : Satisfactory/Unsatisfactory
