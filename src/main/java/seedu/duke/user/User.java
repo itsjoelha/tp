@@ -335,5 +335,18 @@ public class User {
         return true;
     }
 
+    /**
+     * Sets all Exemptions to false
+     */
+    public void clearExemptions() {
+        setExemptedMA1301(false);
+        setExemptedPC1101(false);
+        setExemptedEnglish(false);
+    }
+
+    public void resetUser() {
+        clearModules();
+        clearExemptions();
+    }
 }
 
