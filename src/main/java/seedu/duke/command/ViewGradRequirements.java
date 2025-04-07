@@ -1,7 +1,7 @@
 /**
  * The ViewGradRequirements class implements the Command interface and is responsible for
  * displaying the user's progress toward graduation requirements.
- *
+ * <p>
  * This class analyzes the user's completed modules against required graduation modules,
  * displays MC (Modular Credits) status, and lists missing modules in a formatted table.
  */
@@ -20,8 +20,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import seedu.duke.data.Mod;
-import seedu.duke.user.User;
 import seedu.duke.data.UserMod;
+import seedu.duke.user.User;
 
 
 public class ViewGradRequirements implements Command {
@@ -141,21 +141,11 @@ public class ViewGradRequirements implements Command {
             String code = m.getCode();
 
             // For GEC1XXX check if user has any GEC module
-            if (code.equals("GEC1XXX")) {
-                if (!hasGecModule) {
-                    missingModules.add(m);
-                }
-            }
-
-            // For GEN1XXX check if user has any GEN module
-            else if (code.equals("GEN1XXX")) {
-                if (!hasGenModule) {
-                    missingModules.add(m);
-                }
-            }
-
-            // For all other modules check normally
-            else if (!user.hasModule(code)) {
+            if (code.equals("GEC1XXX") && !hasGecModule) {
+                missingModules.add(m);
+            } else if (code.equals("GEN1XXX") && !hasGenModule) { // For GEN1XXX check if user has any GEN module
+                missingModules.add(m);
+            } else if (!user.hasModule(code)) { // For all other modules check normally
                 missingModules.add(m);
             }
         }

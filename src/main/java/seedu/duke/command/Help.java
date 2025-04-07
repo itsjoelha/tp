@@ -32,7 +32,7 @@ public class Help implements Command {
         System.out.printf("| %-30s | %-36s |\n", "/delete <module code>", "Delete a module from the list");
         System.out.printf("| %-30s | %-36s |\n", "/detail <module code>", "View details of a module");
         System.out.printf("| %-30s | %-36s |\n", "/grad", "Check if you can graduate");
-        System.out.printf("| %-30s | %-36s |\n", "/schedule", "Generate a schedule for students");
+        System.out.printf("| %-30s | %-36s |\n", "/schedule <jc> or <poly>", "Generate a schedule for students");
         System.out.printf("| %-30s | %-36s |\n", "/spec", "View specialisations");
         System.out.printf("| %-30s | %-36s |\n", "/workload", "Display workload");
         System.out.printf("| %-30s | %-36s |\n", "/help", "Show this help message");
@@ -84,7 +84,7 @@ public class Help implements Command {
             System.out.println("Description: Check if you can graduate.");
             break;
         case "schedule":
-            System.out.println("Usage: /schedule");
+            System.out.println("Usage: /schedule <jc> or <poly>");
             System.out.println("Description: Retrieve the recommended schedule.");
             break;
         case "spec":
