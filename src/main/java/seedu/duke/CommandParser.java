@@ -51,10 +51,10 @@ public class CommandParser {
         case "/gpa", "/grad", "/spec", "/clear":
             input = 1;
             break;
-        case "/view", "/detail", "/delete", "/su", "/grade", "/help", "/workload", "/schedule":
+        case "/view", "/detail", "/delete", "/su", "/help", "/workload", "/schedule":
             input = 2;
             break;
-        case "/add":
+        case "/add", "/grade":
             input = 3;
             break;
         default:
