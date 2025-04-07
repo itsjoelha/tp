@@ -3,6 +3,8 @@ package seedu.duke.command;
 import java.util.ArrayList;
 import java.util.Map;
 
+import seedu.duke.data.Mod;
+import seedu.duke.storage.ModStorage;
 import seedu.duke.user.User;
 import seedu.duke.data.UserMod;
 
@@ -23,6 +25,15 @@ public class AddCustomModule implements Command {
         this.semester = semester;
     }
 
+    public boolean moduleExists(String moduleCode) {
+        for (Mod mod : ModStorage.getModules()) {
+            if (mod.getCode().equals(moduleCode)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     @Override
     public void execute() { // test
         if (semester < 1 || semester > 8) {
@@ -36,9 +47,15 @@ public class AddCustomModule implements Command {
         Map<Integer, ArrayList<UserMod>> semesterModules = user.getSemesterModules();
         semesterModules.putIfAbsent(semester, new ArrayList<>());
 
-        if (user.hasModule(moduleCode)) {
+        if (user.hasModule(moduleCode)) { // Module exists in user's list
             System.out.println("Failed to add module " + moduleCode.toUpperCase() + ". It already exists.");
-            return; // Module already exists
+            return;
+        }
+
+        if (moduleExists(moduleCode.toUpperCase())) { // Module exists in database
+            System.out.println("Module " + moduleCode.toUpperCase() + " already exists in the database." +
+                    " Use /add to add the module.");
+            return;
         }
 
         semesterModules.get(semester).add(newMod);
