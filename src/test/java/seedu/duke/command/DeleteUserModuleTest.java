@@ -15,7 +15,7 @@ public class DeleteUserModuleTest {
 
     @BeforeEach
     void setUp() {
-        currentUser.clearModules();
+        currentUser.resetUser(); // Clear and set all exemptions to false
         Command testAdd1 = new AddUserModule(currentUser, testModCode1, testSemester1);
         testAdd1.execute();
         Command testAdd2 = new AddUserModule(currentUser, testModCode2, testSemester2);
@@ -32,7 +32,8 @@ public class DeleteUserModuleTest {
         assertTrue(currentUser.hasModule(testModCode2));
     }
 
-    @Test void deleteUserModuleDoesNotExist() {
+    @Test
+    void deleteUserModuleDoesNotExist() {
         Command testDelete1 = new DeleteUserModule(currentUser, "CDE3301");
         testDelete1.execute();
 

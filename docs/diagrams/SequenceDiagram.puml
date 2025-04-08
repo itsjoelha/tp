@@ -1,0 +1,46 @@
+@startuml
+actor Human
+
+participant GrandRhombus
+participant Ui
+participant UserStorage
+participant User
+participant CommandParser
+participant ErrorHandler
+
+Human -> GrandRhombus
+GrandRhombus -> Ui : welcomeMessage()
+GrandRhombus -> UserStorage : loadUserData()
+UserStorage -> User : new User()
+User --> GrandRhombus: user
+
+GrandRhombus -> User : initialiseUser()
+User --> GrandRhombus : isRunning
+
+loop isRunning
+    GrandRhombus -> Ui : printEnterCommand()
+    GrandRhombus -> Ui : readInput()
+    Ui -> Human : Scanner nextLine
+    Human -> Ui: User types instruction in CLI
+    Ui --> GrandRhombus : userInput
+    GrandRhombus -> CommandParser : parseCommand(userInput)
+    CommandParser --> GrandRhombus : command
+
+    alt successful command
+        GrandRhombus -> CommandParser : callCommand(command)
+        CommandParser --> GrandRhombus : isRunning
+    else ArrayIndexOutOfBoundsException
+        GrandRhombus -> ErrorHandler : userInputError(command)
+    else NumberFormatException
+        GrandRhombus -> ErrorHandler : integerInputError("semester", command[0])
+    end
+
+    GrandRhombus -> UserStorage : saveUserData(User)
+
+end
+
+GrandRhombus -> User: getName()
+User --> GrandRhombus: name
+Ui -> Human : farewellMessage(name)
+
+@enduml

@@ -8,7 +8,8 @@ Grand Rhombus aims to provide <span style="color:blue;">CEG Students</span> with
 <span style="color:green;">Academic Life Planner</span> which is <span style="color:red;"> in-depth </span> and 
 <span style="color:red;"> clear </span> to plan their future.
 
-This planner <span style="color:red;">reduces confusion</span> from having to cross-reference multiple sources so that students <span style="color:red;">do not miss academic opportunities</span>.
+This planner <span style="color:red;">reduces confusion</span> from having to cross-reference multiple sources 
+so that students <span style="color:red;">do not miss academic opportunities</span>.
 
 ---
 
@@ -16,7 +17,7 @@ This planner <span style="color:red;">reduces confusion</span> from having to cr
 <span style="color:orange;">Summary of Contributions</span>
 </h2>
 
-Here are my contributions to the project
+Here are my contributions to the project:
 
 - **New feature** : 
 Added the ability to do add custom modules.

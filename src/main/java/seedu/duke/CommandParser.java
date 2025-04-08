@@ -3,6 +3,7 @@ package seedu.duke;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import seedu.duke.command.ClearModules;
 import seedu.duke.command.Command;
 import seedu.duke.command.ListModules;
 import seedu.duke.command.DetailModules;
@@ -15,8 +16,10 @@ import seedu.duke.command.Help;
 import seedu.duke.command.ViewGradRequirements;
 import seedu.duke.command.RecommendedSchedule;
 import seedu.duke.command.Specialisation;
+import seedu.duke.command.WaiveModPrereq;
 import seedu.duke.command.Workload;
 import seedu.duke.command.AddCustomModule;
+import seedu.duke.errors.ErrorHandler;
 
 
 import static seedu.duke.Duke.currentUser;
@@ -29,29 +32,55 @@ public class CommandParser {
         logger.setLevel(Level.OFF);
     }
 
-    // This method will parse and handle commands
-    public boolean parseCommand(String userInput) {
+    // This method will parse and separate into required sections
+    public String[] parseCommand(String userInput) {
+        String[] words = userInput.trim().split("\\s+", 5);
+        return removeWhitespace(words);
+    }
 
-        logger.info("Received user input: " + userInput);
-        assert userInput != null : "User input should not be null";
-
-        // Trim leading/trailing spaces
-        userInput = userInput.trim();
-
-        if (userInput.isEmpty()) {
-            logger.warning("User entered an empty command.");
-            System.out.println("No command entered. Try again.");
-            return false;
+    // remove any extra spaces around each split
+    public String[] removeWhitespace(String[] input) {
+        for (int i = 0; i < input.length; i++) {
+            input[i] = input[i].trim();
         }
+        return input;
+    }
 
-        String[] words = userInput.split(" ", 5);
+    public int requiredInput(String command) {
+        int input = 0;
+        switch (command) {
+        case "/gpa", "/grad", "/spec", "/clear":
+            input = 1;
+            break;
+        case "/view", "/detail", "/delete", "/su", "/help", "/workload", "/schedule", "/waive":
+            input = 2;
+            break;
+        case "/add", "/grade":
+            input = 3;
+            break;
+        default:
+            input = 5;
+            break;
+        }
+        return input;
+    }
+
+    // This method calls the appropriate command
+    public boolean callCommand(String[] words) throws ArrayIndexOutOfBoundsException, NumberFormatException {
         String command = words[0];
         Command cmdObject = null;
+        int semester;
+
+        if (words.length > requiredInput(command)) {
+            ErrorHandler.excessInputError(command);
+            return true;
+        }
 
         switch (command) {
         case "/view":
             if (words.length == 2) {
-                logger.info("Executing ListModules command to view modules in semester" + "semester");
+                semester = Integer.parseInt(words[1]);
+                logger.info("Executing ListModules command to view modules in semester " + semester);
                 cmdObject = new ListModules(currentUser, words[1]);
             } else {
                 logger.info("Executing ListModules command to view all modules.");
@@ -60,71 +89,38 @@ public class CommandParser {
             break;
 
         case "/detail":
-            if (words.length < 2) {
-                logger.warning("Detail command missing module code.");
-                System.out.println("Error: Please specify a module code to view details.");
-                break;
-            }
             logger.info("Executing DetailModules command with module code: " + words[1]);
             cmdObject = new DetailModules(words[1]);
             break;
 
         case "/add":
-            if (words.length < 3) {
-                logger.warning("Add command missing module code or semester.");
-                System.out.println("Error: Please specify a module code and semester to add.");
-                System.out.println("Usage: /add MODULE_CODE SEMESTER");
-                break;
-            }
-            try {
-                int semester = Integer.parseInt(words[2]);
-                logger.info("Executing AddUserModule command with module code: " + words[1] +
-                        ", semester: " + semester);
-                cmdObject = new AddUserModule(currentUser, words[1], semester);
-            } catch (NumberFormatException e) {
-                logger.warning("Invalid semester format.");
-                System.out.println("Error: Semester must be a number between 1 and 8.");
-                break;
-            }
+            semester = Integer.parseInt(words[2]);
+            logger.info("Executing AddUserModule command with module code: " + words[1] + ", semester: " + semester);
+            cmdObject = new AddUserModule(currentUser, words[1], semester);
             break;
 
         case "/addCustom":
-            if (words.length < 5) {
-                logger.warning("Add custom module command missing unspecified content");
-                System.out.println("Error: Please specify module details to add custom module.");
-                System.out.println("Usage: /addCustom MODULE_CODE SEMESTER CREDIT_NUMBER NAME");
-                break;
-            }
+            semester = Integer.parseInt(words[2]);
             try {
-                int semester = Integer.parseInt(words[2]);
+                if (!words[1].matches("^[a-zA-Z0-9]+$")) {
+                    ErrorHandler.invalidCharacterInputError("module code", command);
+                    break;
+                }
                 int creditNum = Integer.parseInt(words[3]);
-                logger.info("Executing AddCustomModule command with module code: " + words[1] +
-                        ", semester: " + semester);
+                logger.info("Executing AddCustomModule command with module code: " + words[1]
+                        + ", semester: " + semester);
                 cmdObject = new AddCustomModule(currentUser, words[1], semester, creditNum, words[4]);
             } catch (NumberFormatException e) {
-                logger.warning("Invalid semester format in AddCustomModule command.");
-                System.out.println("Error: Semester must be a number between 1 and 8 and credit number must"
-                        + " be a positive integer.");
-                break;
+                ErrorHandler.integerInputError("creditNum", command);
             }
             break;
 
         case "/delete":
-            if (words.length < 2) {
-                logger.warning("Delete command missing module code.");
-                System.out.println("Error: Please specify a module code to delete.");
-                break;
-            }
             logger.info("Executing RemoveUserModule command with module code: " + words[1]);
             cmdObject = new DeleteUserModule(currentUser, words[1]);
             break;
 
         case "/su":
-            if (words.length < 2) {
-                logger.warning("Su command missing module code.");
-                System.out.println("Error: Please specify a module code to suspend.");
-                break;
-            }
             logger.info("Executing su command with module code: " + words[1]);
             cmdObject = new SuUserModule(currentUser, words[1]);
             break;
@@ -135,19 +131,12 @@ public class CommandParser {
             break;
 
         case "/grade":
-            if (words.length < 3) {
-                logger.warning("Grade command missing module code or grade");
-                System.out.println("Error: Please specify a module code to grade.");
-                break;
-            }
             logger.info("Executing grade module");
             cmdObject = new GradeModule(currentUser, words[1], words[2]);
             break;
 
-
         case "/help":
             logger.info("Displaying help file.");
-
             if (words.length == 2) {
                 cmdObject = new Help(words[1]);
             } else {
@@ -161,42 +150,62 @@ public class CommandParser {
             break;
 
         case "/schedule":
-            logger.info("Executing RecommendedSchedule command.");
-            cmdObject = new RecommendedSchedule();
+            if (words.length == 1) {
+                logger.warning("Schedule command missing required argument.");
+                System.out.println("Error: Please indicate either 'jc' or 'poly' to see the respective schedules.");
+            } else if (!words[1].equals("jc") && !words[1].equals("poly")) {
+                logger.warning("Schedule command has invalid argument: " + words[1]);
+                System.out.println("Error: Please use either 'jc' or 'poly'.");
+            } else {
+                logger.info("Executing RecommendedSchedule command with argument: " + words[1]);
+                cmdObject = new RecommendedSchedule(words[1]);
+            }
             break;
 
-        case "/specialisation":
+        case "/spec":
             logger.info("Displaying Specialisations.");
             cmdObject = new Specialisation();
             break;
 
         case "/workload":
-            logger.info("Executing Workload command.");
-
             if (words.length == 2) {
-                logger.info("Executing Workload command to view modules in semester" + "semester");
-                cmdObject = new Workload(currentUser, words[1]);
+                semester = Integer.parseInt(words[1]);
+                logger.info("Executing Workload command to view modules in semester " + semester);
+                cmdObject = new Workload(currentUser, semester);
             } else {
                 logger.info("Executing Workload command to view all modules.");
                 cmdObject = new Workload(currentUser);
             }
             break;
 
+        case "/clear":
+            cmdObject = new ClearModules(currentUser);
+            break;
+
+        case "/waive":
+            logger.info("Executing WaiveModPrereq command with module code: " + words[1]);
+            cmdObject = new WaiveModPrereq(currentUser, words[1]);
+            break;
+
         case "/exit":
             logger.info("User exited program.");
-            System.out.println("Exiting program...");
+            Ui.exitMessage();
             return false;
+
+        case "": // empty command line
+            logger.warning("User entered an empty command.");
+            Ui.printEmptyCommandError();
+            return true;
 
         default:
             logger.warning("Unknown command: " + command);
-            System.out.println("Unknown command. Type '/help' for a list of commands.");
+            Ui.printUnknownCommandError();
         }
 
         if (cmdObject != null) {
             cmdObject.execute();
         }
-
         return true;
-
     }
 }
+

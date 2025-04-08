@@ -20,24 +20,24 @@ public class Help implements Command {
     }
 
     private void printAll() {
-        System.out.println("+------------------------------+-----------------------------------+");
-        System.out.println("| Command                      | Description                       |");
-        System.out.println("+------------------------------+-----------------------------------+");
-        System.out.printf("| %-28s | %-33s |\n", "/view", "View all modules");
-        System.out.printf("| %-28s | %-33s |\n", "/add <module code>", "Add a module to the list");
-        System.out.printf("| %-28s | %-33s |\n", "/addCustom <module code>", "Add a custom module to the list");
-        System.out.printf("| %-28s | %-33s |\n", "/su <module code>", "S/U a module");
-        System.out.printf("| %-28s | %-33s |\n", "/gpa", "Retrieve your GPA");
-        System.out.printf("| %-28s | %-33s |\n", "/grade <module code> <grade>", "Set a module's grade");
-        System.out.printf("| %-28s | %-33s |\n", "/delete <module code>", "Delete a module from the list");
-        System.out.printf("| %-28s | %-33s |\n", "/detail <module code>", "View details of a module");
-        System.out.printf("| %-28s | %-33s |\n", "/grad", "Check if you can graduate");
-        System.out.printf("| %-28s | %-33s |\n", "/schedule", "Generate a schedule for students");
-        System.out.printf("| %-28s | %-33s |\n", "/specialisation", "View specialisations");
-        System.out.printf("| %-28s | %-33s |\n", "/workload", "Display workload");
-        System.out.printf("| %-28s | %-33s |\n", "/help", "Show this help message");
-        System.out.printf("| %-28s | %-33s |\n", "/exit", "Exit the program");
-        System.out.println("+------------------------------+-----------------------------------+");
+        System.out.println("+--------------------------------+--------------------------------------+");
+        System.out.println("| Command                        | Description                          |");
+        System.out.println("+--------------------------------+--------------------------------------+");
+        System.out.printf("| %-30s | %-36s |\n", "/view", "View all modules");
+        System.out.printf("| %-30s | %-36s |\n", "/add <module code>", "Add a module to the list");
+        System.out.printf("| %-30s | %-36s |\n", "/addCustom <module code> ...", "Add a custom module to the list");
+        System.out.printf("| %-30s | %-36s |\n", "/su <module code>", "S/U a module");
+        System.out.printf("| %-30s | %-36s |\n", "/gpa", "Retrieve your GPA");
+        System.out.printf("| %-30s | %-36s |\n", "/grade <module code> <grade>", "Set a module's grade");
+        System.out.printf("| %-30s | %-36s |\n", "/delete <module code>", "Delete a module from the list");
+        System.out.printf("| %-30s | %-36s |\n", "/detail <module code>", "View details of a module");
+        System.out.printf("| %-30s | %-36s |\n", "/grad", "Check if you can graduate");
+        System.out.printf("| %-30s | %-36s |\n", "/schedule <jc> or <poly>", "Generate a schedule for students");
+        System.out.printf("| %-30s | %-36s |\n", "/spec", "View specialisations");
+        System.out.printf("| %-30s | %-36s |\n", "/workload", "Display workload");
+        System.out.printf("| %-30s | %-36s |\n", "/help", "Show this help message");
+        System.out.printf("| %-30s | %-36s |\n", "/exit", "Exit the program");
+        System.out.println("+--------------------------------+--------------------------------------+");
         System.out.println("Type /help <command> for more information on a specific command.");
         System.out.println("For further assistance, refer to the user guide at our GitHub repository.");
     }
@@ -56,7 +56,7 @@ public class Help implements Command {
             System.out.println("Description: Add a module to the list.");
             break;
         case "addCustom":
-            System.out.println("Usage: /addCustom <module code>");
+            System.out.println("Usage: /addCustom <module code> <semester> <# of MCs> <name>");
             System.out.println("Description: Add a custom module to the list.");
             break;
         case "su":
@@ -84,11 +84,11 @@ public class Help implements Command {
             System.out.println("Description: Check if you can graduate.");
             break;
         case "schedule":
-            System.out.println("Usage: /schedule");
+            System.out.println("Usage: /schedule <jc> or <poly>");
             System.out.println("Description: Retrieve the recommended schedule.");
             break;
-        case "specialisation":
-            System.out.println("Usage: /specialisation");
+        case "spec":
+            System.out.println("Usage: /spec");
             System.out.println("Description: View specialisations.");
             break;
         case "workload":

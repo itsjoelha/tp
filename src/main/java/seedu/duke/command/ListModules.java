@@ -1,6 +1,6 @@
 package seedu.duke.command;
 
-import seedu.duke.data.User;
+import seedu.duke.user.User;
 import seedu.duke.data.UserMod;
 
 public class ListModules implements Command {
@@ -11,12 +11,18 @@ public class ListModules implements Command {
         this.user = user;
         this.sem = 0;
     }
+
     public ListModules(User user, String semester) {
         this.user = user;
         this.sem = Integer.parseInt(semester);
     }
 
+
     public void execute(int sem) {
+        if (sem < 1 || sem > 8) {
+            System.out.println("Invalid semester. Please choose between 1 and 8.");
+            return;
+        }
         // Print Semester header
         System.out.print("=============== SEMESTER " + sem + " ===============\n");
 
@@ -76,5 +82,6 @@ public class ListModules implements Command {
             }
         }
         user.checkAllPrereqs();
+        user.printWaivedModules();
     }
 }

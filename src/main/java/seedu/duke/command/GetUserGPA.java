@@ -1,6 +1,6 @@
 package seedu.duke.command;
 
-import seedu.duke.data.User;
+import seedu.duke.user.User;
 
 public class GetUserGPA implements Command {
     private final User user;

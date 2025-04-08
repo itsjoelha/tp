@@ -1,9 +1,8 @@
 package seedu.duke;
 
-import java.util.Scanner;
-
-import seedu.duke.data.User;
-import seedu.duke.data.UserData;
+import seedu.duke.user.User;
+import seedu.duke.storage.UserStorage;
+import seedu.duke.errors.ErrorHandler;
 
 public class Duke {
     /**
@@ -11,31 +10,34 @@ public class Duke {
      */
     public static CommandParser commandParser = new CommandParser();
     public static User currentUser = new User();
-    public static UserData userData = new UserData("data/user.txt");
+    public static UserStorage userData = new UserStorage("data", "userdata.txt");
+    public static Ui ui = new Ui();
 
     public static void main(String[] args) {
-        System.out.println("Welcome to Grand Rhombus, your personal CEG Assistant");
-
+        ui.welcomeMessage();
         currentUser = userData.loadUserData();
 
-        Scanner in = new Scanner(System.in);
-        boolean isRunning = true;
+        //New User
+        boolean isRunning = currentUser.initialiseUser();
 
         while (isRunning) {
-            System.out.print("Enter command: ");
-
-            if (!in.hasNextLine()) {  // Prevent NoSuchElementException
-                break;
+            ui.printEnterCommand();
+            String userInput = Ui.readInput();
+            String[] command = null;
+            try {
+                command = commandParser.parseCommand(userInput);
+                isRunning = commandParser.callCommand(command);// If parseCommand returns false, exit loop
+            } catch (ArrayIndexOutOfBoundsException e) {
+                assert command != null;
+                ErrorHandler.userInputError(command);
+            } catch (NumberFormatException e) {
+                assert command != null;
+                ErrorHandler.integerInputError("semester", command[0]);
+            } finally {
+                userData.saveUserData(currentUser);
             }
-
-            String userInput = in.nextLine().trim();
-            isRunning = commandParser.parseCommand(userInput); // If parseCommand returns true, exit loop
-
         }
-
-        userData.saveUserData(currentUser);
-        in.close(); // Close scanner when the program exits
-        System.out.println("Goodbye, thank you for using Grand Rhombus"); // Handle exit command
-
+        ui.farewellMessage(currentUser.getName());
     }
+
 }
