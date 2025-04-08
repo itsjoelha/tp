@@ -31,12 +31,12 @@ package storage {
         +loadUserData(): User
     }
 
-    ModStorage "1" --> "*" Mod
-    GradModuleList "1" --> "*" Mod
-    ModStorage "1" --> "*" Prereq
-    UserStorage "1" --> "1" User
-    User "1" --> "*" UserMod
-    UserMod "1" --> "1" Grade
-    User "1" --> "1" EducationLevel
+    ModStorage  -->  Mod
+    GradModuleList  -->  Mod
+    ModStorage  -->  Prereq
+    UserStorage  -->  User
+    User  -->  UserMod
+    UserMod -->  Grade
+    User  -->  EducationLevel
 }
 @enduml
