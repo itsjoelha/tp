@@ -202,7 +202,31 @@ Example: `/workload 4`
 ## Help  
 **`/help`**  
 Shows a message explaining how to access the help page.  
-Displays a list of commands with a brief explanation of each.  
+Displays a list of commands with a brief explanation of each. 
+
+```
++--------------------------------+--------------------------------------+
+| Command                        | Description                          |
++--------------------------------+--------------------------------------+
+| /view                          | View all modules                     |
+| /add <module code>             | Add a module to the list             |
+| /addCustom <module code> ...   | Add a custom module to the list      |
+| /su <module code>              | S/U a module                         |
+| /gpa                           | Retrieve your GPA                    |
+| /grade <module code> <grade>   | Set a module's grade                 |
+| /delete <module code>          | Delete a module from the list        |
+| /detail <module code>          | View details of a module             |
+| /grad                          | Check if you can graduate            |
+| /schedule <jc> or <poly>       | Generate a schedule for students     |
+| /spec                          | View specialisations                 |
+| /workload                      | Display workload                     |
+| /help                          | Show this help message               |
+| /exit                          | Exit the program                     |
++--------------------------------+--------------------------------------+
+Type /help <command> for more information on a specific command.
+For further assistance, refer to the user guide at our GitHub repository.
+```
+
 
 ## View Graduation Requirements  
 **`/grad`**  
