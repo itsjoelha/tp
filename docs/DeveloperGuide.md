@@ -164,14 +164,19 @@ The sections below give more details of each component.
 <span style="color:orange; text-decoration:underline;">CommandParser component</span>
 </h4>
 
-The `CommandParser` component consists of the `CommandParser` class. 
+The `CommandParser` component consists of the `CommandParser` class.
+
+![image](diagrams/CommandParserComponent.png)
 
 The `CommandParser` component,
 
 - processes user input and chooses corresponding command.
-- creates new command parses arguments into the command.
+- creates new command and parses arguments into the command.
 - executes user commands using the `Command` component.
-- returns `isRunning` which is true for all user inputs except `/exit`
+- returns `isRunning` which is true for all user inputs except `/exit`.
+- handles errors related to user input.
+
+Errors thrown in CommandParser are handled in ErrorHandler. Ui handles the printing for these errors. 
 
 ---
 
