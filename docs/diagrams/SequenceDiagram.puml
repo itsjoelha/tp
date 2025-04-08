@@ -28,6 +28,8 @@ loop isRunning
 
     alt successful command
         GrandRhombus -> CommandParser : callCommand(command)
+        note right of CommandParser : "Successful Command Subdiagram"
+
         CommandParser --> GrandRhombus : isRunning
     else ArrayIndexOutOfBoundsException
         GrandRhombus -> ErrorHandler : userInputError(command)

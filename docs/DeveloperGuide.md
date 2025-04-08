@@ -158,6 +158,10 @@ These modules are converted into `Mod`s to be stored in other components.
 
 The _Sequence Diagram_ below shows how the components interact with each other from startup to termination.
 ![image](diagrams/SequenceDiagram.png)
+
+**Successful Command Sub-Diagram**
+![image](diagrams/successfulCommandSequence.png)
+
 Note: Command.execute() may use User depending on which command it is e.g. `/add` adds a module to the User's semesterModules list
 
 The program runs continuously till the user inputs `/exit`, which causes `CommandParser` to return **false** to isRunning.
