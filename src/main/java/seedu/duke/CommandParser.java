@@ -196,8 +196,14 @@ public class CommandParser {
             break;
 
         case "/waive":
-            logger.info("Executing WaiveModPrereq command with module code: " + words[1]);
-            cmdObject = new WaiveModPrereq(currentUser, words[1]);
+            if (words.length == 2) {
+                logger.info("Executing WaiveModPrereq command with module code: " + words[1]);
+                cmdObject = new WaiveModPrereq(currentUser, words[1]);
+            } else {
+                logger.info("Invalid usage of Waive command. Proper usage: /waive MODULE_CODE");
+                System.out.println("Error: Please specify a module code.");
+                System.out.println("Usage: /waive MODULE_CODE");
+            }
             break;
 
         case "/exit":

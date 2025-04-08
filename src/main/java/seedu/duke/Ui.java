@@ -65,6 +65,10 @@ public class Ui {
             System.out.println("Error: Please specify module details to add custom module.");
             System.out.println("Usage: /addCustom MODULE_CODE SEMESTER NUMBER_OF_CREDITS NAME");
             break;
+        case "/waive":
+            System.out.println("Error: Please specify a module code.");
+            System.out.println("Usage: /waive MODULE_CODE");
+            break;
         case "/delete":
             System.out.println("Error: Please specify a module code to delete.");
             System.out.println("Usage: /delete MODULE_CODE");
