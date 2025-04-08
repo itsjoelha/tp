@@ -143,7 +143,13 @@ The bulk of the app’s work is done by the following three components:
 
 - **`CommandParser`**: Parses user input and chooses the command
 - **`Command`**: The individual commands which are then executed. 
-- **`Data`**: A collection of classes including `User`, `UserData` which loads and saves user's modules (`Mod`) into **`user.txt`** file
+- **`Storage`**: Contains classes that interact with data files
+  - `UserStorage`: Loads and saves *User Data* from `user.txt` file 
+  - `ModStorage`: Loads module data from `moduledata.txt` and serves as the module database when the app is running
+- **`User`**: Prompts user for background information if missing and stores *User Data* when app is running
+- **`Data`**: A collection of classes defining a module as a data type `Mod` and `UserMod` (an extension of Mod)
+- **`Ui`**: handles all user-facing input and output for the program.
+- **`Errors`**: handles user input errors and prints appropriate error messages
 
 *`Resources`* contains the `moduledata.txt` file which serves as the database of all CEG modules. 
 These modules are converted into `Mod`s to be stored in other components.
@@ -152,6 +158,11 @@ These modules are converted into `Mod`s to be stored in other components.
 
 The _Sequence Diagram_ below shows how the components interact with each other from startup to termination.
 ![image](diagrams/SequenceDiagram.png)
+
+**Successful Command Sub-Diagram**
+
+![image](diagrams/successfulCommandSequence.png)
+
 Note: Command.execute() may use User depending on which command it is e.g. `/add` adds a module to the User's semesterModules list
 
 The program runs continuously till the user inputs `/exit`, which causes `CommandParser` to return **false** to isRunning.
@@ -195,82 +206,33 @@ How the `Command` component works:
 2. `Command` is then executed to perform its corresponding function
 
 ---
-
 <h4>
-<span style="color:orange; text-decoration:underline;">Data components</span>
+<span style="color:orange; text-decoration:underline;">Storage component</span>
 </h4>
 
-The `Data` component,
+The `Storage` component consists of `ModStorage`, `UserStorage` and `GradModuleList`
 
-- Loads user data and module data when program starts.
-- Saves user data when program is terminated.
-- ModData deals with module data from the database. UserData deals with storage of User
-data such as user details and modules. 
-- depends on some classes in the `Model` component (because the `Storage` component’s job is to save/retrieve objects that belong to the `Model`)
+- `ModStorage` loads all module data from the `moduledata.txt`, creating `Mods` and storing in a list for other components to access
+- `UserStorage` loads *User Data* from `userdata.txt` and creates the new User on app launch
+- On app shutdown, `UserStorage` saves the *User Data* back into the file 
+- `GradModuleList` contains the list of modules required for a CEG AY24/25 student to graduate, stores them as `Mods`
 
-### `User` class
+<h4>
+<span style="color:orange; text-decoration:underline;">User component</span>
+</h4>
 
-The `User` class represents a user in the system. It contains information about the user's name, education level, GPA, current semester, and the modules they are taking each semester.
+The `User` component contains the `User` class and `EducationLevel` enumeration
 
-#### Attributes:
-- `name`: The name of the user.
-- `education`: The education level of the user.
-- `gpa`: The current GPA of the user.
-- `currentSemester`: The current semester the user is in.
-- `semesterModules`: A map where the key is the semester number and the value is a list of `UserMod` objects representing the modules taken in that semester.
+- stores the *User Data* while the app is running 
+- has many functions used by other classes to retrieve *User Data*
 
-#### Methods:
-- `getGPA()`: Returns the current GPA of the user.
-- `getTotalMCs()`: Returns the total number of modular credits (MCs) the user has taken.
-- `updateGPA()`: Updates the user's GPA based on their module grades.
-- `hasModule(String code)`: Checks if the user has a module with the given code.
-- `clearModules()`: Clears all modules from the user's record and resets the GPA.
-- `getModule(String code)`: Retrieves a module by its code.
-- `checkAllPrereqs()`: Checks if the user fulfills all prerequisites for their modules.
-- `fulfillsModPrereq(UserMod mod, int semester)`: Checks if the user fulfills the prerequisites for a specific module.
-- `getCurrentSemester()`: Returns the current semester of the user.
-- `setCurrentSemester(int currentSemester)`: Sets the current semester of the user.
-- `getName()`: Returns the name of the user.
-- `setName(String name)`: Sets the name of the user.
-- `getEducation()`: Returns the education level of the user.
-- `setEducation(EducationLevel education)`: Sets the education level of the user.
-- `getAllModules()`: Returns a list of all modules the user has taken.
-- `getAllModulesTilSemester(int semester)`: Returns a list of all modules the user has taken up to a specific semester.
+<h4>
+<span style="color:orange; text-decoration:underline;">Data component</span>
+</h4>
 
-### `UserMod` class
+The `Data` component defines the data types of a module `Mod`, user module `UserMod`, the prerequisite tree `Prereq` 
+and the enumeration `Grade`
 
-The `UserMod` class represents a module that a user is taking. It contains information about the module's code, name, number of modular credits (MCs), grade, and whether the module is S/U (Satisfactory/Unsatisfactory) optioned.
-
-#### Attributes:
-- `code`: The code of the module.
-- `name`: The name of the module.
-- `numMC`: The number of modular credits (MCs) for the module.
-- `grade`: The grade received for the module.
-- `isSU`: A boolean indicating if the module is S/U optioned.
-
-#### Methods:
-- `getCode()`: Returns the code of the module.
-- `getName()`: Returns the name of the module.
-- `getNumMC()`: Returns the number of modular credits (MCs) for the module.
-- `getGrade()`: Returns the grade received for the module.
-- `isSU()`: Returns whether the module is S/U optioned.
-
-### `Mod` class
-
-The `Mod` class represents a module in the system. It contains information about the module's code, name, number of modular credits (MCs), and prerequisites.
-
-#### Attributes:
-- `code`: The code of the module.
-- `name`: The name of the module.
-- `numMC`: The number of modular credits (MCs) for the module.
-- `prereqTree`: The prerequisite tree for the module.
-
-#### Methods:
-- `getCode()`: Returns the code of the module.
-- `getName()`: Returns the name of the module.
-- `getNumMC()`: Returns the number of modular credits (MCs) for the module.
-- `getPrereqTree()`: Returns the prerequisite tree for the module.
-- `getPrerequisites()`: Returns the list of prerequisite modules for the module.
 
 
 ---
@@ -282,6 +244,10 @@ The `Mod` class represents a module in the system. It contains information about
 *This section explains in detail how some noteworthy features are implemented for future developers to reference.*
 
 ---
+
+<h3>
+<span style="color:orange;">Command Component</span>
+</h3>
 
 <h4>
 <span style="color:orange; text-decoration:underline;">Add Custom Module</span>
@@ -404,6 +370,85 @@ This will allow the user to void the module when calculating their GPA.
 
 The system updates the `UserMod` object, setting the `isSU` flag to true for that module. The grade of the module is still stored but doesn't contribute to GPA calculations.
 
+<h3>
+<span style="color:orange;">Data Component</span>
+</h3>
+
+<h4>
+<span style="color:orange; text-decoration:underline;">Mod</span>
+</h4>
+
+The `Mod` class represents a module in the system. It contains information about the module's code, name, number of modular credits (MCs), and prerequisites.
+
+#### Attributes:
+- `code`: The code of the module.
+- `name`: The name of the module.
+- `numMC`: The number of modular credits (MCs) for the module.
+- `prereqTree`: The prerequisite tree for the module.
+
+#### Methods:
+- `getCode()`: Returns the code of the module.
+- `getName()`: Returns the name of the module.
+- `getNumMC()`: Returns the number of modular credits (MCs) for the module.
+- `getPrereqTree()`: Returns the prerequisite tree for the module.
+- `getPrerequisites()`: Returns the list of prerequisite modules for the module.
+
+<h4>
+<span style="color:orange; text-decoration:underline;">UserMod</span>
+</h4>
+
+The `UserMod` class represents a module that a user is taking. It extends `Mod`and contains information about the module's code, name, number of modular credits (MCs), grade, and whether the module is S/U (Satisfactory/Unsatisfactory) optioned.
+
+#### Attributes:
+- `code`: The code of the module.
+- `name`: The name of the module.
+- `numMC`: The number of modular credits (MCs) for the module.
+- `grade`: The grade received for the module.
+- `isSU`: A boolean indicating if the module is S/U optioned.
+
+#### Methods:
+- `getCode()`: Returns the code of the module.
+- `getName()`: Returns the name of the module.
+- `getNumMC()`: Returns the number of modular credits (MCs) for the module.
+- `getGrade()`: Returns the grade received for the module.
+- `isSU()`: Returns whether the module is S/U optioned.
+
+
+<h3>
+<span style="color:orange;">Other Classes</span>
+</h3>
+<h4>
+<span style="color:orange; text-decoration:underline;">User class</span>
+</h4>
+
+
+The `User` class represents a user in the system. It contains information about the user's name, education level, GPA, current semester, and the modules they are taking each semester.
+
+#### Attributes:
+- `name`: The name of the user.
+- `education`: The education level of the user.
+- `gpa`: The current GPA of the user.
+- `currentSemester`: The current semester the user is in.
+- `semesterModules`: A map where the key is the semester number and the value is a list of `UserMod` objects representing the modules taken in that semester.
+
+#### Methods:
+- `getGPA()`: Returns the current GPA of the user.
+- `getTotalMCs()`: Returns the total number of modular credits (MCs) the user has taken.
+- `updateGPA()`: Updates the user's GPA based on their module grades.
+- `hasModule(String code)`: Checks if the user has a module with the given code.
+- `clearModules()`: Clears all modules from the user's record and resets the GPA.
+- `getModule(String code)`: Retrieves a module by its code.
+- `checkAllPrereqs()`: Checks if the user fulfills all prerequisites for their modules.
+- `fulfillsModPrereq(UserMod mod, int semester)`: Checks if the user fulfills the prerequisites for a specific module.
+- `getCurrentSemester()`: Returns the current semester of the user.
+- `setCurrentSemester(int currentSemester)`: Sets the current semester of the user.
+- `getName()`: Returns the name of the user.
+- `setName(String name)`: Sets the name of the user.
+- `getEducation()`: Returns the education level of the user.
+- `setEducation(EducationLevel education)`: Sets the education level of the user.
+- `getAllModules()`: Returns a list of all modules the user has taken.
+- `getAllModulesTilSemester(int semester)`: Returns a list of all modules the user has taken up to a specific semester.
+
 ---
 
 <h4>
@@ -493,6 +538,7 @@ Use case resumes at step 2.
 - **CEG** : Computer Engineering
 - **NUS** : National University of Singapore
 - **NUSMods** : A web application that provides information about modules and their prerequisites at NUS.
+- **User Data**: Background information of the user (Name, EducationLevel, CurrentSemester) and the user's modules
 
 ---
 
