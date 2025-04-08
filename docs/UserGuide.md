@@ -200,7 +200,8 @@ Example: `/workload 4`
 ```
 
 ## Help  
-**`/help`**  
+**`/help`**
+
 Shows a message explaining how to access the help page.  
 Displays a list of commands with a brief explanation of each. 
 
