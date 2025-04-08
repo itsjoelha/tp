@@ -60,9 +60,6 @@ added the ability to view the details of the modules in the database.
     - Added implementation details of the `addCustom` and `Prereq` classes.
     - Added component details of CommandParser component.
 
-- **Community** :
-
-
 ---
 
 <h2>
