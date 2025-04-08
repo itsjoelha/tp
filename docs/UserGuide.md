@@ -171,11 +171,27 @@ Module CS2113 successfully graded as A
 ## SU
 **`/su MODULE_CODE`**
 
-S/U a module. Module will be excluded from GPA calculation. 
+Toggles the "S/U" status of a module. Module will be excluded/invlcuded from GPA calculation based off S/U status.
+Modules without their grade initialised also cannot be SU'ed
+SU: true -  excluded from GPA calculation
+SU: false - included in GPA calculation
+
+Example: `/su CS1010`
+
+```
+Module CS1010 S/U status: true
+```
+
+
+<div style="border: 1px solid #2196F3; background-color: #BBDEFB; padding: 10px; border-radius: 5px;">
+  <strong> Note about SU Format:   </strong> <br/>
+  - Some modules cannot be SU'ed
+</div>
 
 Example: `/su CS2113`
+
 ```
-Module CS2113 successfully SU-ed.
+Failed to SU CS2113. Module has no S/U option
 ```
 
 ## GPA
