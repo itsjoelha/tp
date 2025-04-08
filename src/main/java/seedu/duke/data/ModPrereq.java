@@ -29,7 +29,7 @@ public class ModPrereq extends Prereq {
         for (UserMod module : modules) {
             Grade modGrade = module.getGrade();
             if (module.getCode().equals(modCode) &&
-                    (modGrade == null || Grade.isHigherOrEqual(modGrade, minGrade))) {
+                    (modGrade == null || Grade.isHigherOrEqual(minGrade, modGrade))) {
                 return true;  // Found a match with required modCode and grade
             }
         }
