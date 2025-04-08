@@ -31,6 +31,7 @@ public class Help implements Command {
         System.out.printf("| %-30s | %-36s |\n", "/grade <module code> <grade>", "Set a module's grade");
         System.out.printf("| %-30s | %-36s |\n", "/delete <module code>", "Delete a module from the list");
         System.out.printf("| %-30s | %-36s |\n", "/detail <module code>", "View details of a module");
+        System.out.printf("| %-30s | %-36s |\n", "/clear", "Clear all modules from schedule");
         System.out.printf("| %-30s | %-36s |\n", "/grad", "Check if you can graduate");
         System.out.printf("| %-30s | %-36s |\n", "/schedule <jc> or <poly>", "Generate a schedule for students");
         System.out.printf("| %-30s | %-36s |\n", "/waive <module code>", "Waive the prerequisites of a module");
