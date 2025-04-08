@@ -1,0 +1,21 @@
+@startuml
+actor User
+participant "Help" as HelpClass
+participant "System.out" as Console
+
+User -> HelpClass : execute()
+
+alt command == null
+    HelpClass -> HelpClass : printAll()
+    Console -> Console : print command list table
+    Console -> Console : print usage guide
+else
+    HelpClass -> HelpClass : printSpecific(command)
+    alt command in [view, add, addCustom, su, gpa, grade, delete, detail, grad, schedule, spec, workload, help, exit]
+        Console -> Console : print usage & description for command
+    else
+        Console -> Console : print "Unknown command"
+    end
+end
+
+@enduml

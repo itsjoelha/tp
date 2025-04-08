@@ -1,0 +1,19 @@
+@startuml
+actor User
+participant "SuUserModule" as SUCommand
+participant "User" as UserModel
+participant "UserMod" as UserModule
+participant "System.out" as Console
+
+User -> SUCommand : execute()
+SUCommand -> UserModel : getModule(moduleCode)
+UserModel --> SUCommand : UserMod (module)
+SUCommand -> UserModule : isSUable()
+UserModule --> SUCommand : boolean (true/false)
+SUCommand -> UserModule : getGrade()
+UserModule --> SUCommand : Grade (null or valid)
+SUCommand -> UserModule : toggleSU()
+UserModule --> SUCommand : updated SU status
+SUCommand -> Console : print SU status
+@enduml
+
