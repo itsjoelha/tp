@@ -1,6 +1,6 @@
 package seedu.duke.command;
 
-import seedu.duke.data.User;
+import seedu.duke.user.User;
 import seedu.duke.data.UserMod;
 
 public class SuUserModule implements Command {
@@ -19,7 +19,25 @@ public class SuUserModule implements Command {
             System.out.println("Failed to SU " + moduleCode.toUpperCase() + ". It may not exist");
             return;
         }
-        module.setSU(true);
-        System.out.println("Module " + moduleCode.toUpperCase() + " successfully SU-ed");
+
+        if (!module.isSUable()) {
+            System.out.println("Failed to SU " + moduleCode.toUpperCase() + ". Module has no S/U option");
+            return;
+        }
+
+        if (module.getGrade() == null){
+            System.out.println("Failed to SU " + moduleCode.toUpperCase() + "." +
+                    " It has not been initialised with a grade yet");
+            return;
+        }
+
+        module.toggleSU();
+
+        if (module.isSU()){
+            System.out.println("Module " + moduleCode.toUpperCase() + " S/U status: true");
+        } else {
+            System.out.println("Module " + moduleCode.toUpperCase() + " S/U status: false");
+        }
     }
 }
+

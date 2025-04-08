@@ -1,4 +1,4 @@
-package seedu.duke.data;
+package seedu.duke.storage;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -10,10 +10,14 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import seedu.duke.data.Grade;
+import seedu.duke.data.UserMod;
 import seedu.duke.errors.ModNotInDatabase;
+import seedu.duke.user.EducationLevel;
+import seedu.duke.user.User;
 
-public class UserData {
-    private static final Logger logger = Logger.getLogger(UserData.class.getName());
+public class UserStorage {
+    private static final Logger logger = Logger.getLogger(UserStorage.class.getName());
 
     static {
         logger.setLevel(Level.OFF);
@@ -21,23 +25,28 @@ public class UserData {
 
     private final File file;
 
-    public UserData(String filepath) {
-        this.file = new File(filepath);
-        if (!file.exists()) {
-            logger.warning("No existing user data found: " + filepath);
+    public UserStorage(String filepath, String filename) {
+        File directory = new File(filepath);
+        if (!directory.mkdirs()) {
+            logger.info("Directory already exists: " + filepath);
         }
+        file = new File(directory, filename);
     }
 
-    public void saveUserData(User user) {
+    public void saveUserData(seedu.duke.user.User user) {
         try (BufferedWriter out = new BufferedWriter(new FileWriter(file))) {
-            out.write(/*user.getName()*/"Skibidi" + "\n");
-            out.write(/*user.getEducation().toString()*/"JC" + "\n");
-            out.write(/*user.getCurrentSemester()*/"1" + "\n");
+            out.write(user.getName() + "\n");
+            out.write(user.getEducation().toString() + "\n");
+            out.write(user.getCurrentSemester() + "\n");
+            out.write((user.isExemptedMA1301() ? "1" : "0") + ",");
+            out.write((user.isExemptedPC1101() ? "1" : "0" )+ ",");
+            out.write((user.isExemptedEnglish() ? "1" : "0") + "\n");
 
             for (int semester : user.getSemesterModules().keySet()) {
                 for (UserMod mod : user.getSemesterModules().get(semester)) {
                     out.write(semester + "," + mod.getCode() + "," + mod.getGrade() + "," + mod.isSU() +
-                            "," + mod.isCustom() + "," + mod.getName() + "," + mod.getNumMC() + "\n");
+                            "," + mod.isCustom() + "," + mod.getName() + "," + mod.getNumMC() + "," +
+                            mod.isPrereqWaived() + "\n");
                 }
             }
         } catch (Exception e) {
@@ -46,19 +55,26 @@ public class UserData {
     }
 
     public User loadUserData() {
+        System.out.println("Loading user data...");
         if (!file.exists()) {
             logger.warning("No existing user data found: " + file.getPath());
             return new User();
         }
 
+        User user = new User();
         try (Scanner scanner = new Scanner(file)) {
             // Read user data
             String name = scanner.nextLine();
+            user.setName(name);
             EducationLevel education = EducationLevel.valueOf(scanner.nextLine());
+            user.setEducation(education);
             int currentSemester = Integer.parseInt(scanner.nextLine());
-
-            User user = new User(name, education);
             user.setCurrentSemester(currentSemester);
+
+            String[] exemptions = scanner.nextLine().split(",");
+            user.setExemptedMA1301("1".equals(exemptions[0]));
+            user.setExemptedPC1101("1".equals(exemptions[1]));
+            user.setExemptedEnglish("1".equals(exemptions[2]));
 
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
@@ -78,10 +94,16 @@ public class UserData {
                     mod.setGrade(Grade.valueOf(parts[2]));
                     mod.setSU(Boolean.parseBoolean(parts[3]));
                 }
+
+                if (parts[7].equals("true")) {
+                    mod.togglePrereqWaived();
+                    assert mod.isPrereqWaived();
+                }
+
                 user.getSemesterModules().computeIfAbsent(semester, k -> new ArrayList<>()).add(mod);
             }
             user.getGPA();
-            return user;
+
         } catch (IOException | IllegalArgumentException e) {
             logger.severe("Error loading user data: " + e.getMessage());
         } catch (ModNotInDatabase e) {
@@ -90,8 +112,10 @@ public class UserData {
         } catch (NoSuchElementException e) {
             logger.warning("User data file is empty: " + file.getPath());
             return new User();
+        } catch (ArrayIndexOutOfBoundsException e) {
+            logger.severe("User data file missing exemptions: " + file.getPath());
         }
-        return new User();
-    }
 
+        return user;
+    }
 }

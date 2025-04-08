@@ -11,32 +11,44 @@ Grand Rhombus aims to provide <span style="color:blue;">CEG Students</span> with
 This planner <span style="color:red;">reduces confusion</span> from having to cross-reference multiple sources so that students <span style="color:red;">do not miss academic opportunities</span>.
 
 ---
+<h2>
+<span style="color:orange;">Table of Contents</span>
+</h2>
 
 - **Acknowledgements**
 - **Setting up, getting started**
 - **Design**
-  - Architecture
-  - UI component
-  - Logic component
-  - Model component
-  - Storage component
-  - Common classes
+    - Architecture
+    - UI component
+    - Logic component
+    - Model component
+    - Storage component
+    - Common classes
+
 - **Implementation**
-  - [Proposed] Undo/redo feature
-    - Proposed Implementation
-    - Design considerations:
-  - [Proposed] Data archiving
+    - Detail Module
+    - Grade Module
+    - List Module
+    - Recommended Schedule
+    - SU User Module
+    - View Graduation Requirements
+    - Graduation Module List
+    - Master Module List
+
+
 - **Documentation, logging, testing, configuration, dev-ops**
+
 - **Appendix: Requirements**
-  - Product scope
-  - User stories
-  - Use cases
-  - Non-Functional Requirements
-  - Glossary
+    - Product scope
+    - User stories
+    - Use cases
+    - Non-Functional Requirements
+    - Glossary
+
 - **Appendix: Instructions for manual testing**
-  - Launch and shutdown
-  - Deleting a person
-  - Saving data
+    - Launch and shutdown
+    - Deleting a person
+    - Saving data
 
 ---
 
@@ -180,7 +192,7 @@ How the `Command` component works:
 ---
 
 <h4>
-<span style="color:orange; text-decoration:underline;">Data component</span>
+<span style="color:orange; text-decoration:underline;">Data components</span>
 </h4>
 
 The `Data` component,
@@ -262,15 +274,11 @@ The `Mod` class represents a module in the system. It contains information about
 <span style="color:orange;">Implementation</span>
 </h2>
 
-This section describes some noteworthy details on how certain features are
-implemented.
+*This section explains in detail how some noteworthy features are implemented for future developers to reference.*
+
 
 <h4>
-<span style="color:orange; text-decoration:underline;">Add/Delete Module feature</span>
-</h4>
-
-<h4>
-<span style="color:orange;">Add Custom Module</span>
+<span style="color:orange; text-decoration:underline;">Add Custom Module</span>
 </h4>
 
 The add custom module feature is implemented in the `AddCustomModule1` class that implements the
@@ -280,34 +288,23 @@ database into their schedule.
 The `execute()` method of this class creates a new `UserMod` object that contains the module code, 
 module name and number of MCs inputted by the user. It then adds the new module into a semester specified by the user. 
 
-<h4>
-<span style="color:orange; text-decoration:underline;">Module Data feature</span>
-</h4>
-
-<h4>
-<span style="color:orange;">Retrieve User GPA</span>
-</h4>
-
-The GPA feature is implemented in the `GetUserGPA` class, which implements the `Command` interface.
-The `execute()` method of this class retrieves the user's GPA from the `User` object and displays it
-to the user. This mechanism is facilitated by the `User` class, which contains the `updateGPA()` method
-to calculate the GPA based on the user's module grades.
 
 
 <h4>
-<span style="color:orange;">Check for prerequisites</span>
-
 <span style="color:orange; text-decoration:underline;">Add User Module</span>
 </h4>
 
-This class takes in the Module Code and Semester. It then retrieves the dictionary of User's modules (`semesterModules`) 
-from the `User` class, adds the new `Mod` to the corresponding semester list, creating new semester lists if it does 
-not exist. Then it sets the new list of modules in the `User` class `semesterModules`
+This class takes in the Module Code and Semester. It then retrieves the dictionary of User's modules (`semesterModules`)  from the `User` class, adds the new `Mod` to the corresponding semester list, creating new semester lists if it does 
+not exist. 
+
+Then it sets the new list of modules in the `User` class `semesterModules`
+
+
 
 <h4>
 <span style="color:orange; text-decoration:underline;">Specialisation</span>
-
 </h4>
+
 This class simply prints out all the Specialisations. 
 
 This check for prerequisite mechanism is implemented by `Prereq`. It contains a `fulfillsPrereq()` function
@@ -324,39 +321,59 @@ to be completed before taking module).
 `AndPrereq` and `OrPrereq` overrides the `fulfillsPrereq()` function.
 
 
+<h4>
+<span style="color:orange; text-decoration:underline;">Detail Module</span>
+</h4>
+
+The Detail Module feature is implemented in the DetailModuleCommand class, which implements the Command interface. This feature allows the user to view detailed information about a particular module.
+
+<strong> How it works: </strong> When a user inputs a module code, such as `/detail CS2113`, the CommandParser processes the input and passes the module code to the `DetailModuleCommand`. The `execute()` method fetches information from the module database (stored in `ModData`), such as the module description, prerequisites, and credits, and displays it to the user.
 
 
-_{more aspects and alternatives to be added}_
+<h4>
+<span style="color:orange; text-decoration:underline;">List Module</span>
+</h4>
 
+The List Module feature is implemented in the ListModuleCommand class, which lists all modules that a user has registered for.
+
+The user enters `/list` to see all the modules they are currently taking. 
+
+The command fetches the user's list of modules from all semesters from the `User` and displays them in a readable format, sorted by semester, including the `moduleCode`, `moduleName`, and the `GPA` that the user had recorded for that module.
+
+<h4>
 <span style="color:orange; text-decoration:underline;">Retrieve User GPA</span>
 </h4>
 
 
 The GPA feature is implemented in the `GetUserGPA` class, which implements the `Command` interface.
+
 The `execute()` method of this class retrieves the user's GPA from the `User` object and displays it
-to the user. This mechanism is facilitated by the `User` class, which contains the `updateGPA()` method
-to calculate the GPA based on the user's module grades.
+to the user. 
+
+This mechanism is facilitated by the `User` class, which contains the `updateGPA()` method to calculate the GPA based on the user's module grades.
 
 <h4>
 <span style="color:orange; text-decoration:underline;">Help Command</span>
 </h4>
 
 The help command is implemented in the `HelpCommand` class, which implements the `Command` interface.
+
 The `execute()` method of this class displays a list of available commands and their descriptions to the user.
+
 This mechanism is facilitated by the `CommandParser` class, which maps user input to the corresponding command.
 
 
----
+<h4>
+<span style="color:orange; text-decoration:underline;">SU User Module</span>
+</h4>
 
-<h2>
-<span style="color:orange; text-decoration:bold;">Documentation, logging, testing, configuration, dev-ops</span>
-</h2>
+The SU (Satisfactory/Unsatisfactory) User Module feature is implemented in the `SUUserModuleCommand` class, which allows users to mark a module as taken under the **S/U** grading option.
 
-- [Documentation guide](/addressbook-level3/Documentation.html)
-- [Testing guide](/addressbook-level3/Testing.html)
-- [Logging guide](/addressbook-level3/Logging.html)
-- [Configuration guide](/addressbook-level3/Configuration.html)
-- [DevOps guide](/addressbook-level3/DevOps.html)
+The user can type a command like `/su CS2113` to mark the module `CS2113` as S/U should it be stored as a `UserMod` within the current `User`. 
+
+This will allow the user to void the module when calculating their GPA.
+
+The system updates the `UserMod` object, setting the `isSU` flag to true for that module. The grade of the module is still stored but doesn't contribute to GPA calculations.
 
 ---
 
@@ -443,6 +460,7 @@ _{More to be added}_
 </h4>
 
 - **Mainstream OS** : Windows, Linux, Unix, MacOS
+- **CLI** : Command Line Interface
 - **MC** : Modular Credits
 - **GPA** : Grade Point Average
 - **S/U** : Satisfactory/Unsatisfactory
