@@ -103,6 +103,7 @@ of core CEG Modules. <br/>
 
 ## Delete  
 **`/delete MODULE_CODE`**  
+
 Deletes a module from the list of modules the user has.
 
 Example: `/delete CS2113`
