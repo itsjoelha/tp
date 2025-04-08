@@ -298,11 +298,11 @@ module name and number of MCs inputted by the user. It then adds the new module 
 
 ---
 
-![image](diagrams/AddModuleSequence.png)
-
 <h4>
 <span style="color:orange; text-decoration:underline;">Add User Module</span>
 </h4>
+
+![image](diagrams/AddModuleSequence.png)
 
 This class takes in the Module Code and Semester. It then retrieves the dictionary of User's modules (`semesterModules`)  from the `User` class, adds the new `Mod` to the corresponding semester list, creating new semester lists if it does 
 not exist. 
@@ -311,11 +311,11 @@ Then it sets the new list of modules in the `User` class `semesterModules`
 
 ---
 
-![image](diagrams/SpecializationSequence.png)
-
 <h4>
 <span style="color:orange; text-decoration:underline;">Specialisation</span>
 </h4>
+
+![image](diagrams/SpecializationSequence.png)
 
 This class simply prints out all the Specialisations. 
 
@@ -334,11 +334,11 @@ to be completed before taking module).
 
 ---
 
-![image](diagrams/DetailModuleSequence.png)
-
 <h4>
 <span style="color:orange; text-decoration:underline;">Detail Module</span>
 </h4>
+
+![image](diagrams/DetailModuleSequence.png)
 
 The Detail Module feature is implemented in the DetailModuleCommand class, which implements the Command interface. This feature allows the user to view detailed information about a particular module.
 
@@ -346,11 +346,11 @@ The Detail Module feature is implemented in the DetailModuleCommand class, which
 
 ---
 
-![image](diagrams/ListModuleSequence.png)
-
 <h4>
 <span style="color:orange; text-decoration:underline;">List Module</span>
 </h4>
+
+![image](diagrams/ListModuleSequence.png)
 
 The List Module feature is implemented in the ListModuleCommand class, which lists all modules that a user has registered for.
 
@@ -360,11 +360,11 @@ The command fetches the user's list of modules from all semesters from the `User
 
 ---
 
-![image](diagrams/GpaSequence.png)
-
 <h4>
 <span style="color:orange; text-decoration:underline;">Retrieve User GPA</span>
 </h4>
+
+![image](diagrams/GpaSequence.png)
 
 
 The GPA feature is implemented in the `GetUserGPA` class, which implements the `Command` interface.
@@ -376,11 +376,11 @@ This mechanism is facilitated by the `User` class, which contains the `updateGPA
 
 ---
 
-![image](diagrams/HelpSequence.png)
-
 <h4>
 <span style="color:orange; text-decoration:underline;">Help Command</span>
 </h4>
+
+![image](diagrams/HelpSequence.png)
 
 The help command is implemented in the `HelpCommand` class, which implements the `Command` interface.
 
@@ -390,11 +390,11 @@ This mechanism is facilitated by the `CommandParser` class, which maps user inpu
 
 ---
 
-![image](diagrams/SuSequence.png)
-
 <h4>
 <span style="color:orange; text-decoration:underline;">SU User Module</span>
 </h4>
+
+![image](diagrams/SuSequence.png)
 
 The SU (Satisfactory/Unsatisfactory) User Module feature is implemented in the `SUUserModuleCommand` class, which allows users to mark a module as taken under the **S/U** grading option.
 
@@ -431,12 +431,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low
 | Priority | As a …​                                                | I want to …​                                                                                | So that I can…​                                            |
 |----------|--------------------------------------------------------|---------------------------------------------------------------------------------------------|------------------------------------------------------------|
 | `* * *`  | disciplined student                                    | be able to see my GPA, as well as an estimated future GPA based on my current module grades | make informed decisions about my future workload.          |
-| `* * *`  | international student, entering NUS as a CEG1 student. | be able to see the platforms that I need to register on and their deadlines                 | register on time.                                          |
 | `* * *`  | student who wants to plan my academic journey          | view my graduation requirements and track my progress                                       | ensure I graduate on time.                                 |
+| `* * *`  | student who is curious about specializations           | explore the requirements for specializations                                                | consider switching if needed.                              |
+| `* *`    | student who is taking another minor or major           | add my other major and minor modules into the schedule                                      | plan my schedule more completely.                          |
 | `* *`    | student who is considering taking a minor              | see how the minor requirements fit into my current schedule                                 | decide if I can take the minor without overloading myself. |
 | `* *`    | student who is planning to go on an exchange program   | know which modules I can map to my degree requirements                                      | plan my exchange program effectively.                      |
-| `*`      | student who is curious about other specializations     | explore the requirements for other specializations                                          | consider switching if needed.                              |
 | `*`      | student who wants to improve my productivity           | receive tips on how to manage my time effectively                                           | balance my academic and personal life.                     |
+| `*`      | international student, entering NUS as a CEG1 student. | be able to see the platforms that I need to register on and their deadlines                 | register on time.                                          |
 
 <h4>
 <span style="color:orange; text-decoration:underline;">Use cases</span>
