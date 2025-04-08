@@ -6,26 +6,44 @@ card GrandRhombus
 
 package Command
 package Data {
-    card User
-    card UserData
-    Node Mod
+    card UserMod
+    card Mod
 }
+Mod <-> UserMod
+
+package Storage {
+    card ModStorage
+    card UserStorage
+}
+
+package Errors {
+    card ErrorHandler
+}
+
 folder resources {
     file moduledata.txt
 }
+
+package User {
+}
+
 card CommandParser
+card Ui
 file user.txt
 
-Human --> GrandRhombus
-GrandRhombus --> UserData
+Human -> GrandRhombus
+GrandRhombus --> UserStorage
 GrandRhombus --> User
+GrandRhombus -> Ui
 GrandRhombus --> CommandParser
+
 CommandParser --> Command
 Command --> User
-UserData <--> User
-UserData --> user.txt
-User --> Mod
-Mod --> moduledata.txt
+UserStorage <--> User
+UserStorage --> user.txt
+User --> UserMod
+ModStorage -> moduledata.txt
+ModStorage <--> Mod
 
 
 
