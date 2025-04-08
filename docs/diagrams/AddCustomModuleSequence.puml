@@ -1,0 +1,31 @@
+@startuml
+actor User
+participant "AddCustomModule" as ACM
+participant "User" as U
+participant "ModStorage" as MS
+participant "UserMod" as UM
+
+User -> ACM : execute()
+ACM -> ACM : customModuleIsValid()
+
+ACM -> U : hasModule(moduleCode)
+U --> ACM : boolean
+
+ACM -> MS : moduleExists(moduleCode)
+MS --> ACM : boolean
+
+ACM -> ACM : validate semester and numMC
+
+alt valid module
+    ACM -> UM : create UserMod instance
+    ACM -> U : getSemesterModules()
+    U --> ACM : Map<Semester, List<UserMod>>
+
+    ACM -> U : setSemesterModules(updatedMap)
+
+    ACM -> User : print success message
+else invalid module
+    ACM -> User : print error message(s)
+end
+
+@enduml

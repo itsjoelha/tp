@@ -1,0 +1,11 @@
+@startuml
+actor User
+participant "GetUserGPA" as GPACommand
+participant "User" as UserModel
+participant "System.out" as Console
+
+User -> GPACommand : execute()
+GPACommand -> UserModel : getGPA()
+UserModel --> GPACommand : GPA (double)
+GPACommand -> Console : print "Your Current GPA: <gpa>"
+@enduml

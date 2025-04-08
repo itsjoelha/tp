@@ -1,0 +1,56 @@
+@startuml
+actor User
+participant "ListModules" as ListModules
+participant "User"
+participant "UserMod"
+participant "System.out" as Console
+
+User -> ListModules : execute()
+
+alt sem != 0
+    ListModules -> ListModules : execute(sem)
+
+    alt sem < 1 or sem > 8
+        ListModules -> Console : println("Invalid semester...")
+    else
+        ListModules -> Console : print("=== SEMESTER X ===")
+        ListModules -> User : getSemesterModules()
+        alt semester has modules
+            loop for each UserMod in semester
+                ListModules -> User : fulfillsModPrereq(mod, sem)
+                alt fulfills
+                    ListModules -> Console : print("[O] ")
+                else
+                    ListModules -> Console : print("[X] ")
+                end
+                ListModules -> UserMod : print()
+            end
+        else
+            ListModules -> Console : print("NULL")
+        end
+    end
+
+else (sem == 0)
+    loop semester = 1 to 8
+        ListModules -> Console : print("=== SEMESTER X ===")
+        ListModules -> User : getSemesterModules()
+        alt semester has modules
+            loop for each UserMod in semester
+                ListModules -> User : fulfillsModPrereq(mod, semester)
+                alt fulfills
+                    ListModules -> Console : print("[O] ")
+                else
+                    ListModules -> Console : print("[X] ")
+                end
+                ListModules -> UserMod : print()
+            end
+        else
+            ListModules -> Console : print("NULL")
+        end
+    end
+
+    ListModules -> User : checkAllPrereqs()
+    ListModules -> User : printWaivedModules()
+end
+
+@enduml
