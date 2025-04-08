@@ -1,0 +1,123 @@
+@startuml
+actor User
+participant "Specialisation" as Spec
+participant "System.out" as Console
+
+
+User -> Spec : execute()
+
+' --- Introduction Block ---
+Spec -> Spec : printHeaderDivider()
+Spec -> Console : println()
+
+Spec -> Console : printf("SPECIALISATIONS")
+Spec -> Spec : printHeaderDivider()
+Spec -> Console : println()
+
+Spec -> Spec : textWrapDescription(description)
+loop word wrap
+    Spec -> Console : printf()
+end
+Spec -> Spec : printHeaderDivider()
+Spec -> Console : println()
+
+' --- Advanced Electronics ---
+Spec -> Spec : printSpecialisationHeader("ADVANCED ELECTRONICS")
+Spec -> Spec : textWrapDescription(descriptionAE)
+loop word wrap
+    Spec -> Console : printf()
+end
+Spec -> Spec : printHeaderDivider()
+
+Spec -> Spec : printSectionHeader("AE Core Courses")
+Spec -> Console : printf()
+Spec -> Spec : textWrapDescription("EE3408C ...")
+Spec -> Console : printf()
+Spec -> Spec : textWrapDescription("EE3431C ...")
+Spec -> Console : printf()
+Spec -> Spec : printHeaderDivider()
+
+Spec -> Spec : printSectionHeader("AE Elective Courses")
+Spec -> Console : printf()
+loop AE electives
+    Spec -> Spec : textWrapDescription(course)
+    Spec -> Console : printf()
+end
+Spec -> Spec : printHeaderDivider()
+
+' --- Industry 4.0 ---
+Spec -> Spec : printSpecialisationHeader("INDUSTRY 4.0")
+Spec -> Spec : textWrapDescription(descriptionI4)
+loop word wrap
+    Spec -> Console : printf()
+end
+Spec -> Spec : printHeaderDivider()
+
+Spec -> Spec : printSectionHeader("Industry 4.0 Electives")
+loop I4 electives
+    Spec -> Spec : textWrapDescription(course)
+    Spec -> Console : printf()
+end
+Spec -> Spec : printHeaderDivider()
+
+' --- IoT ---
+Spec -> Spec : printSpecialisationHeader("INTERNET OF THINGS (IoT)")
+Spec -> Spec : textWrapDescription(descriptionIoT)
+loop word wrap
+    Spec -> Console : printf()
+end
+Spec -> Spec : printHeaderDivider()
+
+Spec -> Spec : printSectionHeader("IoT Core Courses")
+loop IoT core
+    Spec -> Spec : textWrapDescription(course)
+    Spec -> Console : printf()
+end
+Spec -> Spec : printHeaderDivider()
+
+Spec -> Spec : printSectionHeader("IoT Elective Courses")
+loop IoT electives
+    Spec -> Spec : textWrapDescription(course)
+    Spec -> Console : printf()
+end
+Spec -> Spec : printHeaderDivider()
+
+' --- Robotics ---
+Spec -> Spec : printSpecialisationHeader("ROBOTICS")
+Spec -> Spec : textWrapDescription(descriptionRobotics)
+loop word wrap
+    Spec -> Console : printf()
+end
+Spec -> Spec : printHeaderDivider()
+
+Spec -> Spec : printSectionHeader("Robotics Electives")
+loop Robotics electives
+    Spec -> Spec : textWrapDescription(course)
+    Spec -> Console : printf()
+end
+Spec -> Spec : printHeaderDivider()
+
+' --- Space Technology ---
+Spec -> Spec : printSpecialisationHeader("SPACE TECHNOLOGY")
+Spec -> Spec : textWrapDescription(descriptionST)
+loop word wrap
+    Spec -> Console : printf()
+end
+Spec -> Spec : printHeaderDivider()
+
+Spec -> Spec : printSectionHeader("ST Core Courses")
+loop ST core
+    Spec -> Spec : textWrapDescription(course)
+    Spec -> Console : printf()
+end
+Spec -> Spec : printHeaderDivider()
+
+Spec -> Spec : printSectionHeader("ST Technical Electives")
+loop ST electives
+    Spec -> Spec : textWrapDescription(course)
+    Spec -> Console : printf()
+end
+Spec -> Spec : printHeaderDivider()
+
+
+@enduml

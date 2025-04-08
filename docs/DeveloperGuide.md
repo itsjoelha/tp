@@ -120,7 +120,7 @@ First, **fork** this repo, and **clone** the fork into your computer.
 </h2>
 
 <h4>
-<span style="color:orange;">Architechture</span>
+<span style="color:orange;">Architecture</span>
 </h4>
 
 
@@ -164,14 +164,19 @@ The sections below give more details of each component.
 <span style="color:orange; text-decoration:underline;">CommandParser component</span>
 </h4>
 
-The `CommandParser` component consists of the `CommandParser` class. 
+The `CommandParser` component consists of the `CommandParser` class.
+
+![image](diagrams/CommandParserComponent.png)
 
 The `CommandParser` component,
 
 - processes user input and chooses corresponding command.
-- creates new command parses arguments into the command.
+- creates new command and parses arguments into the command.
 - executes user commands using the `Command` component.
-- returns `isRunning` which is true for all user inputs except `/exit`
+- returns `isRunning` which is true for all user inputs except `/exit`.
+- handles errors related to user input.
+
+Errors thrown in CommandParser are handled in ErrorHandler. Ui handles the printing for these errors. 
 
 ---
 
@@ -182,7 +187,7 @@ The `CommandParser` component,
 Here’s a (partial) class diagram of the `Command` component:
 ![image](diagrams/Command.png)
 
-To add: Sequence Diagram for /add command 
+![image](diagrams/AddModule.png)
 
 How the `Command` component works:
 
@@ -276,10 +281,13 @@ The `Mod` class represents a module in the system. It contains information about
 
 *This section explains in detail how some noteworthy features are implemented for future developers to reference.*
 
+---
 
 <h4>
 <span style="color:orange; text-decoration:underline;">Add Custom Module</span>
 </h4>
+
+![image](diagrams/AddCustomModuleSequence.png)
 
 The add custom module feature is implemented in the `AddCustomModule1` class that implements the
 `Command` class. This feature allows the user to add modules that are not within the existing
@@ -288,22 +296,26 @@ database into their schedule.
 The `execute()` method of this class creates a new `UserMod` object that contains the module code, 
 module name and number of MCs inputted by the user. It then adds the new module into a semester specified by the user. 
 
-
+---
 
 <h4>
 <span style="color:orange; text-decoration:underline;">Add User Module</span>
 </h4>
+
+![image](diagrams/AddModuleSequence.png)
 
 This class takes in the Module Code and Semester. It then retrieves the dictionary of User's modules (`semesterModules`)  from the `User` class, adds the new `Mod` to the corresponding semester list, creating new semester lists if it does 
 not exist. 
 
 Then it sets the new list of modules in the `User` class `semesterModules`
 
-
+---
 
 <h4>
 <span style="color:orange; text-decoration:underline;">Specialisation</span>
 </h4>
+
+![image](diagrams/SpecializationSequence.png)
 
 This class simply prints out all the Specialisations. 
 
@@ -320,19 +332,25 @@ to be completed before taking module).
 
 `AndPrereq` and `OrPrereq` overrides the `fulfillsPrereq()` function.
 
+---
 
 <h4>
 <span style="color:orange; text-decoration:underline;">Detail Module</span>
 </h4>
 
+![image](diagrams/DetailModuleSequence.png)
+
 The Detail Module feature is implemented in the DetailModuleCommand class, which implements the Command interface. This feature allows the user to view detailed information about a particular module.
 
 <strong> How it works: </strong> When a user inputs a module code, such as `/detail CS2113`, the CommandParser processes the input and passes the module code to the `DetailModuleCommand`. The `execute()` method fetches information from the module database (stored in `ModData`), such as the module description, prerequisites, and credits, and displays it to the user.
 
+---
 
 <h4>
 <span style="color:orange; text-decoration:underline;">List Module</span>
 </h4>
+
+![image](diagrams/ListModuleSequence.png)
 
 The List Module feature is implemented in the ListModuleCommand class, which lists all modules that a user has registered for.
 
@@ -340,9 +358,13 @@ The user enters `/list` to see all the modules they are currently taking.
 
 The command fetches the user's list of modules from all semesters from the `User` and displays them in a readable format, sorted by semester, including the `moduleCode`, `moduleName`, and the `GPA` that the user had recorded for that module.
 
+---
+
 <h4>
 <span style="color:orange; text-decoration:underline;">Retrieve User GPA</span>
 </h4>
+
+![image](diagrams/GpaSequence.png)
 
 
 The GPA feature is implemented in the `GetUserGPA` class, which implements the `Command` interface.
@@ -352,9 +374,13 @@ to the user.
 
 This mechanism is facilitated by the `User` class, which contains the `updateGPA()` method to calculate the GPA based on the user's module grades.
 
+---
+
 <h4>
 <span style="color:orange; text-decoration:underline;">Help Command</span>
 </h4>
+
+![image](diagrams/HelpSequence.png)
 
 The help command is implemented in the `HelpCommand` class, which implements the `Command` interface.
 
@@ -362,10 +388,13 @@ The `execute()` method of this class displays a list of available commands and t
 
 This mechanism is facilitated by the `CommandParser` class, which maps user input to the corresponding command.
 
+---
 
 <h4>
 <span style="color:orange; text-decoration:underline;">SU User Module</span>
 </h4>
+
+![image](diagrams/SuSequence.png)
 
 The SU (Satisfactory/Unsatisfactory) User Module feature is implemented in the `SUUserModuleCommand` class, which allows users to mark a module as taken under the **S/U** grading option.
 
@@ -376,10 +405,6 @@ This will allow the user to void the module when calculating their GPA.
 The system updates the `UserMod` object, setting the `isSU` flag to true for that module. The grade of the module is still stored but doesn't contribute to GPA calculations.
 
 ---
-
-<h2>
-<span style="color:orange; text-decoration:bold;">Appendix: Requirements</span>
-</h2>
 
 <h4>
 <span style="color:orange; text-decoration:underline;">Product scope</span>
@@ -406,12 +431,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low
 | Priority | As a …​                                                | I want to …​                                                                                | So that I can…​                                            |
 |----------|--------------------------------------------------------|---------------------------------------------------------------------------------------------|------------------------------------------------------------|
 | `* * *`  | disciplined student                                    | be able to see my GPA, as well as an estimated future GPA based on my current module grades | make informed decisions about my future workload.          |
-| `* * *`  | international student, entering NUS as a CEG1 student. | be able to see the platforms that I need to register on and their deadlines                 | register on time.                                          |
 | `* * *`  | student who wants to plan my academic journey          | view my graduation requirements and track my progress                                       | ensure I graduate on time.                                 |
+| `* * *`  | student who is curious about specializations           | explore the requirements for specializations                                                | consider switching if needed.                              |
+| `* *`    | student who is taking another minor or major           | add my other major and minor modules into the schedule                                      | plan my schedule more completely.                          |
 | `* *`    | student who is considering taking a minor              | see how the minor requirements fit into my current schedule                                 | decide if I can take the minor without overloading myself. |
 | `* *`    | student who is planning to go on an exchange program   | know which modules I can map to my degree requirements                                      | plan my exchange program effectively.                      |
-| `*`      | student who is curious about other specializations     | explore the requirements for other specializations                                          | consider switching if needed.                              |
 | `*`      | student who wants to improve my productivity           | receive tips on how to manage my time effectively                                           | balance my academic and personal life.                     |
+| `*`      | international student, entering NUS as a CEG1 student. | be able to see the platforms that I need to register on and their deadlines                 | register on time.                                          |
 
 <h4>
 <span style="color:orange; text-decoration:underline;">Use cases</span>
@@ -443,7 +469,7 @@ Use case ends.
 
 Use case resumes at step 2.
 
-_{More to be added}_
+---
 
 <h4>
 <span style="color:orange; text-decoration:underline;">Non-Functional Requirements</span>
@@ -453,7 +479,7 @@ _{More to be added}_
 2. Should be able to hold up to 180 MCs worth of modules in the list without a noticeable sluggishness in performance for typical usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
-_{More to be added}_
+---
 
 <h4>
 <span style="color:orange; text-decoration:underline;">Glossary</span>
@@ -471,7 +497,7 @@ _{More to be added}_
 ---
 
 <h2>
-<span style="color:orange; text-decoration:bold;">Appendix: Instructions for manual testing</span>
+<span style="color:orange;">Appendix: Instructions for manual testing</span>
 </h2>
 
 Given below are instructions to test the app manually.
