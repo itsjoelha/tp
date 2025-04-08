@@ -1,4 +1,4 @@
-# Clarie's Project Portfolio Page
+# Claire's Project Portfolio Page
 
 ---
 <h2>
