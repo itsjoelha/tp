@@ -232,6 +232,7 @@ For further assistance, refer to the user guide at our GitHub repository.
 
 ## View Graduation Requirements  
 **`/grad`**  
+
 Shows a list of the modules the user is missing from meeting graduation requirements.
 
 ## Recommended Schedule for CEG Students AY23/24  
@@ -274,11 +275,13 @@ Example: `/schedule jc`
 
 ## View Available Specialisations  
 **`/spec`**  
+
 Lists all specialisations available to CEG students.  
 Includes required modules for each specialisation.  
 
 ## Exit  
 **`/exit`**  
+
 Exits the program.  
 
 ---
