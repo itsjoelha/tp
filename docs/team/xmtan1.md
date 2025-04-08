@@ -47,7 +47,7 @@ added the ability to view the details of the modules in the database.
     - Makes CommandParser easier to read, and shortens the length of the callCommand function
     drastically.
     - Helps to standardise level of abstraction in main Duke class and CommandParser classes. 
-  - Abstracted CommandParser Class function callCommand()
+  - Abstracted CommandParser Class function callCommand().
     - Shifted out check and parser functions to manage errors all together instead of within each case. 
   - Wrote additional tests for CommandParser 
     - increase coverage from 60 to 70%.
@@ -55,8 +55,10 @@ added the ability to view the details of the modules in the database.
 - **Documentation**:
   - User Guide:
     - Added documentation for the `add`, `delete`, `addCustom` and `detail` features
+    - Did cosmetic edits to existing documentation notes.
   - Developer Guide:
     - Added implementation details of the `addCustom` and `Prereq` classes.
+    - Added component details of CommandParser component.
 
 - **Community** :
 
