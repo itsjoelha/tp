@@ -120,7 +120,7 @@ First, **fork** this repo, and **clone** the fork into your computer.
 </h2>
 
 <h4>
-<span style="color:orange;">Architechture</span>
+<span style="color:orange;">Architecture</span>
 </h4>
 
 
@@ -182,7 +182,7 @@ The `CommandParser` component,
 Here’s a (partial) class diagram of the `Command` component:
 ![image](diagrams/Command.png)
 
-To add: Sequence Diagram for /add command 
+![image](diagrams/AddModule.png)
 
 How the `Command` component works:
 
@@ -276,10 +276,13 @@ The `Mod` class represents a module in the system. It contains information about
 
 *This section explains in detail how some noteworthy features are implemented for future developers to reference.*
 
+---
 
 <h4>
 <span style="color:orange; text-decoration:underline;">Add Custom Module</span>
 </h4>
+
+![image](diagrams/AddCustomModuleSequence.png)
 
 The add custom module feature is implemented in the `AddCustomModule1` class that implements the
 `Command` class. This feature allows the user to add modules that are not within the existing
@@ -288,7 +291,9 @@ database into their schedule.
 The `execute()` method of this class creates a new `UserMod` object that contains the module code, 
 module name and number of MCs inputted by the user. It then adds the new module into a semester specified by the user. 
 
+---
 
+![image](diagrams/AddModuleSequence.png)
 
 <h4>
 <span style="color:orange; text-decoration:underline;">Add User Module</span>
@@ -299,7 +304,9 @@ not exist.
 
 Then it sets the new list of modules in the `User` class `semesterModules`
 
+---
 
+![image](diagrams/SpecializationSequence.png)
 
 <h4>
 <span style="color:orange; text-decoration:underline;">Specialisation</span>
@@ -320,6 +327,9 @@ to be completed before taking module).
 
 `AndPrereq` and `OrPrereq` overrides the `fulfillsPrereq()` function.
 
+---
+
+![image](diagrams/DetailModuleSequence.png)
 
 <h4>
 <span style="color:orange; text-decoration:underline;">Detail Module</span>
@@ -329,6 +339,9 @@ The Detail Module feature is implemented in the DetailModuleCommand class, which
 
 <strong> How it works: </strong> When a user inputs a module code, such as `/detail CS2113`, the CommandParser processes the input and passes the module code to the `DetailModuleCommand`. The `execute()` method fetches information from the module database (stored in `ModData`), such as the module description, prerequisites, and credits, and displays it to the user.
 
+---
+
+![image](diagrams/ListModuleSequence.png)
 
 <h4>
 <span style="color:orange; text-decoration:underline;">List Module</span>
@@ -339,6 +352,10 @@ The List Module feature is implemented in the ListModuleCommand class, which lis
 The user enters `/list` to see all the modules they are currently taking. 
 
 The command fetches the user's list of modules from all semesters from the `User` and displays them in a readable format, sorted by semester, including the `moduleCode`, `moduleName`, and the `GPA` that the user had recorded for that module.
+
+---
+
+![image](diagrams/GpaSequence.png)
 
 <h4>
 <span style="color:orange; text-decoration:underline;">Retrieve User GPA</span>
@@ -352,6 +369,10 @@ to the user.
 
 This mechanism is facilitated by the `User` class, which contains the `updateGPA()` method to calculate the GPA based on the user's module grades.
 
+---
+
+![image](diagrams/HelpSequence.png)
+
 <h4>
 <span style="color:orange; text-decoration:underline;">Help Command</span>
 </h4>
@@ -362,6 +383,9 @@ The `execute()` method of this class displays a list of available commands and t
 
 This mechanism is facilitated by the `CommandParser` class, which maps user input to the corresponding command.
 
+---
+
+![image](diagrams/SuSequence.png)
 
 <h4>
 <span style="color:orange; text-decoration:underline;">SU User Module</span>
@@ -376,10 +400,6 @@ This will allow the user to void the module when calculating their GPA.
 The system updates the `UserMod` object, setting the `isSU` flag to true for that module. The grade of the module is still stored but doesn't contribute to GPA calculations.
 
 ---
-
-<h2>
-<span style="color:orange; text-decoration:bold;">Appendix: Requirements</span>
-</h2>
 
 <h4>
 <span style="color:orange; text-decoration:underline;">Product scope</span>
@@ -443,7 +463,7 @@ Use case ends.
 
 Use case resumes at step 2.
 
-_{More to be added}_
+---
 
 <h4>
 <span style="color:orange; text-decoration:underline;">Non-Functional Requirements</span>
@@ -453,7 +473,7 @@ _{More to be added}_
 2. Should be able to hold up to 180 MCs worth of modules in the list without a noticeable sluggishness in performance for typical usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
-_{More to be added}_
+---
 
 <h4>
 <span style="color:orange; text-decoration:underline;">Glossary</span>
@@ -471,7 +491,7 @@ _{More to be added}_
 ---
 
 <h2>
-<span style="color:orange; text-decoration:bold;">Appendix: Instructions for manual testing</span>
+<span style="color:orange;">Appendix: Instructions for manual testing</span>
 </h2>
 
 Given below are instructions to test the app manually.

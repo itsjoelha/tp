@@ -1,0 +1,58 @@
+@startuml
+actor User
+participant "DetailModules" as Detail
+participant "Mod" as Mod
+participant "Ui"
+participant "System.out" as Console
+
+User -> Detail : execute()
+
+' -- Try to construct Mod object --
+Detail -> Mod : new Mod(modCode)
+Mod -> Mod : getNumMC()
+Mod -> Mod : getCode()
+Mod -> Mod : getName()
+
+alt MC < 10
+    Detail -> Console : printf(... "%1d MCs")
+else MC >= 10
+    Detail -> Console : printf(... "%2d MCs")
+end
+
+Ui -> Console : printDashes()
+
+' -- Print formatted module header --
+Detail -> Console : printf("| <code> | <name> | <MCs> |")
+Ui -> Console : printDashes()
+
+' -- Description Section --
+Mod -> Mod : getDescription()
+Ui -> Ui : textWrapDescription(description)
+loop word wrap
+    Ui -> Console : printf()
+end
+Ui -> Console : printDashes()
+
+' -- Preclusions Section --
+Console -> Console : printf("| Preclusions: |")
+Mod -> Mod : getPreclusion()
+Ui -> Ui : textWrapDescription(preclusion)
+loop word wrap
+    Ui -> Console : printf()
+end
+Ui -> Console : printDashes()
+
+' -- Prerequisites Section --
+Console -> Console : printf("| Prerequisites: |")
+Mod -> Mod : getPrerequisites()
+Ui -> Ui : textWrapDescription(prerequisites)
+loop word wrap
+    Ui -> Console : printf()
+end
+Ui -> Console : printDashes()
+
+alt ModNotInDatabase exception
+    Detail -> Console : println("Unable to retrieve module details.")
+end
+
+@enduml
