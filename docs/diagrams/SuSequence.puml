@@ -16,3 +16,4 @@ SUCommand -> UserModule : toggleSU()
 UserModule --> SUCommand : updated SU status
 SUCommand -> Console : print SU status
 @enduml
+

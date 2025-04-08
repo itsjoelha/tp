@@ -9,3 +9,4 @@ GPACommand -> UserModel : getGPA()
 UserModel --> GPACommand : GPA (double)
 GPACommand -> Console : print "Your Current GPA: <gpa>"
 @enduml
+
