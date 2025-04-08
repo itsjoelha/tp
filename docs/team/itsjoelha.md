@@ -63,7 +63,7 @@ Here are my contributions to the project
 - **Detail Command**
   - Designed table formatting for `/detail`.
 
-- **Waive Command**
+- **Waive and Clear Commands**
   - Display error messages upon invalid input.
 
 - **Contributions to team-based tasks**

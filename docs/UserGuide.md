@@ -276,6 +276,11 @@ Example: `/schedule jc`
 Lists all specialisations available to CEG students.  
 Includes required modules for each specialisation.  
 
+## Clear
+**`/clear`**
+
+Clears all modules from the user's schedule.
+
 ## Exit  
 **`/exit`**  
 
