@@ -33,6 +33,7 @@ public class Help implements Command {
         System.out.printf("| %-30s | %-36s |\n", "/detail <module code>", "View details of a module");
         System.out.printf("| %-30s | %-36s |\n", "/grad", "Check if you can graduate");
         System.out.printf("| %-30s | %-36s |\n", "/schedule <jc> or <poly>", "Generate a schedule for students");
+        System.out.printf("| %-30s | %-36s |\n", "/waive <module code>", "Waive the prerequisites of a module");
         System.out.printf("| %-30s | %-36s |\n", "/spec", "View specialisations");
         System.out.printf("| %-30s | %-36s |\n", "/workload", "Display workload");
         System.out.printf("| %-30s | %-36s |\n", "/help", "Show this help message");
@@ -104,6 +105,10 @@ public class Help implements Command {
         case "exit":
             System.out.println("Usage: /exit");
             System.out.println("Description: Exit the program.");
+            break;
+        case "waive":
+            System.out.println("Usage: /waive <module code>");
+            System.out.println("Description: Waive the prerequisites of a module.");
             break;
         default:
             System.out.println("Unknown command. Type '/help' for a list of commands.");

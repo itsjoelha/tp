@@ -76,15 +76,12 @@ Example:  `/add CS2113 2`
 Module CS2113 successfully added to Semester 2.
 ```
 
-
-
 ## Add Custom Module  
 **`/addCustom MODULE_CODE SEMESTER NUMBER_OF_CREDITS NAME`**
 
 Adds a module that is not in the existing database to the list of modules the user has.
 
 Example:  `/addCustom PL1101E 2 4 Intro to Psychology`
-
 
 ```
 Module PL1101E successfully added to Semester 2 as a Custom Module.
@@ -103,8 +100,6 @@ of core CEG Modules. <br/>
   - Custom Modules are outside the core CEG modules and thus have tutorial, lab, project, prep and lecture hours
   intialised to  <strong> zero (0)</strong>. This <strong> cannot </strong> be changed. <br/>
 </div>
-
-
 
 ## Delete  
 **`/delete MODULE_CODE`**  
@@ -158,7 +153,6 @@ Unwaived Prerequisite Check for CS2040C
 Waived Prerequisite Check for CS2040C
 ```
 
-
 ## Grade
 **`/grade MODULE_CODE GRADE`**
 
@@ -178,7 +172,6 @@ Example: `/su CS2113`
 ```
 Module CS2113 successfully SU-ed.
 ```
-
 
 ## GPA
 **`/gpa`**
@@ -233,7 +226,6 @@ Displays a list of commands with a brief explanation of each.
 Type /help <command> for more information on a specific command.
 For further assistance, refer to the user guide at our GitHub repository.
 ```
-
 
 ## View Graduation Requirements  
 **`/grad`**  

@@ -63,6 +63,9 @@ Here are my contributions to the project
 - **Detail Command**
   - Designed table formatting for `/detail`.
 
+- **Waive Command**
+  - Display error messages upon invalid input.
+
 - **Contributions to team-based tasks**
   - **Code Refactoring**
     - Improved code organization through consistent class structure.
