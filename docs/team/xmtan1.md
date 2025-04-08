@@ -49,8 +49,8 @@ added the ability to view the details of the modules in the database.
     - Helps to standardise level of abstraction in main Duke class and CommandParser classes. 
   - Abstracted CommandParser Class function callCommand().
     - Shifted out check and parser functions to manage errors all together instead of within each case. 
-  - Wrote additional tests for CommandParser 
-    - increase coverage from 60 to 70%.
+  - Wrote additional tests for CommandParser
+    - cover invalid inputs, excessive inputs and number error inputs. 
 
 - **Documentation**:
   - User Guide:
