@@ -24,10 +24,6 @@ Here are my contributions to the project
 - **Implemented** functionality to generate a recommended schedule for users based on their academic background (e.g., junior college or polytechnic).
 - Integrated **semester-based module filtering**, ensuring that schedules are tailored to the user’s current academic progression.
 
-
-##### Key Features:
-- `/schedule <jc> or <poly>` — Generates a tailored academic schedule based on user input.
-
 ---
 
 #### 2. **GPA**
@@ -35,8 +31,6 @@ Here are my contributions to the project
 - **Designed and implemented** a feature to retrieve and display the user's current GPA based on their completed modules.
 - Enabled **automatic GPA calculation** as modules are added and graded.
 
-##### Key Features:
-- `/gpa` — Retrieves the user's current GPA and prints it on the console.
 
 ---
 
@@ -44,9 +38,6 @@ Here are my contributions to the project
 ##### Contributions:
 - **Developed a command** to allow users to input grades for individual modules, ensuring that GPA and academic progress could be updated accordingly.
 - Implemented **validation logic** to check for valid grades and handle erroneous inputs.
-
-##### Key Features:
-- `/grade <moduleCode> <grade>` — Allows users to set or update a module's grade.
 
 ---
 
@@ -56,9 +47,6 @@ Here are my contributions to the project
 - Handled cases where the module **may not have an S/U option**, or where the grade hasn't been set yet.
 - Added feedback and validation, ensuring the user receives appropriate messages when trying to S/U a module.
 
-##### Key Features:
-- `/su <moduleCode>` — Toggles the S/U status of the specified module.
-
 ---
 
 #### 5. **Command Parser**
@@ -66,9 +54,6 @@ Here are my contributions to the project
 - **Developed the core parsing logic** to interpret user inputs and map them to the corresponding commands.
 - **Enhanced error handling** within the parser to manage invalid inputs and guide the user to proper usage.
 - Integrated the parser seamlessly with the different commands (schedule, GPA, grade, etc.), enabling efficient processing of user commands.
-
-##### Key Features:
-- Ensures all commands like `/add`, `/delete`, `/view`, and others are properly parsed and executed.
 
 ---
 
@@ -82,16 +67,13 @@ Here are my contributions to the project
 - `/view` — Displays all modules.
 - `/view <semester>` — Displays modules for a specific semester.
 
-
-</br>
-
 ---
 
 - **User Guide**
     - Authored comprehensive documentation for **data persistence features**, including how the application handles **saving and loading user data**.
 
     - Enhanced readability and user engagement by **reformatting the guide with HTML styling**, making effective use of `<note>`, `<caution>` sections, and other semantic tags to highlight important tips and warnings.
-</br>
+
 
 - **Developer Guide**
     - Contributed significantly to the **Implementation** section, offering in-depth explanations of feature logic and integration.

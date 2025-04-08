@@ -8,6 +8,7 @@ GrandRhombus is an Academic Life Planner which is in-depth and clear to plan the
 
 1. Ensure that you have Java 17 or above installed.
 2. Download the latest version of `GrandRhombus` from our [GitHub](https://github.com/AY2425S2-CS2113-T11b-2/tp).
+3. Tip: Use full screen!
 
 ## Features 
 
@@ -104,7 +105,10 @@ of core CEG Modules. <br/>
 ## Delete  
 **`/delete MODULE_CODE`**  
 
-Deletes a module from the list of modules the user has.
+- Deletes a module from the list of modules the user has.
+- Runs a prerequisite check on all modules in academic schedule 
+
+Note: Prerequisite check will not check the module's grade.
 
 Example: `/delete CS2113`
 ```
@@ -143,7 +147,8 @@ Example: `/detail MA1511`
 ## Waive Pre-Requisites
 **`/waive MODULE_CODE`**
 
-Toggles whether or not the pre-requisites of a module are waived
+Toggles whether or not the pre-requisites of a module are waived.
+Note: Does not check whether the pre-requisites has any modules or not.
 
 Example: `/waive CS2040C`
 ```
@@ -216,8 +221,10 @@ Displays a list of commands with a brief explanation of each.
 | /grade <module code> <grade>   | Set a module's grade                 |
 | /delete <module code>          | Delete a module from the list        |
 | /detail <module code>          | View details of a module             |
+| /clear                         | Clear all modules from schedule      |
 | /grad                          | Check if you can graduate            |
 | /schedule <jc> or <poly>       | Generate a schedule for students     |
+| /waive <module code>           | Waive the prerequisites of a module  |
 | /spec                          | View specialisations                 |
 | /workload                      | Display workload                     |
 | /help                          | Show this help message               |
