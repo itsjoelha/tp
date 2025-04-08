@@ -272,21 +272,21 @@ GrandRhombus' data is automatically saved as a `.txt` file at `[JAR file locatio
 ## Command Summary
 
 
-| Command       | Description                          | Arguments                                               | Format                           |
-|---------------|--------------------------------------|---------------------------------------------------------|----------------------------------|
-| `/view`       | View all modules                     | `<semester> (optional)`                                 | `/view` or `/view 1`             |
-| `/add`        | Add a module to the list             | `<module_code>`, `<semester>`                           | `/add CG1111A 1`                 |
-| `/addCustom`  | Add a custom module to the list      | `<module_code>`, `<semester>`, `<# of MCs>`, `<name>`   | `/addCustom CDE3302 3 4 ModName` |
-| `/su`         | S/U a module                         | `<module_code>`                                         | `/su CS1010`                     |
-| `/delete`     | Delete a module from the list        | `<module_code>`                                         | `/delete CDE3301`                |
-| `/detail`     | View details of a module             | `<module_code>`                                         | `/detail CDE3301`                |
-| `/grade`      | Set a module's grade                 | `<module_code>`, `<grade>`                              | `/grade CDE3301 A`               |
-| `/waive`      | Waives the pre-requisites of a module| `<module_code>`                                         | `/waive CS2040C`                 |
-| `/gpa`        | Retrieve your GPA                    | None                                                    | `/gpa`                           |
-| `/grad`       | Check if you can graduate            | None                                                    | `/grad`                          |
-| `/schedule`   | Generate a schedule                  | `<jc>` or `<poly>`                                      | `/schedule jc`                   |
-| `/spec`       | View specialisations                 | None                                                    | `/spec`                          |
-| `/workload`   | Display workload                     | `<semester> (optional)`                                 | `/workload` or `/workload 1`     |
-| `/help`       | Show a help message                  | `<command> (optional)`                                  | `/help` or `/help add`           |
-| `/clear`      | Clear all modules from the list      | None                                                    | `/clear`                         |
-| `/exit`       | Exit the program                     | None                                                    | `/exit`                          |
+| Command       | Description                          | Arguments                                              | Format                           |
+|---------------|--------------------------------------|--------------------------------------------------------|----------------------------------|
+| `/view`       | View all modules                     | `<semester>` (optional)                                | `/view` or `/view 1`             |
+| `/add`        | Add a module to the list             | `<module_code>`, `<semester>`                          | `/add CG1111A 1`                 |
+| `/addCustom`  | Add a custom module to the list      | `<module_code>`, `<semester>`, `<# of MCs>`, `<name>`  | `/addCustom CDE3302 3 4 ModName` |
+| `/su`         | S/U a module                         | `<module_code>`                                        | `/su CS1010`                     |
+| `/delete`     | Delete a module from the list        | `<module_code>`                                        | `/delete CDE3301`                |
+| `/detail`     | View details of a module             | `<module_code>`                                        | `/detail CDE3301`                |
+| `/grade`      | Set a module's grade                 | `<module_code>`, `<grade>`                             | `/grade CDE3301 A`               |
+| `/waive`      | Waives the pre-requisites of a module| `<module_code>`                                        | `/waive CS2040C`                 |
+| `/gpa`        | Retrieve your GPA                    | None                                                   | `/gpa`                           |
+| `/grad`       | Check if you can graduate            | None                                                   | `/grad`                          |
+| `/schedule`   | Generate a schedule                  | `<jc>` or `<poly>`                                     | `/schedule jc`                   |
+| `/spec`       | View specialisations                 | None                                                   | `/spec`                          |
+| `/workload`   | Display workload                     | `<semester>` (optional)                                | `/workload` or `/workload 1`     |
+| `/help`       | Show a help message                  | `<command>` (optional)                                 | `/help` or `/help add`           |
+| `/clear`      | Clear all modules from the list      | None                                                   | `/clear`                         |
+| `/exit`       | Exit the program                     | None                                                   | `/exit`                          |
