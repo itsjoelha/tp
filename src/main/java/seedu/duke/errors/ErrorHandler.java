@@ -59,8 +59,7 @@ public class ErrorHandler {
 
 
     public static void invalidCharacterInputError(String command) {
-        System.out.println("Invalid characters found in " + command + ".");
-        System.out.println("Only alphanumeric characters are allowed.");
+        System.out.println("Invalid characters found in " + command + ". Only alphanumeric characters are allowed.");
     }
 
 }

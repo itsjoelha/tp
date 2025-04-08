@@ -33,7 +33,7 @@ public class CommandParser {
     }
 
     private boolean isValidInput(String input) {
-        return input.matches("^[a-zA-Z0-9]+$");
+        return input.matches("^[a-zA-Z0-9 ]+$");
     }
 
     // This method will parse and separate into required sections
