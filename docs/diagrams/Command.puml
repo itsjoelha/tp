@@ -66,14 +66,21 @@ class RecommendedSchedule {
     + execute():void
     - printSemester():void
 }
+
 class Specialisation {
-+ execute() : void
+    + execute(): void
+    + textWrapDescription(description: String): void
+    + printHeaderDivider(): void
+    + printSpecialisationHeader(specialisationName: String): void
+    + printSectionHeader(headerText: String): void
 }
+
 class SuUserModule {
 -moduleCode:String
 + SuUserModule(user: User, moduleCode: String)
 + execute() : void
 }
+
 class ViewGradRequirements {
 + ViewGradRequirements(user: User)
 + execute() : void
@@ -100,6 +107,16 @@ enum Grade <<enumeration>>{
     D("D", 1.0)
     F("F", 0.0)
 }
+
+class WaiveModPrereq {
+    - moduleCode: String
+    - user: User
+    + WaiveModPrereq(user: User, moduleCode: String)
+    + execute(): void
+}
+
+WaiveModPrereq ..|> Command
+WaiveModPrereq --> User : uses
 
 class User
 

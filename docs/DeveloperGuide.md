@@ -19,11 +19,13 @@ This planner <span style="color:red;">reduces confusion</span> from having to cr
 - **Setting up, getting started**
 - **Design**
     - Architecture
-    - UI component
-    - Logic component
-    - Model component
+    - Command Parser component
+    - Command component
     - Storage component
-    - Common classes
+    - User component
+    - Data component
+    - Ui component
+    - Error component
 
 - **Implementation**
     - Detail Module
@@ -209,6 +211,8 @@ How the `Command` component works:
 <h4>
 <span style="color:orange; text-decoration:underline;">Storage component</span>
 </h4>
+
+![image](diagrams/StorageClassDiagram.png)
 
 The `Storage` component consists of `ModStorage`, `UserStorage` and `GradModuleList`
 

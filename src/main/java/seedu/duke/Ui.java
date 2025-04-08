@@ -89,6 +89,13 @@ public class Ui {
 
     }
 
+    /**
+     * Formats and prints text in a wrapped format to fit within the output window.
+     * This method breaks down long text into multiple lines that fit within the specified width,
+     * ensuring proper display of content within the table structure.
+     *
+     * @param description The text content to be wrapped and displayed
+     */
     public static void textWrapDescription(String description) { // prints description to fit
         // into the output window
         int wrapLength = 77;
