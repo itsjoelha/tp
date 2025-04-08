@@ -65,6 +65,10 @@ public class Help implements Command {
             System.out.println("Usage: /su <module code>");
             System.out.println("Description: S/U a module.");
             break;
+        case "clear":
+            System.out.println("Usage: /clear");
+            System.out.println("Description: Clears all modules from schedule.");
+            break;
         case "gpa":
             System.out.println("Usage: /gpa");
             System.out.println("Description: Retrieve your GPA.");
