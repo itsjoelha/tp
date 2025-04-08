@@ -1,0 +1,47 @@
+@startuml
+actor User
+participant "AddUserModule" as AUM
+participant "User" as U
+participant "ModStorage" as MS
+participant "UserMod" as UM
+participant "Ui" as UI
+
+User -> AUM : execute()
+AUM -> AUM : moduleIsValid()
+
+AUM -> MS : moduleExists(moduleCode)
+MS --> AUM : boolean
+
+AUM -> U : hasModule(moduleCode)
+U --> AUM : boolean
+
+AUM -> AUM : validate semester
+
+alt module is valid
+    AUM -> UM : create UserMod instance
+    AUM -> U : getSemesterModules()
+    U --> AUM : Map<Semester, List<UserMod>>
+
+    AUM -> U : setSemesterModules(updatedMap)
+
+    AUM -> U : fulfillsModPrereq(newMod, semester)
+    U --> AUM : boolean
+
+    alt prerequisites NOT fulfilled
+        AUM -> UI : printDashes()
+        AUM -> UM : getPrerequisites()
+        UM --> AUM : String
+        AUM -> UI : textWrapDescription(prerequisites)
+        AUM -> UI : printDashes()
+    end
+
+    AUM -> User : print success message
+else module is invalid
+    AUM -> User : print error message(s)
+end
+
+group Exception: ModNotInDatabase
+    AUM -> User : print DB error message
+end
+
+@enduml
