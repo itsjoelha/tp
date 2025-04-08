@@ -51,9 +51,8 @@ Here are my contributions to the project
 <h3>Developer Guide Contributions</h3>
 
 - **Project Design**
-  - Created Architecture Diagram and wrote explanation
-  - Created Overall Sequence Diagram and wrote explanation
-  - 
+  - Contributed Architecture Diagram and Overall Sequence Diagram
+  - Wrote explanations for each component in the Architecture 
 
 
 

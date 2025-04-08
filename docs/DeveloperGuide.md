@@ -160,6 +160,7 @@ The _Sequence Diagram_ below shows how the components interact with each other f
 ![image](diagrams/SequenceDiagram.png)
 
 **Successful Command Sub-Diagram**
+
 ![image](diagrams/successfulCommandSequence.png)
 
 Note: Command.execute() may use User depending on which command it is e.g. `/add` adds a module to the User's semesterModules list
@@ -200,18 +201,34 @@ How the `Command` component works:
 2. `Command` is then executed to perform its corresponding function
 
 ---
-
 <h4>
-<span style="color:orange; text-decoration:underline;">Data components</span>
+<span style="color:orange; text-decoration:underline;">Storage component</span>
 </h4>
 
-The `Data` component,
+The `Storage` component consists of `ModStorage`, `UserStorage` and `GradModuleList`
 
-- Loads user data and module data when program starts.
-- Saves user data when program is terminated.
-- ModData deals with module data from the database. UserData deals with storage of User
-data such as user details and modules. 
-- depends on some classes in the `Model` component (because the `Storage` component’s job is to save/retrieve objects that belong to the `Model`)
+- `ModStorage` loads all module data from the `moduledata.txt`, creating `Mods` and storing in a list for other components to access
+- `UserStorage` loads *User Data* from `userdata.txt` and creates the new User on app launch
+- On app shutdown, `UserStorage` saves the *User Data* back into the file 
+- `GradModuleList` contains the list of modules required for a CEG AY24/25 student to graduate, stores them as `Mods`
+
+<h4>
+<span style="color:orange; text-decoration:underline;">User component</span>
+</h4>
+
+The `User` component contains the `User` class and `EducationLevel` enumeration
+
+- stores the *User Data* while the app is running 
+- has many functions used by other classes to retrieve *User Data*
+
+<h4>
+<span style="color:orange; text-decoration:underline;">Data component</span>
+</h4>
+
+The `Data` component defines the data types of a module `Mod`, user module `UserMod`, the prerequisite tree `Prereq` 
+and the enumeration `Grade`
+
+
 
 ---
 
@@ -495,7 +512,7 @@ _{More to be added}_
 - **CEG** : Computer Engineering
 - **NUS** : National University of Singapore
 - **NUSMods** : A web application that provides information about modules and their prerequisites at NUS.
-- **User Data**: Background information of the user and the user's modules
+- **User Data**: Background information of the user (Name, EducationLevel, CurrentSemester) and the user's modules
 
 ---
 

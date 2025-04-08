@@ -1,8 +1,10 @@
 @startuml
 'https://plantuml.com/sequence-diagram
-alt /exit, empty command, Unknown Command
+alt input errors
+    CommandParser -> ErrorHandler
+else /exit, empty command, Unknown Command
     CommandParser -> Ui: print corresponding message
-    Ui --> CommandParser
+
 else
 CommandParser -> Command: new Command()
 CommandParser -> Command: execute()
@@ -10,6 +12,5 @@ CommandParser -> Command: execute()
         Command -> User
         User --> Command
     end
-    Command --> CommandParser
 end
 @enduml
