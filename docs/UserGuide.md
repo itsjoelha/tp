@@ -103,6 +103,7 @@ of core CEG Modules. <br/>
 
 ## Delete  
 **`/delete MODULE_CODE`**  
+
 Deletes a module from the list of modules the user has.
 
 Example: `/delete CS2113`
@@ -200,7 +201,8 @@ Example: `/workload 4`
 ```
 
 ## Help  
-**`/help`**  
+**`/help`**
+
 Shows a message explaining how to access the help page.  
 Displays a list of commands with a brief explanation of each. 
 
@@ -230,6 +232,7 @@ For further assistance, refer to the user guide at our GitHub repository.
 
 ## View Graduation Requirements  
 **`/grad`**  
+
 Shows a list of the modules the user is missing from meeting graduation requirements.
 
 ## Recommended Schedule for CEG Students AY23/24  
@@ -272,11 +275,13 @@ Example: `/schedule jc`
 
 ## View Available Specialisations  
 **`/spec`**  
+
 Lists all specialisations available to CEG students.  
 Includes required modules for each specialisation.  
 
 ## Exit  
 **`/exit`**  
+
 Exits the program.  
 
 ---
