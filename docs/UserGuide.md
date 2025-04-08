@@ -51,9 +51,12 @@ GrandRhombus is an Academic Life Planner which is in-depth and clear to plan the
 Lists out all selected modules.
 
 <div style="border: 1px solid #2196F3; background-color: #BBDEFB; padding: 10px; border-radius: 5px;">
-  <strong> Note about View Format:   </strong>
-  Modules marked with `[O]` have their module pre-requisites fulfilled 
-  Modules marked with `[X]` do not have their module pre-requisites fulfilled
+  <strong> Note about View Format:   </strong> 
+
+- Modules marked with `[O]` have their module pre-requisites fulfilled <br/> 
+
+- Modules marked with `[X]` do not have their module pre-requisites fulfilled <br/>
+    
 </div>
 
 ## Add Module  
@@ -84,15 +87,15 @@ Module PL1101E successfully added to Semester 2 as a Custom Module.
 <div style="border: 1px solid #2196F3; background-color: #BBDEFB; padding: 10px; border-radius: 5px;">
   <strong> Note about Custom Module Format:   </strong>
 
-  Custom Modules are intended to be used when Add Module is unable to find the module within the pre-existing database
+  - Custom Modules are intended to be used when Add Module is unable to find the module within the pre-existing database
 of core CEG Modules.  
 
-  Custom Modules added <strong>cannot </strong> have their details changed 
+  - Custom Modules added <strong>cannot </strong> have their details changed 
 
-  To change the details of a custom module, you can delete the custom module form the list and add a new custom module
+  - To change the details of a custom module, you can delete the custom module form the list and add a new custom module
   with the adjusted details. 
 
-  Custom Modules are outside the core CEG modules and thus have tutorial, lab, project, prep and lecture hours
+  - Custom Modules are outside the core CEG modules and thus have tutorial, lab, project, prep and lecture hours
   intialised to  <strong> zero (0)</strong>. This <strong> cannot </strong> be changed.
 </div>
 
