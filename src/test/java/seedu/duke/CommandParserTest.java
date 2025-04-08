@@ -38,7 +38,7 @@ public class CommandParserTest {
     @Test
     public void parseCommand_invalidCommand() {
         CommandParser parser = new CommandParser();
-        String[] testCommand1 = {"/add", ""};
+        String[] testCommand1 = {"/add", "9"};
 
         assertThrows(ArrayIndexOutOfBoundsException.class, () -> parser.callCommand(testCommand1));
     }
@@ -122,13 +122,14 @@ public class CommandParserTest {
         PrintStream originalOut = System.out;
         System.setOut(new PrintStream(out));
         CommandParser parser = new CommandParser();
-        String[] testCommand = {"/addCustom", "_cs1010", "4", "4", "Programming Methodology"};
+        String[] testCommand = {"/addCustom", "||cs1010", "4", "4", "Programming Methodology"};
 
         parser.callCommand(testCommand);
-        System.setOut(System.out);
+        System.setOut(originalOut);
 
-        assertEquals("Invalid characters detected. Only letters and digits are allowed" +
-                " (no symbols or spaces).", out.toString().trim());
+        assertEquals("Invalid characters found in /addCustom. Only alphanumeric characters are allowed.",
+                out.toString().trim());
+
     }
 
 

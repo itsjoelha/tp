@@ -1,0 +1,16 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+alt input errors
+    CommandParser -> ErrorHandler
+else /exit, empty command, Unknown Command
+    CommandParser -> Ui: print corresponding message
+
+else
+CommandParser -> Command: new Command()
+CommandParser -> Command: execute()
+    opt Command that affects user
+        Command -> User
+        User --> Command
+    end
+end
+@enduml

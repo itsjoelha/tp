@@ -32,6 +32,10 @@ public class CommandParser {
         logger.setLevel(Level.OFF);
     }
 
+    private boolean isValidInput(String input) {
+        return input.matches("^[a-zA-Z0-9 ]+$");
+    }
+
     // This method will parse and separate into required sections
     public String[] parseCommand(String userInput) {
         String[] words = userInput.trim().split("\\s+", 5);
@@ -71,10 +75,19 @@ public class CommandParser {
         Command cmdObject = null;
         int semester;
 
+
         if (words.length > requiredInput(command)) {
             ErrorHandler.excessInputError(command);
             return true;
         }
+
+        for (int i = 1; i < words.length; i++) {
+            if (!isValidInput(words[i])) {
+                ErrorHandler.invalidCharacterInputError(command);
+                return true;
+            }
+        }
+
 
         switch (command) {
         case "/view":
@@ -103,7 +116,7 @@ public class CommandParser {
             semester = Integer.parseInt(words[2]);
             try {
                 if (!words[1].matches("^[a-zA-Z0-9]+$")) {
-                    ErrorHandler.invalidCharacterInputError("module code", command);
+                    ErrorHandler.invalidCharacterInputError(command);
                     break;
                 }
                 int creditNum = Integer.parseInt(words[3]);

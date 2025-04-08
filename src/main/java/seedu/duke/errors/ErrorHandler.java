@@ -57,8 +57,9 @@ public class ErrorHandler {
         Ui.printExcessInputError(command);
     }
 
-    public static void invalidCharacterInputError(String moduleCode, String command) {
-        logger.warning("Invalid input for " + moduleCode + " command.");
-        Ui.printInvalidCharacterInputError(command);
+
+    public static void invalidCharacterInputError(String command) {
+        System.out.println("Invalid characters found in " + command + ". Only alphanumeric characters are allowed.");
     }
+
 }

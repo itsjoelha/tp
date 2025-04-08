@@ -19,19 +19,42 @@ so that students <span style="color:red;">do not miss academic opportunities</sp
 
 Here are my contributions to the project
 
-- **Add Module**
-    - Allow user to add a module to a specific semester in their academic plan
+<h3>Code Contributions</h3>
 
-- **Delete Module**
+- **Command Interface**
+  - Created command interface for consistency between commands and easy implementation in CommandParser 
+  - Refactored commands to use Command Interface
+
+- **Add Module Command `/add`**
+    - Implemented function add a module to a specific semester in their academic plan
+    - Added description of prerequisites if user did not fulfill prerequisites for the added module
+
+- **Delete Module Command `/delete`** 
     - Allow user to delete a module from their plan
 
-- **Command Parser**
-    - Refactored code to create new command after each option and only execute at the end 
+- **Prerequisites**
+  - Created a Function that checks whether user has fulfilled prerequisites of a modules whenever a module is added or the user 
+  views their list of modules (/add and /view)
+  - Designed the Prereq data type for prerequisites that extends into AND, OR and MOD prereq and form a prerequisite tree 
+  when nested in each other. When a prerequisite check is done, it recursively goes through the prerequisite tree to 
+  check whether all prerequisites have been fulfilled. 
 
-- **Refactoring Code**
-    - Refactored commands to use Command Interface
-    - Moved execution of commands to individual commands instead of being called in user 
-    
+- **Waive Module Prerequisite Command `/waive`**
+  - Implemented this function to toggle on and off prerequisite checks of a specific module
+  - Added description of waived modules when `/view` is invoked
+
+- **Contributions to team-based tasks**
+    - Moved execution of commands to individual commands instead of being called in user
+    - Refactored code in CommandParser to create new command after each option and only execute at the end
+    - Broke down project into well-defined components with the team for a clearer project architecture
+
+<h3>Developer Guide Contributions</h3>
+
+- **Project Design**
+  - Contributed Architecture Diagram and Overall Sequence Diagram
+  - Wrote explanations for each component in the Architecture 
+
+
 
 ---
 
