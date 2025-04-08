@@ -51,8 +51,8 @@ GrandRhombus is an Academic Life Planner which is in-depth and clear to plan the
 Lists out all selected modules.
 
 <div style="border: 1px solid #2196F3; background-color: #BBDEFB; padding: 10px; border-radius: 5px;">
-  <strong> Note about View Format:   </strong> </br>
-  Modules marked with `[O]` have their module pre-requisites fulfilled </br>
+  <strong> Note about View Format:   </strong>
+  Modules marked with `[O]` have their module pre-requisites fulfilled 
   Modules marked with `[X]` do not have their module pre-requisites fulfilled
 </div>
 
@@ -82,14 +82,18 @@ Example:  `/addCustom PL1101E 2 4 Intro to Psychology`
 Module PL1101E successfully added to Semester 2 as a Custom Module.
 ```
 <div style="border: 1px solid #2196F3; background-color: #BBDEFB; padding: 10px; border-radius: 5px;">
-  <strong> Note about Custom Module Format:   </strong> </br>
-  Custom Modules are intended to be used when Add Module is unable to find the module within the pre-existing database of core CEG Modules. </br> 
-  </br>
-  Custom Modules added <strong>cannot </strong> have their details changed </br>
-  </br>
-  To change the details of a custom module, you can delete the custom module form the list and add a new custom module with the adjusted details. </br>
-  </br>
-  Custom Modules are outside the core CEG modules and thus have tutorial, lab, project, prep and lecture hours intialised to  <strong> zero (0)</strong>. This <strong> cannot </strong> be changed.
+  <strong> Note about Custom Module Format:   </strong>
+
+  Custom Modules are intended to be used when Add Module is unable to find the module within the pre-existing database
+of core CEG Modules.  
+
+  Custom Modules added <strong>cannot </strong> have their details changed 
+
+  To change the details of a custom module, you can delete the custom module form the list and add a new custom module
+  with the adjusted details. 
+
+  Custom Modules are outside the core CEG modules and thus have tutorial, lab, project, prep and lecture hours
+  intialised to  <strong> zero (0)</strong>. This <strong> cannot </strong> be changed.
 </div>
 
 
