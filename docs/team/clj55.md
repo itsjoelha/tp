@@ -51,10 +51,12 @@ Here are my contributions to the project
 <h3>Developer Guide Contributions</h3>
 
 - **Project Design**
-  - Contributed Architecture Diagram and Overall Sequence Diagram
-  - Wrote explanations for each component in the Architecture 
+  - Contributed to Architecture Diagram, Overall Sequence and Command, Storage Diagram
+  - Wrote explanations for each component in the Architecture
 
+<h3>User Guide Contributions</h3>
 
+- Contributed to Command Reference
 
 ---
 

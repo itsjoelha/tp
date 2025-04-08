@@ -1,0 +1,42 @@
+@startuml
+
+package storage {
+    hide circle
+    skinparam classAttributeIconSize 0
+
+    class GradModuleList {
+        +YEAR1SEM1MODULES: List<Mod>
+        +YEAR1SEM2MODULES: List<Mod>
+        +YEAR2SEM1MODULES: List<Mod>
+        +YEAR2SEM2MODULES: List<Mod>
+        +YEAR3SEM1MODULES: List<Mod>
+        +YEAR3SEM2MODULES: List<Mod>
+        +YEAR4SEM1MODULES: List<Mod>
+        +YEAR4SEM2MODULES: List<Mod>
+        -generateUE(): Mod
+    }
+
+    class ModStorage {
+        -modules: List<Mod>
+        +findModuleByCode(code: String): Mod
+        +moduleExists(code: String): boolean
+        +getModules(): List<Mod>
+        -loadModulesFromFile(): void
+        -parsePrereqTree(json: String): Prereq
+    }
+
+    class UserStorage {
+        -file: File
+        +saveUserData(user: User): void
+        +loadUserData(): User
+    }
+
+    ModStorage "1" --> "*" Mod
+    GradModuleList "1" --> "*" Mod
+    ModStorage "1" --> "*" Prereq
+    UserStorage "1" --> "1" User
+    User "1" --> "*" UserMod
+    UserMod "1" --> "1" Grade
+    User "1" --> "1" EducationLevel
+}
+@enduml

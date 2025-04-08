@@ -48,7 +48,9 @@ GrandRhombus is an Academic Life Planner which is in-depth and clear to plan the
 ## View  
 **`/view`**  
 
-Lists out all selected modules.
+Lists out all selected modules. Runs prerequisite check on all selected modules.
+
+Note: Prerequisite check will not check the module's grade.
 
 <div style="border: 1px solid #2196F3; background-color: #BBDEFB; padding: 10px; border-radius: 5px;">
   <strong> Note about View Format:   </strong> </br>
@@ -61,6 +63,9 @@ Lists out all selected modules.
 
 Adds a module to the list of modules the user has.  
 - Only adds if the module is in the database.
+- Runs a prerequisite check on added module 
+
+Note: Prerequisite check will not check the module's grade.
 
 Example:  `/add CS2113 2`
 
