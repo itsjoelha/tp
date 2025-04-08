@@ -105,7 +105,10 @@ of core CEG Modules. <br/>
 ## Delete  
 **`/delete MODULE_CODE`**  
 
-Deletes a module from the list of modules the user has.
+- Deletes a module from the list of modules the user has.
+- Runs a prerequisite check on all modules in academic schedule 
+
+Note: Prerequisite check will not check the module's grade.
 
 Example: `/delete CS2113`
 ```
